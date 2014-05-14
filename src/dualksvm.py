@@ -10,18 +10,18 @@ import numpy.linalg as la
 class DualKSVM:
     """Dual randomized stochastic coordinate descent for kenel method, SVM and ridge regression
 
-	lmda: int, regularizer
-	alpha:  array type, weights of kernel classifier
-	max_iter : int, maximal number of iteration
-	C : anoter regularizer, essentially C=1/lmda*n
+    lmda: int, regularizer
+    alpha:  array type, weights of kernel classifier
+    max_iter : int, maximal number of iteration
+    C : anoter regularizer, essentially C=1/lmda*n
 
-	kernel : string type,
-		"rbf" : gaussian kernel
-		"poly" : polynomial kernel
-	gm : parameter in rbf kernel
+    kernel : string type,
+        "rbf" : gaussian kernel
+        "poly" : polynomial kernel
+    gm : parameter in rbf kernel
 
-	err_tr
-	"""
+    err_tr
+    """
 
     def __init__(self, n, lmda=0.01, gm=1, kernel='rbf', nsweep=1000, batchsize=2):
         self.batchsize = batchsize
@@ -47,9 +47,9 @@ class DualKSVM:
 
     def rand_stoc_coor(self, y, K):
         """
-		stochastic coordinate descent on the dual svm, random sample a batch of data and update on another random sampled
-		variables
-		"""
+        stochastic coordinate descent on the dual svm, random sample a batch of data and update on another random sampled
+        variables
+        """
         n = K.shape[0]
         yKy = (y[:, np.newaxis] * K) * y[np.newaxis, :]
         lip = np.diag(yKy)
@@ -124,9 +124,9 @@ class DualKSVM:
 
     def _prox_mapping(self, v, x0, gamma):
         """
-		proximal coordinate gradient mapping
-		argmin  x*v + 1/gamma*D(x0,x)
-		"""
+        proximal coordinate gradient mapping
+        argmin  x*v + 1/gamma*D(x0,x)
+        """
         x = x0 - gamma * v
         x = np.minimum(np.maximum(0, x), self.c)
 
