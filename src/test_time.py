@@ -4,6 +4,8 @@ __author__ = 'qdengpercy'
 import numpy as np
 import time
 
+
+
 def cmp_perm_uniform():
     # compute time of permutation and uniform without replacement
     start = time.time()
