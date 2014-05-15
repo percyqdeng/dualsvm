@@ -31,7 +31,7 @@ class DualKSVM:
         self.dim = n
         self.gm = gm
         self.nsweep = nsweep
-        self.T = nsweep * n
+        self.T = nsweep * n - 1
         self.kernel = kernel
         self.obj = []
         self.nnz = []
@@ -56,14 +56,16 @@ class DualKSVM:
         L_t = np.max(lip)
         Q = 1
         D_t = Q * self.dim * self.c ** 2 / 2
-        sig = self._esti_std(yky)
-        gamma = np.minimum(1.0 / (2 * L_t), D_t / sig * np.sqrt(float(self.dim) / (1 + self.T)))
+        sig_list = self._esti_std(yky)
+        sig = np.sqrt((sig_list ** 2).sum())
+
         eta = np.ones(self.T + 1)
-        eta *= gamma
+        eta *= np.minimum(1.0 / (2 * L_t), D_t / sig * np.sqrt(float(self.dim) / (1 + self.T)))
+        theta = eta + .0
         alpha = np.zeros(n)
         a_tilde = np.zeros(n)
         delta = np.zeros(self.T + 2)
-        uu = np.ones(n, dtype=int)
+        uu = np.zeros(n, dtype=int)
         # index of the active iteration for each coordinate, u[i] = t means the most recent update of
         # ith coordinate is in the t-th round, t = 0,1,...,T
         # print "gamma: " + str(gamma) + " eta: " + str(eta)
@@ -79,22 +81,23 @@ class DualKSVM:
                 # samp_ind = samp[j, :]
                 samp_ind = samp
                 var_ind = perm[j]
-                delta[t + 1] = delta[t] + eta[t]
+                delta[t + 1] = delta[t] + theta[t]
                 subk = yky[var_ind, samp_ind]
                 stoc_coor_grad = np.dot(subk, alpha[samp_ind]) * float(n) / self.batchsize - 1
                 a_tilde[var_ind] += (delta[t + 1] - delta[uu[var_ind]]) * (t - uu[j] + 1) * alpha[j]
-                alpha[var_ind] = self._prox_mapping(stoc_coor_grad, alpha[var_ind], gamma)
+                alpha[var_ind] = self._prox_mapping(g=stoc_coor_grad, x0=alpha[var_ind], r=eta[t])
                 uu[var_ind] = t + 1
+                t += 1
             if i % (self.nsweep / showtimes) == 0:
                 print "# of sweeps " + str(i)
-            tmp = alpha_sum + (eta_sum[t + 1] - eta_sum[(uu - 1)]) * alpha
-            alpha_avg = tmp / Z
-            yHa = np.dot(yky, alpha_avg)
-            res = self.lmda * (0.5 * np.dot(alpha_avg, yHa) - alpha_avg.sum())
+
+            a_avg = a_tilde / delta[t]
+            yha = np.dot(yky, a_avg)
+            res = self.lmda * (0.5 * np.dot(a_avg, yha) - a_avg.sum())
             self.obj.append(res)
-            nnzs = (alpha_avg != 0).sum()
+            nnzs = (a_avg != 0).sum()
             self.nnz.append(nnzs)
-            err = np.mean(yHa > 0)
+            err = np.mean(yha < 0)
             self.err_tr.append(err)
         # averaging
         a_tilde += (delta[self.T + 1] - delta[uu]) * (self.T - uu + 1) * alpha
@@ -104,9 +107,9 @@ class DualKSVM:
         row = 2
         col = 2
         plt.subplot(row, col, 1)
-        plt.plot(self.obj, 'bx-', label="objective")
+        plt.plot(self.obj, 'b-', label="objective")
         plt.subplot(row, col, 2)
-        plt.plot(self.nnz, 'bx-', label="# of nnzs")
+        plt.plot(self.nnz, 'b-', label="# of nnzs")
         plt.subplot(row, col, 3)
         plt.plot(self.err_tr, label="training error")
 
@@ -122,12 +125,12 @@ class DualKSVM:
             print "the other kernel tbd"
         return K
 
-    def _prox_mapping(self, v, x0, gamma):
+    def _prox_mapping(self, g, x0, r):
         """
         proximal coordinate gradient mapping
-        argmin  x*v + 1/gamma*D(x0,x)
+        argmin  x*g + 1/gamma*D(x0,x)
         """
-        x = x0 - gamma * v
+        x = x0 - r * g
         x = np.minimum(np.maximum(0, x), self.c)
 
         return x
@@ -141,7 +144,7 @@ class DualKSVM:
             g = K[i, :] * alpha
             sig[i] = np.std(g) * n / np.sqrt(self.batchsize)
 
-        return np.sqrt((sig ** 2).sum())
+        return sig
 
 
 def test_dualsvm(data):
@@ -154,7 +157,7 @@ def test_dualsvm(data):
     ntr = len(y[trInd[i, :]])
     xtr = x[trInd[i, :], :]
     ytr = y[trInd[i, :]]
-    dsvm = DualKSVM(n=ntr, lmda=1.0 / ntr, gm=1, kernel='rbf', nsweep=100, batchsize=5)
+    dsvm = DualKSVM(n=ntr, lmda=1.0 / ntr, gm=1, kernel='rbf', nsweep=100, batchsize=10)
     dsvm.train(xtr, ytr)
     dsvm.plot_train_result()
     return dsvm

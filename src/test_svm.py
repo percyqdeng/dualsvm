@@ -30,3 +30,4 @@ class Test_SVM(object):
         yte = self.y[self.test_ind[i, :]]
         ntr = xtr.shape[0]
         self.dsvm = DualKSVM(n=ntr, lmda=.001)
+        self.
