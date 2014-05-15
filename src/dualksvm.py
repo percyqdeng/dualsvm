@@ -84,14 +84,16 @@ class DualKSVM:
                 delta[t + 1] = delta[t] + theta[t]
                 subk = yky[var_ind, samp_ind]
                 stoc_coor_grad = np.dot(subk, alpha[samp_ind]) * float(n) / self.batchsize - 1
-                a_tilde[var_ind] += (delta[t + 1] - delta[uu[var_ind]]) * (t - uu[j] + 1) * alpha[j]
+                a_tilde[var_ind] += (delta[t + 1] - delta[uu[var_ind]]) * alpha[j]
                 alpha[var_ind] = self._prox_mapping(g=stoc_coor_grad, x0=alpha[var_ind], r=eta[t])
+                assert(all(0 <= x <= self.c for x in np.nditer(alpha[var_ind])))  #only works for size 1
                 uu[var_ind] = t + 1
                 t += 1
             if i % (self.nsweep / showtimes) == 0:
                 print "# of sweeps " + str(i)
 
             a_avg = a_tilde / delta[t]
+            assert(all(0 <= x <= self.c for x in np.nditer(a_avg)))
             yha = np.dot(yky, a_avg)
             res = self.lmda * (0.5 * np.dot(a_avg, yha) - a_avg.sum())
             self.obj.append(res)
@@ -157,7 +159,7 @@ def test_dualsvm(data):
     ntr = len(y[trInd[i, :]])
     xtr = x[trInd[i, :], :]
     ytr = y[trInd[i, :]]
-    dsvm = DualKSVM(n=ntr, lmda=1.0 / ntr, gm=1, kernel='rbf', nsweep=100, batchsize=10)
+    dsvm = DualKSVM(n=ntr, lmda=1.0 / ntr, gm=1, kernel='rbf', nsweep=1000, batchsize=10)
     dsvm.train(xtr, ytr)
     dsvm.plot_train_result()
     return dsvm
