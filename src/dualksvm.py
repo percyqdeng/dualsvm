@@ -128,7 +128,7 @@ class DualKSVM:
             perm = np.random.permutation(n)
             for j in range(n):
                 var_ind = perm[j]
-                
+
 
 
 
