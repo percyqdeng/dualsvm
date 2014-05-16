@@ -30,4 +30,11 @@ class Test_SVM(object):
         yte = self.y[self.test_ind[i, :]]
         ntr = xtr.shape[0]
         self.dsvm = DualKSVM(n=ntr, lmda=.001)
-        self.
+        # self.
+
+
+
+if __name__ == "__main__":
+
+    filename = ["bananamat", "breast_cancermat", "cvt_bench", "diabetismat", "flare_solarmat", "germanmat",
+                "heartmat", "ringnormmat", "splicemat"]
