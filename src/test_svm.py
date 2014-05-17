@@ -2,6 +2,7 @@ __author__ = 'qdengpercy'
 
 from dualksvm import *
 from stocksvm import *
+from sklearn import svm
 import os
 class Test_SVM(object):
     """

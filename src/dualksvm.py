@@ -3,7 +3,6 @@ __author__ = 'qdengpercy'
 import os
 import scipy.io
 import numpy as np
-from sklearn import svm
 import matplotlib.pyplot as plt
 import numpy.linalg as la
 from mysvm import *
