@@ -14,7 +14,6 @@ class DualKSVM(MySVM):
     lmda: int, regularizer
     alpha:  array type, weights of kernel classifier
     T : int, maximal number of iteration - 1
-    C : anoter regularizer, essentially C=1/lmda*n
 
     kernel : string type,
         "rbf" : gaussian kernel
@@ -25,7 +24,7 @@ class DualKSVM(MySVM):
 
     def __init__(self, n, lmda=0.01,  gm=1, kernel='rbf', nsweep=1000, batchsize=2):
         super(DualKSVM, self).__init__(n, lmda,  gm, kernel, nsweep, batchsize)
-
+        self._cc = 1.0 / n   # box constraint on the dual
 
     def train(self, xtr, ytr):
         self.set_train_kernel(xtr)
@@ -53,15 +52,15 @@ class DualKSVM(MySVM):
         print"------------estimate parameters and set up variables----------------- "
         # comment:  seems very sensitive to the parameter estimation, if I use the second D_t, the algorithm diverges
         #
-        lip = np.diag(yktr)
-        L_t = np.max(lip)
+        lip = np.diag(yktr)/self.lmda
+        l_max = np.max(lip)
         Q = 1
-        D_t = Q * np.sqrt(n / 2) * self.c
-        # D_t = Q * (n / 2) * self.c
+        D_t = Q * np.sqrt(1.0/(2*n))
+        # D_t = Q * (n / 2) * self._cc
         sig_list = self._esti_std(yktr)
         sig = np.sqrt((sig_list ** 2).sum())
         eta = np.ones(self.T + 1)
-        eta *= np.minimum(1.0 / (2 * L_t), D_t / sig * np.sqrt(float(self.dim) / (1 + self.T)))
+        eta *= np.minimum(1.0 / (2 * l_max), D_t / sig * np.sqrt(float(self.num) / (1 + self.T)))
         theta = eta + .0
         alpha = np.zeros(n)  # the most recent solution
         a_tilde = np.zeros(n)  # the accumulated solution in the path
@@ -72,6 +71,7 @@ class DualKSVM(MySVM):
         showtimes = 5
         t = 0
         count = 0
+        print "estimated sigma: "+str(sig)+" lipschitz: "+str(l_max)
         print "----------------------start the algorithm----------------------"
         for i in range(self.nsweep):
             # index of batch data to compute stochastic coordinate gradient
@@ -88,18 +88,18 @@ class DualKSVM(MySVM):
                 delta[t + 1] = delta[t] + theta[t]
                 subk = yktr[var_ind, samp_ind]
                 # stoc_coor_grad = np.dot(subk, alpha[samp_ind]) * float(n) / self.batchsize - 1
-                stoc_coor_grad = np.dot(subk, alpha[samp_ind]) * float(n) / self.batchsize - 1
+                stoc_coor_grad = 1/self.lmda*(np.dot(subk, alpha[samp_ind]) * float(n) / self.batchsize) - 1
                 a_tilde[var_ind] += (delta[t + 1] - delta[uu[var_ind]]) * alpha[var_ind]
                 res = alpha[var_ind] - eta[t]*stoc_coor_grad
                 if res < 0:
                     alpha[var_ind] = 0
-                elif res <= self.c:
+                elif res <= self._cc:
                     alpha[var_ind] = res
                 else:
-                    alpha[var_ind] = self.c
-                # alpha[var_ind] = np.minimum(np.maximum(0, alpha[var_ind] - eta[t]*stoc_coor_grad), self.c)
+                    alpha[var_ind] = self._cc
+                # alpha[var_ind] = np.minimum(np.maximum(0, alpha[var_ind] - eta[t]*stoc_coor_grad), self._cc)
                 # alpha[var_ind] = self._prox_mapping(g=stoc_coor_grad, x0=alpha[var_ind], r=eta[t])
-                # assert(all(0 <= x <= self.c for x in np.nditer(alpha[var_ind])))  #only works for size 1
+                # assert(all(0 <= x <= self._cc for x in np.nditer(alpha[var_ind])))  #only works for size 1
                 uu[var_ind] = t + 1
                 t += 1
                 count += self.batchsize
@@ -109,11 +109,11 @@ class DualKSVM(MySVM):
             a_avg = a_tilde + (delta[t]-delta[uu]) * alpha
             a_avg /= delta[t]
             # a_avg = alpha
-            # assert(all(0 <= x <= self.c for x in np.nditer(a_avg)))
+            # assert(all(0 <= x <= self._cc for x in np.nditer(a_avg)))
             yka = np.dot(yktr, a_avg)
-            res = self.lmda * (0.5 * np.dot(a_avg, yka) - a_avg.sum())
-            self._obj.append(res)
-            # if i > 2 and self._obj[-1] > self._obj[-2]:
+            res = 1.0/self.lmda * 0.5 * np.dot(a_avg, yka) - a_avg.sum()
+            self.obj.append(res)
+            # if i > 2 and self.obj[-1] > self.obj[-2]:
             #     print "warning"
             nnzs = (a_avg != 0).sum()
             self.nnz.append(nnzs)
@@ -128,17 +128,17 @@ class DualKSVM(MySVM):
         a_tilde += (delta[self.T + 1] - delta[uu]) * alpha
         self.alpha = a_tilde / delta[self.T + 1]
         self.final = self.lmda * (0.5 * np.dot(self.alpha, np.dot(yktr, self.alpha)) - self.alpha.sum())
-        self.bound1 = self.lmda * ((n-1)*0.5*np.abs(yktr).sum()*self.c**2 - self.alpha.sum())
-        self.bound2 = self.lmda *n*L_t*self.c**2
-        self.bound3 = self.lmda * sig * np.sqrt(n) * 2 * np.sqrt(n / 2) * self.c
+        self.bound1 = (n-1)*0.5*l_max/self.lmda
+        self.bound2 = l_max
+        self.bound3 = sig * np.sqrt(2)
 
     def plot_train_result(self):
         row = 1
         col = 2
         plt.figure()
         # plt.subplot(row, col, 1)
-        plt.plot((self._obj), 'b-', label="stoc")
-        seq = range(self.dim, self.T+2, self.dim)
+        plt.plot(self.obj, 'b-', label="stoc")
+        seq = range(self.num, self.T+2, self.num)
         # bound = (self.bound1+self.bound2)/seq + self.bound3/np.sqrt(seq)
         # plt.plot((bound), 'r-', label="bound")
         plt.ylabel("obj")
@@ -152,17 +152,25 @@ class DualKSVM(MySVM):
         plt.figure()
         plt.plot(self.ker_oper, self.err_te, 'r')
 
+    def _prox_mapping(self, g, x0, r):
+        """
+        proximal coordinate gradient mapping
+        argmin  x*g + 1/r*D(x0,x)
+        """
+        x = x0 - r * g
+        x = np.minimum(np.maximum(0, x), 1.0/self.num)
+        return x
 
     def _esti_std(self, kk):
         """
         estimate standard deviation of coordiante stochastic gradient
         """
         n = kk.shape[0]
-        sig = np.zeros(self.dim)
-        alpha = np.random.uniform(0, self.c, self.dim)
+        sig = np.zeros(self.num)
+        alpha = np.random.uniform(0, self._cc, self.num)
         rep = 100
-        for i in range(self.dim):
-            g = kk[i, :] * self.c
+        for i in range(self.num):
+            g = kk[i, :]/self.lmda * self._cc
             sig[i] = np.std(g) * n / np.sqrt(self.batchsize)
         return sig
 

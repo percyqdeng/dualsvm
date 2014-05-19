@@ -20,13 +20,12 @@ class MySVM(object):
         self.batchsize = batchsize
         self.alpha = np.zeros(n)
         self.lmda = lmda
-        self.c = 1.0 / (n * lmda)
-        self.dim = n
+        self.num = n
         self.gm = gm
         self.nsweep = nsweep
         self.T = nsweep * n - 1
         self.kernel = kernel
-        self._obj = []
+        self.obj = []
         self.nnz = []
         self.err_tr = []
         self.ker_oper = []  #number of kernel operation
@@ -68,11 +67,4 @@ class MySVM(object):
             print "the other kernel tbd"
         self.kte = kte
 
-    def _prox_mapping(self, g, x0, r):
-        """
-        proximal coordinate gradient mapping
-        argmin  x*g + 1/r*D(x0,x)
-        """
-        x = x0 - r * g
-        x = np.minimum(np.maximum(0, x), self.c)
-        return x
+

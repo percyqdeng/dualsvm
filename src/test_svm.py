@@ -31,9 +31,11 @@ class Test_SVM(object):
         xte = self.x[self.test_ind[i, :], :]
         yte = self.y[self.test_ind[i, :]]
         ntr = xtr.shape[0]
-        dsvm = DualKSVM(n=ntr, lmda=1.0 / ntr, gm=1, kernel='rbf', nsweep=10*ntr, batchsize=1)
+        lmd = 1.0
+        # lmda=100 / float(ntr)
+        dsvm = DualKSVM(n=ntr, lmda=lmd, gm=1, kernel='rbf', nsweep=20*ntr, batchsize=1)
         dsvm.train_test(xtr, ytr, xte, yte)
-        kpega = Pegasos(n=ntr, lmda=1.0 / ntr, gm=1, kernel='rbf', nsweep=40, batchsize=1)
+        kpega = Pegasos(n=ntr, lmda=lmd, gm=1, kernel='rbf', nsweep=20, batchsize=1)
         kpega.train_test(xtr, ytr, xte, yte)
 
         plt.subplot(2,2,1)
@@ -41,25 +43,24 @@ class Test_SVM(object):
         plt.plot(kpega.ker_oper, kpega.err_tr, 'b-', label="pegasos")
         plt.legend()
         plt.ylabel("train err")
-        plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
+        plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
 
         # plt.figure()
-        plt.subplot(2,2,2)
+        plt.subplot(2, 2, 2)
         plt.plot(dsvm.ker_oper, dsvm.err_te, 'r-', label="dualcoor")
         plt.plot(kpega.ker_oper, kpega.err_te, 'b-', label="pegasos")
         plt.legend()
         plt.ylabel("test err")
         plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
+        plt.tight_layout()
 
-        # plt.figure()
-        plt.subplot(2,2,3)
-        plt.plot(dsvm.ker_oper, np.log(-np.asarray(dsvm._obj)), 'r-', label="dualcoor")
-        # plt.ylabel("obj")
-        # plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
+        plt.figure()
+        # plt.subplot(2,2,3)
+        plt.plot(dsvm.ker_oper, np.log(-np.asarray(dsvm.obj)), 'r-', label="dualcoor")
 
         # plt.subplot(122)
-        plt.plot(kpega.ker_oper, np.log(kpega._obj), 'b-', label="pegasos")
-        plt.legend()
+        plt.plot(kpega.ker_oper, np.log(kpega.obj), 'b-', label="pegasos")
+        plt.legend(loc='4')
         plt.ylabel("obj")
         plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
         plt.tight_layout()
@@ -96,8 +97,8 @@ if __name__ == "__main__":
         dtpath = "..\\..\\dataset\\ucibenchmark\\"
     elif os.name == "posix":
         dtpath = '../../dataset/benchmark_uci/'
-    filename = ["bananamat", "breast_cancermat", "cvt_bench", "diabetismat", "flare_solarmat", "germanmat",
+    filename = ["bananamat", "breast_cancermat", "diabetismat", "flare_solarmat", "germanmat",
                 "heartmat", "ringnormmat", "splicemat"]
     # dsvm = test_dualsvm(data)
-    newtest = Test_SVM(filename[0])
+    newtest = Test_SVM(filename[2])
     newtest.rand_cmp_svm()

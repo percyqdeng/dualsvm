@@ -48,7 +48,7 @@ class Pegasos(MySVM):
             yka = np.dot(yktr, alpha/(self.lmda * t))
             self.err_tr.append(np.mean(yka < 0))
             obj = 1.0/n * np.maximum(1-yka, 0).sum() + self.lmda/2*np.dot(alpha/(self.lmda * t), yka)
-            self._obj.append(obj)
+            self.obj.append(obj)
             if self.has_kte:
                 pred = np.sign(np.dot(self.kte, self.ytr*alpha/(self.lmda * t)))
                 self.err_te.append(np.mean(self.yte != pred))
@@ -59,7 +59,7 @@ class Pegasos(MySVM):
         col = 2
         plt.figure()
         # plt.subplot(row, col, 1)
-        plt.plot(self._obj, 'b-', label="pegasos")
+        plt.plot(self.obj, 'b-', label="pegasos")
         seq = range(self.dim, self.T+2, self.dim)
         # bound = (self.bound1+self.bound2)/seq + self.bound3/np.sqrt(seq)
         # plt.plot((bound), 'r-', label="bound")
