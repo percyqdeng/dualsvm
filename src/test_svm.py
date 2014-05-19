@@ -4,6 +4,15 @@ from dualksvm import *
 from stocksvm import *
 from sklearn import svm
 import os
+
+
+def normalize_features(xtr, xte):
+    std = np.std(xtr, 0)
+    avg = np.mean(xtr, 0)
+    xtr = (xtr - avg[np.newaxis, :]) / std[np.newaxis, :]
+    xte = (xte - avg[np.newaxis, :]) / std[np.newaxis, :]
+    return xtr, xte
+
 class Test_SVM(object):
     """
     Test_SVM
@@ -31,11 +40,14 @@ class Test_SVM(object):
         xte = self.x[self.test_ind[i, :], :]
         yte = self.y[self.test_ind[i, :]]
         ntr = xtr.shape[0]
-        lmd = 1.0
+        lmd = 10.0/ntr
+        gamma = .1
+        xtr, xte = normalize_features(xtr, xte)
         # lmda=100 / float(ntr)
-        dsvm = DualKSVM(n=ntr, lmda=lmd, gm=1, kernel='rbf', nsweep=20*ntr, batchsize=1)
+
+        dsvm = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=2 * ntr, batchsize=1)
         dsvm.train_test(xtr, ytr, xte, yte)
-        kpega = Pegasos(n=ntr, lmda=lmd, gm=1, kernel='rbf', nsweep=20, batchsize=1)
+        kpega = Pegasos(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=6, batchsize=1)
         kpega.train_test(xtr, ytr, xte, yte)
 
         plt.subplot(2,2,1)
@@ -64,6 +76,8 @@ class Test_SVM(object):
         plt.ylabel("obj")
         plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
         plt.tight_layout()
+
+        return dsvm, kpega
 
 def test_benchmark(data):
     x = data['x']
@@ -101,4 +115,4 @@ if __name__ == "__main__":
                 "heartmat", "ringnormmat", "splicemat"]
     # dsvm = test_dualsvm(data)
     newtest = Test_SVM(filename[2])
-    newtest.rand_cmp_svm()
+    dsvm, kpega = newtest.rand_cmp_svm()

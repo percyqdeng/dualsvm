@@ -6,13 +6,6 @@ import numpy as np
 from sklearn import svm
 import matplotlib.pyplot as plt
 
-class Data(object):
-    def __init__(self, xtr, ytr, xte, yte):
-        self.xtr = xtr
-        self.xte = xte
-        self.ytr = ytr
-        self.yte = yte
-
 
 class MySVM(object):
 
@@ -44,7 +37,8 @@ class MySVM(object):
     def set_train_kernel(self, xtr):
         if self.kernel == 'rbf':
             std = np.std(xtr, axis=0)
-            x = xtr / std[np.newaxis, :]
+            # x = xtr / std[np.newaxis, :]
+            x = xtr
             xsquare = np.sum(x ** 2, 1)
             xxT = np.dot(x, x.T)
             dist = xsquare[:, np.newaxis] - 2 * xxT + xsquare[np.newaxis, :]
@@ -55,9 +49,9 @@ class MySVM(object):
 
     def set_test_kernel(self, xtr, xte):
         if self.kernel == 'rbf':
-            std = np.std(xtr, axis=0)
-            xtr = xtr / std[np.newaxis, :]
-            xte = xte / std[np.newaxis, :]
+            # std = np.std(xtr, axis=0)
+            # xtr = xtr / std[np.newaxis, :]
+            # xte = xte / std[np.newaxis, :]
             s1 = np.sum(xte**2, 1)
             s3 = np.sum(xtr**2, 1)
             s2 = np.dot(xte, xtr.T)

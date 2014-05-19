@@ -42,6 +42,13 @@ class DualKSVM(MySVM):
     def test(self, x, y):
         pass
 
+    @staticmethod
+    def _stoc_coor_cython():
+        """
+        call the cython wrapper
+        """
+        pass
+
     def _rand_stoc_coor(self):
         """
         stochastic coordinate descent on the dual svm, random sample a batch of data and update on another random sampled
@@ -192,7 +199,6 @@ def test_dualsvm(data):
     dsvm.train_test(xtr, ytr, xte, yte)
     dsvm.plot_train_result()
     return dsvm
-
 
 
 if __name__ == "__main__":
