@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import numpy.linalg as la
 from mysvm import *
 from coor import *
-# import coor_cy
+import coor_cy
 
 class DualKSVM(MySVM):
     """Dual randomized stochastic coordinate descent for kenel method, SVM and ridge regression
@@ -26,6 +26,7 @@ class DualKSVM(MySVM):
     def __init__(self, n, lmda=0.01,  gm=1, kernel='rbf', nsweep=1000, batchsize=2):
         super(DualKSVM, self).__init__(n, lmda,  gm, kernel, nsweep, batchsize)
         self._cc = 1.0 / n   # box constraint on the dual
+        self.obj_primal = []
 
     def train(self, xtr, ytr):
         self.set_train_kernel(xtr)
@@ -43,9 +44,10 @@ class DualKSVM(MySVM):
                 ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
                 nsweep=self.nsweep, T=self.T, batchsize=self.batchsize)
         else:
-            self.err_tr, err_te, obj, ker_oper = coor_cy.stoch_coor_descent_cy(
+            # print " type "+str(self.nsweep.dtype)
+            self.err_tr, self.err_te, self.obj, self.obj_primal, self.ker_oper = coor_cy.stoch_coor_descent_cy(
                 ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
-                nsweep=self.nsweep, T=self.T, batchsize=self.batchsize)
+                nsweep=np.int(self.nsweep), T=(self.T), batchsize=np.int(self.batchsize))
 
     def test(self, x, y):
         pass

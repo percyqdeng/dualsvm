@@ -75,7 +75,7 @@ def stoch_coor_descent(ktr, ytr, kte, yte, lmda, nsweep, T, batchsize):
         if i % (nsweep /(showtimes)) == 0:
             print "# of sweeps " + str(i)
         #-------------compute the result after the ith sweep----------------
-        if i % n == 0:
+        if i % (5*n) == 0:
             print "# of i " + str(i)
             a_avg = a_tilde + (delta[t]-delta.take(uu)) * alpha
             a_avg /= delta[t]
