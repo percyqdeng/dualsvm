@@ -4,18 +4,11 @@ from dualksvm import *
 from stocksvm import *
 from sklearn import svm
 import os
-
-
-def normalize_features(xtr, xte):
-    std = np.std(xtr, 0)
-    avg = np.mean(xtr, 0)
-    xtr = (xtr - avg[np.newaxis, :]) / std[np.newaxis, :]
-    xte = (xte - avg[np.newaxis, :]) / std[np.newaxis, :]
-    return xtr, xte
+import time
 
 class Test_SVM(object):
     """
-    Test_SVM
+    Test_SVM, using the benchmarkmat
     """
     def __init__(self, dtname='bananamat.mat'):
         if os.name == "nt":
@@ -32,22 +25,52 @@ class Test_SVM(object):
         print "use dataset: "+str(dtname)
         print "n = "+str(self.x.shape[0])+" p = "+str(self.x.shape[1])
 
-    def rand_cmp_svm(self):
+    @staticmethod
+    def _normalize_features(xtr, xte):
+        std = np.std(xtr, 0)
+        avg = np.mean(xtr, 0)
+        xtr = (xtr - avg[np.newaxis, :]) / std[np.newaxis, :]
+        xte = (xte - avg[np.newaxis, :]) / std[np.newaxis, :]
+        return xtr, xte
+
+    def _gen_i_th(self, i=-1):
         rep = self.train_ind.shape[0]
-        i = np.random.randint(low=0, high=rep)
+        if i < 0 or i >= rep:
+            i = np.random.randint(low=0, high=rep)
         xtr = self.x[self.train_ind[i, :], :]
         ytr = self.y[self.train_ind[i, :]]
         xte = self.x[self.test_ind[i, :], :]
         yte = self.y[self.test_ind[i, :]]
+        return xtr, ytr, xte, yte
+
+    def cmp_timecost(self):
+        xtr, ytr, xte, yte = self._gen_i_th(i=-1)
         ntr = xtr.shape[0]
         lmd = 10.0/ntr
         gamma = .1
-        xtr, xte = normalize_features(xtr, xte)
+        xtr, xte = Test_SVM._normalize_features(xtr, xte)
+
+        start = time.time()
+        d1 = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=2 * ntr, batchsize=1)
+
+        d1.train_test(xtr, ytr, xte, yte, algo_type="naive")
+        print "time 1 "+str(time.time() - start)
+        start = time.time()
+        d2 = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=2 * ntr, batchsize=1, )
+        d2.train_test(xtr, ytr, xte, yte, algo_type="cython")
+        print "time 2 "+str(time.time() - start)
+
+    def rand_cmp_svm(self):
+        xtr, ytr, xte, yte = self._gen_i_th(i=-1)
+        ntr = xtr.shape[0]
+        lmd = 10.0/ntr
+        gamma = .1
+        xtr, xte = Test_SVM._normalize_features(xtr, xte)
         # lmda=100 / float(ntr)
 
-        dsvm = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=2 * ntr, batchsize=1)
+        dsvm = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=20 * ntr, batchsize=1)
         dsvm.train_test(xtr, ytr, xte, yte)
-        kpega = Pegasos(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=6, batchsize=1)
+        kpega = Pegasos(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=20, batchsize=1)
         kpega.train_test(xtr, ytr, xte, yte)
 
         plt.subplot(2,2,1)
@@ -72,7 +95,7 @@ class Test_SVM(object):
 
         # plt.subplot(122)
         plt.plot(kpega.ker_oper, np.log(kpega.obj), 'b-', label="pegasos")
-        plt.legend(loc='4')
+        plt.legend(loc='best')
         plt.ylabel("obj")
         plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
         plt.tight_layout()
@@ -115,4 +138,5 @@ if __name__ == "__main__":
                 "heartmat", "ringnormmat", "splicemat"]
     # dsvm = test_dualsvm(data)
     newtest = Test_SVM(filename[2])
-    dsvm, kpega = newtest.rand_cmp_svm()
+    # dsvm, kpega = newtest.rand_cmp_svm()
+    newtest.cmp_timecost()

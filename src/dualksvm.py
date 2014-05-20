@@ -6,7 +6,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import numpy.linalg as la
 from mysvm import *
-
+from coor import *
+import coor_cy
 
 class DualKSVM(MySVM):
     """Dual randomized stochastic coordinate descent for kenel method, SVM and ridge regression
@@ -31,13 +32,20 @@ class DualKSVM(MySVM):
         self.ytr = ytr
         self._rand_stoc_coor()
 
-    def train_test(self, xtr, ytr, xte, yte):
+    def train_test(self, xtr, ytr, xte, yte, algo_type="naive"):
         self.set_train_kernel(xtr)
         self.set_test_kernel(xtr, xte)
         self.has_kte = True
         self.ytr = ytr
         self.yte = yte
-        self._rand_stoc_coor()
+        if algo_type == "naive":
+            self.err_tr, err_te, obj, ker_oper = stoch_coor_descent(
+                ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
+                nsweep=self.nsweep, T=self.T, batchsize=self.batchsize)
+        else:
+            self.err_tr, err_te, obj, ker_oper = coor_cy.stoch_coor_descent_cy(
+                ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
+                nsweep=self.nsweep, T=self.T, batchsize=self.batchsize)
 
     def test(self, x, y):
         pass
@@ -88,16 +96,17 @@ class DualKSVM(MySVM):
 
             perm = np.random.permutation(n)
             for j in range(n):
-                samp_ind = samp[j, :]
+                # samp_ind = samp[j, :]
+                samp_ind = np.take(samp, j, axis=0)
                 # samp_ind = samp[j]
                 var_ind = perm[j]
                 # var_ind = samp_ind
                 delta[t + 1] = delta[t] + theta[t]
                 subk = yktr[var_ind, samp_ind]
                 # stoc_coor_grad = np.dot(subk, alpha[samp_ind]) * float(n) / self.batchsize - 1
-                stoc_coor_grad = 1/self.lmda*(np.dot(subk, alpha[samp_ind]) * float(n) / self.batchsize) - 1
-                a_tilde[var_ind] += (delta[t + 1] - delta[uu[var_ind]]) * alpha[var_ind]
-                res = alpha[var_ind] - eta[t]*stoc_coor_grad
+                stoc_coor_grad = 1/self.lmda*(np.dot(subk, alpha.take(samp_ind)) * float(n) / self.batchsize) - 1
+                a_tilde[var_ind] += (delta[t + 1] - delta.take(uu.take(var_ind))) * alpha.take(var_ind)
+                res = alpha.take(var_ind) - eta[t]*stoc_coor_grad
                 if res < 0:
                     alpha[var_ind] = 0
                 elif res <= self._cc:
@@ -113,7 +122,7 @@ class DualKSVM(MySVM):
             if i % (self.nsweep / showtimes) == 0:
                 print "# of sweeps " + str(i)
             #-------------compute the result after the ith sweep----------------
-            a_avg = a_tilde + (delta[t]-delta[uu]) * alpha
+            a_avg = a_tilde + (delta[t]-delta.take(uu)) * alpha
             a_avg /= delta[t]
             # a_avg = alpha
             # assert(all(0 <= x <= self._cc for x in np.nditer(a_avg)))
