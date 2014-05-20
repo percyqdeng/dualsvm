@@ -72,27 +72,29 @@ def stoch_coor_descent(ktr, ytr, kte, yte, lmda, nsweep, T, batchsize):
             uu[var_ind] = t + 1
             t += 1
             count += batchsize
-        if i % (nsweep / showtimes) == 0:
+        if i % (nsweep /(showtimes)) == 0:
             print "# of sweeps " + str(i)
         #-------------compute the result after the ith sweep----------------
-        a_avg = a_tilde + (delta[t]-delta.take(uu)) * alpha
-        a_avg /= delta[t]
-        # a_avg = alpha
-        # assert(all(0 <= x <= cc for x in np.nditer(a_avg)))
-        yka = np.dot(yktr, a_avg)
-        res = 1.0/lmda * 0.5 * np.dot(a_avg, yka) - a_avg.sum()
-        obj.append(res)
-        # if i > 2 and obj[-1] > obj[-2]:
-        #     print "warning"
-        nnzs = (a_avg != 0).sum()
-        nnz.append(nnzs)
-        err = np.mean(yka < 0)
-        err_tr.append(err)
-        ker_oper.append(count)
-        if has_kte:
-            pred = np.sign(np.dot(kte, ytr*a_avg))
-            err = np.mean(yte != pred)
-            err_te.append(err)
+        if i % n == 0:
+            print "# of i " + str(i)
+            a_avg = a_tilde + (delta[t]-delta.take(uu)) * alpha
+            a_avg /= delta[t]
+            # a_avg = alpha
+            # assert(all(0 <= x <= cc for x in np.nditer(a_avg)))
+            yka = np.dot(yktr, a_avg)
+            res = 1.0/lmda * 0.5 * np.dot(a_avg, yka) - a_avg.sum()
+            obj.append(res)
+            # if i > 2 and obj[-1] > obj[-2]:
+            #     print "warning"
+            nnzs = (a_avg != 0).sum()
+            nnz.append(nnzs)
+            err = np.mean(yka < 0)
+            err_tr.append(err)
+            ker_oper.append(count)
+            if has_kte:
+                pred = np.sign(np.dot(kte, ytr*a_avg))
+                err = np.mean(yte != pred)
+                err_te.append(err)
     # -------------compute the final result after nsweep-th sweeps---------------
     a_tilde += (delta[T + 1] - delta[uu]) * alpha
     alpha = a_tilde / delta[T + 1]

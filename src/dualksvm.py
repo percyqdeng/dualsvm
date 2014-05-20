@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import numpy.linalg as la
 from mysvm import *
 from coor import *
-import coor_cy
+# import coor_cy
 
 class DualKSVM(MySVM):
     """Dual randomized stochastic coordinate descent for kenel method, SVM and ridge regression
@@ -122,24 +122,25 @@ class DualKSVM(MySVM):
             if i % (self.nsweep / showtimes) == 0:
                 print "# of sweeps " + str(i)
             #-------------compute the result after the ith sweep----------------
-            a_avg = a_tilde + (delta[t]-delta.take(uu)) * alpha
-            a_avg /= delta[t]
-            # a_avg = alpha
-            # assert(all(0 <= x <= self._cc for x in np.nditer(a_avg)))
-            yka = np.dot(yktr, a_avg)
-            res = 1.0/self.lmda * 0.5 * np.dot(a_avg, yka) - a_avg.sum()
-            self.obj.append(res)
-            # if i > 2 and self.obj[-1] > self.obj[-2]:
-            #     print "warning"
-            nnzs = (a_avg != 0).sum()
-            self.nnz.append(nnzs)
-            err = np.mean(yka < 0)
-            self.err_tr.append(err)
-            self.ker_oper.append(count)
-            if self.has_kte:
-                pred = np.sign(np.dot(self.kte, self.ytr*a_avg))
-                err = np.mean(self.yte != pred)
-                self.err_te.append(err)
+            if i % n == 0:
+                a_avg = a_tilde + (delta[t]-delta.take(uu)) * alpha
+                a_avg /= delta[t]
+                # a_avg = alpha
+                # assert(all(0 <= x <= self._cc for x in np.nditer(a_avg)))
+                yka = np.dot(yktr, a_avg)
+                res = 1.0/self.lmda * 0.5 * np.dot(a_avg, yka) - a_avg.sum()
+                self.obj.append(res)
+                # if i > 2 and self.obj[-1] > self.obj[-2]:
+                #     print "warning"
+                nnzs = (a_avg != 0).sum()
+                self.nnz.append(nnzs)
+                err = np.mean(yka < 0)
+                self.err_tr.append(err)
+                self.ker_oper.append(count)
+                if self.has_kte:
+                    pred = np.sign(np.dot(self.kte, self.ytr*a_avg))
+                    err = np.mean(self.yte != pred)
+                    self.err_te.append(err)
         # -------------compute the final result after nsweep-th sweeps---------------
         a_tilde += (delta[self.T + 1] - delta[uu]) * alpha
         self.alpha = a_tilde / delta[self.T + 1]

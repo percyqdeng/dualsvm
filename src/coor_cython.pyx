@@ -4,6 +4,7 @@ import numpy as np
 cimport numpy as np
 from libcpp.vector cimport vector
 from libcpp import bool
+from libc.stdlib cimport rand
 cdef stoc_coor(a, ktr, lmda):
     """
     min 0.5/lmda * a'*kk*a - a'*1
@@ -21,7 +22,7 @@ cpdef cython_stoc_coor(np.ndarray[double, ndim=2]ktr, np.ndarray[double, ndim=1]
     """
     stochastic coordinate descent  on the dual svm, random sample a batch of data and update on another random sampled
     variables
-    min 0.5/lmda * a'*diag(y)*K*diag(y)*a - a'*1
+    min 0.5/kmda* a'*A*a - a'*1
     sub to 0<= a <=cc
 
     alpha :
@@ -55,12 +56,15 @@ cpdef cython_stoc_coor(np.ndarray[double, ndim=2]ktr, np.ndarray[double, ndim=1]
     # index of update, u[i] = t means the most recent update of
     # ith coordinate is in the t-th round, t = 0,1,...,T
     cdef int showtimes = 5
-    cdef int t = 0
+    cdef Py_ssize_t t = 0
+    cdef Py_ssize_t i, j, k
     cdef int count = 0
     cdef np.ndarray[int] samp_ind
     # print "estimated sigma: "+str(sig)+" lipschitz: "+str(l_max)
     print "----------------------start the algorithm----------------------"
-    cdef int i
+    cdef Py_ssize_t var_ind
+    cdef double stoc_coor_grad
+    cdef np.ndarray[int,ndim=1] samp_ind = np.zeros(batchsize)
     for i in range(nsweep):
         # index of batch data to compute stochastic coordinate gradient
         samp = np.random.choice(n, size=(n, batchsize))
@@ -70,14 +74,19 @@ cpdef cython_stoc_coor(np.ndarray[double, ndim=2]ktr, np.ndarray[double, ndim=1]
         perm = np.random.permutation(n)
         cdef int j
         for j in range(n):
-            samp_ind = samp[j, :]
+            # samp_ind = samp[j, :]
+            for k in range(batchsize):
+                samp_ind[k] = int(rand() % n)
             # samp_ind = samp[j]
             var_ind = perm[j]
             # var_ind = samp_ind
             delta[t + 1] = delta[t] + theta[t]
+            stoc_coor_grad = 0
+            for k in range(batchsize):
+
             subk = yktr[var_ind, samp_ind]
-            # stoc_coor_grad = np.dot(subk, alpha[samp_ind]) * float(n) / batchsize - 1
-            stoc_coor_grad = 1/lmda*(np.dot(subk, alpha[samp_ind]) * float(n) / batchsize) - 1
+
+            stoc_coor_grad = 1/lmda*(np.dot(subk, alpha[samp_ind]) * n / batchsize) - 1
             a_tilde[var_ind] += (delta[t + 1] - delta[uu[var_ind]]) * alpha[var_ind]
             res = alpha[var_ind] - eta[t]*stoc_coor_grad
             if res < 0:
@@ -92,7 +101,7 @@ cpdef cython_stoc_coor(np.ndarray[double, ndim=2]ktr, np.ndarray[double, ndim=1]
             uu[var_ind] = t + 1
             t += 1
             count += batchsize
-        if i % (nsweep / showtimes) == 0:
+        if i % (nsweep / 100 * showtimes) == 0:
             print "# of sweeps " + str(i)
         #-------------compute the result after the ith sweep----------------
         a_avg = a_tilde + (delta[t]-delta[uu]) * alpha
@@ -126,7 +135,7 @@ cdef esti_std(np.ndarray[double, ndim=2]kk, double lmda, double cc, Py_ssize_t b
     cdef np.ndarray[double] sig = np.zeros(n)
     alpha = np.random.uniform(0,cc, n)
     rep = 100
-    cdef int i
+    cdef Py_ssize_t i
     for i in range(n):
         g = kk[i, :]/lmda * cc
         sig[i] = np.std(g) * n / np.sqrt(batchsize)

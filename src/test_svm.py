@@ -138,5 +138,5 @@ if __name__ == "__main__":
                 "heartmat", "ringnormmat", "splicemat"]
     # dsvm = test_dualsvm(data)
     newtest = Test_SVM(filename[2])
-    # dsvm, kpega = newtest.rand_cmp_svm()
-    newtest.cmp_timecost()
+    dsvm, kpega = newtest.rand_cmp_svm()
+    # newtest.cmp_timecost()
