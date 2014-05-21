@@ -3,6 +3,7 @@ __author__ = 'qdengpercy'
 from dualksvm import *
 from stocksvm import *
 from sklearn import svm
+import pstats
 import os
 import time
 
@@ -44,23 +45,22 @@ class Test_SVM(object):
         yte = self.y[self.test_ind[i, :]]
         return xtr, ytr, xte, yte
 
-    def cmp_timecost(self):
+    def cmp_time_cost(self):
+        import cProfile
         xtr, ytr, xte, yte = self._gen_i_th(i=-1)
         ntr = xtr.shape[0]
         lmd = 10.0/ntr
         gamma = .1
         xtr, xte = Test_SVM._normalize_features(xtr, xte)
 
-        start = time.time()
-        d1 = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=2 * ntr, batchsize=1)
-
-        # d1.train_test(xtr, ytr, xte, yte, algo_type="naive")
-        # print "time 1 "+str(time.time() - start)
-        # start = time.time()
         d2 = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=20 * ntr, batchsize=1)
         d2.train_test(xtr, ytr, xte, yte, algo_type="cython")
-        print "time 2 "+str(time.time() - start)
-        return d2
+        compute = "coor_cy.stoch_coor_descent_cy(\
+                d2.ktr, d2.ytr, d2.kte, d2.yte, d2.lmda,\
+                d2.nsweep, d2.T, d2.batchsize)"
+        cProfile.runctx(compute, globals(), locals(), "Profile.prof")
+        s = pstats.Stats("Profile.prof")
+        s.strip_dirs().sort_stats("time").print_stats()
 
     def rand_cmp_svm(self):
         xtr, ytr, xte, yte = self._gen_i_th(i=-1)
@@ -144,5 +144,5 @@ if __name__ == "__main__":
                 "heartmat", "ringnormmat", "splicemat"]
     # dsvm = test_dualsvm(data)
     newtest = Test_SVM(filename[2])
-    dsvm, kpega = newtest.rand_cmp_svm()
-    # newtest.cmp_timecost()
+    # dsvm, kpega = newtest.rand_cmp_svm()
+    newtest.cmp_time_cost()

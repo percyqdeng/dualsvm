@@ -1,5 +1,5 @@
 # distutils: language = c++
-
+#cython: profile=True
 __author__ = 'qdengpercy'
 
 cimport cython
@@ -16,7 +16,6 @@ from libc.math cimport fmin
 ctypedef np.float64_t dtype_t
 ctypedef np.int_t dtypei_t
 # ctypedef int dtypei_t
-
 
 
 @cython.boundscheck(False)

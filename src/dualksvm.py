@@ -8,6 +8,8 @@ import numpy.linalg as la
 from mysvm import *
 from coor import *
 import coor_cy
+import pyximport
+
 
 class DualKSVM(MySVM):
     """Dual randomized stochastic coordinate descent for kenel method, SVM and ridge regression
@@ -47,7 +49,7 @@ class DualKSVM(MySVM):
             # print " type "+str(self.nsweep.dtype)
             self.err_tr, self.err_te, self.obj, self.obj_primal, self.ker_oper = coor_cy.stoch_coor_descent_cy(
                 ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
-                nsweep=np.int(self.nsweep), T=(self.T), batchsize=np.int(self.batchsize))
+                nsweep=self.nsweep, T=self.T, batchsize=self.batchsize)
 
     def test(self, x, y):
         pass
