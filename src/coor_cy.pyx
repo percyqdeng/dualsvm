@@ -28,9 +28,18 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[:] ytr,
     """
     stochastic coordinate descent on the dual svm, random sample a batch of data and update on another random sampled
     variables
-    min 0.5*a'*kk*a - a'*b
-    sub to: 0 <= a <= c
-    kk = 1/lmda * diag(y)*ktr*diag(y)
+    min 0.5*a'*kk*a - a'*1
+     sub to: 0 <= a <= cc
+    where kk = 1/lmda * diag(y)*ktr*diag(y)
+    :param ktr:
+    :param ytr:
+    :param kte:
+    :param yte:
+    :param lmda:
+    :param nsweep:
+    :param T:
+    :param batchsize:
+
     """
     cdef Py_ssize_t n = ktr.shape[0]
     cdef double cc = 1.0/n
