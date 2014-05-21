@@ -6,6 +6,7 @@ from sklearn import svm
 import os
 import time
 
+
 class Test_SVM(object):
     """
     Test_SVM, using the benchmarkmat

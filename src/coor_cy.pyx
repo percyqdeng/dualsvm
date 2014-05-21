@@ -21,8 +21,9 @@ ctypedef np.int_t dtypei_t
 
 @cython.boundscheck(False)
 @cython.cdivision(True)
-cpdef stoch_coor_descent_cy(np.ndarray[double, ndim=2]ktr, ytr,
-                          kte,  yte,
+@cython.wraparound(True)
+cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[:] ytr,
+                          double[:,::1]kte, int[:]yte,
                           double lmda, int nsweep, int T, int batchsize):
     """
     stochastic coordinate descent on the dual svm, random sample a batch of data and update on another random sampled
@@ -33,7 +34,7 @@ cpdef stoch_coor_descent_cy(np.ndarray[double, ndim=2]ktr, ytr,
     """
     cdef Py_ssize_t n = ktr.shape[0]
     cdef double cc = 1.0/n
-    cdef np.ndarray[double, ndim=2] kk = np.zeros([n, n])
+    cdef double [:,::1] kk = np.zeros([n, n])
     cdef Py_ssize_t i,j,k
     for i in range(n):
         for j in range(n):
@@ -51,7 +52,7 @@ cpdef stoch_coor_descent_cy(np.ndarray[double, ndim=2]ktr, ytr,
     print"------------estimate parameters and set up variables----------------- "
     # comment:  seems very sensitive to the parameter estimation, if I use the second D_t, the algorithm diverges
     #
-    cdef np.ndarray[double] lip = np.zeros(n)
+    cdef double [:] lip = np.zeros(n)
     cdef double l_max = 0
     for i in range(n):
         lip[i] = kk[i,i]
@@ -60,26 +61,26 @@ cpdef stoch_coor_descent_cy(np.ndarray[double, ndim=2]ktr, ytr,
     Q = 1
     cdef double D_t = Q * np.sqrt(1.0/(2*n))
     # D_t = Q * (n / 2) * cc
-    sig_list = esti_std(kk, cc, batchsize)
-    cdef res = 0
+    sig_list = esti_std(np.asarray(kk), cc, batchsize)
+    cdef double res = 0
     for i in range(n):
         res += sig_list[i]**2
     sig = np.sqrt(res)
-    cdef np.ndarray[double] eta = np.ones(T+1)
-    cdef np.ndarray[double] theta = np.zeros(T+1)
+    cdef double [:] eta = np.ones(T+1)
+    cdef double [:] theta = np.zeros(T+1)
     eta[0] = np.minimum(1.0 / (2 * l_max), D_t / sig * np.sqrt(float(n) / (1 + T)))
     for i in range(1, T+1):
         eta[i] = eta[0]
     for i in range(T+1):
         theta[i] = eta[i]
-    cdef np.ndarray[double] alpha = np.zeros(n)  # the most recent solution
-    cdef np.ndarray[double]a_tilde = np.zeros(n)  # the accumulated solution in the path
-    cdef np.ndarray[double] a_avg = np.zeros(n)
-    cdef np.ndarray[double] delta = np.zeros(T + 2)
-    cdef np.ndarray[double] kk_a = np.zeros(n)
-    cdef np.ndarray[Py_ssize_t,ndim=1] samp_ind = np.zeros(batchsize, dtype=int)
+    cdef double [:] alpha = np.zeros(n)  # the most recent solution
+    cdef double [:] a_tilde = np.zeros(n)  # the accumulated solution in the path
+    cdef double [:] a_avg = np.zeros(n)
+    cdef double [:] delta = np.zeros(T + 2)
+    cdef double [:] kk_a = np.zeros(n)
+    cdef int[:] samp_ind = np.zeros(batchsize, dtype=int)
     cdef Py_ssize_t var_ind
-    cdef np.ndarray[Py_ssize_t] uu = np.zeros(n, dtype=int)
+    cdef int[:] uu = np.zeros(n, dtype=int)
     cdef double stoc_coor_grad
     # index of update, u[i] = t means the most recent update of
     # ith coordinate is in the t-th round, t = 0,1,...,T
@@ -116,10 +117,10 @@ cpdef stoch_coor_descent_cy(np.ndarray[double, ndim=2]ktr, ytr,
             for j in range(n):
                 res+= 0.5 * a_avg[j] * kk_a[j] - a_avg[j]
             obj.push_back(res)
-            err_count = 0
+            res = 0
             for j in range(n):
-                err_count += (kk_a[j] < 0)
-            err_tr.push_back(float(err_count)/n)
+                res += (kk_a[j] < 0)
+            err_tr.push_back(res/n)
             # 2, compute primal objective of svm
             res = 0
             for j in range(n):
@@ -127,19 +128,34 @@ cpdef stoch_coor_descent_cy(np.ndarray[double, ndim=2]ktr, ytr,
             obj_primal.push_back(res)
             ker_oper.push_back(count)
             if True:
-                # pred =
-                pred = np.sign(np.dot(kte, ytr*a_avg))
-                err = np.mean(yte*pred < 0)
+                err = err_rate_test(yte, kte, ytr, a_avg)
                 # err = cmp_err_rate(yte, pred)
                 err_te.push_back(err)
     # -------------compute the final result after nsweep-th sweeps---------------
-    a_tilde += (delta[T + 1] - delta[uu]) * alpha
+    for i in range(n):
+        a_tilde[i] += (delta[T + 1] - delta[uu[i]]) * alpha[i]
     for i in range(n):
         alpha[i] = a_tilde[i] / delta[T + 1]
     return err_tr, err_te, obj, obj_primal, ker_oper
 
+cdef double err_rate_test(int[:]label, double[:,::1]k, int[:]y, double[:]a):
+    cdef Py_ssize_t n = k.shape[0]
+    cdef Py_ssize_t m = k.shape[1]
+    cdef Py_ssize_t i, j
+    cdef double res, err = 0
+    for i in range(n):
+        res = 0
+        for j in range(m):
+            res += k[i,j] * y[j] *a[j]
+        err += (label[i] * res<0)
 
-cdef cmp_err_rate(y, np.ndarray[double, ndim=1]z):
+    return err / n
+
+
+cdef double cmp_err_rate(int[:] y, double[:]z):
+    """
+    check whether sign of y, z agree
+    """
     cdef Py_ssize_t i, n
     n = len(y)
     cdef int err = 0
@@ -149,11 +165,11 @@ cdef cmp_err_rate(y, np.ndarray[double, ndim=1]z):
 
 @cython.boundscheck(False)
 @cython.cdivision(True)
-cdef mat_vec(np.ndarray[double, ndim=2]aa, np.ndarray[double, ndim=1]b):
+cdef double[:] mat_vec(double[:,::1]aa, double[:]b):
     cdef Py_ssize_t n = aa.shape[0]
     cdef Py_ssize_t m = aa.shape[1]
-    cdef np.ndarray[double] c = np.zeros(n)
-    assert (m == b.shape[0])
+    cdef double [:] c = np.zeros(n)
+    assert (m == n)
     cdef Py_ssize_t i, j
     for i in range(n):
         for j in range(m):
@@ -162,7 +178,7 @@ cdef mat_vec(np.ndarray[double, ndim=2]aa, np.ndarray[double, ndim=1]b):
 
 cdef esti_std(np.ndarray[double, ndim=2]kk, double cc, int batchsize):
     n = kk.shape[0]
-    # cdef np.ndarray[double] sig = np.zeros(n)
+    # cdef double [:] sig = np.zeros(n)
     sig = np.zeros(n)
     alpha = np.random.uniform(0,cc, n)
     rep = 100
