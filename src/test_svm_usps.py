@@ -4,6 +4,7 @@ __author__ = 'qdengpercy'
 from dualksvm import *
 from stocksvm import *
 from sklearn import svm
+import sklearn.cross_validation as cv
 import os
 import time
 import numpy as np
@@ -34,6 +35,15 @@ def convert_binary(data, k):
 if __name__ == '__main__':
     k = 4
     data = load_usps()
+    x, y = convert_binary(data, k)
+    n_rep = 1
+    n_samples = x.shape[0]
+    ss = cv.ShuffleSplit(n=n_samples, n_iter=n_rep,test_size=0.5, train_size=0.5)
+    for tr_ind, te_ind in ss:
+        xtr = x[tr_ind, :]
+        ytr = y[tr_ind]
+        xte = x[te_ind, :]
+        yte = y[te_ind]
 
 
 
