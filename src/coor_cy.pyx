@@ -140,7 +140,7 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
             # 2, compute primal objective of svm
             res = 0
             for j in range(n):
-                res += fmax(0,1 - lmda * kk_a[j])/n + 0.5 * a_avg[j] * kk_a[j]
+                res += fmax(0,1 - kk_a[j])/n + 0.5 * a_avg[j] * kk_a[j]
             obj_primal.push_back(res)
             ker_oper.push_back(count)
             if True:

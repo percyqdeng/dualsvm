@@ -9,7 +9,7 @@ import numpy as np
 
 class Test_SVM(object):
     """
-    Test_SVM, using the benchmarkmat
+    Test_SVM, using the uci benchmarkmat
     """
     def __init__(self, dtname='bananamat.mat'):
         if os.name == "nt":
@@ -82,7 +82,6 @@ class Test_SVM(object):
         start = time.time()
         kpega.train_test(xtr, ytr, xte, yte)
         print "time 2 "+str(time.time() - start)
-
         plt.subplot(2, 2, 1)
         plt.plot(dsvm.ker_oper, dsvm.err_tr, 'rx-', label="dualcoor")
         plt.plot(kpega.ker_oper, kpega.err_tr, 'bo-', label="pegasos")
@@ -99,16 +98,17 @@ class Test_SVM(object):
         plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
         plt.tight_layout()
 
-        plt.figure()
-        # plt.subplot(2,2,3)
-        plt.plot(dsvm.ker_oper, (-np.asarray(dsvm.obj)), 'rx-', label="sdc")
-        plt.plot(dsvm.ker_oper, (np.asarray(dsvm.obj_primal)), 'gx-', label="sdc-primal obj")
+        # plt.figure()
+        plt.subplot(2,2,3)
+        plt.plot(dsvm.ker_oper, (-np.asarray(dsvm.obj)), 'rx-', label="sdc dual obj")
+        plt.plot(dsvm.ker_oper, (np.asarray(dsvm.obj_primal)), 'gx-', label="sdc primal obj")
         # plt.subplot(122)
         plt.plot(kpega.ker_oper, (kpega.obj), 'bo-', label="pegasos")
         plt.legend(loc='best')
         plt.ylabel("obj")
         plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
         plt.tight_layout()
+        plt.show()
 
         return dsvm, kpega
 
