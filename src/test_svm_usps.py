@@ -8,35 +8,7 @@ import sklearn.cross_validation as cv
 import os
 import time
 import numpy as np
-from load_data import load_usps
-
-
-def convert_binary(data, pos_ind, neg_ind):
-    """
-    convert 0-9 digits to binary dataset
-    """
-    assert 0 <= pos_ind <= 9
-    assert 0 <= neg_ind <= 9
-    x_pos = data[str(pos_ind)]
-    x_neg = data[str(neg_ind)]
-    x = np.vstack((x_pos, x_neg))
-    y = np.ones(x.shape[0], dtype=np.int32)
-    y[x_pos.shape[0]:-1] = -1
-    return x, y
-
-def convert_one_vs_all(data, pos_ind):
-    assert 0 <= pos_ind <= 9
-    x_pos = data[str(pos_ind)]
-    x_neg = None
-    for i in range(10):
-        if i != pos_ind:
-            if x_neg is None:
-                x_neg = data[str(i)]
-            else:
-                x_neg = np.vstack((x_neg, data[str(i)]))
-    y = np.ones(x.shape[0], dtype=np.int32)
-    y[x_pos.shape[0]:-1] = -1
-    return x, y
+from load_data import *
 
 
 if __name__ == '__main__':
