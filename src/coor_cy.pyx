@@ -54,11 +54,11 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
 
     cdef vector[int] nnz
     cdef vector[double]err_tr
-    cdef vector[int] ker_oper
+    cdef vector[int] num_oper
     cdef vector[double] obj
     cdef vector [double] obj_primal
     cdef double err_count
-    cdef np.ndarray[double, ndim=1] pred = np.zeros(kte.shape[0])
+    cdef np.ndarray[double] pred = np.zeros(kte.shape[0])
     # cdef bool has_kte = True
     cdef vector[double] err_te
     print"------------estimate parameters and set up variables----------------- "
@@ -103,9 +103,9 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
 
     print "estimated sigma: "+str(sig)+" lipschitz: "+str(l_max)
     print "----------------------start the algorithm----------------------"
-    for i in range(nsweep):
+    for i in xrange(nsweep):
         # rand_perm(ind_list)
-        for j in range(n):
+        for j in xrange(n):
             for k in range(batchsize):
                 # batch_ind[k] = j
                 batch_ind[k] = int(rand() % n)
@@ -124,7 +124,7 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
         if i % (nsweep / showtimes) == 0:
             print "# of sweeps " + str(i)
         #-------------compute the result after the ith sweep----------------
-        if i % n == 0:
+        if i % (nsweep / 10) == 0:
             for j in range(n):
                 a_avg[j] = (a_tilde[j] + (delta[t]-delta[uu[j]]) * alpha[j]) / delta[t]
             kk_a = mat_vec(kk, a_avg)
@@ -132,7 +132,7 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
             # 1, compute dual objective of svm
             for j in range(n):
                 res+= 0.5 * a_avg[j] * kk_a[j] - a_avg[j]
-            obj.push_back(res)
+            obj.push_back(-res)  # the dual of svm is the negative of our objective
             res = 0
             for j in range(n):
                 res += (kk_a[j] < 0)
@@ -142,7 +142,7 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
             for j in range(n):
                 res += fmax(0,1 - kk_a[j])/n + 0.5 * a_avg[j] * kk_a[j]
             obj_primal.push_back(res)
-            ker_oper.push_back(count)
+            num_oper.push_back(count)
             if True:
                 err = err_rate_test(yte, kte, ytr, a_avg)
                 # err = cmp_err_rate(yte, pred)
@@ -152,7 +152,7 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
         a_tilde[i] += (delta[T + 1] - delta[uu[i]]) * alpha[i]
     for i in range(n):
         alpha[i] = a_tilde[i] / delta[T + 1]
-    return err_tr, err_te, obj, obj_primal, ker_oper
+    return err_tr, err_te, obj, obj_primal, num_oper
 
 cdef rand_perm(int[:] ind):
     cdef int i, j, n = ind.shape[0]

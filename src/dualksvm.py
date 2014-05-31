@@ -33,21 +33,24 @@ class DualKSVM(MySVM):
         self.ytr = ytr
         self._rand_stoc_coor()
 
-    def train_test(self, xtr, ytr, xte, yte, algo_type="naive"):
+    def train_test(self, xtr, ytr, xte, yte, algo_type="cy"):
         self.set_train_kernel(xtr)
         self.set_test_kernel(xtr, xte)
         self.has_kte = True
         self.ytr = ytr
         self.yte = yte
         if algo_type == "naive":
-            self.err_tr, err_te, obj, ker_oper = stoch_coor_descent(
-                ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
-                nsweep=self.nsweep, T=self.T, batchsize=self.batchsize)
-        else:
+            self._rand_stoc_coor()
+            # self.err_tr, err_te, obj, ker_oper = stoch_coor_descent(
+            #     ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
+            #     nsweep=self.nsweep, T=self.T, batchsize=self.batchsize)
+        elif algo_type == 'cy':
             # print " type "+str(self.nsweep.dtype)
-            self.err_tr, self.err_te, self.obj, self.obj_primal, self.ker_oper = coor_cy.stoch_coor_descent_cy(
+            self.err_tr, self.err_te, self.obj, self.obj_primal, self.n_ker_oper = coor_cy.stoch_coor_descent_cy(
                 ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
                 nsweep=np.int(self.nsweep), T=(self.T), batchsize=np.int(self.batchsize))
+        else:
+            print "error"
 
     def test(self, x, y):
         pass

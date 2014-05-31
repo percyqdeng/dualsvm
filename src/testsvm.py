@@ -52,7 +52,7 @@ class Test_SVM(object):
         xtr, ytr, xte, yte = self._gen_i_th(i=-1)
         ntr = xtr.shape[0]
         lmd = 10.0/ntr
-        gamma = .1
+        gamma = 1
         xtr, xte = Test_SVM._normalize_features(xtr, xte)
 
         start = time.time()

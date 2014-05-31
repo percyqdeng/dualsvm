@@ -41,17 +41,18 @@ class Pegasos(MySVM):
                     if flag[i] == 0:
                         flag[i] = 1
                         num_sv += 1
-            if k % (self.nsweep / showtimes) == 0:
-                print "# of sweeps " + str(k)
             # alpha /= self.lmda * self.T
-            self.ker_oper.append(count)
-            yka = np.dot(yktr, alpha/(self.lmda * t))
-            self.err_tr.append(np.mean(yka < 0))
-            obj = 1.0/n * np.maximum(1-yka, 0).sum() + self.lmda/2*np.dot(alpha/(self.lmda * t), yka)
-            self.obj.append(obj)
-            if self.has_kte:
-                pred = np.sign(np.dot(self.kte, self.ytr*alpha/(self.lmda * t)))
-                self.err_te.append(np.mean(self.yte != pred))
+                if j % (n/10) == 0:
+                    self.n_ker_oper.append(count)
+                    yka = np.dot(yktr, alpha/(self.lmda * t))
+                    self.err_tr.append(np.mean(yka < 0))
+                    obj = 1.0/n * np.maximum(1-yka, 0).sum() + self.lmda/2*np.dot(alpha/(self.lmda * t), yka)
+                    self.obj.append(obj)
+                    if self.has_kte:
+                        pred = np.sign(np.dot(self.kte, self.ytr*alpha/(self.lmda * t)))
+                        self.err_te.append(np.mean(self.yte != pred))
+            # if k % (self.nsweep) == 0:
+            print "# of sweeps " + str(k)
         self.alpha = alpha
 
     def plot_train_result(self):

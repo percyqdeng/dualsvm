@@ -21,7 +21,7 @@ class MySVM(object):
         self.obj = []
         self.nnz = []
         self.err_tr = []
-        self.ker_oper = []  #number of kernel operation
+        self.n_ker_oper = []  #number of kernel operation
         self.err_te = []
         self.has_kte = False
 
