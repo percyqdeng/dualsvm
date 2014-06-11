@@ -25,6 +25,7 @@ class Pegasos(MySVM):
         yktr = (self.ytr[:, np.newaxis] * self.ktr) * self.ytr[np.newaxis, :]
         alpha = np.zeros(n)
         showtimes = 5
+        rec_step = 1
         t = 0
         flag = np.zeros(n)
         num_sv = 0
@@ -42,7 +43,8 @@ class Pegasos(MySVM):
                         flag[i] = 1
                         num_sv += 1
             # alpha /= self.lmda * self.T
-                if j % (n/10) == 0:
+                if t == rec_step:
+                    rec_step *= 2
                     self.n_ker_oper.append(count)
                     yka = np.dot(yktr, alpha/(self.lmda * t))
                     self.err_tr.append(np.mean(yka < 0))

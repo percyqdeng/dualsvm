@@ -154,26 +154,6 @@ class DualKSVM(MySVM):
         self.bound2 = l_max
         self.bound3 = sig * np.sqrt(2)
 
-    def plot_train_result(self):
-        row = 1
-        col = 2
-        plt.figure()
-        # plt.subplot(row, col, 1)
-        plt.plot(self.obj, 'b-', label="stoc")
-        seq = range(self.num, self.T+2, self.num)
-        # bound = (self.bound1+self.bound2)/seq + self.bound3/np.sqrt(seq)
-        # plt.plot((bound), 'r-', label="bound")
-        plt.ylabel("obj")
-        plt.legend()
-        # plt.subplot(row, col, 2)
-        plt.figure()
-        plt.plot(self.err_tr)
-        plt.ylabel("training error")
-        # plt.subplot(row, col, 3)
-        # plt.plot(self.nnz, 'b-', label="# of nnzs")
-        plt.figure()
-        plt.plot(self.ker_oper, self.err_te, 'r')
-
     def _prox_mapping(self, g, x0, r):
         """
         proximal coordinate gradient mapping

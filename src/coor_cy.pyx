@@ -100,14 +100,14 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
     cdef int count = 0
     cdef double time_gen_rand = 0
     cdef int[:] ind_list = np.zeros(n, dtype=np.int32)
-
+    cdef unsigned int rec_step = 1 # stepsize to record the output, 1,2,4,8,...
     print "estimated sigma: "+str(sig)+" lipschitz: "+str(l_max)
     print "----------------------start the algorithm----------------------"
     for i in xrange(nsweep):
         # rand_perm(ind_list)
         for j in xrange(n):
-            for k in range(batchsize):
-                # batch_ind[k] = j
+            # generate random batch data
+            for k in xrange(batchsize):
                 batch_ind[k] = int(rand() % n)
             var_ind = int(rand() % n)
             # var_ind = ind_list[j]
@@ -119,35 +119,36 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
             res =  alpha[var_ind] - eta[t] * stoc_coor_grad
             alpha[var_ind] = fmax(0, fmin(res, cc))
             uu[var_ind] = t + 1
-            t += 1
+
             count += batchsize
+            if t+1 == rec_step:
+                rec_step *= 2
+                for j in range(n):
+                    a_avg[j] = (a_tilde[j] + (delta[t+1]-delta[uu[j]]) * alpha[j]) / delta[t+1]
+                kk_a = mat_vec(kk, a_avg)
+                res = 0
+                # 1, compute dual objective of svm
+                for j in range(n):
+                    res+= 0.5 * a_avg[j] * kk_a[j] - a_avg[j]
+                obj.push_back(-res)  # the dual of svm is the negative of our objective
+                res = 0
+                for j in range(n):
+                    res += (kk_a[j] <= 0)
+                err_tr.push_back(res/n)
+                # 2, compute primal objective of svm
+                res = 0
+                for j in range(n):
+                    res += fmax(0,1 - kk_a[j])/n + 0.5 * a_avg[j] * kk_a[j]
+                obj_primal.push_back(res)
+                num_oper.push_back(count)
+                if True:
+                    err = err_rate_test(yte, kte, ytr, a_avg)
+                    # err = cmp_err_rate(yte, pred)
+                    err_te.push_back(err)
+            t += 1
         if i % (nsweep / showtimes) == 0:
             print "# of sweeps " + str(i)
-        #-------------compute the result after the ith sweep----------------
-        if i % (nsweep / 10) == 0:
-            for j in range(n):
-                a_avg[j] = (a_tilde[j] + (delta[t]-delta[uu[j]]) * alpha[j]) / delta[t]
-            kk_a = mat_vec(kk, a_avg)
-            res = 0
-            # 1, compute dual objective of svm
-            for j in range(n):
-                res+= 0.5 * a_avg[j] * kk_a[j] - a_avg[j]
-            obj.push_back(-res)  # the dual of svm is the negative of our objective
-            res = 0
-            for j in range(n):
-                res += (kk_a[j] < 0)
-            err_tr.push_back(res/n)
-            # 2, compute primal objective of svm
-            res = 0
-            for j in range(n):
-                res += fmax(0,1 - kk_a[j])/n + 0.5 * a_avg[j] * kk_a[j]
-            obj_primal.push_back(res)
-            num_oper.push_back(count)
-            if True:
-                err = err_rate_test(yte, kte, ytr, a_avg)
-                # err = cmp_err_rate(yte, pred)
-                err_te.push_back(err)
-    # -------------compute the final result after nsweep-th sweeps---------------
+
     for i in range(n):
         a_tilde[i] += (delta[T + 1] - delta[uu[i]]) * alpha[i]
     for i in range(n):
@@ -175,7 +176,7 @@ cdef double err_rate_test(int[:]label, double[:,::1]k, int[:]y, double[:]a):
         res = 0
         for j in range(m):
             res += k[i,j] * y[j] *a[j]
-        err += (label[i] * res<0)
+        err += (label[i] * res<=0)
     return err / n
 
 

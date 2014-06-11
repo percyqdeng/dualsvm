@@ -13,5 +13,7 @@ setup(
                           )
 )
 
+# if __name__ == "__main__":
+#     os.
 
 # run setup.py build_ext --inplace
