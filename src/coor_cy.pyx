@@ -19,13 +19,13 @@ ctypedef np.float64_t dtype_t
 ctypedef np.int_t dtypei_t
 # ctypedef int dtypei_t
 
-cdef extern from "stdlib.h":
-    double drand48()
+# cdef extern from "stdlib.h":
+#     double drand48()
 
 @cython.boundscheck(False)
 @cython.cdivision(True)
 @cython.wraparound(True)
-cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
+cpdef scd_cy(double[:,::1] ktr, int[::1] ytr,
                           double[:,::1]kte, int[::1]yte,
                           double lmda, int nsweep, int T, int batchsize):
     """
@@ -52,7 +52,7 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
         for j in range(n):
             kk[i,j] = ktr[i,j] * ytr[i] * ytr[j] / lmda
 
-    cdef vector[int] nnz
+    cdef vector[int] nnzs
     cdef vector[double]err_tr
     cdef vector[int] num_oper
     cdef vector[double] obj
@@ -92,15 +92,17 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
     cdef int[::1] batch_ind = np.zeros(batchsize, dtype=np.int32)
     cdef Py_ssize_t var_ind
     cdef int[:] uu = np.zeros(n, dtype=np.int32)
-    cdef double stoc_coor_grad
+    cdef double appr_coor_grad
     # index of update, u[i] = t means the most recent update of
     # ith coordinate is in the t-th round, t = 0,1,...,T
     cdef int showtimes = 5
     cdef Py_ssize_t t = 0
-    cdef int count = 0
+    cdef int count = 0 # count number of kernel products
     cdef double time_gen_rand = 0
     cdef int[:] ind_list = np.zeros(n, dtype=np.int32)
     cdef unsigned int rec_step = 1 # stepsize to record the output, 1,2,4,8,...
+    cdef unsigned int [::1] used = np.zeros(n, dtype=np.uint)
+    cdef unsigned int total_nnzs = 0
     print "estimated sigma: "+str(sig)+" lipschitz: "+str(l_max)
     print "----------------------start the algorithm----------------------"
     for i in xrange(nsweep):
@@ -112,12 +114,16 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
             var_ind = int(rand() % n)
             # var_ind = ind_list[j]
             delta[t + 1] = delta[t] + theta[t]
-            stoc_coor_grad = 0
+            appr_coor_grad = 0
             for k in range(batchsize):
-                stoc_coor_grad += kk[var_ind, batch_ind[k]] * alpha[batch_ind[k]] * n /batchsize - 1
+                appr_coor_grad += kk[var_ind, batch_ind[k]] * alpha[batch_ind[k]] * n /batchsize - 1
             a_tilde[var_ind] += (delta[t + 1] - delta[uu[var_ind]]) * alpha[var_ind]
-            res =  alpha[var_ind] - eta[t] * stoc_coor_grad
+            res =  alpha[var_ind] - eta[t] * appr_coor_grad
             alpha[var_ind] = fmax(0, fmin(res, cc))
+            if alpha[var_ind] > 0:
+                if not used[var_ind]:
+                    used[var_ind] = 1
+                    total_nnzs += 1
             uu[var_ind] = t + 1
 
             count += batchsize
@@ -131,20 +137,23 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
                 for j in range(n):
                     res+= 0.5 * a_avg[j] * kk_a[j] - a_avg[j]
                 obj.push_back(-res)  # the dual of svm is the negative of our objective
+                # compute error rate
                 res = 0
                 for j in range(n):
                     res += (kk_a[j] <= 0)
                 err_tr.push_back(res/n)
+                if True:
+                    err = err_rate_test(yte, kte, ytr, a_avg)
+                    # err = cmp_err_rate(yte, pred)
+                    err_te.push_back(err)
                 # 2, compute primal objective of svm
                 res = 0
                 for j in range(n):
                     res += fmax(0,1 - kk_a[j])/n + 0.5 * a_avg[j] * kk_a[j]
                 obj_primal.push_back(res)
                 num_oper.push_back(count)
-                if True:
-                    err = err_rate_test(yte, kte, ytr, a_avg)
-                    # err = cmp_err_rate(yte, pred)
-                    err_te.push_back(err)
+                nnzs.push_back(total_nnzs)
+
             t += 1
         if i % (nsweep / showtimes) == 0:
             print "# of sweeps " + str(i)
@@ -153,18 +162,19 @@ cpdef stoch_coor_descent_cy(double[:,::1] ktr, int[::1] ytr,
         a_tilde[i] += (delta[T + 1] - delta[uu[i]]) * alpha[i]
     for i in range(n):
         alpha[i] = a_tilde[i] / delta[T + 1]
-    return err_tr, err_te, obj, obj_primal, num_oper
+    return np.asarray(alpha), err_tr, err_te, obj, obj_primal, num_oper, nnzs
 
-cdef rand_perm(int[:] ind):
-    cdef int i, j, n = ind.shape[0]
-    cdef int tmp
-    for i in range(n):
-        j =i + int(n-i) * drand48()
-        if j >= n:
-            j = n -1
-        tmp = ind[i]
-        ind[i] = ind[j]
-        ind[j] = tmp
+# cdef rand_perm(int[:] ind):
+#     cdef int i, j, n = ind.shape[0]
+#     cdef int tmp
+#     for i in range(n):
+#         j =i + int(n-i) * drand48()
+#         if j >= n:
+#             j = n -1
+#         tmp = ind[i]
+#         ind[i] = ind[j]
+
+#         ind[j] = tmp
 
 
 cdef double err_rate_test(int[:]label, double[:,::1]k, int[:]y, double[:]a):

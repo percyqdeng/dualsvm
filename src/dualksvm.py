@@ -9,6 +9,7 @@ from mysvm import *
 from coor import *
 import coor_cy
 
+
 class DualKSVM(MySVM):
     """Dual randomized stochastic coordinate descent for kenel method, SVM and ridge regression
 
@@ -23,9 +24,9 @@ class DualKSVM(MySVM):
     err_tr
     """
 
-    def __init__(self, n, lmda=0.01,  gm=1, kernel='rbf', nsweep=1000, batchsize=2):
-        super(DualKSVM, self).__init__(n, lmda,  gm, kernel, nsweep, batchsize)
-        self._cc = 1.0 / n   # box constraint on the dual
+    def __init__(self, n, lmda=0.01, gm=1, kernel='rbf', nsweep=1000, batchsize=2):
+        super(DualKSVM, self).__init__(n, lmda, gm, kernel, nsweep, batchsize)
+        self._cc = 1.0 / n  # box constraint on the dual
         self.obj_primal = []
 
     def train(self, xtr, ytr):
@@ -42,13 +43,13 @@ class DualKSVM(MySVM):
         if algo_type == "naive":
             self._rand_stoc_coor()
             # self.err_tr, err_te, obj, ker_oper = stoch_coor_descent(
-            #     ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
-            #     nsweep=self.nsweep, T=self.T, batchsize=self.batchsize)
+            # ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
+            # nsweep=self.nsweep, T=self.T, batchsize=self.batchsize)
         elif algo_type == 'cy':
             # print " type "+str(self.nsweep.dtype)
-            self.err_tr, self.err_te, self.obj, self.obj_primal, self.n_ker_oper = coor_cy.stoch_coor_descent_cy(
-                ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
-                nsweep=np.int(self.nsweep), T=(self.T), batchsize=np.int(self.batchsize))
+            self.alpha, self.err_tr, self.err_te, self.obj, self.obj_primal, self.nker_opers, self.nnzs =\
+                coor_cy.scd_cy(ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
+                               nsweep=np.int(self.nsweep), T=int(self.T), batchsize=np.int(self.batchsize))
         else:
             print "error"
 
@@ -72,10 +73,10 @@ class DualKSVM(MySVM):
         print"------------estimate parameters and set up variables----------------- "
         # comment:  seems very sensitive to the parameter estimation, if I use the second D_t, the algorithm diverges
         #
-        lip = np.diag(yktr)/self.lmda
+        lip = np.diag(yktr) / self.lmda
         l_max = np.max(lip)
         Q = 1
-        D_t = Q * np.sqrt(1.0/(2*n))
+        D_t = Q * np.sqrt(1.0 / (2 * n))
         # D_t = Q * (n / 2) * self._cc
         sig_list = self._esti_std(yktr)
         sig = np.sqrt((sig_list ** 2).sum())
@@ -91,7 +92,7 @@ class DualKSVM(MySVM):
         showtimes = 5
         t = 0
         count = 0
-        print "estimated sigma: "+str(sig)+" lipschitz: "+str(l_max)
+        print "estimated sigma: " + str(sig) + " lipschitz: " + str(l_max)
         print "----------------------start the algorithm----------------------"
         for i in range(self.nsweep):
             # index of batch data to compute stochastic coordinate gradient
@@ -109,9 +110,9 @@ class DualKSVM(MySVM):
                 delta[t + 1] = delta[t] + theta[t]
                 subk = yktr[var_ind, samp_ind]
                 # stoc_coor_grad = np.dot(subk, alpha[samp_ind]) * float(n) / self.batchsize - 1
-                stoc_coor_grad = 1/self.lmda*(np.dot(subk, alpha.take(samp_ind)) * float(n) / self.batchsize) - 1
+                stoc_coor_grad = 1 / self.lmda * (np.dot(subk, alpha.take(samp_ind)) * float(n) / self.batchsize) - 1
                 a_tilde[var_ind] += (delta[t + 1] - delta.take(uu.take(var_ind))) * alpha.take(var_ind)
-                res = alpha.take(var_ind) - eta[t]*stoc_coor_grad
+                res = alpha.take(var_ind) - eta[t] * stoc_coor_grad
                 if res < 0:
                     alpha[var_ind] = 0
                 elif res <= self._cc:
@@ -126,31 +127,31 @@ class DualKSVM(MySVM):
                 count += self.batchsize
             if i % (self.nsweep / showtimes) == 0:
                 print "# of sweeps " + str(i)
-            #-------------compute the result after the ith sweep----------------
+            # -------------compute the result after the ith sweep----------------
             if i % n == 0:
-                a_avg = a_tilde + (delta[t]-delta.take(uu)) * alpha
+                a_avg = a_tilde + (delta[t] - delta.take(uu)) * alpha
                 a_avg /= delta[t]
                 # a_avg = alpha
                 # assert(all(0 <= x <= self._cc for x in np.nditer(a_avg)))
                 yka = np.dot(yktr, a_avg)
-                res = 1.0/self.lmda * 0.5 * np.dot(a_avg, yka) - a_avg.sum()
+                res = 1.0 / self.lmda * 0.5 * np.dot(a_avg, yka) - a_avg.sum()
                 self.obj.append(res)
                 # if i > 2 and self.obj[-1] > self.obj[-2]:
-                #     print "warning"
+                # print "warning"
                 nnzs = (a_avg != 0).sum()
-                self.nnz.append(nnzs)
+                self.nnzs.append(nnzs)
                 err = np.mean(yka < 0)
                 self.err_tr.append(err)
                 self.ker_oper.append(count)
                 if self.has_kte:
-                    pred = np.sign(np.dot(self.kte, self.ytr*a_avg))
+                    pred = np.sign(np.dot(self.kte, self.ytr * a_avg))
                     err = np.mean(self.yte != pred)
                     self.err_te.append(err)
         # -------------compute the final result after nsweep-th sweeps---------------
         a_tilde += (delta[self.T + 1] - delta[uu]) * alpha
         self.alpha = a_tilde / delta[self.T + 1]
         self.final = self.lmda * (0.5 * np.dot(self.alpha, np.dot(yktr, self.alpha)) - self.alpha.sum())
-        self.bound1 = (n-1)*0.5*l_max/self.lmda
+        self.bound1 = (n - 1) * 0.5 * l_max / self.lmda
         self.bound2 = l_max
         self.bound3 = sig * np.sqrt(2)
 
@@ -160,7 +161,7 @@ class DualKSVM(MySVM):
         argmin  x*g + 1/r*D(x0,x)
         """
         x = x0 - r * g
-        x = np.minimum(np.maximum(0, x), 1.0/self.num)
+        x = np.minimum(np.maximum(0, x), 1.0 / self.num)
         return x
 
     def _esti_std(self, kk):
@@ -172,7 +173,7 @@ class DualKSVM(MySVM):
         alpha = np.random.uniform(0, self._cc, self.num)
         rep = 100
         for i in range(self.num):
-            g = kk[i, :]/self.lmda * self._cc
+            g = kk[i, :] / self.lmda * self._cc
             sig[i] = np.std(g) * n / np.sqrt(self.batchsize)
         return sig
 

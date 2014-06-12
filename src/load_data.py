@@ -50,12 +50,16 @@ def convert_one_vs_all(data, pos_ind):
 def load_usps():
     data = scipy.io.loadmat(uspspath+'usps_all.mat')
     x = {}
+    n = 0
     for i in range(10):
         x[str(i)] = data['data'][:,:,i].T / 255.0
+        n += x[str(i)].shape[0]
+    # print "---------------load usps data set -------------------" \
+    #       "10 digits, size of data set: %d " % n
     return x
 
 
-def load_mnist():
+def load_mnist_split():
     data = scipy.io.loadmat(mnistpath+'mnist_all.mat')
     x_train ={}
     x_test = {}
@@ -64,6 +68,14 @@ def load_mnist():
         x_test[str(i)] = data['test'+str(i)]/255.0
     return x_train, x_test
 
+
+def load_mnist():
+    data = scipy.io.loadmat(mnistpath+'mnist_all.mat')
+    x = {}
+    for i in range(10):
+        x[str(i)] = data['train'+str(i)]/255.0
+        x[str(i)] = np.vstack((x[str(i)], data['test'+str(i)]/255.0))
+    return x
 
 def load_uci():
     pass

@@ -19,9 +19,9 @@ class MySVM(object):
         self.T = nsweep * n - 1
         self.kernel = kernel
         self.obj = []
-        self.nnz = []
+        self.nnzs = []
         self.err_tr = []
-        self.n_ker_oper = []  #number of kernel operation
+        self.nker_opers = []  #number of kernel operation
         self.err_te = []
         self.has_kte = False
 
