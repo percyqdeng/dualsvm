@@ -43,8 +43,8 @@ cpdef scgd_cy(double[:,::1] ktr, int[::1] ytr,
     """
     cdef int n = ktr.shape[0]
     cdef double cc = 1.0/n
-    cdef double [:,::1] kk = np.zeros([n, n])
-    cdef int i,j,k
+    cdef double [:,::1] kk = np.zeros((n, n))
+    cdef unsigned int i,j,k
     cdef double start_time = time.time()
     for i in xrange(n):
         for j in xrange(n):
@@ -89,16 +89,15 @@ cpdef scgd_cy(double[:,::1] ktr, int[::1] ytr,
     cdef double [::1] delta = np.zeros(T + 2)
     cdef double [::1] kk_a = np.zeros(n)
     cdef unsigned int[::1] batch_ind = np.zeros(batchsize, dtype=np.uint32)
-    cdef int var_ind
+    cdef unsigned int var_ind
     cdef int[::1] uu = np.zeros(n, dtype=np.int32)
-    cdef double appr_coor_grad
+    cdef double stoc_cg
     # index of update, uu[i] = t means the most recent update of
     # ith coordinate is in the t-th round, t = 0,1,...,T
     cdef int showtimes = 5
-    cdef int t = 0
+    cdef unsigned int t = 0
     cdef int count = 0 # count number of kernel products
     cdef double time_gen_rand = 0
-    cdef int[:] ind_list = np.zeros(n, dtype=np.int32)
     cdef int rec_step = 1 # stepsize to record the output, 1,2,4,8,...
     cdef unsigned int [::1] used = np.zeros(n, dtype=np.uint32)
     cdef unsigned int total_nnzs = 0
@@ -106,22 +105,21 @@ cpdef scgd_cy(double[:,::1] ktr, int[::1] ytr,
     print "time for initialization %f" % (time.time()-start_time)
     print "----------------------start the algorithm----------------------"
     start_time = time.time()
+    cdef unsigned int tmp
     for i in xrange(nsweep):
         # rand_perm(ind_list)
         for j in xrange(n):
-            # generate random batch data
             for k in xrange(batchsize):
-                batch_ind[k] = int(rand() % n)
-            var_ind = int(rand() % n)
-            # var_ind = ind_list[j]
+                batch_ind[k] = (rand() % n)
+            var_ind = (rand() % n)
             delta[t + 1] = delta[t] + theta[t]
-            appr_coor_grad = 0
+            stoc_cg = 0
             for k in xrange(batchsize):
-                appr_coor_grad += kk[var_ind, batch_ind[k]] * alpha[batch_ind[k]]
-            appr_coor_grad *= n /batchsize
-            appr_coor_grad -= 1
+                stoc_cg += kk[var_ind,batch_ind[k]] * alpha[batch_ind[k]]
+            stoc_cg *= float(n)/batchsize
+            stoc_cg -= 1
             a_tilde[var_ind] += (delta[t + 1] - delta[uu[var_ind]]) * alpha[var_ind]
-            res = alpha[var_ind] - eta[t] * appr_coor_grad
+            res = alpha[var_ind] - eta[t] * stoc_cg
             if res > cc:
                 alpha[var_ind] = cc
             elif res < 0:

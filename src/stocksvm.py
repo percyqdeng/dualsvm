@@ -34,7 +34,7 @@ class Pegasos(MySVM):
         start = time.time()
         for k in range(self.nsweep):
             perm = np.random.permutation(n)
-            for j in range(n):
+            for j in xrange(n):
                 t += 1
                 i = perm[j]
                 res = np.dot(yktr[i, :], alpha)/(self.lmda*t)

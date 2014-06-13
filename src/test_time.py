@@ -22,9 +22,22 @@ def profile_gen_rand():
     cmp_time.gen_rand_int2(n)
     t2 = time.time() - start_time
     print t1, t2
-    # cProfile.runctx("cmp_time.gen_rand_int2(n)", globals(), locals(), "Profile.prof")
-    # s = pstats.Stats("Profile.prof")
-    # s.strip_dirs().sort_stats("time").print_stats()
+
+
+def cmp_time_mat_access():
+    n = 4000
+    start_time = time.time()
+    cmp_time.mat_access(n)
+    t1 = time.time() - start_time
+
+    start_time = time.time()
+    cmp_time.mat_access2(n)
+    t2 = time.time() - start_time
+
+    start_time = time.time()
+    cmp_time.mat_access3(n)
+    t3 = time.time() - start_time
+    print t1, t2, t3
 
 def cmp_perm_uniform():
     # compute time of permutation and uniform without replacement
@@ -60,4 +73,5 @@ def cmp_for_loop():
 
 if __name__ =="__main__":
     # cmp_for_loop()
-    profile_gen_rand()
+    # profile_gen_rand()
+    cmp_time_mat_access()
