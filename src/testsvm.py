@@ -56,12 +56,12 @@ class Test_SVM(object):
         xtr, xte = Test_SVM._normalize_features(xtr, xte)
 
         start = time.time()
-        d1 = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=2 * ntr, batchsize=10)
+        # d1 = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=2 * ntr, batchsize=10)
 
         # d1.train_test(xtr, ytr, xte, yte, algo_type="naive")
         # print "time 1 "+str(time.time() - start)
         # start = time.time()
-        d2 = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=20 * ntr, batchsize=1)
+        d2 = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=2 * ntr, batchsize=1)
         d2.train_test(xtr, ytr, xte, yte, algo_type="cython")
         print "time 2 "+str(time.time() - start)
         return d2
@@ -148,5 +148,5 @@ if __name__ == "__main__":
                 "heartmat", "ringnormmat", "splicemat"]
     # dsvm = test_dualsvm(data)
     newtest = Test_SVM(filename[1])
-    dsvm, kpega = newtest.rand_cmp_svm()
+    # dsvm, kpega = newtest.rand_cmp_svm()
     # newtest.run_profile()

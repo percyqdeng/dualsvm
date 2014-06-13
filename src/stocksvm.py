@@ -1,7 +1,7 @@
 __author__ = 'qdpercy'
 
 from mysvm import *
-
+import time
 class Pegasos(MySVM):
 
     def __init__(self, n, lmda=0.01, gm=1, kernel='rbf', nsweep=1000, batchsize=2):
@@ -30,6 +30,8 @@ class Pegasos(MySVM):
         flag = np.zeros(n)
         num_sv = 0
         count = 0
+        num_hit = 0
+        start = time.time()
         for k in range(self.nsweep):
             perm = np.random.permutation(n)
             for j in range(n):
@@ -38,6 +40,7 @@ class Pegasos(MySVM):
                 res = np.dot(yktr[i, :], alpha)/(self.lmda*t)
                 count += num_sv
                 if res < 1:
+                    num_hit += 1
                     alpha[i] += 1
                     if flag[i] == 0:
                         flag[i] = 1
@@ -56,6 +59,8 @@ class Pegasos(MySVM):
                         self.err_te.append(np.mean(self.yte != pred))
             # if k % (self.nsweep) == 0:
             print "# of sweeps " + str(k)
+        print "num of hit %d" % num_hit
+        print "time cost %f " % (time.time()-start)
         self.alpha = alpha / (self.lmda * t)
 
 
@@ -67,5 +72,3 @@ if __name__ == "__main__":
     filename = 'splicemat.mat'
     filename = 'bananamat'
     data = scipy.io.loadmat(dtpath + filename)
-    # err = test_benchmark(data)
-    kpega = test_pegasos(data)
