@@ -22,6 +22,7 @@ ctypedef np.int_t dtypei_t
 @cython.boundscheck(False)
 @cython.cdivision(True)
 @cython.wraparound(True)
+
 cpdef scgd_cy(double[:,::1] ktr, int[::1] ytr,
                           double[:,::1]kte, int[::1]yte,
                           double lmda, int nsweep, int T, int batchsize):
@@ -169,6 +170,7 @@ cpdef scgd_cy(double[:,::1] ktr, int[::1] ytr,
     for i in xrange(n):
         alpha[i] = a_tilde[i] / delta[T + 1]
     return np.asarray(alpha), err_tr, err_te, obj, obj_primal, num_oper, nnzs
+
 
 # cdef rand_perm(int[:] ind):
 #     cdef int i, j, n = ind.shape[0]

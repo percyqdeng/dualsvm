@@ -2,6 +2,7 @@
 from sklearn import svm
 import sklearn.cross_validation as cv
 from sklearn import preprocessing
+from sklearn import svm
 import os
 import time
 import numpy as np
@@ -30,18 +31,21 @@ def plot_convergence(pos_class=3, neg_class=None, random_state=None):
     print "usps dataset, size=%d, dim=%d, %2d%% for training" % (x.shape[0], x.shape[1], 100*perc)
     if random_state is None:
         random_state = np.random.random_integers(low=0, high=1000)
-    xtr, xte, ytr, yte = cv.train_test_split(x, y, train_size=perc, test_size=round(1-perc,3), random_state=random_state)
-    # scalar = preprocessing.StandardScaler().fit(xtr)
-    # xte = scalar.transform(xte)
-    # xtr = scalar.transform(xtr)
-    ntr = xtr.shape[0]
+    x_train, x_test, y_train, y_test = cv.train_test_split(x, y, train_size=perc, test_size=round(1-perc,3), random_state=random_state)
+    # scalar = preprocessing.StandardScaler().fit(x_train)
+    # x_test = scalar.transform(x_test)
+    # x_train = scalar.transform(x_train)
+    ntr = x_train.shape[0]
     gm = 1.0/10
     lmda = 100/float(ntr)
     dsvm = DualKSVM(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=ntr/3, batchsize=5)
-    dsvm.train_test(xtr, ytr, xte, yte, )
+    dsvm.train_test(x_train, y_train, x_test, y_test, )
 
     kpega = Pegasos(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=3)
-    kpega.train_test(xtr, ytr, xte, yte)
+    kpega.train_test(x_train, y_train, x_test, y_test)
+
+    clf = svm.SVC(C=lmda*ntr)
+    clf.fit(x_train, y_train)
 
     plt.figure()
     plt.loglog(dsvm.nker_opers, dsvm.err_tr, 'rx-', label='dc train error')
@@ -100,15 +104,15 @@ def profile_usps(pos_class=3, neg_class=None, random_state=None):
     print "profile on usps dataset, size=%d, dim=%d, %2d%% for training" % (x.shape[0], x.shape[1], 100*perc)
     if random_state is None:
         random_state = np.random.random_integers(low=0, high=1000)
-    xtr, xte, ytr, yte = cv.train_test_split(x, y, train_size=perc, test_size=round(1-perc,3), random_state=random_state)
-    scalar = preprocessing.StandardScaler().fit(xtr)
-    xte = scalar.transform(xte)
-    xtr = scalar.transform(xtr)
-    ntr = xtr.shape[0]
+    x_train, x_test, y_train, y_test = cv.train_test_split(x, y, train_size=perc, test_size=round(1-perc,3), random_state=random_state)
+    scalar = preprocessing.StandardScaler().fit(x_train)
+    x_test = scalar.transform(x_test)
+    x_train = scalar.transform(x_train)
+    ntr = x_train.shape[0]
     gm = 1.0/ntr
     lmda = 100/float(ntr)
     dsvm = DualKSVM(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=ntr/3, batchsize=5)
-    dsvm.profile_scd_cy(xtr, ytr, xte, yte)
+    dsvm.profile_scd_cy(x_train, y_train, x_test, y_test)
 
 
 if __name__ == '__main__':

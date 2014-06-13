@@ -51,5 +51,14 @@ cpdef mat_access3(int n = 1000):
             rand()
             mat[j, i] = rand() % 10
 
+cpdef mat_access4(int n = 1000):
+    cdef double[::1] mat = np.zeros(n*n)
+    cdef unsigned int i, j
+    for i in xrange(n):
+        for j in xrange(n):
+            rand()
+            rand()
+            mat[i*n + j] = rand() % 10
+
 cdef inline double cy_min(double a, double b):
     return a if a<b else b

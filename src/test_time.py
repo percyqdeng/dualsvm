@@ -25,7 +25,7 @@ def profile_gen_rand():
 
 
 def cmp_time_mat_access():
-    n = 4000
+    n = 10000
     start_time = time.time()
     cmp_time.mat_access(n)
     t1 = time.time() - start_time
@@ -37,7 +37,11 @@ def cmp_time_mat_access():
     start_time = time.time()
     cmp_time.mat_access3(n)
     t3 = time.time() - start_time
-    print t1, t2, t3
+
+    start_time = time.time()
+    cmp_time.mat_access4(n)
+    t4 = time.time() - start_time
+    print t1, t2, t3, t4
 
 def cmp_perm_uniform():
     # compute time of permutation and uniform without replacement
