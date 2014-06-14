@@ -2,6 +2,7 @@
 from sklearn import svm
 import sklearn.cross_validation as cv
 from sklearn import preprocessing
+from sklearn.metrics import zero_one_loss
 from sklearn import svm
 import os
 import time
@@ -12,7 +13,11 @@ from dualksvm import *
 from stocksvm import *
 
 
-def plot_convergence(pos_class=3, neg_class=None, random_state=None):
+# def plot_convergence(pos_class=3, neg_class=None, random_state=None):
+if __name__ == "__main__":
+    pos_class=3
+    neg_class=None
+    random_state=None
     """
     plot of convergence for usps data on binary classification
     :param pos_class: the digit as positive class
@@ -36,23 +41,26 @@ def plot_convergence(pos_class=3, neg_class=None, random_state=None):
     # x_test = scalar.transform(x_test)
     # x_train = scalar.transform(x_train)
     ntr = x_train.shape[0]
-    gm = 1.0/10
-    lmda = 100/float(ntr)
+    gm = 1.0/1
+    lmda = 1/float(ntr)
     dsvm = DualKSVM(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=ntr/3, batchsize=5)
     dsvm.train_test(x_train, y_train, x_test, y_test, )
 
     kpega = Pegasos(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=3)
     kpega.train_test(x_train, y_train, x_test, y_test)
 
-    clf = svm.SVC(C=lmda*ntr)
+    clf = svm.SVC(C=lmda*ntr, kernel='rbf', gamma=gm, fit_intercept=False)
     clf.fit(x_train, y_train)
+    pred = clf.predict(x_test)
+    err = zero_one_loss(pred, y_test)
+    print "sklearn err %f" % err
 
     plt.figure()
     plt.loglog(dsvm.nker_opers, dsvm.err_tr, 'rx-', label='dc train error')
     plt.loglog(kpega.nker_opers, kpega.err_tr, 'b.-', label='pegasos train error')
     plt.loglog(dsvm.nker_opers, dsvm.err_te, 'gx-', label='dc test error')
     plt.loglog(kpega.nker_opers, kpega.err_te, 'y.-', label='pegasos test error')
-    plt.xlabel('number of kernel product')
+    plt.xlabel('number of kernel products')
     if one_vs_rest:
         plt.title('usps %d vs rest' % pos_class)
     else:
@@ -88,7 +96,7 @@ def plot_convergence(pos_class=3, neg_class=None, random_state=None):
     plt.plot(b[::-1]/b.max(), 'b.-', label='pegasos')
     plt.legend(loc='best')
     plt.savefig('../output/usps_%d_weight.pdf' % pos_class, format='pdf')
-    return dsvm, kpega
+    # return dsvm, kpega
 
 
 def profile_usps(pos_class=3, neg_class=None, random_state=None):
@@ -115,6 +123,6 @@ def profile_usps(pos_class=3, neg_class=None, random_state=None):
     dsvm.profile_scd_cy(x_train, y_train, x_test, y_test)
 
 
-if __name__ == '__main__':
-    # profile_usps(8)
-    plot_convergence(8)
+# if __name__ == '__main__':
+#     profile_usps(8)
+    # plot_convergence(8)
