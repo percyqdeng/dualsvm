@@ -1,0 +1,3 @@
+LIBRARY cmp_time.pyd
+EXPORTS
+initcmp_time

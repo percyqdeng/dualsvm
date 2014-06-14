@@ -5,11 +5,11 @@ from stocksvm import *
 from sklearn import svm
 import os
 import time
-
+import numpy as np
 
 class Test_SVM(object):
     """
-    Test_SVM, using the benchmarkmat
+    Test_SVM, using the uci benchmarkmat
     """
     def __init__(self, dtname='bananamat.mat'):
         if os.name == "nt":
@@ -20,7 +20,7 @@ class Test_SVM(object):
         self.x = data['x']
         # self.x = preprocess_data(self.x)
         self.y = data['t']
-        self.y = (np.squeeze(self.y)).astype(np.int)
+        self.y = (np.squeeze(self.y)).astype(np.intc)
 
         self.train_ind = data['train'] - 1
         self.test_ind = data['test'] - 1
@@ -45,20 +45,23 @@ class Test_SVM(object):
         yte = self.y[self.test_ind[i, :]]
         return xtr, ytr, xte, yte
 
-    def cmp_timecost(self):
+    def run_profile(self):
+        """
+        get cprofile
+        """
         xtr, ytr, xte, yte = self._gen_i_th(i=-1)
         ntr = xtr.shape[0]
         lmd = 10.0/ntr
-        gamma = .1
+        gamma = 1
         xtr, xte = Test_SVM._normalize_features(xtr, xte)
 
         start = time.time()
-        d1 = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=2 * ntr, batchsize=1)
+        # d1 = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=2 * ntr, batchsize=10)
 
         # d1.train_test(xtr, ytr, xte, yte, algo_type="naive")
         # print "time 1 "+str(time.time() - start)
         # start = time.time()
-        d2 = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=20 * ntr, batchsize=1)
+        d2 = DualKSVM(n=ntr, lmda=lmd, gm=gamma, kernel='rbf', nsweep=2 * ntr, batchsize=1)
         d2.train_test(xtr, ytr, xte, yte, algo_type="cython")
         print "time 2 "+str(time.time() - start)
         return d2
@@ -79,7 +82,6 @@ class Test_SVM(object):
         start = time.time()
         kpega.train_test(xtr, ytr, xte, yte)
         print "time 2 "+str(time.time() - start)
-
         plt.subplot(2, 2, 1)
         plt.plot(dsvm.ker_oper, dsvm.err_tr, 'rx-', label="dualcoor")
         plt.plot(kpega.ker_oper, kpega.err_tr, 'bo-', label="pegasos")
@@ -96,16 +98,17 @@ class Test_SVM(object):
         plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
         plt.tight_layout()
 
-        plt.figure()
-        # plt.subplot(2,2,3)
-        plt.plot(dsvm.ker_oper, (-np.asarray(dsvm.obj)), 'rx-', label="sdc")
-        plt.plot(dsvm.ker_oper, (np.asarray(dsvm.obj_primal)), 'gx-', label="sdc-primal obj")
+        # plt.figure()
+        plt.subplot(2,2,3)
+        plt.plot(dsvm.ker_oper, (-np.asarray(dsvm.obj)), 'rx-', label="sdc dual obj")
+        plt.plot(dsvm.ker_oper, (np.asarray(dsvm.obj_primal)), 'gx-', label="sdc primal obj")
         # plt.subplot(122)
         plt.plot(kpega.ker_oper, (kpega.obj), 'bo-', label="pegasos")
         plt.legend(loc='best')
         plt.ylabel("obj")
         plt.ticklabel_format(style='sci', axis='x', scilimits=(0, 0))
         plt.tight_layout()
+        plt.show()
 
         return dsvm, kpega
 
@@ -144,6 +147,6 @@ if __name__ == "__main__":
     filename = ["bananamat", "breast_cancermat", "diabetismat", "flare_solarmat", "germanmat",
                 "heartmat", "ringnormmat", "splicemat"]
     # dsvm = test_dualsvm(data)
-    newtest = Test_SVM(filename[2])
-    dsvm, kpega = newtest.rand_cmp_svm()
-    # newtest.cmp_timecost()
+    newtest = Test_SVM(filename[1])
+    # dsvm, kpega = newtest.rand_cmp_svm()
+    # newtest.run_profile()

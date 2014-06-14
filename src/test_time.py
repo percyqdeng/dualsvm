@@ -3,8 +3,45 @@ __author__ = 'qdengpercy'
 
 import numpy as np
 import time
+import timeit
+import cmp_time
 
 
+def profile_gen_rand():
+    import pstats
+    import cProfile
+    import pyximport
+    pyximport.install()
+    n = 19755634
+    fun_call = "cmp_time.gen_rand_int2(n)"
+    start_time = time.time()
+    cmp_time.gen_rand_int(n)
+    t1 = time.time() - start_time
+
+    start_time = time.time()
+    cmp_time.gen_rand_int2(n)
+    t2 = time.time() - start_time
+    print t1, t2
+
+
+def cmp_time_mat_access():
+    n = 10000
+    start_time = time.time()
+    cmp_time.mat_access(n)
+    t1 = time.time() - start_time
+
+    start_time = time.time()
+    cmp_time.mat_access2(n)
+    t2 = time.time() - start_time
+
+    start_time = time.time()
+    cmp_time.mat_access3(n)
+    t3 = time.time() - start_time
+
+    start_time = time.time()
+    cmp_time.mat_access4(n)
+    t4 = time.time() - start_time
+    print t1, t2, t3, t4
 
 def cmp_perm_uniform():
     # compute time of permutation and uniform without replacement
@@ -39,4 +76,6 @@ def cmp_for_loop():
     print "time2 " + str(t2)
 
 if __name__ =="__main__":
-    cmp_for_loop()
+    # cmp_for_loop()
+    # profile_gen_rand()
+    cmp_time_mat_access()

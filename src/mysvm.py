@@ -19,9 +19,9 @@ class MySVM(object):
         self.T = nsweep * n - 1
         self.kernel = kernel
         self.obj = []
-        self.nnz = []
+        self.nnzs = []
         self.err_tr = []
-        self.ker_oper = []  #number of kernel operation
+        self.nker_opers = []  # number of kernel operation
         self.err_te = []
         self.has_kte = False
 
@@ -36,8 +36,6 @@ class MySVM(object):
 
     def set_train_kernel(self, xtr):
         if self.kernel == 'rbf':
-            std = np.std(xtr, axis=0)
-            # x = xtr / std[np.newaxis, :]
             x = xtr
             xsquare = np.sum(x ** 2, 1)
             xxT = np.dot(x, x.T)
