@@ -2,6 +2,7 @@ from sklearn import svm
 import sklearn.cross_validation as cv
 from sklearn import preprocessing
 from sklearn.metrics import zero_one_loss
+from sklearn.neighbors import NearestNeighbors
 from sklearn import svm
 import os
 import time
@@ -62,21 +63,32 @@ if __name__ == "__main__":
                 test_err[i, j, k] = zero_one_loss(y_test, pred)
                 # k += 1
     avg_test_err = np.mean(test_err, axis=2)
+    avg_train_err = np.mean(train_err, axis=2)
     np.save('../output/cv_result_usps.npy', avg_test_err)
-    X, Y = np.meshgrid(gamma_list, lmda_list)
-    plt.figure()
-    plt.contour(X, Y, np.mean(test_err, axis=2))
-    plt.xlabel('gamma')
-    plt.ylabel('lambda')
+X, Y = np.meshgrid(gamma_list, lmda_list)
+plt.figure()
+plt.contour(np.log(X), np.log(Y), 1-avg_test_err)
+plt.xlabel('log gamma')
+plt.ylabel('log lambda')
+plt.savefig('../output/usps_contour.pdf')
 
-    color_list = ['b', 'r', 'g', 'c', 'm']
-    marker_list = ['o', 'x', '>', 's', '^']
-    plt.figure()
-    for i, (c, mk) in enumerate(zip(color_list, marker_list)):
-        plt.semilogx(gamma_list, avg_test_err[i, :], c + mk + '-', label='lmda=%f' % lmda_list[i])
-    plt.legend(bbox_to_anchor=(0, 1.17, 1, .1), loc=2, ncol=2, mode="expand", borderaxespad=0)
-    plt.xlabel('gamma')
-    plt.ylabel('test error rate')
+color_list = ['b', 'r', 'g', 'c', 'm']
+marker_list = ['o', 'x', '>', 's', '^']
+plt.figure()
+for i, (c, mk) in enumerate(zip(color_list, marker_list)):
+    plt.semilogx(gamma_list, avg_test_err[i, :], c + mk + '-', label='lmda=%f' % lmda_list[i])
+plt.legend(bbox_to_anchor=(0, 1.17, 1, .1), loc=2, ncol=2, mode="expand", borderaxespad=0)
+plt.xlabel('gamma')
+plt.ylabel('usps test error rate')
+plt.savefig('../output/usps_test_libsvm.pdf')
+
+plt.figure()
+for i, (c, mk) in enumerate(zip(color_list, marker_list)):
+    plt.semilogx(gamma_list, avg_train_err[i, :], c + mk + '-', label='lmda=%f' % lmda_list[i])
+plt.legend(bbox_to_anchor=(0, 1.17, 1, .1), loc=2, ncol=2, mode="expand", borderaxespad=0)
+plt.xlabel('gamma')
+plt.ylabel('usps train error rate')
+plt.savefig('../output/usps_train_libsvm.pdf')
 
     # plt.show()
 
