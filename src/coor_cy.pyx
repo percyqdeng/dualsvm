@@ -21,9 +21,8 @@ ctypedef np.int_t dtypei_t
 
 @cython.boundscheck(False)
 @cython.cdivision(True)
-@cython.wraparound(True)
-
-cpdef scgd_cy(double[:,::1] ktr, int[::1] ytr,
+@cython.wraparound(False)
+def scgd_cy(double[:,::1] ktr, int[::1] ytr,
                           double[:,::1]kte, int[::1]yte,
                           double lmda, int nsweep, int T, int batchsize):
     """
@@ -50,7 +49,7 @@ cpdef scgd_cy(double[:,::1] ktr, int[::1] ytr,
     for i in xrange(n):
         for j in xrange(n):
             kk[i,j] = ktr[i,j] * ytr[i] * ytr[j] / lmda
-    print "time to make new matrix %f " % (time.time()-start_time)
+    # print "time to make new matrix %f " % (time.time()-start_time)
     start_time = time.time()
     cdef vector[int] nnzs
     cdef vector[double]err_tr
@@ -61,7 +60,7 @@ cpdef scgd_cy(double[:,::1] ktr, int[::1] ytr,
     # cdef np.ndarray[double] pred = np.zeros(kte.shape[0])
     # cdef bool has_kte = True
     cdef vector[double] err_te
-    print"------------estimate parameters and set up variables----------------- "
+    # print"------------estimate parameters and set up variables----------------- "
     # comment:  seems very sensitive to the parameter estimation, if I use the second D_t, the algorithm diverges
     #
     cdef double [::1] lip = np.zeros(n)
@@ -103,8 +102,8 @@ cpdef scgd_cy(double[:,::1] ktr, int[::1] ytr,
     cdef unsigned int [::1] used = np.zeros(n, dtype=np.uint32)
     cdef unsigned int total_nnzs = 0
     print "estimated sigma: "+str(sig)+" lipschitz: "+str(l_max)
-    print "time for initialization %f" % (time.time()-start_time)
-    print "----------------------start the algorithm----------------------"
+    # print "time for initialization %f" % (time.time()-start_time)
+    # print "----------------------start the algorithm----------------------"
     start_time = time.time()
     cdef unsigned int tmp
     for i in xrange(nsweep):
@@ -225,6 +224,7 @@ cdef double cmp_err_rate(int[::1] y, double[::1]z):
 
 @cython.boundscheck(False)
 @cython.cdivision(True)
+@cython.wraparound(False)
 cdef mat_vec(double[:,::1]aa, double[::1]b, double[::1]c):
     cdef int n = aa.shape[0]
     cdef int m = aa.shape[1]

@@ -1,4 +1,4 @@
-__author__ = 'qdengpercy'
+
 
 import os
 import scipy.io
@@ -49,38 +49,21 @@ class DualKSVM(MySVM):
             # nsweep=self.nsweep, T=self.T, batchsize=self.batchsize)
         elif algo_type == 'cy':
             # print " type "+str(self.nsweep.dtype)
-            self.alpha, self.err_tr, self.err_te, self.obj, self.obj_primal, self.nker_opers, self.nnzs =\
-                coor_cy.scgd_cy(ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
-                               nsweep=np.int(self.nsweep), T=int(self.T), batchsize=np.int(self.batchsize))
+            self._stoc_coor_cython()
         else:
             print "error"
-
-    def profile_scd_cy(self, xtr, ytr, xte, yte):
-        import pstats
-        import cProfile
-        import pyximport
-        pyximport.install()
-        self.set_train_kernel(xtr)
-        self.set_test_kernel(xtr, xte)
-        self.has_kte = True
-        self.ytr = ytr
-        self.yte = yte
-        str = "coor_cy.scd_cy(ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,\
-                       nsweep=np.int(self.nsweep), T=int(self.T), batchsize=np.int(self.batchsize))"
-        cProfile.runctx(str, globals(), locals(), "Profile.prof")
-        s = pstats.Stats("Profile.prof")
-        s.strip_dirs().sort_stats("time").print_stats()
 
 
     def test(self, x, y):
         pass
 
-    @staticmethod
-    def _stoc_coor_cython():
+    def _stoc_coor_cython(self):
         """
         call the cython wrapper
         """
-        pass
+        self.alpha, self.err_tr, self.err_te, self.obj, self.obj_primal, self.nker_opers, self.nnzs =\
+            coor_cy.scgd_cy(ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
+                           nsweep=np.int(self.nsweep), T=int(self.T), batchsize=np.int(self.batchsize))
 
     def _rand_stoc_coor(self):
         """
@@ -195,6 +178,22 @@ class DualKSVM(MySVM):
             g = kk[i, :] / self.lmda * self._cc
             sig[i] = np.std(g) * n / np.sqrt(self.batchsize)
         return sig
+
+    def profile_scd_cy(self, xtr, ytr, xte, yte):
+        import pstats
+        import cProfile
+        import pyximport
+        pyximport.install()
+        self.set_train_kernel(xtr)
+        self.set_test_kernel(xtr, xte)
+        self.has_kte = True
+        self.ytr = ytr
+        self.yte = yte
+        str = "coor_cy.scd_cy(ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,\
+                       nsweep=np.int(self.nsweep), T=int(self.T), batchsize=np.int(self.batchsize))"
+        cProfile.runctx(str, globals(), locals(), "Profile.prof")
+        s = pstats.Stats("Profile.prof")
+        s.strip_dirs().sort_stats("time").print_stats()
 
 
 def test_dualsvm(data):

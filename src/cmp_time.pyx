@@ -7,7 +7,7 @@ from libc.stdlib cimport rand
 from libc.math cimport fmax
 from libc.math cimport fmin
 
-cpdef gen_rand_int(int n=500000):
+def gen_rand_int(int n=500000):
     cdef int i
     cdef int ind
     cdef double res
@@ -16,7 +16,7 @@ cpdef gen_rand_int(int n=500000):
         res = float(ind)/n
         res = fmin(res, n/2)
 
-cpdef gen_rand_int2(int n=500000):
+def gen_rand_int2(int n=500000):
     cdef int i
     cdef int ind
     cdef double res
@@ -25,7 +25,7 @@ cpdef gen_rand_int2(int n=500000):
         res = float(ind)/n
         res = cy_min(res, n/2)
 
-cpdef mat_access(int n = 1000):
+def mat_access(int n = 1000):
     cdef double[:,::1] mat = np.zeros((n,n))
     cdef int i, j
     for i in xrange(n):
@@ -42,7 +42,7 @@ def mat_access2(int n = 1000):
         j = rand()%n
         mat[i, j] = rand() % 10
 
-cpdef mat_access3(int n = 1000):
+def mat_access3(int n = 1000):
     cdef double[:,::1] mat = np.zeros((n,n))
     cdef int i, j
     for i in xrange(n):
@@ -51,14 +51,24 @@ cpdef mat_access3(int n = 1000):
             rand()
             mat[j, i] = rand() % 10
 
-cpdef mat_access4(int n = 1000):
-    cdef double[::1] mat = np.zeros(n*n)
+def mat_access4(int n = 1000):
+    cdef np.ndarray[double, dim=2, mode='c'] mat = np.zeros((n, n))
     cdef unsigned int i, j
     for i in xrange(n):
         for j in xrange(n):
             rand()
             rand()
-            mat[i*n + j] = rand() % 10
+            mat[i, j] = rand() % 10
+
+def mat_access4(int n = 1000):
+    cdef double ** mat = new double*[n]
+    for i in xrange(n):
+        mat[i] = new double[n]
+
+    for i in xrange(n):
+        for j in xrange(n):
+            mat[i,j] = rand() % 10
+
 
 cdef inline double cy_min(double a, double b):
     return a if a<b else b
