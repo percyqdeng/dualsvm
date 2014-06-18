@@ -9,7 +9,7 @@ import os
 import time
 from load_data import *
 
-n_neighbors = [1,2,4,10, 15,20, 30, 50, 60, 70, 85, 90]
+n_neighbors = [1,2,4,10, 15,20, 30, 50, 60, ]
 pos_class = 3
 neg_class = None
 random_state = None

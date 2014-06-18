@@ -4,10 +4,10 @@ import sklearn.cross_validation as cv
 from sklearn import preprocessing
 from sklearn.metrics import zero_one_loss
 from sklearn import svm
+from sklearn.neighbors import KNeighborsClassifier
 import os
 import time
 import numpy as np
-
 from load_data import *
 from dualksvm import *
 from stocksvm import *
@@ -15,9 +15,9 @@ from stocksvm import *
 
 # def plot_convergence(pos_class=3, neg_class=None, random_state=None):
 if __name__ == "__main__":
-    pos_class=3
-    neg_class=None
-    random_state=None
+    pos_class = 3
+    neg_class = None
+    random_state = None
     """
     plot of convergence for usps data on binary classification
     :param pos_class: the digit as positive class
@@ -40,21 +40,31 @@ if __name__ == "__main__":
     # scalar = preprocessing.StandardScaler().fit(x_train)
     # x_test = scalar.transform(x_test)
     # x_train = scalar.transform(x_train)
+    mm_scale = preprocessing.MinMaxScaler(feature_range=(-1, 1))
+    x_train = mm_scale.fit_transform(x_train)
+    x_test = mm_scale.transform(x_test)
     ntr = x_train.shape[0]
     gm = 1.0/1
+    gm = 1.0/ntr
     lmda = 1/float(ntr)
-    dsvm = DualKSVM(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=ntr/3, batchsize=5)
+    dsvm = DualKSVM(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=ntr, batchsize=5)
     dsvm.train_test(x_train, y_train, x_test, y_test, )
 
     kpega = Pegasos(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=3)
     kpega.train_test(x_train, y_train, x_test, y_test)
 
-    clf = svm.SVC(C=lmda*ntr, kernel='rbf', gamma=gm, fit_intercept=False)
+    clf = svm.SVC(C=lmda*ntr, kernel='rbf', gamma=gm, verbose=True)
+#    clf = svm.SVC(C=lmda*ntr, kernel='rbf', gamma=gm, fit_intercept=False)
     clf.fit(x_train, y_train)
     pred = clf.predict(x_test)
-    err = zero_one_loss(pred, y_test)
-    print "sklearn err %f" % err
+    err_libsvm = zero_one_loss(pred, y_test)
+    print "sklearn err %f" % err_libsvm
 
+    neigh = KNeighborsClassifier(n_neighbors=5)
+    neigh.fit(x_train, y_train)
+    pred = neigh.predict(x_test)
+    err_knn = zero_one_loss(pred, y_test)
+    print "knn err %f" % err_knn
     plt.figure()
     plt.loglog(dsvm.nker_opers, dsvm.err_tr, 'rx-', label='dc train error')
     plt.loglog(kpega.nker_opers, kpega.err_tr, 'b.-', label='pegasos train error')

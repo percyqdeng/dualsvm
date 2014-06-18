@@ -11,7 +11,9 @@ import numpy as np
 from load_data import *
 from dualksvm import *
 from stocksvm import *
-
+"""
+libsvm grid searh
+"""
 
 # def plot_convergence(pos_class=3, neg_class=None, random_state=None):
 if __name__ == "__main__":
@@ -32,24 +34,26 @@ if __name__ == "__main__":
         x, y = convert_binary(data, pos_class, neg_class)
         one_vs_rest = False
 
-    perc = 0.5
+    perc = 0.7
     print '--------------------------------------------------------------------'
     print "usps dataset, size=%d, dim=%d, %2d%% for training" % (x.shape[0], x.shape[1], 100 * perc)
-    lmda_list = (np.power(2.0, range(-10, 5)) / 1000).tolist()
+    lmda_list = (np.power(2.0, range(-10, 1)) / 1000).tolist()
     # lmda_list = [0.02]
-    gamma_list = (np.power(2.0, range(-10, 3))).tolist()
+    gamma_list = (np.power(2.0, range(-10, 0))).tolist()
     # gamma_list = [0.03]
-    n_folds = 4
-    kf = cv.KFold(len(y), n_folds=n_folds, indices=False)
-    k = 0
-    train_err = np.zeros((len(lmda_list), len(gamma_list), n_folds))
-    test_err = np.zeros((len(lmda_list), len(gamma_list), n_folds))
+    n_folds = 1
+    n_iter = 2
+    ss = cv.StratifiedShuffleSplit(y, n_iter=n_iter, test_size=1-perc, train_size=None, random_state=0)
+    # kf = cv.KFold(len(y), n_folds=n_folds, indices=False)
+    # k = 0
+    train_err = np.zeros((len(lmda_list), len(gamma_list), n_iter))
+    test_err = np.zeros((len(lmda_list), len(gamma_list), n_iter))
 
-    for k, (train, test) in enumerate(kf):
+    for k, (train, test) in enumerate(ss):
         ntr = len(train)
         print "kfold: %d" % k
         x_train, x_test, y_train, y_test = x[train], x[test], y[train], y[test]
-        mM_scale = preprocessing.MinMaxScaler((-1, 1))
+        mM_scale = preprocessing.MinMaxScaler(feature_range=(-1, 1))
         x_train = mM_scale.fit_transform(x_train)
         x_test = mM_scale.transform(x_test)
         for i, lmda in enumerate(lmda_list):

@@ -30,7 +30,7 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
     variables
     min 0.5*a'*kk*a - a'*1
      sub to: 0 <= a <= cc
-    where kk = 1/lmda * diag(y)*ktr*diag(y)
+    where kk = 1/(lmda) * diag(y)*ktr*diag(y)
     :param ktr:
     :param ytr:
     :param kte:
@@ -151,7 +151,7 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
                 err_tr.push_back(res/n)
                 if True:
                     err = err_rate_test(yte, kte, ytr, a_avg)
-                    # err = cmp_err_rate(yte, pred)
+
                     err_te.push_back(err)
                 # 2, compute primal objective of svm
                 res = 0
@@ -209,18 +209,6 @@ cdef double err_rate_test(int[:]label, double[:,::1]k, int[:]y, double[:]a):
             res += k[i,j] * y[j] *a[j]
         err += (label[i] * res<=0)
     return err / n
-
-
-cdef double cmp_err_rate(int[::1] y, double[::1]z):
-    """
-    check whether sign of y, z agree
-    """
-    cdef int i, n
-    n = len(y)
-    cdef int err = 0
-    for i in xrange(n):
-        err += (y[i] * z[i] < 0)
-    return float(err) / n
 
 @cython.boundscheck(False)
 @cython.cdivision(True)
