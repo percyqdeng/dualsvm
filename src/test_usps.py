@@ -12,25 +12,84 @@ from load_data import *
 from dualksvm import *
 from stocksvm import *
 
+pos_class = 3
+neg_class = None
+random_state = None
+"""
+plot of convergence for usps data on binary classification
+:param pos_class: the digit as positive class
+:param neg_class: the digit as negative class
+:return:
+"""
+data = load_usps()
+if neg_class is None:
+    x, y = convert_one_vs_all(data, pos_class)
+    one_vs_rest = True
+else:
+    x, y = convert_binary(data, pos_class, neg_class)
+    one_vs_rest = False
 
-# def plot_convergence(pos_class=3, neg_class=None, random_state=None):
+# if __name__ == "__main__":
+def run_gamma(x, y):
+    perc = 0.6
+    n = x.shape[0]
+    gamma_list = (np.power(2.0, range(-4, 12))/(n*perc)).tolist()
+    n_iter = 2
+    train_err_libsvm = np.zeros((len(gamma_list), n_iter))
+    test_err_libsvm = np.zeros((len(gamma_list), n_iter))
+    train_err_dsvm = np.zeros((len(gamma_list), n_iter))
+    test_err_dsvm = np.zeros((len(gamma_list), n_iter))
+    train_err_pegasos = np.zeros((len(gamma_list), n_iter))
+    test_err_pegasos = np.zeros((len(gamma_list), n_iter))
+    ss = cv.StratifiedShuffleSplit(y, n_iter=n_iter, test_size=1-perc, train_size=None, random_state=0)
+    for k, (train, test) in enumerate(ss):
+        ntr = len(train)
+        lmda = 1.0 / ntr
+        print "#iter: %d" % k
+        x_train, x_test, y_train, y_test = x[train], x[test], y[train], y[test]
+        mM_scale = preprocessing.MinMaxScaler(feature_range=(-1, 1))
+        x_train = mM_scale.fit_transform(x_train)
+        x_test = mM_scale.transform(x_test)
+        for j, gm in enumerate(gamma_list):
+            print "check lamda %f, gamma %f" % (lmda, gm)
+            clf = svm.SVC(C=lmda * ntr, kernel='rbf', gamma=gm, cache_size=600)
+            clf.fit(x_train, y_train)
+
+            pred = clf.predict(x_train)
+            train_err_libsvm[j, k] = zero_one_loss(y_train, pred)
+            pred = clf.predict(x_test)
+            test_err_libsvm[j, k] = zero_one_loss(y_test, pred)
+            dsvm = DualKSVM(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=ntr/2, batchsize=5)
+            dsvm.train_test(x_train, y_train, x_test, y_test, )
+            train_err_dsvm[j, k] = dsvm.err_tr[-1]
+            test_err_dsvm[j, k] = dsvm.err_te[-1]
+            kpega = Pegasos(ntr, lmda, gm, nsweep=2, batchsize=2)
+            kpega.train_test(x_train, y_train, x_test, y_test)
+            train_err_pegasos[j, k] = kpega.err_tr[-1]
+            test_err_pegasos[j, k] = kpega.err_te[-1]
+    avg_train_err_libsvm = np.mean(train_err_libsvm, axis=1)
+    avg_test_err_libsvm = np.mean(test_err_libsvm, axis=1)
+    avg_train_err_dsvm = np.mean(train_err_dsvm, axis=1)
+    avg_test_err_dsvm = np.mean(test_err_dsvm, axis=1)
+    avg_train_err_pegasos = np.mean(train_err_pegasos, axis=1)
+    avg_test_err_pegasos = np.mean(test_err_pegasos, axis=1)
+    plt.figure()
+    # color_list = ['b', 'r', 'g', 'c', ]
+    # marker_list = ['o', 'x', '>', 's']
+
+    plt.loglog(gamma_list, avg_train_err_libsvm, 'bo-', label='libsvm train')
+    plt.loglog(gamma_list, avg_test_err_libsvm, 'ro-', label='libsvm test')
+    plt.loglog(gamma_list, avg_train_err_dsvm, 'gx-', label='dsvm train')
+    plt.loglog(gamma_list, avg_test_err_dsvm, 'cx-', label='dsvm test')
+    plt.loglog(gamma_list, avg_train_err_pegasos, 'mD-', label='pegasos train')
+    plt.loglog(gamma_list, avg_test_err_pegasos, 'kD-', label='pegasos test')
+    plt.legend(bbox_to_anchor=(0, 1.17, 1, .1), loc=2, ncol=2, mode="expand", borderaxespad=0)
+    plt.savefig('../output/usps_diff_gamma.pdf')
+    # return avg_train_err_libsvm, avg_test_err_libsvm
+
+
 if __name__ == "__main__":
-    pos_class = 3
-    neg_class = None
-    random_state = None
-    """
-    plot of convergence for usps data on binary classification
-    :param pos_class: the digit as positive class
-    :param neg_class: the digit as negative class
-    :return:
-    """
-    data = load_usps()
-    if neg_class is None:
-        x, y = convert_one_vs_all(data, pos_class)
-        one_vs_rest = True
-    else:
-        x, y = convert_binary(data, pos_class, neg_class)
-        one_vs_rest = False
+# def comparison(x, y):
     perc = 0.7
     print '--------------------------------------------------------------------'
     print "usps dataset, size=%d, dim=%d, %2d%% for training" % (x.shape[0], x.shape[1], 100*perc)
@@ -44,7 +103,7 @@ if __name__ == "__main__":
     x_train = mm_scale.fit_transform(x_train)
     x_test = mm_scale.transform(x_test)
     ntr = x_train.shape[0]
-    gm = 1.0/1
+    # gm = 1.0/1
     gm = 1.0/ntr
     lmda = 1/float(ntr)
     dsvm = DualKSVM(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=ntr, batchsize=5)
@@ -106,6 +165,9 @@ if __name__ == "__main__":
     plt.plot(b[::-1]/b.max(), 'b.-', label='pegasos')
     plt.legend(loc='best')
     plt.savefig('../output/usps_%d_weight.pdf' % pos_class, format='pdf')
+    plt.figure()
+    plt.semilogx(dsvm.nker_opers, dsvm.snorm_grad, 'r', label='grad snorm')
+    plt.legend()
     # return dsvm, kpega
 
 

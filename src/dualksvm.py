@@ -1,5 +1,3 @@
-
-
 import os
 import scipy.io
 import numpy as np
@@ -30,6 +28,7 @@ class DualKSVM(MySVM):
         super(DualKSVM, self).__init__(n, lmda, gm, kernel, nsweep, batchsize)
         self._cc = 1.0 / n  # box constraint on the dual
         self.obj_primal = []
+        self.snorm_grad = None
 
     def train(self, xtr, ytr):
         self.set_train_kernel(xtr)
@@ -53,7 +52,6 @@ class DualKSVM(MySVM):
         else:
             print "error"
 
-
     def test(self, x, y):
         pass
 
@@ -61,9 +59,9 @@ class DualKSVM(MySVM):
         """
         call the cython wrapper
         """
-        self.alpha, self.err_tr, self.err_te, self.obj, self.obj_primal, self.nker_opers, self.nnzs =\
+        self.alpha, self.err_tr, self.err_te, self.obj, self.obj_primal, self.nker_opers, self.nnzs, self.snorm_grad = \
             coor_cy.scgd_cy(ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
-                           nsweep=np.int(self.nsweep), T=int(self.T), batchsize=np.int(self.batchsize))
+                            nsweep=np.int(self.nsweep), batchsize=np.int(self.batchsize))
 
     def _rand_stoc_coor(self):
         """
@@ -183,6 +181,7 @@ class DualKSVM(MySVM):
         import pstats
         import cProfile
         import pyximport
+
         pyximport.install()
         self.set_train_kernel(xtr)
         self.set_test_kernel(xtr, xte)

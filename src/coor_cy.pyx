@@ -19,12 +19,12 @@ ctypedef np.int_t dtypei_t
 # cdef extern from "stdlib.h":
 #     double drand48()
 
-@cython.boundscheck(False)
-@cython.cdivision(True)
-@cython.wraparound(False)
+# @cython.boundscheck(False)
+# @cython.cdivision(True)
+# @cython.wraparound(False)
 def scgd_cy(double[:,::1] ktr, int[::1] ytr,
-                          double[:,::1]kte, int[::1]yte,
-                          double lmda, int nsweep, int T, int batchsize):
+                          double[:,::1]kte=None, int[::1]yte=None,
+                          double lmda=1E-5, int nsweep=1000, int batchsize=5):
     """
     stochastic coordinate descent on the dual svm, random sample a batch of data and update on another random sampled
     variables
@@ -42,6 +42,7 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
 
     """
     cdef int n = ktr.shape[0]
+    cdef int T = n * nsweep - 1
     cdef double cc = 1.0/n
     cdef double [:,::1] kk = np.zeros((n, n))
     cdef unsigned int i,j,k
@@ -56,6 +57,7 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
     cdef vector[int] num_oper
     cdef vector[double] obj
     cdef vector [double] obj_primal
+    cdef vector[double] snorm_grad
     cdef double err_count
     # cdef np.ndarray[double] pred = np.zeros(kte.shape[0])
     # cdef bool has_kte = True
@@ -78,7 +80,7 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
     sig = np.sqrt(res)
     cdef double [::1] eta = np.ones(T+1)
     cdef double [::1] theta = np.zeros(T+1)
-    eta[0] = np.minimum(1.0 / (2 * l_max), D_t / sig * np.sqrt(float(n) / (1 + T)))
+    eta[0] = fmin(1.0 / (2 * l_max), D_t / sig * np.sqrt(float(n) / (1 + T)))
     for i in xrange(1, T+1):
         eta[i] = eta[0]
     for i in xrange(T+1):
@@ -139,36 +141,40 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
                 for j in xrange(n):
                     a_avg[j] = (a_tilde[j] + (delta[t+1]-delta[uu[j]]) * alpha[j]) / delta[t+1]
                 mat_vec(kk, a_avg, kk_a)
+                #--------------compute dual/primal objective of svm
                 res = 0
-                # 1, compute dual objective of svm
                 for j in xrange(n):
                     res+= 0.5 * a_avg[j] * kk_a[j] - a_avg[j]
                 obj.push_back(-res)  # the dual of svm is the negative of our objective
-                # compute error rate
-                res = 0
-                for j in xrange(n):
-                    res += (kk_a[j] <= 0)
-                err_tr.push_back(res/n)
-                if True:
-                    err = err_rate_test(yte, kte, ytr, a_avg)
-
-                    err_te.push_back(err)
-                # 2, compute primal objective of svm
                 res = 0
                 for j in xrange(n):
                     res += fmax(0,1 - kk_a[j])/n + 0.5 * a_avg[j] * kk_a[j]
                 obj_primal.push_back(res)
+                #--------------compute norm of gradient ---------------------
+                res = 0
+                for j in xrange(n):
+                    res += (kk_a[j]-1)**2
+                snorm_grad.push_back(res)
+                #--------------compute train/test error rate
+                res = 0
+                for j in xrange(n):
+                    res += (kk_a[j] <= 0)
+                err_tr.push_back(res/n)
+                if not(kte is None):
+                    err = err_rate_test(yte, kte, ytr, a_avg)
+                    err_te.push_back(err)
+                #--------------4, compute number of kernel products
                 num_oper.push_back(count)
                 nnzs.push_back(total_nnzs)
             t += 1
-        if i % (nsweep / showtimes) == 0:
-            print "# of sweeps " + str(i)
+        # if i % (nsweep / showtimes) == 0:
+        #     print "# of sweeps " + str(i)
     print "# of loops: %d, time of scd %f " % (nsweep*n, time.time()-start_time)
     for i in xrange(n):
         a_tilde[i] += (delta[T + 1] - delta[uu[i]]) * alpha[i]
     for i in xrange(n):
-        alpha[i] = a_tilde[i] / delta[T + 1]
-    return np.asarray(alpha), err_tr, err_te, obj, obj_primal, num_oper, nnzs
+        a_avg[i] = a_tilde[i] / delta[T + 1]
+    return np.asarray(a_avg), err_tr, err_te, obj, obj_primal, num_oper, nnzs, snorm_grad
 
 
 # cdef rand_perm(int[:] ind):
@@ -180,24 +186,20 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
 #             j = n -1
 #         tmp = ind[i]
 #         ind[i] = ind[j]
-
 #         ind[j] = tmp
 
 
-cdef inline double cy_max(double a,double b):
-    return a if a >= b else b
+# cdef inline double cy_max(double a,double b):
+#     return a if a >= b else b
+#
+#
+# cdef inline double cy_min(double a, double b):
+#     return a if a<b else b
 
 
-cdef inline double cy_min(double a, double b):
-    return a if a<b else b
-
-
-cdef double trunc_val(double x, double a, double b):
-    """
-    truncate x between a, b , a<b
-    """
-    pass
-
+@cython.boundscheck(False)
+@cython.cdivision(True)
+@cython.wraparound(False)
 cdef double err_rate_test(int[:]label, double[:,::1]k, int[:]y, double[:]a):
     cdef int n = k.shape[0]
     cdef int m = k.shape[1]
@@ -220,6 +222,7 @@ cdef mat_vec(double[:,::1]aa, double[::1]b, double[::1]c):
     assert (m == n)
     cdef int i, j
     for i in xrange(n):
+        c[i] = 0
         for j in xrange(m):
             c[i] += aa[i,j] * b[j]
     return c
@@ -228,7 +231,7 @@ cdef esti_std(np.ndarray[double, ndim=2]kk, double cc, int batchsize):
     n = kk.shape[0]
     # cdef double [:] sig = np.zeros(n)
     sig = np.zeros(n)
-    alpha = np.random.uniform(0,cc, n)
+    # alpha = np.random.uniform(0,cc, n)
     rep = 100
     for i in xrange(n):
         g = kk[i, :] * cc
