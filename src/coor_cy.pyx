@@ -96,14 +96,15 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
     cdef double stoc_cg
     # index of update, uu[i] = t means the most recent update of
     # ith coordinate is in the t-th round, t = 0,1,...,T
-    cdef int showtimes = 5
+    cdef int showtimes = 3
     cdef unsigned int t = 0
     cdef int count = 0 # count number of kernel products
     cdef double time_gen_rand = 0
     cdef int rec_step = 1 # stepsize to record the output, 1,2,4,8,...
     cdef unsigned int [::1] used = np.zeros(n, dtype=np.uint32)
     cdef unsigned int total_nnzs = 0
-    print "estimated sigma: "+str(sig)+" lipschitz: "+str(l_max)
+    cdef unsigned int [::1]ind_list = np.zeros(n, dtype=np.uint32)
+    print "estimated sigma: %f lipschitz: %f, eta: %e" % (sig, l_max, eta[0])
     # print "time for initialization %f" % (time.time()-start_time)
     # print "----------------------start the algorithm----------------------"
     start_time = time.time()
@@ -130,10 +131,9 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
                 alpha[var_ind] = res
             # alpha[var_ind] = fmax(0, fmin(res, cc))
             # alpha[var_ind] = cy_max(0, cy_min(res, cc))
-            if alpha[var_ind] > 0:
-                if not used[var_ind]:
-                    used[var_ind] = 1
-                    total_nnzs += 1
+            if not used[var_ind]:
+                used[var_ind] = 1
+                total_nnzs += 1
             uu[var_ind] = t + 1
             count += batchsize
             if t+1 == rec_step:

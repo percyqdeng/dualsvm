@@ -29,6 +29,7 @@ else:
     x, y = convert_binary(data, pos_class, neg_class)
     one_vs_rest = False
 
+
 # if __name__ == "__main__":
 def run_gamma(x, y):
     perc = 0.6
@@ -59,7 +60,7 @@ def run_gamma(x, y):
             train_err_libsvm[j, k] = zero_one_loss(y_train, pred)
             pred = clf.predict(x_test)
             test_err_libsvm[j, k] = zero_one_loss(y_test, pred)
-            dsvm = DualKSVM(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=ntr/2, batchsize=5)
+            dsvm = DualKSVM(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=ntr/2, batchsize=2)
             dsvm.train_test(x_train, y_train, x_test, y_test, )
             train_err_dsvm[j, k] = dsvm.err_tr[-1]
             test_err_dsvm[j, k] = dsvm.err_te[-1]
@@ -90,7 +91,7 @@ def run_gamma(x, y):
 
 if __name__ == "__main__":
 # def comparison(x, y):
-    perc = 0.7
+    perc = 0.6
     print '--------------------------------------------------------------------'
     print "usps dataset, size=%d, dim=%d, %2d%% for training" % (x.shape[0], x.shape[1], 100*perc)
     if random_state is None:
@@ -105,8 +106,9 @@ if __name__ == "__main__":
     ntr = x_train.shape[0]
     # gm = 1.0/1
     gm = 1.0/ntr
-    lmda = 1/float(ntr)
-    dsvm = DualKSVM(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=ntr, batchsize=5)
+    # lmda = 1/float(ntr)
+    lmda = 100/float(ntr)
+    dsvm = DualKSVM(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=0.8 * ntr, batchsize=5)
     dsvm.train_test(x_train, y_train, x_test, y_test, )
 
     kpega = Pegasos(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=3)
