@@ -31,6 +31,7 @@ def convert_binary(data, pos_ind, neg_ind):
     y[x_pos.shape[0]:-1] = -1
     return x, y
 
+
 def convert_one_vs_all(data, pos_ind):
     assert 0 <= pos_ind <= 9
     x_pos = data[str(pos_ind)]

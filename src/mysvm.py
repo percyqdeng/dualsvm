@@ -9,21 +9,22 @@ import matplotlib.pyplot as plt
 
 class MySVM(object):
 
-    def __init__(self, n, lmda=0.01, gm=1, kernel='rbf', nsweep=1000, batchsize=1):
+    def __init__(self, lmda=0.01, gm=1, kernel='rbf', nsweep=None, batchsize=1):
         self.batchsize = batchsize
-        self.alpha = np.zeros(n)
         self.lmda = lmda
-        self.num = n
         self.gm = gm
         self.nsweep = nsweep
-        self.T = nsweep * n - 1
         self.kernel = kernel
+        self.alpha = None
         self.obj = []
         self.nnzs = []
         self.err_tr = []
         self.nker_opers = []  # number of kernel operation
         self.err_te = []
         self.has_kte = False
+        self.ker_oper = []
+        self.ktr = None
+        self.kte = None
 
     def train(self, xtr, ytr):
         pass
@@ -31,7 +32,7 @@ class MySVM(object):
     def train_test(self, xtr, ytr, xte, yte):
         pass
 
-    def test(self, x, y):
+    def predict(self, x):
         pass
 
     def set_train_kernel(self, xtr):
@@ -57,6 +58,7 @@ class MySVM(object):
             kte = np.exp(-self.gm * dist)
         else:
             print "the other kernel tbd"
+            exit(1)
         self.kte = kte
 
 

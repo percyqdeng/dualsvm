@@ -22,14 +22,13 @@ ctypedef np.int_t dtypei_t
 # @cython.boundscheck(False)
 # @cython.cdivision(True)
 # @cython.wraparound(False)
-def scgd_cy(double[:,::1] ktr, int[::1] ytr,
-                          double[:,::1]kte=None, int[::1]yte=None,
-                          double lmda=1E-5, int nsweep=1000, int batchsize=5):
+def scg_da_svm(double[:,::1] ktr, int[::1] ytr, double[:,::1]kte=None, int[::1]yte=None,
+                          double lmda=1E-5, int nsweep=1000, int c=5, int b=1):
     """
     stochastic coordinate descent on the dual svm, random sample a batch of data and update on another random sampled
     variables
     min 0.5*a'*kk*a - a'*1
-     sub to: 0 <= a <= cc
+     sub to: 0 <= a <= C
     where kk = 1/(lmda) * diag(y)*ktr*diag(y)
     :param ktr:
     :param ytr:
@@ -38,12 +37,11 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
     :param lmda:
     :param nsweep:
     :param T:
-    :param batchsize:
-
+    :param c, b  batchsize, c
     """
     cdef int n = ktr.shape[0]
     cdef int T = n * nsweep - 1
-    cdef double cc = 1.0/n
+    cdef double C = 1.0/n
     cdef double [:,::1] kk = np.zeros((n, n))
     cdef unsigned int i,j,k
     cdef double start_time = time.time()
@@ -59,12 +57,9 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
     cdef vector [double] obj_primal
     cdef vector[double] snorm_grad
     cdef double err_count
-    # cdef np.ndarray[double] pred = np.zeros(kte.shape[0])
-    # cdef bool has_kte = True
     cdef vector[double] err_te
     # print"------------estimate parameters and set up variables----------------- "
     # comment:  seems very sensitive to the parameter estimation, if I use the second D_t, the algorithm diverges
-    #
     cdef double [::1] lip = np.zeros(n)
     cdef double l_max = 0
     for i in xrange(n):
@@ -73,29 +68,24 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
             l_max = lip[i]
     Q = 1
     cdef double D_t = Q * np.sqrt(1.0/(2*n))
-    sig_list = esti_std(np.asarray(kk), cc, batchsize)
+    sig_list = esti_std(np.asarray(kk), C, c)
     cdef double res = 0
     for i in xrange(n):
         res += sig_list[i]**2
     sig = np.sqrt(res)
-    cdef double [::1] eta = np.ones(T+1)
-    cdef double [::1] theta = np.zeros(T+1)
-    eta[0] = fmin(1.0 / (2 * l_max), D_t / sig * np.sqrt(float(n) / (1 + T)))
-    for i in xrange(1, T+1):
-        eta[i] = eta[0]
-    for i in xrange(T+1):
-        theta[i] = eta[i]
+    cdef double eta
+    eta = fmin(1.0/(2*l_max), 1.0/((1+T) * sig))
+    cdef double [::1] g_tilde = np.zeros(n) # the dual average gradient
     cdef double [::1] alpha = np.zeros(n)  # the most recent solution
-    cdef double [::1] a_tilde = np.zeros(n)  # the accumulated solution in the path
+    cdef double [::1] a_tilde = np.zeros(n)  # the aCumulated solution in the path
     cdef double [::1] a_avg = np.zeros(n)
-    cdef double [::1] delta = np.zeros(T + 2)
     cdef double [::1] kk_a = np.zeros(n)
-    cdef unsigned int[::1] batch_ind = np.zeros(batchsize, dtype=np.uint32)
+    cdef unsigned int[::1] batch_ind = np.zeros(c, dtype=np.uint32)
     cdef unsigned int var_ind
     cdef int[::1] uu = np.zeros(n, dtype=np.int32)
     cdef double stoc_cg
-    # index of update, uu[i] = t means the most recent update of
-    # ith coordinate is in the t-th round, t = 0,1,...,T
+    # index of update, uu[i] = t+1 means the most recent update of
+    # ith coordinate is in the alpha[t+1], t = 0,1,...,T
     cdef int showtimes = 3
     cdef unsigned int t = 0
     cdef int count = 0 # count number of kernel products
@@ -104,7 +94,7 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
     cdef unsigned int [::1] used = np.zeros(n, dtype=np.uint32)
     cdef unsigned int total_nnzs = 0
     cdef unsigned int [::1]ind_list = np.zeros(n, dtype=np.uint32)
-    print "estimated sigma: %f lipschitz: %f, eta: %e" % (sig, l_max, eta[0])
+    print "estimated sigma: %f lipschitz: %f, eta: %e" % (sig, l_max, eta)
     # print "time for initialization %f" % (time.time()-start_time)
     # print "----------------------start the algorithm----------------------"
     start_time = time.time()
@@ -112,43 +102,52 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
     for i in xrange(nsweep):
         # rand_perm(ind_list)
         for j in xrange(n):
-            for k in xrange(batchsize):
+            for k in xrange(c):
                 batch_ind[k] = (rand() % n)
             var_ind = (rand() % n)
-            delta[t + 1] = delta[t] + theta[t]
+            # delta[t + 1] = delta[t] + theta[t]
             stoc_cg = 0
-            for k in xrange(batchsize):
+            for k in xrange(c):
                 stoc_cg += kk[var_ind,batch_ind[k]] * alpha[batch_ind[k]]
-            stoc_cg *= float(n)/batchsize
+            stoc_cg *= float(n) / c
             stoc_cg -= 1
-            a_tilde[var_ind] += (delta[t + 1] - delta[uu[var_ind]]) * alpha[var_ind]
-            res = alpha[var_ind] - eta[t] * stoc_cg
-            if res > cc:
-                alpha[var_ind] = cc
+            a_tilde[var_ind] += ((t + 1) - uu[var_ind]) * alpha[var_ind]
+            res = alpha[var_ind] - eta * stoc_cg
+            if res > C:
+                alpha[var_ind] = C
             elif res < 0:
                 alpha[var_ind] = 0
             else:
                 alpha[var_ind] = res
-            # alpha[var_ind] = fmax(0, fmin(res, cc))
-            # alpha[var_ind] = cy_max(0, cy_min(res, cc))
+            # alpha[var_ind] = fmax(0, fmin(res, C))
+            # alpha[var_ind] = cy_max(0, cy_min(res, C))
             if not used[var_ind]:
                 used[var_ind] = 1
                 total_nnzs += 1
             uu[var_ind] = t + 1
-            count += batchsize
+            count += (c + b)
             if t+1 == rec_step:
                 rec_step *= 3
-                for j in xrange(n):
-                    a_avg[j] = (a_tilde[j] + (delta[t+1]-delta[uu[j]]) * alpha[j]) / delta[t+1]
-                mat_vec(kk, a_avg, kk_a)
-                #--------------compute dual/primal objective of svm
+                # output the a_average
+                # for j in xrange(n):
+                #     a_avg[j] = (a_tilde[j] + ((t+2)-uu[j]) * alpha[j]) / (t+1)
+                # mat_vec(kk, a_avg, kk_a)
+                # res = 0
+                # for j in xrange(n):
+                #     res+= 0.5 * a_avg[j] * kk_a[j] - a_avg[j]
+                # obj.push_back(-res)  # the dual of svm is the negative of our objective
+                # res = 0
+                # for j in xrange(n):
+                #     res += fmax(0,1 - kk_a[j])/n + 0.5 * a_avg[j] * kk_a[j]
+
+                mat_vec(kk,alpha,kk_a)
                 res = 0
                 for j in xrange(n):
-                    res+= 0.5 * a_avg[j] * kk_a[j] - a_avg[j]
-                obj.push_back(-res)  # the dual of svm is the negative of our objective
+                    res+= 0.5 * alpha[j] * kk_a[j] - alpha[j]
+                obj.push_back(-res)
                 res = 0
                 for j in xrange(n):
-                    res += fmax(0,1 - kk_a[j])/n + 0.5 * a_avg[j] * kk_a[j]
+                    res += fmax(0,1 - kk_a[j])/n + 0.5 * alpha[j] * kk_a[j]
                 obj_primal.push_back(res)
                 #--------------compute norm of gradient ---------------------
                 res = 0
@@ -171,9 +170,9 @@ def scgd_cy(double[:,::1] ktr, int[::1] ytr,
         #     print "# of sweeps " + str(i)
     print "# of loops: %d, time of scd %f " % (nsweep*n, time.time()-start_time)
     for i in xrange(n):
-        a_tilde[i] += (delta[T + 1] - delta[uu[i]]) * alpha[i]
+        a_tilde[i] += (T + 2 - uu[i]) * alpha[i]
     for i in xrange(n):
-        a_avg[i] = a_tilde[i] / delta[T + 1]
+        a_avg[i] = a_tilde[i] / (T + 1)
     return np.asarray(a_avg), err_tr, err_te, obj, obj_primal, num_oper, nnzs, snorm_grad
 
 
@@ -227,13 +226,13 @@ cdef mat_vec(double[:,::1]aa, double[::1]b, double[::1]c):
             c[i] += aa[i,j] * b[j]
     return c
 
-cdef esti_std(np.ndarray[double, ndim=2]kk, double cc, int batchsize):
+cdef esti_std(np.ndarray[double, ndim=2]kk, double C, int batchsize):
     n = kk.shape[0]
     # cdef double [:] sig = np.zeros(n)
     sig = np.zeros(n)
-    # alpha = np.random.uniform(0,cc, n)
+    # alpha = np.random.uniform(0,C, n)
     rep = 100
     for i in xrange(n):
-        g = kk[i, :] * cc
+        g = kk[i, :] * C
         sig[i] = np.std(g) * n / np.sqrt(batchsize)
     return sig
