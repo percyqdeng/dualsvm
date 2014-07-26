@@ -1,5 +1,4 @@
 
-from sklearn import svm
 import sklearn.cross_validation as cv
 from sklearn import preprocessing
 from sklearn.metrics import zero_one_loss

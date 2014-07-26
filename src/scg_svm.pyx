@@ -376,6 +376,13 @@ cdef double err_rate_test(int[:]label, double[:,::1]k, int[:]y, double[:]a):
 @cython.cdivision(True)
 @cython.wraparound(False)
 cdef mat_vec(double[:,::1]aa, double[::1]b, double[::1]c):
+    """
+    c = aa * b
+    :param aa:
+    :param b:
+    :param c:
+    :return:
+    """
     cdef int n = aa.shape[0]
     cdef int m = aa.shape[1]
     # cdef double [::1] c = np.zeros(n)

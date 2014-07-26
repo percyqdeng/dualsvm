@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <data xmlns="http://www.netbeans.org/ns/make-project-private/1">
+        <activeConfTypeElem>1</activeConfTypeElem>
+        <activeConfIndexElem>0</activeConfIndexElem>
+    </data>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/qdengpercy/workspace/dualsvm/scd_da_svm/test.cpp</file>
+            <file>file:/Users/qdengpercy/workspace/dualsvm/scd_da_svm/main.cpp</file>
+            <file>file:/Users/qdengpercy/workspace/dualsvm/scd_da_svm/da_svm.cpp</file>
+            <file>file:/Users/qdengpercy/workspace/dualsvm/scd_da_svm/data_process.cpp</file>
+            <file>file:/Users/qdengpercy/workspace/dualsvm/scd_da_svm/feature_vector.cpp</file>
+            <file>file:/Users/qdengpercy/workspace/dualsvm/scd_da_svm/feature_vector/feature_vector.h</file>
+            <file>file:/Users/qdengpercy/workspace/dualsvm/scd_da_svm/simple_sparse_vec_hash.h</file>
+            <file>file:/Users/qdengpercy/workspace/dualsvm/scd_da_svm/da_svm.h</file>
+            <file>file:/Users/qdengpercy/workspace/dualsvm/scd_da_svm/data_process.h</file>
+            <file>file:/Users/qdengpercy/workspace/dualsvm/scd_da_svm/kernel_matrix.cpp</file>
+            <file>file:/Users/qdengpercy/workspace/dualsvm/scd_da_svm/kernel_matrix.h</file>
+        </group>
+    </open-files>
+</project-private>

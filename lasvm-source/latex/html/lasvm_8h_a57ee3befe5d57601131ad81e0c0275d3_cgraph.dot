@@ -1,0 +1,17 @@
+digraph "lasvm_process"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="lasvm_process",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="lasvm_error",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$messages_8c.html#a17c8c22c44756c9cdb8c9953c2eeb97f"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="lasvm_kcache_i2r",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$kcache_8c.html#adf69ca35a3622d92b634d6d4a5c156fa"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="lasvm_kcache_query_row",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$kcache_8c.html#a111b8fc59673c97bec8d14fc60615266"];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="lasvm_kcache_discard_row",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$kcache_8c.html#ac92b3d4d8030a6220fe1271c5edd6462"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="lasvm_kcache_swap_ri",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$kcache_8c.html#a23af4adf8dc466b999fe80ad78a21c7b"];
+}

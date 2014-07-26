@@ -1,0 +1,9 @@
+digraph "lasvm_sparsevector_destroy"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="lasvm_sparsevector\l_destroy",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="lasvm_sparsevector\l_clear",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$vector_8c.html#a7a92e2401b1aecae921f8b88057b5fc3"];
+}

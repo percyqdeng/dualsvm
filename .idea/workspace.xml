@@ -1,16 +1,669 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ea096c68-1c08-469a-9912-dce65c917aac" name="Default" comment="">
+    <list default="true" id="ea096c68-1c08-469a-9912-dce65c917aac" name="Default" comment="macos">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/a.out" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/bc_s.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/bdwn.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/closed.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/doxygen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/ftv2blank.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/ftv2doc.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/ftv2folderclosed.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/ftv2folderopen.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/ftv2lastnode.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/ftv2link.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/ftv2mlastnode.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/ftv2mnode.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/ftv2node.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/ftv2plastnode.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/ftv2pnode.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/ftv2splitbar.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/ftv2vertline.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/mag_sel.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/nav_f.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/nav_g.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/nav_h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/open.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/online_lasso/scg_lasso.so" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/search_l.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/search_m.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/search_r.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/sync_off.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/sync_on.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/tab_a.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/tab_b.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/tab_h.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/tab_s.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/nbproject/Makefile-Debug.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/nbproject/Makefile-Release.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/nbproject/Makefile-impl.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/nbproject/Makefile-variables.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/nbproject/private/Makefile-variables.mk" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/Makefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/Makefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/nbproject/Package-Debug.bash" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/nbproject/Package-Release.bash" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/____init_____8py.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/____init_____8py.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/auxiliary/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_0.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_0.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_1.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_1.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_10.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_10.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_11.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_11.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_12.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_12.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_13.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_13.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_14.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_14.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_15.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_15.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_16.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_16.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_17.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_17.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_3.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_3.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_4.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_4.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_5.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_5.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_6.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_6.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_7.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_7.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_8.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_8.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_9.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_9.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_a.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_a.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_b.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_b.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_c.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_c.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_d.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_e.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_e.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_f.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/all_f.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/annotated.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/annotated.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/bin2libsvm_8cpp.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/bin2libsvm_8cpp.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/bin2libsvm_8cpp__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/bin2libsvm_8cpp__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/bin2libsvm_8cpp__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/bin2libsvm_8cpp__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/bin2libsvm_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/bin2libsvm_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/bin2libsvm_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/bin2libsvm_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/bin2libsvm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/bin2libsvm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/bin2libsvm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/bin2libsvm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/online_lasso/cd_lasso.pyx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/class_i_d-members.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/class_i_d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/class_i_d.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/classes.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/classes_0.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/classes_0.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/classes_1.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/classes_1.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/classes_2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/classes_2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/classstopwatch-members.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/classstopwatch.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/classstopwatch.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/nbproject/configurations.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/nbproject/private/configurations.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/da_svm.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/da_svm.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/data_process.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/data_process.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_0.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_0.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_1.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_1.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_3.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_3.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_4.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_4.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_5.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_5.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_6.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_6.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_7.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_7.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_8.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_8.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_9.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_9.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_a.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/defines_a.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/doxygen.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/doxygen.sty" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/dynsections.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/enums_0.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/enums_0.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/enumvalues_0.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/enumvalues_0.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/feature_vector.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/feature_vector.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/files.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/files.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/files_0.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/files_0.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/files_1.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/files_1.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/files_2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/files_2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/files_3.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/files_3.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/files_4.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/files_4.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/files_5.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/files_5.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/files_6.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/files_6.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/functions.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_0.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_0.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_1.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_1.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_3.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_3.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_4.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_4.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_5.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_5.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_6.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_6.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_7.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_7.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_8.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_8.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_9.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_9.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_a.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_a.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_b.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_b.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_c.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_c.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/functions_d.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/functions_func.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/functions_vars.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_b.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_c.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_defs.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_e.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_enum.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_eval.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_f.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_func.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_g.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_i.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_k.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_l.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_m.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_o.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_p.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_r.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_s.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_t.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_type.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_u.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_v.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_vars.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_x.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/globals_y.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/graph_legend.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/graph_legend.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/graph_legend.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/jquery.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kcache_8c.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kcache_8c.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kcache_8c__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kcache_8c__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kcache_8c__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kcache_8c__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kcache_8h.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kcache_8h.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kcache_8h__dep__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kcache_8h__dep__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kcache_8h__dep__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kcache_8h__dep__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kcache_8h_source.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8c.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8c.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8c__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8c__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8c__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8c__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8c_a1b374f3ceaa25ad44b30e086049728db_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8c_a1b374f3ceaa25ad44b30e086049728db_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8c_a1b374f3ceaa25ad44b30e086049728db_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8c_a1b374f3ceaa25ad44b30e086049728db_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8c_ac331682774c1b3ab286a3cb22f27e04d_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8c_ac331682774c1b3ab286a3cb22f27e04d_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8c_ac331682774c1b3ab286a3cb22f27e04d_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8c_ac331682774c1b3ab286a3cb22f27e04d_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8c_adb9ba21c80d18aa5042029652547a98f_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8c_adb9ba21c80d18aa5042029652547a98f_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8c_adb9ba21c80d18aa5042029652547a98f_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8c_adb9ba21c80d18aa5042029652547a98f_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8c_aed3aa85a4815254ec0ef11db73d150a7_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8c_aed3aa85a4815254ec0ef11db73d150a7_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8c_aed3aa85a4815254ec0ef11db73d150a7_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8c_aed3aa85a4815254ec0ef11db73d150a7_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8h.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8h.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8h__dep__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8h__dep__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8h__dep__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8h__dep__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8h__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8h__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8h__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8h__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8h_a1b374f3ceaa25ad44b30e086049728db_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8h_a1b374f3ceaa25ad44b30e086049728db_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8h_a1b374f3ceaa25ad44b30e086049728db_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8h_a1b374f3ceaa25ad44b30e086049728db_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8h_ac331682774c1b3ab286a3cb22f27e04d_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8h_ac331682774c1b3ab286a3cb22f27e04d_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8h_ac331682774c1b3ab286a3cb22f27e04d_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8h_ac331682774c1b3ab286a3cb22f27e04d_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8h_adb9ba21c80d18aa5042029652547a98f_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8h_adb9ba21c80d18aa5042029652547a98f_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8h_adb9ba21c80d18aa5042029652547a98f_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8h_adb9ba21c80d18aa5042029652547a98f_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8h_aed3aa85a4815254ec0ef11db73d150a7_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8h_aed3aa85a4815254ec0ef11db73d150a7_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8h_aed3aa85a4815254ec0ef11db73d150a7_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/kernel_8h_aed3aa85a4815254ec0ef11db73d150a7_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/kernel_8h_source.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/kernel_matrix.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/kernel_matrix.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_a15f26fdd66eabc2d70d032433a9c8a50_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_a15f26fdd66eabc2d70d032433a9c8a50_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_a15f26fdd66eabc2d70d032433a9c8a50_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_a15f26fdd66eabc2d70d032433a9c8a50_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_a488f426cc2dc0d537f8c37e3e77ef3fe_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_a488f426cc2dc0d537f8c37e3e77ef3fe_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_a488f426cc2dc0d537f8c37e3e77ef3fe_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_a488f426cc2dc0d537f8c37e3e77ef3fe_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_a84dead433e3720229c34b3d17a467adf_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_a84dead433e3720229c34b3d17a467adf_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_a84dead433e3720229c34b3d17a467adf_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_a84dead433e3720229c34b3d17a467adf_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_a8d038c50a80216ddc72dfaa3b3042ba0_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_a8d038c50a80216ddc72dfaa3b3042ba0_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_a8d038c50a80216ddc72dfaa3b3042ba0_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_a8d038c50a80216ddc72dfaa3b3042ba0_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_a90d1123670c4debc7852273ca8477a52_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_a90d1123670c4debc7852273ca8477a52_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_a90d1123670c4debc7852273ca8477a52_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_a90d1123670c4debc7852273ca8477a52_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_ad7aa79a8e6532c312fe85e60306047cd_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_ad7aa79a8e6532c312fe85e60306047cd_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_ad7aa79a8e6532c312fe85e60306047cd_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_ad7aa79a8e6532c312fe85e60306047cd_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_af1d05f9634ad1baf5a4bd899b935bd92_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_af1d05f9634ad1baf5a4bd899b935bd92_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_af1d05f9634ad1baf5a4bd899b935bd92_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_af1d05f9634ad1baf5a4bd899b935bd92_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_af3934217b9fe8d07578136f00518f402_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_af3934217b9fe8d07578136f00518f402_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__svm_8cpp_af3934217b9fe8d07578136f00518f402_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__svm_8cpp_af3934217b9fe8d07578136f00518f402_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_a567b9318e5e4b8987cddd4a11bafb18e_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_a567b9318e5e4b8987cddd4a11bafb18e_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_a567b9318e5e4b8987cddd4a11bafb18e_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_a567b9318e5e4b8987cddd4a11bafb18e_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_a6df8f46894328374c94f1b10b8dc2e6b_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_a6df8f46894328374c94f1b10b8dc2e6b_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_a6df8f46894328374c94f1b10b8dc2e6b_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_a6df8f46894328374c94f1b10b8dc2e6b_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_a852d8409a0a7da8cd0a0cd1afb07e739_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_a852d8409a0a7da8cd0a0cd1afb07e739_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_a852d8409a0a7da8cd0a0cd1afb07e739_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_a852d8409a0a7da8cd0a0cd1afb07e739_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_a8d038c50a80216ddc72dfaa3b3042ba0_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_a8d038c50a80216ddc72dfaa3b3042ba0_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_a8d038c50a80216ddc72dfaa3b3042ba0_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_a8d038c50a80216ddc72dfaa3b3042ba0_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_a90d1123670c4debc7852273ca8477a52_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_a90d1123670c4debc7852273ca8477a52_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_a90d1123670c4debc7852273ca8477a52_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_a90d1123670c4debc7852273ca8477a52_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_ab543cfaa5a8c3a4fe01deb78e2a02598_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_ab543cfaa5a8c3a4fe01deb78e2a02598_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_ab543cfaa5a8c3a4fe01deb78e2a02598_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_ab543cfaa5a8c3a4fe01deb78e2a02598_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_af3934217b9fe8d07578136f00518f402_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_af3934217b9fe8d07578136f00518f402_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/la__test_8cpp_af3934217b9fe8d07578136f00518f402_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/la__test_8cpp_af3934217b9fe8d07578136f00518f402_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c_a4c32731c4eec5f9be2037c0e2cad6742_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c_a4c32731c4eec5f9be2037c0e2cad6742_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c_a4c32731c4eec5f9be2037c0e2cad6742_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c_a4c32731c4eec5f9be2037c0e2cad6742_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c_a57ee3befe5d57601131ad81e0c0275d3_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c_a57ee3befe5d57601131ad81e0c0275d3_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c_a57ee3befe5d57601131ad81e0c0275d3_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c_a57ee3befe5d57601131ad81e0c0275d3_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c_a713f2c6f3bdd5ea8f4b2593b163d16c3_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c_a713f2c6f3bdd5ea8f4b2593b163d16c3_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c_a713f2c6f3bdd5ea8f4b2593b163d16c3_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c_a713f2c6f3bdd5ea8f4b2593b163d16c3_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c_aa69f39c7b620a7eb617fb7265851aa6d_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c_aa69f39c7b620a7eb617fb7265851aa6d_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c_aa69f39c7b620a7eb617fb7265851aa6d_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c_aa69f39c7b620a7eb617fb7265851aa6d_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c_ab560d706ee60b58ed0f2ea18f6187f83_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c_ab560d706ee60b58ed0f2ea18f6187f83_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c_ab560d706ee60b58ed0f2ea18f6187f83_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c_ab560d706ee60b58ed0f2ea18f6187f83_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c_ac5d48c292946a3857b3b54f3eb523ce8_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c_ac5d48c292946a3857b3b54f3eb523ce8_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8c_ac5d48c292946a3857b3b54f3eb523ce8_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8c_ac5d48c292946a3857b3b54f3eb523ce8_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h__dep__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h__dep__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h__dep__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h__dep__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h_a4c32731c4eec5f9be2037c0e2cad6742_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h_a4c32731c4eec5f9be2037c0e2cad6742_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h_a4c32731c4eec5f9be2037c0e2cad6742_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h_a4c32731c4eec5f9be2037c0e2cad6742_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h_a57ee3befe5d57601131ad81e0c0275d3_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h_a57ee3befe5d57601131ad81e0c0275d3_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h_a57ee3befe5d57601131ad81e0c0275d3_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h_a57ee3befe5d57601131ad81e0c0275d3_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h_a713f2c6f3bdd5ea8f4b2593b163d16c3_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h_a713f2c6f3bdd5ea8f4b2593b163d16c3_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h_a713f2c6f3bdd5ea8f4b2593b163d16c3_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h_a713f2c6f3bdd5ea8f4b2593b163d16c3_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h_aa69f39c7b620a7eb617fb7265851aa6d_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h_aa69f39c7b620a7eb617fb7265851aa6d_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h_aa69f39c7b620a7eb617fb7265851aa6d_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h_aa69f39c7b620a7eb617fb7265851aa6d_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h_ab560d706ee60b58ed0f2ea18f6187f83_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h_ab560d706ee60b58ed0f2ea18f6187f83_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h_ab560d706ee60b58ed0f2ea18f6187f83_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h_ab560d706ee60b58ed0f2ea18f6187f83_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h_ac5d48c292946a3857b3b54f3eb523ce8_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h_ac5d48c292946a3857b3b54f3eb523ce8_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h_ac5d48c292946a3857b3b54f3eb523ce8_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/lasvm_8h_ac5d48c292946a3857b3b54f3eb523ce8_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/lasvm_8h_source.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/nbproject/private/launcher.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/libsvm2bin_8cpp.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/libsvm2bin_8cpp.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/libsvm2bin_8cpp__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/libsvm2bin_8cpp__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/libsvm2bin_8cpp__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/libsvm2bin_8cpp__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/libsvm2bin_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/libsvm2bin_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/libsvm2bin_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/libsvm2bin_8cpp_a3c04138a5bfe5d72780bb7e82a18e627_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/libsvm2bin_8cpp_a5a17428765807482a8c2cf8b9fe1c0e3_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/libsvm2bin_8cpp_a5a17428765807482a8c2cf8b9fe1c0e3_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/libsvm2bin_8cpp_a5a17428765807482a8c2cf8b9fe1c0e3_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/libsvm2bin_8cpp_a5a17428765807482a8c2cf8b9fe1c0e3_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/auxiliary/load_data.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/online_lasso/load_data.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/main.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/messages_8c.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/messages_8c.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/messages_8c__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/messages_8c__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/messages_8c__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/messages_8c__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/messages_8c_a8e672e88ae0c045d69cf21227b8749c7_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/messages_8c_a8e672e88ae0c045d69cf21227b8749c7_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/messages_8c_a8e672e88ae0c045d69cf21227b8749c7_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/messages_8c_a8e672e88ae0c045d69cf21227b8749c7_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/messages_8h.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/messages_8h.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/messages_8h__dep__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/messages_8h__dep__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/messages_8h__dep__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/messages_8h__dep__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/messages_8h__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/messages_8h__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/messages_8h__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/messages_8h__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/messages_8h_a8e672e88ae0c045d69cf21227b8749c7_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/messages_8h_a8e672e88ae0c045d69cf21227b8749c7_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/messages_8h_a8e672e88ae0c045d69cf21227b8749c7_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/messages_8h_a8e672e88ae0c045d69cf21227b8749c7_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/messages_8h_source.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/namespacelasvm-source.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/namespacelasvm-source.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/namespacelasvm-source_1_1run__lasvm.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/namespacelasvm-source_1_1run__lasvm.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/namespacemembers.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/namespacemembers_vars.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/namespaces.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/namespaces.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/namespaces_0.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/namespaces_0.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/nomatches.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/nbproject/private/private.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/nbproject/project.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/online_lasso/rand_funcs.pxd" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/refman.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/run__lasvm_8py.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/run__lasvm_8py.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/search.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/search.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup_rand.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup_scg_lasso.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/simple_sparse_vec_hash.cc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/simple_sparse_vec_hash.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__kcache__s-members.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__kcache__s.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__kcache__s.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__s-members.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__s.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__s.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__s__coll__graph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__s__coll__graph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__s__coll__graph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__s__coll__graph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__sparsevector__pair__s-members.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__sparsevector__pair__s.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__sparsevector__pair__s.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__sparsevector__pair__s__coll__graph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__sparsevector__pair__s__coll__graph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__sparsevector__pair__s__coll__graph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__sparsevector__pair__s__coll__graph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__sparsevector__s-members.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__sparsevector__s.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__sparsevector__s.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__sparsevector__s__coll__graph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__sparsevector__s__coll__graph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__sparsevector__s__coll__graph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__sparsevector__s__coll__graph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__sparsevectorproblem__s-members.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__sparsevectorproblem__s.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__sparsevectorproblem__s.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__sparsevectorproblem__s__coll__graph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__sparsevectorproblem__s__coll__graph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__sparsevectorproblem__s__coll__graph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__sparsevectorproblem__s__coll__graph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__vector__s-members.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__vector__s.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__vector__s.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__vectorproblem__s-members.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__vectorproblem__s.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__vectorproblem__s.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__vectorproblem__s__coll__graph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__vectorproblem__s__coll__graph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/structlasvm__vectorproblem__s__coll__graph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/structlasvm__vectorproblem__s__coll__graph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/tabs.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scd_da_svm/test.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/online_lasso/test_usps_lasso.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/typedefs_0.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/typedefs_0.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_0.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_0.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_1.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_1.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_10.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_10.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_11.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_11.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_12.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_12.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_13.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_13.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_14.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_14.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_15.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_15.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_2.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_3.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_3.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_4.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_4.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_5.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_5.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_6.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_6.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_7.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_7.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_8.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_8.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_9.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_9.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_a.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_a.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_b.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_b.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_c.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_c.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_d.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_d.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_e.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_e.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_f.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/search/variables_f.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8c.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8c.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8c__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8c__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8c__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8c__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8c_a4ca806aabff3d712d280a2c137ae3d28_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8c_a4ca806aabff3d712d280a2c137ae3d28_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8c_a4ca806aabff3d712d280a2c137ae3d28_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8c_a4ca806aabff3d712d280a2c137ae3d28_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8c_a9a1034be4449f1ba950b6983de0742f9_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8c_a9a1034be4449f1ba950b6983de0742f9_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8c_a9a1034be4449f1ba950b6983de0742f9_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8c_a9a1034be4449f1ba950b6983de0742f9_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8h.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8h.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8h__dep__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8h__dep__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8h__dep__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8h__dep__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8h__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8h__incl.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8h__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8h__incl.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8h_a29225235566a028026304009093441d3_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8h_a29225235566a028026304009093441d3_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8h_a29225235566a028026304009093441d3_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8h_a29225235566a028026304009093441d3_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8h_a4ca806aabff3d712d280a2c137ae3d28_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8h_a4ca806aabff3d712d280a2c137ae3d28_cgraph.dot" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8h_a4ca806aabff3d712d280a2c137ae3d28_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/latex/vector_8h_a4ca806aabff3d712d280a2c137ae3d28_cgraph.md5" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lasvm-source/latex/html/vector_8h_source.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/laoutput" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lasvm-source/la_svm.exe" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/online_lasso/rand_no_replace.pyx" afterPath="$PROJECT_DIR$/online_lasso/rand_funcs.pyx" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup_scd_svm.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/temp.macosx-10.5-x86_64-2.7/src/coor_cy.o" afterPath="$PROJECT_DIR$/build/temp.macosx-10.5-x86_64-2.7/src/coor_cy.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/coor_cy.so" afterPath="$PROJECT_DIR$/src/coor_cy.so" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/usps_3_err.pdf" afterPath="$PROJECT_DIR$/output/usps_3_err.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/usps_3_nnz.pdf" afterPath="$PROJECT_DIR$/output/usps_3_nnz.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/usps_3_obj.pdf" afterPath="$PROJECT_DIR$/output/usps_3_obj.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/usps_3_weight.pdf" afterPath="$PROJECT_DIR$/output/usps_3_weight.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/coor_cy.cpp" afterPath="$PROJECT_DIR$/src/coor_cy.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/coor_cy.pyx" afterPath="$PROJECT_DIR$/src/coor_cy.pyx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/setup.py" afterPath="$PROJECT_DIR$/setup.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_lasso/da_lasso.py" afterPath="$PROJECT_DIR$/online_lasso/da_lasso.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dualsvm.iml" afterPath="$PROJECT_DIR$/.idea/dualsvm.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lasvm-source/lasvm.h" afterPath="$PROJECT_DIR$/lasvm-source/lasvm.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_lasso/scg_lasso.pyx" afterPath="$PROJECT_DIR$/online_lasso/scg_lasso.pyx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scg_svm.pyx" afterPath="$PROJECT_DIR$/src/scg_svm.pyx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test_usps.py" afterPath="$PROJECT_DIR$/src/test_usps.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -35,102 +688,64 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="coor_cy.pyx" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/coor_cy.pyx">
+      <file leaf-file-name="da_lasso.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/online_lasso/da_lasso.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.495283" vertical-offset="2565" max-vertical-offset="3675">
-              <caret line="192" column="0" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
+              <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="stocksvm.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/stocksvm.py">
+      <file leaf-file-name="scg_lasso.pyx" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/online_lasso/scg_lasso.pyx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="915" max-vertical-offset="1200">
-              <caret line="61" column="32" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="4020">
+              <caret line="100" column="22" selection-start-line="100" selection-start-column="22" selection-end-line="100" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="setup.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/setup.py">
+      <file leaf-file-name="cd_lasso.pyx" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/online_lasso/cd_lasso.pyx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="375">
-              <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.22156574" vertical-offset="0" max-vertical-offset="677">
+              <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dualksvm.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dualksvm.py">
+      <file leaf-file-name="setup_scg_lasso.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/setup_scg_lasso.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="915" max-vertical-offset="3480">
-              <caret line="61" column="51" selection-start-line="61" selection-start-column="51" selection-end-line="61" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+              <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mysvm.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mysvm.py">
+      <file leaf-file-name="setup_rand.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/setup_rand.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="1020">
-              <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+              <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cv_test.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cv_test.py">
+      <file leaf-file-name="test_usps_lasso.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/online_lasso/test_usps_lasso.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1200" max-vertical-offset="1605">
-              <caret line="80" column="16" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="la_svm.cpp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lasvm-source/la_svm.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="11185" max-vertical-offset="13470">
-              <caret line="749" column="10" selection-start-line="749" selection-start-column="10" selection-end-line="749" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_usps.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test_usps.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1395" max-vertical-offset="3120">
-              <caret line="93" column="13" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="run_lasvm.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lasvm-source/run_lasvm.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="390">
-              <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_knn.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test_knn.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="270" max-vertical-offset="810">
-              <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+              <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -148,8 +763,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/pegasos.py" />
-        <option value="$PROJECT_DIR$/src/coor_cython.py" />
         <option value="$PROJECT_DIR$/src/coor_cython.pyx" />
         <option value="$PROJECT_DIR$/src/test_svm.py" />
         <option value="$PROJECT_DIR$/src/coor.py" />
@@ -159,10 +772,8 @@
         <option value="$PROJECT_DIR$/../dataset/usps/load_usps.py" />
         <option value="$PROJECT_DIR$/run_lasvm.py" />
         <option value="$PROJECT_DIR$/src/test_svm_usps.py" />
-        <option value="$PROJECT_DIR$/src/load_data.py" />
         <option value="$PROJECT_DIR$/src/test_mnist.py" />
         <option value="$PROJECT_DIR$/src/testsvm.py" />
-        <option value="$PROJECT_DIR$/src/mysvm.py" />
         <option value="$PROJECT_DIR$/src/set_cmp_time.py" />
         <option value="$PROJECT_DIR$/src/stocksvm.py" />
         <option value="$PROJECT_DIR$/src/test_time.py" />
@@ -170,10 +781,39 @@
         <option value="$PROJECT_DIR$/src/test_knn.py" />
         <option value="$PROJECT_DIR$/src/cv_test.py" />
         <option value="$PROJECT_DIR$/lasvm-source/run_lasvm.py" />
-        <option value="$PROJECT_DIR$/src/dualksvm.py" />
         <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/src/scd_da_cy.pyx.py" />
+        <option value="$PROJECT_DIR$/src/scd_da_cy.pyx" />
+        <option value="$PROJECT_DIR$/scd_da_svm/simple_sparse_vec_hash.h" />
+        <option value="$PROJECT_DIR$/scd_da_svm/feature_vector.cpp" />
+        <option value="$PROJECT_DIR$/scd_da_svm/feature_vector.h" />
         <option value="$PROJECT_DIR$/src/coor_cy.pyx" />
+        <option value="$PROJECT_DIR$/src/scd_da.pyx" />
+        <option value="$PROJECT_DIR$/src/load_data.py" />
+        <option value="$PROJECT_DIR$/src/mysvm.py" />
+        <option value="$PROJECT_DIR$/src/scg_da.pyx" />
+        <option value="$PROJECT_DIR$/setup_cd.py" />
+        <option value="$PROJECT_DIR$/src/cd.pyx" />
+        <option value="$PROJECT_DIR$/src/scg_md.pyx" />
+        <option value="$PROJECT_DIR$/setup_scd_md.py" />
+        <option value="$PROJECT_DIR$/src/dualksvm.py" />
+        <option value="$PROJECT_DIR$/src/test_uci.py" />
+        <option value="$PROJECT_DIR$/setup_scd_svm.py" />
+        <option value="$PROJECT_DIR$/setup_rand.py" />
+        <option value="$PROJECT_DIR$/src/ridge_reg.py" />
+        <option value="$PROJECT_DIR$/online_lasso/test_rand_sample.py" />
+        <option value="$PROJECT_DIR$/src/scg_svm.pyx" />
         <option value="$PROJECT_DIR$/src/test_usps.py" />
+        <option value="$PROJECT_DIR$/online_lasso/rand_no_replace.pyx" />
+        <option value="$PROJECT_DIR$/online_lasso/rand_funcs.pxd" />
+        <option value="$PROJECT_DIR$/online_lasso/rand_funcs.pyx" />
+        <option value="$PROJECT_DIR$/online_lasso/setup_scg_lasso.py" />
+        <option value="$PROJECT_DIR$/online_lasso/__init__.py" />
+        <option value="$PROJECT_DIR$/setup_scg_lasso.py" />
+        <option value="$PROJECT_DIR$/online_lasso/da_lasso.py" />
+        <option value="$PROJECT_DIR$/online_lasso/test_usps_lasso.py" />
+        <option value="$PROJECT_DIR$/online_lasso/scg_lasso.pyx" />
+        <option value="$PROJECT_DIR$/online_lasso/cd_lasso.pyx" />
       </list>
     </option>
   </component>
@@ -233,6 +873,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -261,13 +902,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
+              <option name="myItemId" value="online_lasso" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -278,7 +919,7 @@
     <property name="SearchEverywhereHistory" value="(" />
     <property name="FullScreen" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -289,8 +930,18 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/online_lasso" />
+      <recent name="$PROJECT_DIR$/online_lasso/online_lasso" />
+      <recent name="$PROJECT_DIR$/setup" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/online_lasso" />
+      <recent name="$PROJECT_DIR$/auxiliary" />
+      <recent name="$PROJECT_DIR$/scd_da_svm" />
     </key>
   </component>
   <component name="RunManager">
@@ -460,30 +1111,59 @@
       <created>1402727196888</created>
       <updated>1402727196888</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="macos">
+      <created>1406268791775</created>
+      <updated>1406268791775</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="TodoView" selected-index="4">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="774" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2234375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.025531914" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32765958" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2234375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
@@ -504,129 +1184,15 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="e331" />
-    <option name="LAST_COMMIT_MESSAGE" value="e331" />
+    <MESSAGE value="macos" />
+    <option name="LAST_COMMIT_MESSAGE" value="macos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/src/dualksvm.py</url>
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/coor_cy.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="143640">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dualksvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="735" max-vertical-offset="3495">
-          <caret line="49" column="72" selection-start-line="49" selection-start-column="72" selection-end-line="49" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/testsvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2355">
-          <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/coor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1140" max-vertical-offset="1830">
-          <caret line="76" column="37" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mysvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1050">
-          <caret line="55" column="22" selection-start-line="55" selection-start-column="22" selection-end-line="55" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stocksvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1365" max-vertical-offset="1695">
-          <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/coor_cy.pyx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1350" max-vertical-offset="3300">
-          <caret line="90" column="23" selection-start-line="90" selection-start-column="23" selection-end-line="90" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/coor_cy.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="143640">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dualksvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3420">
-          <caret line="41" column="54" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/coor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1140" max-vertical-offset="1830">
-          <caret line="76" column="37" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mysvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="825" max-vertical-offset="1050">
-          <caret line="55" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stocksvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="531" max-vertical-offset="1680">
-          <caret line="91" column="72" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/coor_cy.pyx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="916" max-vertical-offset="2610">
-          <caret line="81" column="42" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/coor_cy.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="145770">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dualksvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3270">
-          <caret line="194" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/mysvm.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1050">
@@ -720,20 +1286,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/coor_cy.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="335460">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/coor_cy.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="924">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/taq">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2250">
@@ -745,13 +1297,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4855196" vertical-offset="0" max-vertical-offset="915">
           <caret line="26" column="93" selection-start-line="26" selection-start-column="93" selection-end-line="26" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/testsvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.12802768" vertical-offset="779" max-vertical-offset="2355">
-          <caret line="47" column="15" selection-start-line="47" selection-start-column="15" selection-end-line="47" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -804,42 +1349,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/load_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1305">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="17" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dualksvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="915" max-vertical-offset="3480">
-          <caret line="61" column="51" selection-start-line="61" selection-start-column="51" selection-end-line="61" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mysvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="960">
-          <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cv_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1200" max-vertical-offset="1605">
           <caret line="80" column="16" selection-start-line="80" selection-start-column="16" selection-end-line="80" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lasvm-source/la_svm.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="11185" max-vertical-offset="13470">
-          <caret line="749" column="10" selection-start-line="749" selection-start-column="10" selection-end-line="749" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -847,15 +1360,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
           <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
-          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -863,30 +1367,203 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="414" max-vertical-offset="1185">
           <caret line="61" column="32" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_usps.py">
+    <entry file="file://$PROJECT_DIR$/lasvm-source/la_svm.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="915" max-vertical-offset="2955">
-          <caret line="93" column="13" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="13" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="11185" max-vertical-offset="13470">
+          <caret line="749" column="10" selection-start-line="749" selection-start-column="10" selection-end-line="749" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/coor_cy.pyx">
+    <entry file="file://$PROJECT_DIR$/scd_da_svm/feature_vector.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.495283" vertical-offset="2565" max-vertical-offset="3675">
-          <caret line="192" column="0" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="0.495283" vertical-offset="0" max-vertical-offset="636">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scd_da_svm/feature_vector.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4245283" vertical-offset="0" max-vertical-offset="636">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testsvm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38602942" vertical-offset="420" max-vertical-offset="2280">
+          <caret line="47" column="15" selection-start-line="47" selection-start-column="15" selection-end-line="47" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run_lasvm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="636">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test_knn.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
-          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+          <caret line="8" column="10" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/load_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="1320">
+          <caret line="56" column="8" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mysvm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49833888" vertical-offset="0" max-vertical-offset="990">
+          <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scg_da.pyx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.053156145" vertical-offset="1003" max-vertical-offset="3660">
+          <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup_scd_svm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="579">
+          <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/test_rand_sample.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
+          <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/auxiliary/load_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1320">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_uci.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5733945" vertical-offset="195" max-vertical-offset="1080">
+          <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/load_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="523" max-vertical-offset="1320">
+          <caret line="58" column="39" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_usps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30421218" vertical-offset="0" max-vertical-offset="3105">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="e#1#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dualksvm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8798752" vertical-offset="48" max-vertical-offset="4410">
+          <caret line="42" column="49" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scg_svm.pyx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.5865835" vertical-offset="4683" max-vertical-offset="6195">
+          <caret line="380" column="5" selection-start-line="380" selection-start-column="5" selection-end-line="380" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="654">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/rand_funcs.pyx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.2777778" vertical-offset="90" max-vertical-offset="750">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/rand_funcs.pxd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15509601" vertical-offset="0" max-vertical-offset="677">
+          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup_rand.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/da_lasso.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup_scg_lasso.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/test_usps_lasso.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/scg_lasso.pyx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="855" max-vertical-offset="4020">
+          <caret line="100" column="22" selection-start-line="100" selection-start-column="22" selection-end-line="100" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/cd_lasso.pyx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22156574" vertical-offset="0" max-vertical-offset="677">
+          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
           <folding />
         </state>
       </provider>

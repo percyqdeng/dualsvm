@@ -1,0 +1,312 @@
+\hypertarget{la__test_8cpp}{\section{la\+\_\+test.\+cpp File Reference}
+\label{la__test_8cpp}\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+{\ttfamily \#include $<$cstring$>$}\\*
+{\ttfamily \#include $<$cctype$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include $<$algorithm$>$}\\*
+{\ttfamily \#include \char`\"{}vector.\+h\char`\"{}}\\*
+Include dependency graph for la\+\_\+test.\+cpp\+:
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_i_d}{I\+D}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{la__test_8cpp_ac645eb9a88619ee6f5e14c557ab8ef62}{L\+I\+N\+E\+A\+R}~0
+\item 
+\#define \hyperlink{la__test_8cpp_aa55bbb692b1c5e89d3a5c3bee1ce8399}{P\+O\+L\+Y}~1
+\item 
+\#define \hyperlink{la__test_8cpp_abae7fd1d616531c926f64eb405fe6c48}{R\+B\+F}~2
+\item 
+\#define \hyperlink{la__test_8cpp_ad754ca4856873b8cdcae292a9a51aafd}{S\+I\+G\+M\+O\+I\+D}~3
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{la__test_8cpp_ad546c810dcceaa487a455e63ffbbbc64}{operator$<$} (const \hyperlink{class_i_d}{I\+D} \&x, const \hyperlink{class_i_d}{I\+D} \&y)
+\item 
+void \hyperlink{la__test_8cpp_a8bbbfc2cd5ea26b69d3b880c6f509e93}{exit\+\_\+with\+\_\+help} ()
+\item 
+int \hyperlink{la__test_8cpp_a215ee43167eb7ec8c4ac0ea9c36e0dd4}{split\+\_\+file\+\_\+load} (char $\ast$f)
+\item 
+int \hyperlink{la__test_8cpp_a90d1123670c4debc7852273ca8477a52}{libsvm\+\_\+load\+\_\+data} (char $\ast$filename)
+\item 
+int \hyperlink{la__test_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d}{binary\+\_\+load\+\_\+data} (char $\ast$filename)
+\item 
+void \hyperlink{la__test_8cpp_af3934217b9fe8d07578136f00518f402}{load\+\_\+data\+\_\+file} (char $\ast$filename)
+\item 
+void \hyperlink{la__test_8cpp_a567b9318e5e4b8987cddd4a11bafb18e}{libsvm\+\_\+load\+\_\+sv\+\_\+data} (F\+I\+L\+E $\ast$fp)
+\item 
+int \hyperlink{la__test_8cpp_a852d8409a0a7da8cd0a0cd1afb07e739}{libsvm\+\_\+load\+\_\+model} (const char $\ast$model\+\_\+file\+\_\+name)
+\item 
+double \hyperlink{la__test_8cpp_a8d038c50a80216ddc72dfaa3b3042ba0}{kernel} (int i, int j, void $\ast$\hyperlink{la__svm_8cpp_a057af9bceb8ab3ca5dc7405dfbabc676}{kparam})
+\item 
+void \hyperlink{la__test_8cpp_a6df8f46894328374c94f1b10b8dc2e6b}{test} (char $\ast$output\+\_\+name)
+\item 
+void \hyperlink{la__test_8cpp_ab543cfaa5a8c3a4fe01deb78e2a02598}{parse\+\_\+command\+\_\+line} (int argc, char $\ast$$\ast$argv, char $\ast$input\+\_\+file\+\_\+name, char $\ast$model\+\_\+file\+\_\+name, char $\ast$output\+\_\+file\+\_\+name)
+\item 
+int \hyperlink{la__test_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \hyperlink{la__test_8cpp_a2812fc7dc5b3db65a9bf7da83e25bb3d}{kernel\+\_\+type\+\_\+table} \mbox{[}$\,$\mbox{]} = \{\char`\"{}linear\char`\"{},\char`\"{}polynomial\char`\"{},\char`\"{}rbf\char`\"{},\char`\"{}sigmoid\char`\"{}\}
+\item 
+int \hyperlink{la__test_8cpp_a742204794ea328ba293fe59cec79b990}{m}
+\item 
+int \hyperlink{la__test_8cpp_a3f1bf65b2917353f3d866675f9089c50}{msv}
+\item 
+vector$<$ \hyperlink{vector_8h_a21bb9db0a03143d7719d45995d3b2eea}{lasvm\+\_\+sparsevector\+\_\+t} $\ast$ $>$ \hyperlink{la__test_8cpp_a8e491d506a3d8600b99aa775738cb157}{X}
+\item 
+vector$<$ \hyperlink{vector_8h_a21bb9db0a03143d7719d45995d3b2eea}{lasvm\+\_\+sparsevector\+\_\+t} $\ast$ $>$ \hyperlink{la__test_8cpp_aef07bc3ab847ea7fd840e606d1ef3f4b}{Xsv}
+\item 
+vector$<$ int $>$ \hyperlink{la__test_8cpp_a7ca2957eec35d8ed5aae9333bb157282}{Y}
+\item 
+vector$<$ double $>$ \hyperlink{la__test_8cpp_aee451b9af11b434e6a1e8482ae43e0b3}{alpha}
+\item 
+double \hyperlink{la__test_8cpp_a798947bd96f7e2615d107b383cc4b9c6}{b0}
+\item 
+int \hyperlink{la__test_8cpp_a3fc2e97de1d0b4515dedaeaf0a55d674}{use\+\_\+b0} =1
+\item 
+int \hyperlink{la__test_8cpp_a5a2a5a33a48f7166042c8dcb3b4267e9}{kernel\+\_\+type} =\hyperlink{la__test_8cpp_abae7fd1d616531c926f64eb405fe6c48}{R\+B\+F}
+\item 
+double \hyperlink{la__test_8cpp_a898dd6a34705b5d7bc205d411556d62b}{degree} =3
+\item 
+double \hyperlink{la__test_8cpp_a88f07aa662d01a4b806a72ed2de422f1}{kgamma} =-\/1
+\item 
+double \hyperlink{la__test_8cpp_a46fa624e2ba27955570a9692c94c8dd4}{coef0} =0
+\item 
+vector$<$ double $>$ \hyperlink{la__test_8cpp_af6f89d5fafde9c758f23900c0dfabeda}{x\+\_\+square}
+\item 
+vector$<$ double $>$ \hyperlink{la__test_8cpp_a5b55a0144d9f268d855bcb15f9a57d69}{xsv\+\_\+square}
+\item 
+char \hyperlink{la__test_8cpp_aeb56c54398396268669f656904840fe5}{split\+\_\+file\+\_\+name} \mbox{[}1024\mbox{]} =\char`\"{}\textbackslash{}0\char`\"{}
+\item 
+int \hyperlink{la__test_8cpp_adebe2f9e1f0903c65e30441c88d4de7d}{binary\+\_\+files} =0
+\item 
+vector$<$ \hyperlink{class_i_d}{I\+D} $>$ \hyperlink{la__test_8cpp_a34ea2b3340867277172968dbbb844842}{splits}
+\item 
+int \hyperlink{la__test_8cpp_a3875f818be825762ae9d4c0f88e7976c}{max\+\_\+index} =0
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{la__test_8cpp_ac645eb9a88619ee6f5e14c557ab8ef62}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!L\+I\+N\+E\+A\+R@{L\+I\+N\+E\+A\+R}}
+\index{L\+I\+N\+E\+A\+R@{L\+I\+N\+E\+A\+R}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{L\+I\+N\+E\+A\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+I\+N\+E\+A\+R~0}}\label{la__test_8cpp_ac645eb9a88619ee6f5e14c557ab8ef62}
+\hypertarget{la__test_8cpp_aa55bbb692b1c5e89d3a5c3bee1ce8399}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!P\+O\+L\+Y@{P\+O\+L\+Y}}
+\index{P\+O\+L\+Y@{P\+O\+L\+Y}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{P\+O\+L\+Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+O\+L\+Y~1}}\label{la__test_8cpp_aa55bbb692b1c5e89d3a5c3bee1ce8399}
+\hypertarget{la__test_8cpp_abae7fd1d616531c926f64eb405fe6c48}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!R\+B\+F@{R\+B\+F}}
+\index{R\+B\+F@{R\+B\+F}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{R\+B\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+B\+F~2}}\label{la__test_8cpp_abae7fd1d616531c926f64eb405fe6c48}
+\hypertarget{la__test_8cpp_ad754ca4856873b8cdcae292a9a51aafd}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!S\+I\+G\+M\+O\+I\+D@{S\+I\+G\+M\+O\+I\+D}}
+\index{S\+I\+G\+M\+O\+I\+D@{S\+I\+G\+M\+O\+I\+D}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{S\+I\+G\+M\+O\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+G\+M\+O\+I\+D~3}}\label{la__test_8cpp_ad754ca4856873b8cdcae292a9a51aafd}
+
+
+\subsection{Function Documentation}
+\hypertarget{la__test_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!binary\+\_\+load\+\_\+data@{binary\+\_\+load\+\_\+data}}
+\index{binary\+\_\+load\+\_\+data@{binary\+\_\+load\+\_\+data}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{binary\+\_\+load\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}int binary\+\_\+load\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}}\label{la__test_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__test_8cpp_a8bbbfc2cd5ea26b69d3b880c6f509e93}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!exit\+\_\+with\+\_\+help@{exit\+\_\+with\+\_\+help}}
+\index{exit\+\_\+with\+\_\+help@{exit\+\_\+with\+\_\+help}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{exit\+\_\+with\+\_\+help}]{\setlength{\rightskip}{0pt plus 5cm}void exit\+\_\+with\+\_\+help (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{la__test_8cpp_a8bbbfc2cd5ea26b69d3b880c6f509e93}
+\hypertarget{la__test_8cpp_a8d038c50a80216ddc72dfaa3b3042ba0}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!kernel@{kernel}}
+\index{kernel@{kernel}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{kernel}]{\setlength{\rightskip}{0pt plus 5cm}double kernel (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{void $\ast$}]{kparam}
+\end{DoxyParamCaption}
+)}}\label{la__test_8cpp_a8d038c50a80216ddc72dfaa3b3042ba0}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__test_8cpp_a90d1123670c4debc7852273ca8477a52}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!libsvm\+\_\+load\+\_\+data@{libsvm\+\_\+load\+\_\+data}}
+\index{libsvm\+\_\+load\+\_\+data@{libsvm\+\_\+load\+\_\+data}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{libsvm\+\_\+load\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}int libsvm\+\_\+load\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}}\label{la__test_8cpp_a90d1123670c4debc7852273ca8477a52}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__test_8cpp_a852d8409a0a7da8cd0a0cd1afb07e739}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!libsvm\+\_\+load\+\_\+model@{libsvm\+\_\+load\+\_\+model}}
+\index{libsvm\+\_\+load\+\_\+model@{libsvm\+\_\+load\+\_\+model}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{libsvm\+\_\+load\+\_\+model}]{\setlength{\rightskip}{0pt plus 5cm}int libsvm\+\_\+load\+\_\+model (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{model\+\_\+file\+\_\+name}
+\end{DoxyParamCaption}
+)}}\label{la__test_8cpp_a852d8409a0a7da8cd0a0cd1afb07e739}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__test_8cpp_a567b9318e5e4b8987cddd4a11bafb18e}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!libsvm\+\_\+load\+\_\+sv\+\_\+data@{libsvm\+\_\+load\+\_\+sv\+\_\+data}}
+\index{libsvm\+\_\+load\+\_\+sv\+\_\+data@{libsvm\+\_\+load\+\_\+sv\+\_\+data}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{libsvm\+\_\+load\+\_\+sv\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}void libsvm\+\_\+load\+\_\+sv\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{F\+I\+L\+E $\ast$}]{fp}
+\end{DoxyParamCaption}
+)}}\label{la__test_8cpp_a567b9318e5e4b8987cddd4a11bafb18e}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__test_8cpp_af3934217b9fe8d07578136f00518f402}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!load\+\_\+data\+\_\+file@{load\+\_\+data\+\_\+file}}
+\index{load\+\_\+data\+\_\+file@{load\+\_\+data\+\_\+file}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{load\+\_\+data\+\_\+file}]{\setlength{\rightskip}{0pt plus 5cm}void load\+\_\+data\+\_\+file (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}}\label{la__test_8cpp_af3934217b9fe8d07578136f00518f402}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__test_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!main@{main}}
+\index{main@{main}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{la__test_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__test_8cpp_ad546c810dcceaa487a455e63ffbbbc64}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}bool operator$<$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf I\+D} \&}]{x, }
+\item[{const {\bf I\+D} \&}]{y}
+\end{DoxyParamCaption}
+)}}\label{la__test_8cpp_ad546c810dcceaa487a455e63ffbbbc64}
+\hypertarget{la__test_8cpp_ab543cfaa5a8c3a4fe01deb78e2a02598}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!parse\+\_\+command\+\_\+line@{parse\+\_\+command\+\_\+line}}
+\index{parse\+\_\+command\+\_\+line@{parse\+\_\+command\+\_\+line}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{parse\+\_\+command\+\_\+line}]{\setlength{\rightskip}{0pt plus 5cm}void parse\+\_\+command\+\_\+line (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv, }
+\item[{char $\ast$}]{input\+\_\+file\+\_\+name, }
+\item[{char $\ast$}]{model\+\_\+file\+\_\+name, }
+\item[{char $\ast$}]{output\+\_\+file\+\_\+name}
+\end{DoxyParamCaption}
+)}}\label{la__test_8cpp_ab543cfaa5a8c3a4fe01deb78e2a02598}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__test_8cpp_a215ee43167eb7ec8c4ac0ea9c36e0dd4}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!split\+\_\+file\+\_\+load@{split\+\_\+file\+\_\+load}}
+\index{split\+\_\+file\+\_\+load@{split\+\_\+file\+\_\+load}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{split\+\_\+file\+\_\+load}]{\setlength{\rightskip}{0pt plus 5cm}int split\+\_\+file\+\_\+load (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{f}
+\end{DoxyParamCaption}
+)}}\label{la__test_8cpp_a215ee43167eb7ec8c4ac0ea9c36e0dd4}
+\hypertarget{la__test_8cpp_a6df8f46894328374c94f1b10b8dc2e6b}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!test@{test}}
+\index{test@{test}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{test}]{\setlength{\rightskip}{0pt plus 5cm}void test (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{output\+\_\+name}
+\end{DoxyParamCaption}
+)}}\label{la__test_8cpp_a6df8f46894328374c94f1b10b8dc2e6b}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{la__test_8cpp_aee451b9af11b434e6a1e8482ae43e0b3}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!alpha@{alpha}}
+\index{alpha@{alpha}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{alpha}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$double$>$ alpha}}\label{la__test_8cpp_aee451b9af11b434e6a1e8482ae43e0b3}
+\hypertarget{la__test_8cpp_a798947bd96f7e2615d107b383cc4b9c6}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!b0@{b0}}
+\index{b0@{b0}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{b0}]{\setlength{\rightskip}{0pt plus 5cm}double b0}}\label{la__test_8cpp_a798947bd96f7e2615d107b383cc4b9c6}
+\hypertarget{la__test_8cpp_adebe2f9e1f0903c65e30441c88d4de7d}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!binary\+\_\+files@{binary\+\_\+files}}
+\index{binary\+\_\+files@{binary\+\_\+files}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{binary\+\_\+files}]{\setlength{\rightskip}{0pt plus 5cm}int binary\+\_\+files =0}}\label{la__test_8cpp_adebe2f9e1f0903c65e30441c88d4de7d}
+\hypertarget{la__test_8cpp_a46fa624e2ba27955570a9692c94c8dd4}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!coef0@{coef0}}
+\index{coef0@{coef0}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{coef0}]{\setlength{\rightskip}{0pt plus 5cm}double coef0 =0}}\label{la__test_8cpp_a46fa624e2ba27955570a9692c94c8dd4}
+\hypertarget{la__test_8cpp_a898dd6a34705b5d7bc205d411556d62b}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!degree@{degree}}
+\index{degree@{degree}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{degree}]{\setlength{\rightskip}{0pt plus 5cm}double degree =3}}\label{la__test_8cpp_a898dd6a34705b5d7bc205d411556d62b}
+\hypertarget{la__test_8cpp_a5a2a5a33a48f7166042c8dcb3b4267e9}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!kernel\+\_\+type@{kernel\+\_\+type}}
+\index{kernel\+\_\+type@{kernel\+\_\+type}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{kernel\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}int kernel\+\_\+type ={\bf R\+B\+F}}}\label{la__test_8cpp_a5a2a5a33a48f7166042c8dcb3b4267e9}
+\hypertarget{la__test_8cpp_a2812fc7dc5b3db65a9bf7da83e25bb3d}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!kernel\+\_\+type\+\_\+table@{kernel\+\_\+type\+\_\+table}}
+\index{kernel\+\_\+type\+\_\+table@{kernel\+\_\+type\+\_\+table}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{kernel\+\_\+type\+\_\+table}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ kernel\+\_\+type\+\_\+table\mbox{[}$\,$\mbox{]} = \{\char`\"{}linear\char`\"{},\char`\"{}polynomial\char`\"{},\char`\"{}rbf\char`\"{},\char`\"{}sigmoid\char`\"{}\}}}\label{la__test_8cpp_a2812fc7dc5b3db65a9bf7da83e25bb3d}
+\hypertarget{la__test_8cpp_a88f07aa662d01a4b806a72ed2de422f1}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!kgamma@{kgamma}}
+\index{kgamma@{kgamma}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{kgamma}]{\setlength{\rightskip}{0pt plus 5cm}double kgamma =-\/1}}\label{la__test_8cpp_a88f07aa662d01a4b806a72ed2de422f1}
+\hypertarget{la__test_8cpp_a742204794ea328ba293fe59cec79b990}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!m@{m}}
+\index{m@{m}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{m}]{\setlength{\rightskip}{0pt plus 5cm}int m}}\label{la__test_8cpp_a742204794ea328ba293fe59cec79b990}
+\hypertarget{la__test_8cpp_a3875f818be825762ae9d4c0f88e7976c}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!max\+\_\+index@{max\+\_\+index}}
+\index{max\+\_\+index@{max\+\_\+index}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{max\+\_\+index}]{\setlength{\rightskip}{0pt plus 5cm}int max\+\_\+index =0}}\label{la__test_8cpp_a3875f818be825762ae9d4c0f88e7976c}
+\hypertarget{la__test_8cpp_a3f1bf65b2917353f3d866675f9089c50}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!msv@{msv}}
+\index{msv@{msv}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{msv}]{\setlength{\rightskip}{0pt plus 5cm}int msv}}\label{la__test_8cpp_a3f1bf65b2917353f3d866675f9089c50}
+\hypertarget{la__test_8cpp_aeb56c54398396268669f656904840fe5}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!split\+\_\+file\+\_\+name@{split\+\_\+file\+\_\+name}}
+\index{split\+\_\+file\+\_\+name@{split\+\_\+file\+\_\+name}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{split\+\_\+file\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}char split\+\_\+file\+\_\+name\mbox{[}1024\mbox{]} =\char`\"{}\textbackslash{}0\char`\"{}}}\label{la__test_8cpp_aeb56c54398396268669f656904840fe5}
+\hypertarget{la__test_8cpp_a34ea2b3340867277172968dbbb844842}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!splits@{splits}}
+\index{splits@{splits}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{splits}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf I\+D}$>$ splits}}\label{la__test_8cpp_a34ea2b3340867277172968dbbb844842}
+\hypertarget{la__test_8cpp_a3fc2e97de1d0b4515dedaeaf0a55d674}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!use\+\_\+b0@{use\+\_\+b0}}
+\index{use\+\_\+b0@{use\+\_\+b0}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{use\+\_\+b0}]{\setlength{\rightskip}{0pt plus 5cm}int use\+\_\+b0 =1}}\label{la__test_8cpp_a3fc2e97de1d0b4515dedaeaf0a55d674}
+\hypertarget{la__test_8cpp_a8e491d506a3d8600b99aa775738cb157}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!X@{X}}
+\index{X@{X}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{X}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf lasvm\+\_\+sparsevector\+\_\+t}$\ast$$>$ X}}\label{la__test_8cpp_a8e491d506a3d8600b99aa775738cb157}
+\hypertarget{la__test_8cpp_af6f89d5fafde9c758f23900c0dfabeda}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!x\+\_\+square@{x\+\_\+square}}
+\index{x\+\_\+square@{x\+\_\+square}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{x\+\_\+square}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$double$>$ x\+\_\+square}}\label{la__test_8cpp_af6f89d5fafde9c758f23900c0dfabeda}
+\hypertarget{la__test_8cpp_aef07bc3ab847ea7fd840e606d1ef3f4b}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!Xsv@{Xsv}}
+\index{Xsv@{Xsv}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{Xsv}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf lasvm\+\_\+sparsevector\+\_\+t}$\ast$$>$ Xsv}}\label{la__test_8cpp_aef07bc3ab847ea7fd840e606d1ef3f4b}
+\hypertarget{la__test_8cpp_a5b55a0144d9f268d855bcb15f9a57d69}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!xsv\+\_\+square@{xsv\+\_\+square}}
+\index{xsv\+\_\+square@{xsv\+\_\+square}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{xsv\+\_\+square}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$double$>$ xsv\+\_\+square}}\label{la__test_8cpp_a5b55a0144d9f268d855bcb15f9a57d69}
+\hypertarget{la__test_8cpp_a7ca2957eec35d8ed5aae9333bb157282}{\index{la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}!Y@{Y}}
+\index{Y@{Y}!la\+\_\+test.\+cpp@{la\+\_\+test.\+cpp}}
+\subsubsection[{Y}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$ Y}}\label{la__test_8cpp_a7ca2957eec35d8ed5aae9333bb157282}

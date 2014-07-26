@@ -1,0 +1,150 @@
+\hypertarget{vector_8c}{\section{vector.\+c File Reference}
+\label{vector_8c}\index{vector.\+c@{vector.\+c}}
+}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}messages.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}vector.\+h\char`\"{}}\\*
+Include dependency graph for vector.\+c\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{vector_8c_ac6afabdc09a49a433ee19d8a9486056d}{min}(a, b)~(((a)$<$(b))?(a)\+:(b))
+\item 
+\#define \hyperlink{vector_8c_affe776513b24d84b39af8ab0930fef7f}{max}(a, b)~(((a)$>$(b))?(a)\+:(b))
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{vector_8h_a48dec8e5a072b5f35bd4f8b88cdcd855}{lasvm\+\_\+vector\+\_\+t} $\ast$ \hyperlink{vector_8c_a911bf6cdbeeb3b7f70cde9fd677a4c02}{lasvm\+\_\+vector\+\_\+create} (int size)
+\item 
+void \hyperlink{vector_8c_aac4504b4456c1fd2aff92e30a93cc7f6}{lasvm\+\_\+vector\+\_\+destroy} (\hyperlink{vector_8h_a48dec8e5a072b5f35bd4f8b88cdcd855}{lasvm\+\_\+vector\+\_\+t} $\ast$v)
+\item 
+double \hyperlink{vector_8c_a149b827aff7d4d305395ed2ce174e8cc}{lasvm\+\_\+vector\+\_\+dot\+\_\+product} (\hyperlink{vector_8h_a48dec8e5a072b5f35bd4f8b88cdcd855}{lasvm\+\_\+vector\+\_\+t} $\ast$v1, \hyperlink{vector_8h_a48dec8e5a072b5f35bd4f8b88cdcd855}{lasvm\+\_\+vector\+\_\+t} $\ast$v2)
+\item 
+\hyperlink{vector_8h_a21bb9db0a03143d7719d45995d3b2eea}{lasvm\+\_\+sparsevector\+\_\+t} $\ast$ \hyperlink{vector_8c_a16c3c9c0dbf9a02508ea613bcc6f390d}{lasvm\+\_\+sparsevector\+\_\+create} (void)
+\item 
+void \hyperlink{vector_8c_a7a92e2401b1aecae921f8b88057b5fc3}{lasvm\+\_\+sparsevector\+\_\+clear} (\hyperlink{vector_8h_a21bb9db0a03143d7719d45995d3b2eea}{lasvm\+\_\+sparsevector\+\_\+t} $\ast$v)
+\item 
+void \hyperlink{vector_8c_a4ca806aabff3d712d280a2c137ae3d28}{lasvm\+\_\+sparsevector\+\_\+destroy} (\hyperlink{vector_8h_a21bb9db0a03143d7719d45995d3b2eea}{lasvm\+\_\+sparsevector\+\_\+t} $\ast$v)
+\item 
+double \hyperlink{vector_8c_a6e77f254c95bc296f9992169d31c01f7}{lasvm\+\_\+sparsevector\+\_\+get} (\hyperlink{vector_8h_a21bb9db0a03143d7719d45995d3b2eea}{lasvm\+\_\+sparsevector\+\_\+t} $\ast$v, int index)
+\item 
+void \hyperlink{vector_8c_a45ddcb329a7772fcaa14b8f02aa29b41}{lasvm\+\_\+sparsevector\+\_\+set} (\hyperlink{vector_8h_a21bb9db0a03143d7719d45995d3b2eea}{lasvm\+\_\+sparsevector\+\_\+t} $\ast$v, int index, double data)
+\item 
+\hyperlink{vector_8h_a21bb9db0a03143d7719d45995d3b2eea}{lasvm\+\_\+sparsevector\+\_\+t} $\ast$ \hyperlink{vector_8c_a9a1034be4449f1ba950b6983de0742f9}{lasvm\+\_\+sparsevector\+\_\+combine} (\hyperlink{vector_8h_a21bb9db0a03143d7719d45995d3b2eea}{lasvm\+\_\+sparsevector\+\_\+t} $\ast$v1, double c1, \hyperlink{vector_8h_a21bb9db0a03143d7719d45995d3b2eea}{lasvm\+\_\+sparsevector\+\_\+t} $\ast$v2, double c2)
+\item 
+double \hyperlink{vector_8c_a87903fc116678cdff780b1d76c0e6555}{lasvm\+\_\+sparsevector\+\_\+dot\+\_\+product} (\hyperlink{vector_8h_a21bb9db0a03143d7719d45995d3b2eea}{lasvm\+\_\+sparsevector\+\_\+t} $\ast$v1, \hyperlink{vector_8h_a21bb9db0a03143d7719d45995d3b2eea}{lasvm\+\_\+sparsevector\+\_\+t} $\ast$v2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{vector_8c_affe776513b24d84b39af8ab0930fef7f}{\index{vector.\+c@{vector.\+c}!max@{max}}
+\index{max@{max}!vector.\+c@{vector.\+c}}
+\subsubsection[{max}]{\setlength{\rightskip}{0pt plus 5cm}\#define max(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)~(((a)$>$(b))?(a)\+:(b))}}\label{vector_8c_affe776513b24d84b39af8ab0930fef7f}
+\hypertarget{vector_8c_ac6afabdc09a49a433ee19d8a9486056d}{\index{vector.\+c@{vector.\+c}!min@{min}}
+\index{min@{min}!vector.\+c@{vector.\+c}}
+\subsubsection[{min}]{\setlength{\rightskip}{0pt plus 5cm}\#define min(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)~(((a)$<$(b))?(a)\+:(b))}}\label{vector_8c_ac6afabdc09a49a433ee19d8a9486056d}
+
+
+\subsection{Function Documentation}
+\hypertarget{vector_8c_a7a92e2401b1aecae921f8b88057b5fc3}{\index{vector.\+c@{vector.\+c}!lasvm\+\_\+sparsevector\+\_\+clear@{lasvm\+\_\+sparsevector\+\_\+clear}}
+\index{lasvm\+\_\+sparsevector\+\_\+clear@{lasvm\+\_\+sparsevector\+\_\+clear}!vector.\+c@{vector.\+c}}
+\subsubsection[{lasvm\+\_\+sparsevector\+\_\+clear}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+sparsevector\+\_\+clear (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+sparsevector\+\_\+t} $\ast$}]{v}
+\end{DoxyParamCaption}
+)}}\label{vector_8c_a7a92e2401b1aecae921f8b88057b5fc3}
+\hypertarget{vector_8c_a9a1034be4449f1ba950b6983de0742f9}{\index{vector.\+c@{vector.\+c}!lasvm\+\_\+sparsevector\+\_\+combine@{lasvm\+\_\+sparsevector\+\_\+combine}}
+\index{lasvm\+\_\+sparsevector\+\_\+combine@{lasvm\+\_\+sparsevector\+\_\+combine}!vector.\+c@{vector.\+c}}
+\subsubsection[{lasvm\+\_\+sparsevector\+\_\+combine}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lasvm\+\_\+sparsevector\+\_\+t}$\ast$ lasvm\+\_\+sparsevector\+\_\+combine (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+sparsevector\+\_\+t} $\ast$}]{v1, }
+\item[{double}]{c1, }
+\item[{{\bf lasvm\+\_\+sparsevector\+\_\+t} $\ast$}]{v2, }
+\item[{double}]{c2}
+\end{DoxyParamCaption}
+)}}\label{vector_8c_a9a1034be4449f1ba950b6983de0742f9}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{vector_8c_a16c3c9c0dbf9a02508ea613bcc6f390d}{\index{vector.\+c@{vector.\+c}!lasvm\+\_\+sparsevector\+\_\+create@{lasvm\+\_\+sparsevector\+\_\+create}}
+\index{lasvm\+\_\+sparsevector\+\_\+create@{lasvm\+\_\+sparsevector\+\_\+create}!vector.\+c@{vector.\+c}}
+\subsubsection[{lasvm\+\_\+sparsevector\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lasvm\+\_\+sparsevector\+\_\+t}$\ast$ lasvm\+\_\+sparsevector\+\_\+create (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{vector_8c_a16c3c9c0dbf9a02508ea613bcc6f390d}
+\hypertarget{vector_8c_a4ca806aabff3d712d280a2c137ae3d28}{\index{vector.\+c@{vector.\+c}!lasvm\+\_\+sparsevector\+\_\+destroy@{lasvm\+\_\+sparsevector\+\_\+destroy}}
+\index{lasvm\+\_\+sparsevector\+\_\+destroy@{lasvm\+\_\+sparsevector\+\_\+destroy}!vector.\+c@{vector.\+c}}
+\subsubsection[{lasvm\+\_\+sparsevector\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+sparsevector\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+sparsevector\+\_\+t} $\ast$}]{v}
+\end{DoxyParamCaption}
+)}}\label{vector_8c_a4ca806aabff3d712d280a2c137ae3d28}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{vector_8c_a87903fc116678cdff780b1d76c0e6555}{\index{vector.\+c@{vector.\+c}!lasvm\+\_\+sparsevector\+\_\+dot\+\_\+product@{lasvm\+\_\+sparsevector\+\_\+dot\+\_\+product}}
+\index{lasvm\+\_\+sparsevector\+\_\+dot\+\_\+product@{lasvm\+\_\+sparsevector\+\_\+dot\+\_\+product}!vector.\+c@{vector.\+c}}
+\subsubsection[{lasvm\+\_\+sparsevector\+\_\+dot\+\_\+product}]{\setlength{\rightskip}{0pt plus 5cm}double lasvm\+\_\+sparsevector\+\_\+dot\+\_\+product (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+sparsevector\+\_\+t} $\ast$}]{v1, }
+\item[{{\bf lasvm\+\_\+sparsevector\+\_\+t} $\ast$}]{v2}
+\end{DoxyParamCaption}
+)}}\label{vector_8c_a87903fc116678cdff780b1d76c0e6555}
+\hypertarget{vector_8c_a6e77f254c95bc296f9992169d31c01f7}{\index{vector.\+c@{vector.\+c}!lasvm\+\_\+sparsevector\+\_\+get@{lasvm\+\_\+sparsevector\+\_\+get}}
+\index{lasvm\+\_\+sparsevector\+\_\+get@{lasvm\+\_\+sparsevector\+\_\+get}!vector.\+c@{vector.\+c}}
+\subsubsection[{lasvm\+\_\+sparsevector\+\_\+get}]{\setlength{\rightskip}{0pt plus 5cm}double lasvm\+\_\+sparsevector\+\_\+get (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+sparsevector\+\_\+t} $\ast$}]{v, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{vector_8c_a6e77f254c95bc296f9992169d31c01f7}
+\hypertarget{vector_8c_a45ddcb329a7772fcaa14b8f02aa29b41}{\index{vector.\+c@{vector.\+c}!lasvm\+\_\+sparsevector\+\_\+set@{lasvm\+\_\+sparsevector\+\_\+set}}
+\index{lasvm\+\_\+sparsevector\+\_\+set@{lasvm\+\_\+sparsevector\+\_\+set}!vector.\+c@{vector.\+c}}
+\subsubsection[{lasvm\+\_\+sparsevector\+\_\+set}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+sparsevector\+\_\+set (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+sparsevector\+\_\+t} $\ast$}]{v, }
+\item[{int}]{index, }
+\item[{double}]{data}
+\end{DoxyParamCaption}
+)}}\label{vector_8c_a45ddcb329a7772fcaa14b8f02aa29b41}
+\hypertarget{vector_8c_a911bf6cdbeeb3b7f70cde9fd677a4c02}{\index{vector.\+c@{vector.\+c}!lasvm\+\_\+vector\+\_\+create@{lasvm\+\_\+vector\+\_\+create}}
+\index{lasvm\+\_\+vector\+\_\+create@{lasvm\+\_\+vector\+\_\+create}!vector.\+c@{vector.\+c}}
+\subsubsection[{lasvm\+\_\+vector\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lasvm\+\_\+vector\+\_\+t}$\ast$ lasvm\+\_\+vector\+\_\+create (
+\begin{DoxyParamCaption}
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}}\label{vector_8c_a911bf6cdbeeb3b7f70cde9fd677a4c02}
+\hypertarget{vector_8c_aac4504b4456c1fd2aff92e30a93cc7f6}{\index{vector.\+c@{vector.\+c}!lasvm\+\_\+vector\+\_\+destroy@{lasvm\+\_\+vector\+\_\+destroy}}
+\index{lasvm\+\_\+vector\+\_\+destroy@{lasvm\+\_\+vector\+\_\+destroy}!vector.\+c@{vector.\+c}}
+\subsubsection[{lasvm\+\_\+vector\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+vector\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+vector\+\_\+t} $\ast$}]{v}
+\end{DoxyParamCaption}
+)}}\label{vector_8c_aac4504b4456c1fd2aff92e30a93cc7f6}
+\hypertarget{vector_8c_a149b827aff7d4d305395ed2ce174e8cc}{\index{vector.\+c@{vector.\+c}!lasvm\+\_\+vector\+\_\+dot\+\_\+product@{lasvm\+\_\+vector\+\_\+dot\+\_\+product}}
+\index{lasvm\+\_\+vector\+\_\+dot\+\_\+product@{lasvm\+\_\+vector\+\_\+dot\+\_\+product}!vector.\+c@{vector.\+c}}
+\subsubsection[{lasvm\+\_\+vector\+\_\+dot\+\_\+product}]{\setlength{\rightskip}{0pt plus 5cm}double lasvm\+\_\+vector\+\_\+dot\+\_\+product (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+vector\+\_\+t} $\ast$}]{v1, }
+\item[{{\bf lasvm\+\_\+vector\+\_\+t} $\ast$}]{v2}
+\end{DoxyParamCaption}
+)}}\label{vector_8c_a149b827aff7d4d305395ed2ce174e8cc}

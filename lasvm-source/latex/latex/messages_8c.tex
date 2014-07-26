@@ -1,0 +1,84 @@
+\hypertarget{messages_8c}{\section{messages.\+c File Reference}
+\label{messages_8c}\index{messages.\+c@{messages.\+c}}
+}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}messages.\+h\char`\"{}}\\*
+Include dependency graph for messages.\+c\+:
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{messages_8c_a17c8c22c44756c9cdb8c9953c2eeb97f}{lasvm\+\_\+error} (const char $\ast$fmt,...)
+\item 
+void \hyperlink{messages_8c_aaa45d99e9c14dc390ecc5171831c36be}{lasvm\+\_\+warning} (const char $\ast$fmt,...)
+\item 
+void \hyperlink{messages_8c_ac67cc17c7a868120447d8304ea8212cd}{lasvm\+\_\+info} (const char $\ast$fmt,...)
+\item 
+void \hyperlink{messages_8c_a759b11a7a64069f7889b9cee07d98cd1}{lasvm\+\_\+debug} (const char $\ast$fmt,...)
+\item 
+void \hyperlink{messages_8c_a8e672e88ae0c045d69cf21227b8749c7}{lasvm\+\_\+assertfail} (const char $\ast$file, int line)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{messages_8h_a9dc82c48b9143b32b6636596bf031308}{lasvm\+\_\+message\+\_\+t} \hyperlink{messages_8c_a6d19440334e9ad9c32341aa3bf01e8a5}{lasvm\+\_\+message\+\_\+level} = \hyperlink{messages_8h_a9dc82c48b9143b32b6636596bf031308ab025a1ba41cf4852200712d91995f99d}{L\+A\+S\+V\+M\+\_\+\+I\+N\+F\+O}
+\item 
+\hyperlink{messages_8h_a529d98d6d28ed35c9fd9670de5576c9b}{lasvm\+\_\+message\+\_\+proc\+\_\+t} $\ast$ \hyperlink{messages_8c_a34075d7e03087fb5df1e44af01ccd7ba}{lasvm\+\_\+message\+\_\+proc} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{messages_8c_a8e672e88ae0c045d69cf21227b8749c7}{\index{messages.\+c@{messages.\+c}!lasvm\+\_\+assertfail@{lasvm\+\_\+assertfail}}
+\index{lasvm\+\_\+assertfail@{lasvm\+\_\+assertfail}!messages.\+c@{messages.\+c}}
+\subsubsection[{lasvm\+\_\+assertfail}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+assertfail (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{file, }
+\item[{int}]{line}
+\end{DoxyParamCaption}
+)}}\label{messages_8c_a8e672e88ae0c045d69cf21227b8749c7}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{messages_8c_a759b11a7a64069f7889b9cee07d98cd1}{\index{messages.\+c@{messages.\+c}!lasvm\+\_\+debug@{lasvm\+\_\+debug}}
+\index{lasvm\+\_\+debug@{lasvm\+\_\+debug}!messages.\+c@{messages.\+c}}
+\subsubsection[{lasvm\+\_\+debug}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+debug (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{messages_8c_a759b11a7a64069f7889b9cee07d98cd1}
+\hypertarget{messages_8c_a17c8c22c44756c9cdb8c9953c2eeb97f}{\index{messages.\+c@{messages.\+c}!lasvm\+\_\+error@{lasvm\+\_\+error}}
+\index{lasvm\+\_\+error@{lasvm\+\_\+error}!messages.\+c@{messages.\+c}}
+\subsubsection[{lasvm\+\_\+error}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+error (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{messages_8c_a17c8c22c44756c9cdb8c9953c2eeb97f}
+\hypertarget{messages_8c_ac67cc17c7a868120447d8304ea8212cd}{\index{messages.\+c@{messages.\+c}!lasvm\+\_\+info@{lasvm\+\_\+info}}
+\index{lasvm\+\_\+info@{lasvm\+\_\+info}!messages.\+c@{messages.\+c}}
+\subsubsection[{lasvm\+\_\+info}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+info (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{messages_8c_ac67cc17c7a868120447d8304ea8212cd}
+\hypertarget{messages_8c_aaa45d99e9c14dc390ecc5171831c36be}{\index{messages.\+c@{messages.\+c}!lasvm\+\_\+warning@{lasvm\+\_\+warning}}
+\index{lasvm\+\_\+warning@{lasvm\+\_\+warning}!messages.\+c@{messages.\+c}}
+\subsubsection[{lasvm\+\_\+warning}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+warning (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{messages_8c_aaa45d99e9c14dc390ecc5171831c36be}
+
+
+\subsection{Variable Documentation}
+\hypertarget{messages_8c_a6d19440334e9ad9c32341aa3bf01e8a5}{\index{messages.\+c@{messages.\+c}!lasvm\+\_\+message\+\_\+level@{lasvm\+\_\+message\+\_\+level}}
+\index{lasvm\+\_\+message\+\_\+level@{lasvm\+\_\+message\+\_\+level}!messages.\+c@{messages.\+c}}
+\subsubsection[{lasvm\+\_\+message\+\_\+level}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lasvm\+\_\+message\+\_\+t} lasvm\+\_\+message\+\_\+level = {\bf L\+A\+S\+V\+M\+\_\+\+I\+N\+F\+O}}}\label{messages_8c_a6d19440334e9ad9c32341aa3bf01e8a5}
+\hypertarget{messages_8c_a34075d7e03087fb5df1e44af01ccd7ba}{\index{messages.\+c@{messages.\+c}!lasvm\+\_\+message\+\_\+proc@{lasvm\+\_\+message\+\_\+proc}}
+\index{lasvm\+\_\+message\+\_\+proc@{lasvm\+\_\+message\+\_\+proc}!messages.\+c@{messages.\+c}}
+\subsubsection[{lasvm\+\_\+message\+\_\+proc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lasvm\+\_\+message\+\_\+proc\+\_\+t}$\ast$ lasvm\+\_\+message\+\_\+proc = 0}}\label{messages_8c_a34075d7e03087fb5df1e44af01ccd7ba}

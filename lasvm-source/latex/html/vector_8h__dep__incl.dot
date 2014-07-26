@@ -1,0 +1,20 @@
+digraph "vector.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="vector.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled" fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="bin2libsvm.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$bin2libsvm_8cpp.html"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="kernel.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$kernel_8h.html"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="kernel.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$kernel_8c.html"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="la_svm.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$la__svm_8cpp.html"];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="la_test.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$la__test_8cpp.html"];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="libsvm2bin.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$libsvm2bin_8cpp.html"];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="vector.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$vector_8c.html"];
+}

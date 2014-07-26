@@ -1,0 +1,280 @@
+\hypertarget{lasvm_8c}{\section{lasvm.\+c File Reference}
+\label{lasvm_8c}\index{lasvm.\+c@{lasvm.\+c}}
+}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$float.\+h$>$}\\*
+{\ttfamily \#include $<$math.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}messages.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}kcache.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lasvm.\+h\char`\"{}}\\*
+Include dependency graph for lasvm.\+c\+:
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structlasvm__s}{lasvm\+\_\+s}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{lasvm_8c_ac6afabdc09a49a433ee19d8a9486056d}{min}(a, b)~(((a)$<$(b))?(a)\+:(b))
+\item 
+\#define \hyperlink{lasvm_8c_affe776513b24d84b39af8ab0930fef7f}{max}(a, b)~(((a)$>$(b))?(a)\+:(b))
+\item 
+\#define \hyperlink{lasvm_8c_a7fbf1534f9e0f0bfdb86fb928902474c}{F\+L\+T\+\_\+\+M\+A\+X}~1e+20
+\item 
+\#define \hyperlink{lasvm_8c_aafe5d2c4dc0edd9840f20e885dcae6ad}{F\+L\+T\+\_\+\+E\+P\+S\+I\+L\+O\+N}~1e-\/6
+\item 
+\#define \hyperlink{lasvm_8c_a6675a3ab28312a8835980fffa55e7fba}{real\+\_\+t}~double
+\item 
+\#define \hyperlink{lasvm_8c_a41372de77c44401e75ff07e9b6e54e6d}{swap}(type, v)
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$ \hyperlink{lasvm_8c_a4ee4f3b9bfd62f0d12eb9ff556933e4b}{lasvm\+\_\+create} (\hyperlink{kcache_8h_a62ba64635f69e07a6f3a206fcee926a0}{lasvm\+\_\+kcache\+\_\+t} $\ast$cache, int sumflag, double cp, double cn)
+\item 
+void \hyperlink{lasvm_8c_ac3f0637ddfb8d9498bb13afc5b39a582}{lasvm\+\_\+destroy} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self)
+\item 
+int \hyperlink{lasvm_8c_a00194dd0ba341f10c99cabd233da7e48}{lasvm\+\_\+get\+\_\+l} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self)
+\item 
+double \hyperlink{lasvm_8c_af9f81fbfca4e8d74689778cb69eb82be}{lasvm\+\_\+get\+\_\+cp} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self)
+\item 
+double \hyperlink{lasvm_8c_a11841c1dac801d8ec38b3f79ca78c7b0}{lasvm\+\_\+get\+\_\+cn} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self)
+\item 
+int \hyperlink{lasvm_8c_a84ced44c67e41d37202d1f3f9f8f1e08}{lasvm\+\_\+get\+\_\+alpha} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self, double $\ast$\hyperlink{la__test_8cpp_aee451b9af11b434e6a1e8482ae43e0b3}{alpha})
+\item 
+int \hyperlink{lasvm_8c_ac5d48c292946a3857b3b54f3eb523ce8}{lasvm\+\_\+get\+\_\+sv} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self, int $\ast$sv)
+\item 
+int \hyperlink{lasvm_8c_ae34e3b93f87b08e65984c08fcab9e19b}{lasvm\+\_\+get\+\_\+g} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self, double $\ast$g)
+\item 
+int \hyperlink{lasvm_8c_a57ee3befe5d57601131ad81e0c0275d3}{lasvm\+\_\+process} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self, int xi, double y)
+\item 
+int \hyperlink{lasvm_8c_ab560d706ee60b58ed0f2ea18f6187f83}{lasvm\+\_\+reprocess} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self, double \hyperlink{la__svm_8cpp_a50fede7592808878f77d21ae30c411b5}{epsgr})
+\item 
+int \hyperlink{lasvm_8c_ae2a53ee7455ab670801bc5612eafbde8}{lasvm\+\_\+finish} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self, double \hyperlink{la__svm_8cpp_a50fede7592808878f77d21ae30c411b5}{epsgr})
+\item 
+double \hyperlink{lasvm_8c_ae4905c41a67f521fc57cda9697291054}{lasvm\+\_\+get\+\_\+delta} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self)
+\item 
+double \hyperlink{lasvm_8c_ad397a41d1261ee42b0f0ebdfecabc0c1}{lasvm\+\_\+get\+\_\+b} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self)
+\item 
+double \hyperlink{lasvm_8c_a22aeeb8fc3a2302a03de7be4aeca025e}{lasvm\+\_\+get\+\_\+w2} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self)
+\item 
+double \hyperlink{lasvm_8c_a4c32731c4eec5f9be2037c0e2cad6742}{lasvm\+\_\+predict} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self, int xi)
+\item 
+double \hyperlink{lasvm_8c_a713f2c6f3bdd5ea8f4b2593b163d16c3}{lasvm\+\_\+predict\+\_\+nocache} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self, int xi)
+\item 
+void \hyperlink{lasvm_8c_aa69f39c7b620a7eb617fb7265851aa6d}{lasvm\+\_\+init} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$self, int l, const int $\ast$sv, const double $\ast$\hyperlink{la__test_8cpp_aee451b9af11b434e6a1e8482ae43e0b3}{alpha}, const double $\ast$g)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{lasvm_8c_aafe5d2c4dc0edd9840f20e885dcae6ad}{\index{lasvm.\+c@{lasvm.\+c}!F\+L\+T\+\_\+\+E\+P\+S\+I\+L\+O\+N@{F\+L\+T\+\_\+\+E\+P\+S\+I\+L\+O\+N}}
+\index{F\+L\+T\+\_\+\+E\+P\+S\+I\+L\+O\+N@{F\+L\+T\+\_\+\+E\+P\+S\+I\+L\+O\+N}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{F\+L\+T\+\_\+\+E\+P\+S\+I\+L\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+L\+T\+\_\+\+E\+P\+S\+I\+L\+O\+N~1e-\/6}}\label{lasvm_8c_aafe5d2c4dc0edd9840f20e885dcae6ad}
+\hypertarget{lasvm_8c_a7fbf1534f9e0f0bfdb86fb928902474c}{\index{lasvm.\+c@{lasvm.\+c}!F\+L\+T\+\_\+\+M\+A\+X@{F\+L\+T\+\_\+\+M\+A\+X}}
+\index{F\+L\+T\+\_\+\+M\+A\+X@{F\+L\+T\+\_\+\+M\+A\+X}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{F\+L\+T\+\_\+\+M\+A\+X}]{\setlength{\rightskip}{0pt plus 5cm}\#define F\+L\+T\+\_\+\+M\+A\+X~1e+20}}\label{lasvm_8c_a7fbf1534f9e0f0bfdb86fb928902474c}
+\hypertarget{lasvm_8c_affe776513b24d84b39af8ab0930fef7f}{\index{lasvm.\+c@{lasvm.\+c}!max@{max}}
+\index{max@{max}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{max}]{\setlength{\rightskip}{0pt plus 5cm}\#define max(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)~(((a)$>$(b))?(a)\+:(b))}}\label{lasvm_8c_affe776513b24d84b39af8ab0930fef7f}
+\hypertarget{lasvm_8c_ac6afabdc09a49a433ee19d8a9486056d}{\index{lasvm.\+c@{lasvm.\+c}!min@{min}}
+\index{min@{min}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{min}]{\setlength{\rightskip}{0pt plus 5cm}\#define min(
+\begin{DoxyParamCaption}
+\item[{}]{a, }
+\item[{}]{b}
+\end{DoxyParamCaption}
+)~(((a)$<$(b))?(a)\+:(b))}}\label{lasvm_8c_ac6afabdc09a49a433ee19d8a9486056d}
+\hypertarget{lasvm_8c_a6675a3ab28312a8835980fffa55e7fba}{\index{lasvm.\+c@{lasvm.\+c}!real\+\_\+t@{real\+\_\+t}}
+\index{real\+\_\+t@{real\+\_\+t}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{real\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}\#define real\+\_\+t~double}}\label{lasvm_8c_a6675a3ab28312a8835980fffa55e7fba}
+\hypertarget{lasvm_8c_a41372de77c44401e75ff07e9b6e54e6d}{\index{lasvm.\+c@{lasvm.\+c}!swap@{swap}}
+\index{swap@{swap}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{swap}]{\setlength{\rightskip}{0pt plus 5cm}\#define swap(
+\begin{DoxyParamCaption}
+\item[{}]{type, }
+\item[{}]{v}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_a41372de77c44401e75ff07e9b6e54e6d}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\{ type tmp = \textcolor{keyword}{self}->v[r1];  \(\backslash\)
+    self->v[r1]=\textcolor{keyword}{self}->v[r2]; \(\backslash\)
+    self->v[r2]=tmp; \}
+\end{DoxyCode}
+
+
+\subsection{Function Documentation}
+\hypertarget{lasvm_8c_a4ee4f3b9bfd62f0d12eb9ff556933e4b}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+create@{lasvm\+\_\+create}}
+\index{lasvm\+\_\+create@{lasvm\+\_\+create}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lasvm\+\_\+t}$\ast$ lasvm\+\_\+create (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+kcache\+\_\+t} $\ast$}]{cache, }
+\item[{int}]{sumflag, }
+\item[{double}]{cp, }
+\item[{double}]{cn}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_a4ee4f3b9bfd62f0d12eb9ff556933e4b}
+--- lasvm\+\_\+create Creates a lasvm object. You must first create and configure a kernel cache $<$cache$>$ object for your chosen kernel. Never associate a same cache object with several lasvm objects. Argument $<$sumflag$>$ indicates whether the equality constraint should be honored (i.\+e. whether the svm has a bias term). Setting $<$sumflag$>$ to zero should be considered experimental. Arguments $<$cp$>$ and $<$cn$>$ are the C values for positive and negative examples. \hypertarget{lasvm_8c_ac3f0637ddfb8d9498bb13afc5b39a582}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+destroy@{lasvm\+\_\+destroy}}
+\index{lasvm\+\_\+destroy@{lasvm\+\_\+destroy}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_ac3f0637ddfb8d9498bb13afc5b39a582}
+--- lasvm\+\_\+destroy Deallocates a lasvm object. The associated kernel cache must be deallocated separately. \hypertarget{lasvm_8c_ae2a53ee7455ab670801bc5612eafbde8}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+finish@{lasvm\+\_\+finish}}
+\index{lasvm\+\_\+finish@{lasvm\+\_\+finish}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+finish}]{\setlength{\rightskip}{0pt plus 5cm}int lasvm\+\_\+finish (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self, }
+\item[{double}]{epsgr}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_ae2a53ee7455ab670801bc5612eafbde8}
+--- lasvm\+\_\+finish Specialized version of R\+E\+P\+R\+O\+C\+E\+S\+S used for the finishing step. Calling $<$lasvm\+\_\+finish$>$ is essentially similar to calling $<$lasvm\+\_\+reprocess$>$ several times. However it runs faster because it performs the shrinking optimization. Returns the number of iterations. \hypertarget{lasvm_8c_a84ced44c67e41d37202d1f3f9f8f1e08}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+get\+\_\+alpha@{lasvm\+\_\+get\+\_\+alpha}}
+\index{lasvm\+\_\+get\+\_\+alpha@{lasvm\+\_\+get\+\_\+alpha}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+get\+\_\+alpha}]{\setlength{\rightskip}{0pt plus 5cm}int lasvm\+\_\+get\+\_\+alpha (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self, }
+\item[{double $\ast$}]{alpha}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_a84ced44c67e41d37202d1f3f9f8f1e08}
+--- lasvm\+\_\+get\+\_\+alpha Copies the support vector coefficients into array $<$alpha$>$. Coefficients are positive for positive example and negative for negative examples. \hypertarget{lasvm_8c_ad397a41d1261ee42b0f0ebdfecabc0c1}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+get\+\_\+b@{lasvm\+\_\+get\+\_\+b}}
+\index{lasvm\+\_\+get\+\_\+b@{lasvm\+\_\+get\+\_\+b}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+get\+\_\+b}]{\setlength{\rightskip}{0pt plus 5cm}double lasvm\+\_\+get\+\_\+b (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_ad397a41d1261ee42b0f0ebdfecabc0c1}
+\hypertarget{lasvm_8c_a11841c1dac801d8ec38b3f79ca78c7b0}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+get\+\_\+cn@{lasvm\+\_\+get\+\_\+cn}}
+\index{lasvm\+\_\+get\+\_\+cn@{lasvm\+\_\+get\+\_\+cn}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+get\+\_\+cn}]{\setlength{\rightskip}{0pt plus 5cm}double lasvm\+\_\+get\+\_\+cn (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_a11841c1dac801d8ec38b3f79ca78c7b0}
+\hypertarget{lasvm_8c_af9f81fbfca4e8d74689778cb69eb82be}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+get\+\_\+cp@{lasvm\+\_\+get\+\_\+cp}}
+\index{lasvm\+\_\+get\+\_\+cp@{lasvm\+\_\+get\+\_\+cp}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+get\+\_\+cp}]{\setlength{\rightskip}{0pt plus 5cm}double lasvm\+\_\+get\+\_\+cp (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_af9f81fbfca4e8d74689778cb69eb82be}
+-- lasvm\+\_\+get\+\_\+cp, lasvm\+\_\+get\+\_\+cn Returns the values of parameter C for positive and negative examples. \hypertarget{lasvm_8c_ae4905c41a67f521fc57cda9697291054}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+get\+\_\+delta@{lasvm\+\_\+get\+\_\+delta}}
+\index{lasvm\+\_\+get\+\_\+delta@{lasvm\+\_\+get\+\_\+delta}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+get\+\_\+delta}]{\setlength{\rightskip}{0pt plus 5cm}double lasvm\+\_\+get\+\_\+delta (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_ae4905c41a67f521fc57cda9697291054}
+--- lasvm\+\_\+get\+\_\+delta Returns the maximal gradient exploitable by a subsequent R\+E\+P\+R\+O\+C\+E\+S\+S operation. Calling R\+E\+P\+R\+O\+C\+E\+S\+S with $<$epsgr$>$ smaller than delta returns immediately. \hypertarget{lasvm_8c_ae34e3b93f87b08e65984c08fcab9e19b}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+get\+\_\+g@{lasvm\+\_\+get\+\_\+g}}
+\index{lasvm\+\_\+get\+\_\+g@{lasvm\+\_\+get\+\_\+g}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+get\+\_\+g}]{\setlength{\rightskip}{0pt plus 5cm}int lasvm\+\_\+get\+\_\+g (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self, }
+\item[{double $\ast$}]{g}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_ae34e3b93f87b08e65984c08fcab9e19b}
+\hypertarget{lasvm_8c_a00194dd0ba341f10c99cabd233da7e48}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+get\+\_\+l@{lasvm\+\_\+get\+\_\+l}}
+\index{lasvm\+\_\+get\+\_\+l@{lasvm\+\_\+get\+\_\+l}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+get\+\_\+l}]{\setlength{\rightskip}{0pt plus 5cm}int lasvm\+\_\+get\+\_\+l (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_a00194dd0ba341f10c99cabd233da7e48}
+\hypertarget{lasvm_8c_ac5d48c292946a3857b3b54f3eb523ce8}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+get\+\_\+sv@{lasvm\+\_\+get\+\_\+sv}}
+\index{lasvm\+\_\+get\+\_\+sv@{lasvm\+\_\+get\+\_\+sv}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+get\+\_\+sv}]{\setlength{\rightskip}{0pt plus 5cm}int lasvm\+\_\+get\+\_\+sv (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self, }
+\item[{int $\ast$}]{sv}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_ac5d48c292946a3857b3b54f3eb523ce8}
+--- lasvm\+\_\+get\+\_\+alpha Returns the support vector indices into array $<$sv$>$. Similar information can be obtained using $<$lasvm\+\_\+kcache\+\_\+r2i$>$. 
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{lasvm_8c_a22aeeb8fc3a2302a03de7be4aeca025e}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+get\+\_\+w2@{lasvm\+\_\+get\+\_\+w2}}
+\index{lasvm\+\_\+get\+\_\+w2@{lasvm\+\_\+get\+\_\+w2}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+get\+\_\+w2}]{\setlength{\rightskip}{0pt plus 5cm}double lasvm\+\_\+get\+\_\+w2 (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_a22aeeb8fc3a2302a03de7be4aeca025e}
+\hypertarget{lasvm_8c_aa69f39c7b620a7eb617fb7265851aa6d}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+init@{lasvm\+\_\+init}}
+\index{lasvm\+\_\+init@{lasvm\+\_\+init}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self, }
+\item[{int}]{l, }
+\item[{const int $\ast$}]{sv, }
+\item[{const double $\ast$}]{alpha, }
+\item[{const double $\ast$}]{g}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_aa69f39c7b620a7eb617fb7265851aa6d}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{lasvm_8c_a4c32731c4eec5f9be2037c0e2cad6742}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+predict@{lasvm\+\_\+predict}}
+\index{lasvm\+\_\+predict@{lasvm\+\_\+predict}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+predict}]{\setlength{\rightskip}{0pt plus 5cm}double lasvm\+\_\+predict (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self, }
+\item[{int}]{xi}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_a4c32731c4eec5f9be2037c0e2cad6742}
+--- lasvm\+\_\+predict Computes the kernel expansion on example with index $<$xi$>$ and returns the result. 
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{lasvm_8c_a713f2c6f3bdd5ea8f4b2593b163d16c3}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+predict\+\_\+nocache@{lasvm\+\_\+predict\+\_\+nocache}}
+\index{lasvm\+\_\+predict\+\_\+nocache@{lasvm\+\_\+predict\+\_\+nocache}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+predict\+\_\+nocache}]{\setlength{\rightskip}{0pt plus 5cm}double lasvm\+\_\+predict\+\_\+nocache (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self, }
+\item[{int}]{xi}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_a713f2c6f3bdd5ea8f4b2593b163d16c3}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{lasvm_8c_a57ee3befe5d57601131ad81e0c0275d3}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+process@{lasvm\+\_\+process}}
+\index{lasvm\+\_\+process@{lasvm\+\_\+process}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+process}]{\setlength{\rightskip}{0pt plus 5cm}int lasvm\+\_\+process (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self, }
+\item[{int}]{xi, }
+\item[{double}]{y}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_a57ee3befe5d57601131ad81e0c0275d3}
+--- lasvm\+\_\+process Perform the P\+R\+O\+C\+E\+S\+S operation on example with index $<$xi$>$. Argument $<$y$>$ is the example label and must be +1 or -\/1. Returns the number of S\+Vs if a change has been made. Otherwise returns zero. 
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{lasvm_8c_ab560d706ee60b58ed0f2ea18f6187f83}{\index{lasvm.\+c@{lasvm.\+c}!lasvm\+\_\+reprocess@{lasvm\+\_\+reprocess}}
+\index{lasvm\+\_\+reprocess@{lasvm\+\_\+reprocess}!lasvm.\+c@{lasvm.\+c}}
+\subsubsection[{lasvm\+\_\+reprocess}]{\setlength{\rightskip}{0pt plus 5cm}int lasvm\+\_\+reprocess (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{self, }
+\item[{double}]{epsgr}
+\end{DoxyParamCaption}
+)}}\label{lasvm_8c_ab560d706ee60b58ed0f2ea18f6187f83}
+--- lasvm\+\_\+reprocess Performs the R\+E\+P\+R\+O\+C\+E\+S\+S operation with a tolerance $<$epsgr$>$ on the gradients. Returns the number of S\+Vs if a change has been made. Otherwise returns zero. 
+
+Here is the call graph for this function\+:
+
+

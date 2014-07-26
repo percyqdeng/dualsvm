@@ -1,0 +1,119 @@
+\hypertarget{kernel_8h}{\section{kernel.\+h File Reference}
+\label{kernel_8h}\index{kernel.\+h@{kernel.\+h}}
+}
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}vector.\+h\char`\"{}}\\*
+Include dependency graph for kernel.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structlasvm__vectorproblem__s}{lasvm\+\_\+vectorproblem\+\_\+s}
+\item 
+struct \hyperlink{structlasvm__sparsevectorproblem__s}{lasvm\+\_\+sparsevectorproblem\+\_\+s}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{kernel_8h_a4e427413c5910fe54f80be0cba760f51}{L\+A\+S\+V\+M\+\_\+\+K\+E\+R\+N\+E\+L\+\_\+\+T\+\_\+\+D\+E\+F\+I\+N\+E\+D}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef double($\ast$ \hyperlink{kernel_8h_a570ca1df9adadb603aebfb31e9948b88}{lasvm\+\_\+kernel\+\_\+t} )(int i, int j, void $\ast$closure)
+\item 
+typedef struct \\*
+\hyperlink{structlasvm__vectorproblem__s}{lasvm\+\_\+vectorproblem\+\_\+s} \hyperlink{kernel_8h_abd23910ca46d85b4e5ab54ec81c4361c}{lasvm\+\_\+vectorproblem\+\_\+t}
+\item 
+typedef struct \\*
+\hyperlink{structlasvm__sparsevectorproblem__s}{lasvm\+\_\+sparsevectorproblem\+\_\+s} \hyperlink{kernel_8h_addfc91967dfe43409d780ede79864415}{lasvm\+\_\+sparsevectorproblem\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{kernel_8h_ac331682774c1b3ab286a3cb22f27e04d}{lasvm\+\_\+vectorproblem\+\_\+lin\+\_\+kernel} (int i, int j, void $\ast$problem)
+\item 
+double \hyperlink{kernel_8h_a1b374f3ceaa25ad44b30e086049728db}{lasvm\+\_\+vectorproblem\+\_\+rbf\+\_\+kernel} (int i, int j, void $\ast$problem)
+\item 
+double \hyperlink{kernel_8h_aed3aa85a4815254ec0ef11db73d150a7}{lasvm\+\_\+sparsevectorproblem\+\_\+lin\+\_\+kernel} (int i, int j, void $\ast$problem)
+\item 
+double \hyperlink{kernel_8h_adb9ba21c80d18aa5042029652547a98f}{lasvm\+\_\+sparsevectorproblem\+\_\+rbf\+\_\+kernel} (int i, int j, void $\ast$problem)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{kernel_8h_a4e427413c5910fe54f80be0cba760f51}{\index{kernel.\+h@{kernel.\+h}!L\+A\+S\+V\+M\+\_\+\+K\+E\+R\+N\+E\+L\+\_\+\+T\+\_\+\+D\+E\+F\+I\+N\+E\+D@{L\+A\+S\+V\+M\+\_\+\+K\+E\+R\+N\+E\+L\+\_\+\+T\+\_\+\+D\+E\+F\+I\+N\+E\+D}}
+\index{L\+A\+S\+V\+M\+\_\+\+K\+E\+R\+N\+E\+L\+\_\+\+T\+\_\+\+D\+E\+F\+I\+N\+E\+D@{L\+A\+S\+V\+M\+\_\+\+K\+E\+R\+N\+E\+L\+\_\+\+T\+\_\+\+D\+E\+F\+I\+N\+E\+D}!kernel.\+h@{kernel.\+h}}
+\subsubsection[{L\+A\+S\+V\+M\+\_\+\+K\+E\+R\+N\+E\+L\+\_\+\+T\+\_\+\+D\+E\+F\+I\+N\+E\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+A\+S\+V\+M\+\_\+\+K\+E\+R\+N\+E\+L\+\_\+\+T\+\_\+\+D\+E\+F\+I\+N\+E\+D}}\label{kernel_8h_a4e427413c5910fe54f80be0cba760f51}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{kernel_8h_a570ca1df9adadb603aebfb31e9948b88}{\index{kernel.\+h@{kernel.\+h}!lasvm\+\_\+kernel\+\_\+t@{lasvm\+\_\+kernel\+\_\+t}}
+\index{lasvm\+\_\+kernel\+\_\+t@{lasvm\+\_\+kernel\+\_\+t}!kernel.\+h@{kernel.\+h}}
+\subsubsection[{lasvm\+\_\+kernel\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}typedef double($\ast$ lasvm\+\_\+kernel\+\_\+t)(int i, int j, void $\ast$closure)}}\label{kernel_8h_a570ca1df9adadb603aebfb31e9948b88}
+\hypertarget{kernel_8h_addfc91967dfe43409d780ede79864415}{\index{kernel.\+h@{kernel.\+h}!lasvm\+\_\+sparsevectorproblem\+\_\+t@{lasvm\+\_\+sparsevectorproblem\+\_\+t}}
+\index{lasvm\+\_\+sparsevectorproblem\+\_\+t@{lasvm\+\_\+sparsevectorproblem\+\_\+t}!kernel.\+h@{kernel.\+h}}
+\subsubsection[{lasvm\+\_\+sparsevectorproblem\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf lasvm\+\_\+sparsevectorproblem\+\_\+s}  {\bf lasvm\+\_\+sparsevectorproblem\+\_\+t}}}\label{kernel_8h_addfc91967dfe43409d780ede79864415}
+\hypertarget{kernel_8h_abd23910ca46d85b4e5ab54ec81c4361c}{\index{kernel.\+h@{kernel.\+h}!lasvm\+\_\+vectorproblem\+\_\+t@{lasvm\+\_\+vectorproblem\+\_\+t}}
+\index{lasvm\+\_\+vectorproblem\+\_\+t@{lasvm\+\_\+vectorproblem\+\_\+t}!kernel.\+h@{kernel.\+h}}
+\subsubsection[{lasvm\+\_\+vectorproblem\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf lasvm\+\_\+vectorproblem\+\_\+s}  {\bf lasvm\+\_\+vectorproblem\+\_\+t}}}\label{kernel_8h_abd23910ca46d85b4e5ab54ec81c4361c}
+
+
+\subsection{Function Documentation}
+\hypertarget{kernel_8h_aed3aa85a4815254ec0ef11db73d150a7}{\index{kernel.\+h@{kernel.\+h}!lasvm\+\_\+sparsevectorproblem\+\_\+lin\+\_\+kernel@{lasvm\+\_\+sparsevectorproblem\+\_\+lin\+\_\+kernel}}
+\index{lasvm\+\_\+sparsevectorproblem\+\_\+lin\+\_\+kernel@{lasvm\+\_\+sparsevectorproblem\+\_\+lin\+\_\+kernel}!kernel.\+h@{kernel.\+h}}
+\subsubsection[{lasvm\+\_\+sparsevectorproblem\+\_\+lin\+\_\+kernel}]{\setlength{\rightskip}{0pt plus 5cm}double lasvm\+\_\+sparsevectorproblem\+\_\+lin\+\_\+kernel (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{void $\ast$}]{problem}
+\end{DoxyParamCaption}
+)}}\label{kernel_8h_aed3aa85a4815254ec0ef11db73d150a7}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{kernel_8h_adb9ba21c80d18aa5042029652547a98f}{\index{kernel.\+h@{kernel.\+h}!lasvm\+\_\+sparsevectorproblem\+\_\+rbf\+\_\+kernel@{lasvm\+\_\+sparsevectorproblem\+\_\+rbf\+\_\+kernel}}
+\index{lasvm\+\_\+sparsevectorproblem\+\_\+rbf\+\_\+kernel@{lasvm\+\_\+sparsevectorproblem\+\_\+rbf\+\_\+kernel}!kernel.\+h@{kernel.\+h}}
+\subsubsection[{lasvm\+\_\+sparsevectorproblem\+\_\+rbf\+\_\+kernel}]{\setlength{\rightskip}{0pt plus 5cm}double lasvm\+\_\+sparsevectorproblem\+\_\+rbf\+\_\+kernel (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{void $\ast$}]{problem}
+\end{DoxyParamCaption}
+)}}\label{kernel_8h_adb9ba21c80d18aa5042029652547a98f}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{kernel_8h_ac331682774c1b3ab286a3cb22f27e04d}{\index{kernel.\+h@{kernel.\+h}!lasvm\+\_\+vectorproblem\+\_\+lin\+\_\+kernel@{lasvm\+\_\+vectorproblem\+\_\+lin\+\_\+kernel}}
+\index{lasvm\+\_\+vectorproblem\+\_\+lin\+\_\+kernel@{lasvm\+\_\+vectorproblem\+\_\+lin\+\_\+kernel}!kernel.\+h@{kernel.\+h}}
+\subsubsection[{lasvm\+\_\+vectorproblem\+\_\+lin\+\_\+kernel}]{\setlength{\rightskip}{0pt plus 5cm}double lasvm\+\_\+vectorproblem\+\_\+lin\+\_\+kernel (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{void $\ast$}]{problem}
+\end{DoxyParamCaption}
+)}}\label{kernel_8h_ac331682774c1b3ab286a3cb22f27e04d}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{kernel_8h_a1b374f3ceaa25ad44b30e086049728db}{\index{kernel.\+h@{kernel.\+h}!lasvm\+\_\+vectorproblem\+\_\+rbf\+\_\+kernel@{lasvm\+\_\+vectorproblem\+\_\+rbf\+\_\+kernel}}
+\index{lasvm\+\_\+vectorproblem\+\_\+rbf\+\_\+kernel@{lasvm\+\_\+vectorproblem\+\_\+rbf\+\_\+kernel}!kernel.\+h@{kernel.\+h}}
+\subsubsection[{lasvm\+\_\+vectorproblem\+\_\+rbf\+\_\+kernel}]{\setlength{\rightskip}{0pt plus 5cm}double lasvm\+\_\+vectorproblem\+\_\+rbf\+\_\+kernel (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{void $\ast$}]{problem}
+\end{DoxyParamCaption}
+)}}\label{kernel_8h_a1b374f3ceaa25ad44b30e086049728db}
+
+
+Here is the call graph for this function\+:
+
+

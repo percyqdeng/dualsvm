@@ -1,0 +1,143 @@
+\hypertarget{messages_8h}{\section{messages.\+h File Reference}
+\label{messages_8h}\index{messages.\+h@{messages.\+h}}
+}
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+Include dependency graph for messages.\+h\+:
+This graph shows which files directly or indirectly include this file\+:
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{messages_8h_aca68c0d4ac8df0838e209fb5300f7be3}{A\+S\+S\+E\+R\+T}(x)
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef void \hyperlink{messages_8h_a529d98d6d28ed35c9fd9670de5576c9b}{lasvm\+\_\+message\+\_\+proc\+\_\+t} (\hyperlink{messages_8h_a9dc82c48b9143b32b6636596bf031308}{lasvm\+\_\+message\+\_\+t}, const char $\ast$, va\+\_\+list)
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{messages_8h_a9dc82c48b9143b32b6636596bf031308}{lasvm\+\_\+message\+\_\+t} \{ \hyperlink{messages_8h_a9dc82c48b9143b32b6636596bf031308ac94584646c9fdf0f5d461dbd0dd7a4a4}{L\+A\+S\+V\+M\+\_\+\+E\+R\+R\+O\+R}, 
+\hyperlink{messages_8h_a9dc82c48b9143b32b6636596bf031308aa52f420d3984e61a3e9e7b2efeb68997}{L\+A\+S\+V\+M\+\_\+\+W\+A\+R\+N\+I\+N\+G}, 
+\hyperlink{messages_8h_a9dc82c48b9143b32b6636596bf031308ab025a1ba41cf4852200712d91995f99d}{L\+A\+S\+V\+M\+\_\+\+I\+N\+F\+O}, 
+\hyperlink{messages_8h_a9dc82c48b9143b32b6636596bf031308a27e1f8e6443dded876cca3cbed3cdee2}{L\+A\+S\+V\+M\+\_\+\+D\+E\+B\+U\+G}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{messages_8h_a17c8c22c44756c9cdb8c9953c2eeb97f}{lasvm\+\_\+error} (const char $\ast$fmt,...)
+\item 
+void \hyperlink{messages_8h_aaa45d99e9c14dc390ecc5171831c36be}{lasvm\+\_\+warning} (const char $\ast$fmt,...)
+\item 
+void \hyperlink{messages_8h_ac67cc17c7a868120447d8304ea8212cd}{lasvm\+\_\+info} (const char $\ast$fmt,...)
+\item 
+void \hyperlink{messages_8h_a759b11a7a64069f7889b9cee07d98cd1}{lasvm\+\_\+debug} (const char $\ast$fmt,...)
+\item 
+void \hyperlink{messages_8h_a8e672e88ae0c045d69cf21227b8749c7}{lasvm\+\_\+assertfail} (const char $\ast$file, int line)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{messages_8h_a9dc82c48b9143b32b6636596bf031308}{lasvm\+\_\+message\+\_\+t} \hyperlink{messages_8h_a6d19440334e9ad9c32341aa3bf01e8a5}{lasvm\+\_\+message\+\_\+level}
+\item 
+\hyperlink{messages_8h_a529d98d6d28ed35c9fd9670de5576c9b}{lasvm\+\_\+message\+\_\+proc\+\_\+t} $\ast$ \hyperlink{messages_8h_a34075d7e03087fb5df1e44af01ccd7ba}{lasvm\+\_\+message\+\_\+proc}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{messages_8h_aca68c0d4ac8df0838e209fb5300f7be3}{\index{messages.\+h@{messages.\+h}!A\+S\+S\+E\+R\+T@{A\+S\+S\+E\+R\+T}}
+\index{A\+S\+S\+E\+R\+T@{A\+S\+S\+E\+R\+T}!messages.\+h@{messages.\+h}}
+\subsubsection[{A\+S\+S\+E\+R\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+S\+S\+E\+R\+T(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)}}\label{messages_8h_aca68c0d4ac8df0838e209fb5300f7be3}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{ \textcolor{keywordflow}{if} (!(x))\hyperlink{messages_8h_a8e672e88ae0c045d69cf21227b8749c7}{\(\backslash\)}
+\hyperlink{messages_8h_a8e672e88ae0c045d69cf21227b8749c7}{                     lasvm\_assertfail}(\_\_FILE\_\_,\_\_LINE\_\_);\(\backslash\)
+                   \} \textcolor{keywordflow}{while}(0)
+\end{DoxyCode}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{messages_8h_a529d98d6d28ed35c9fd9670de5576c9b}{\index{messages.\+h@{messages.\+h}!lasvm\+\_\+message\+\_\+proc\+\_\+t@{lasvm\+\_\+message\+\_\+proc\+\_\+t}}
+\index{lasvm\+\_\+message\+\_\+proc\+\_\+t@{lasvm\+\_\+message\+\_\+proc\+\_\+t}!messages.\+h@{messages.\+h}}
+\subsubsection[{lasvm\+\_\+message\+\_\+proc\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}typedef void lasvm\+\_\+message\+\_\+proc\+\_\+t({\bf lasvm\+\_\+message\+\_\+t}, const char $\ast$, va\+\_\+list)}}\label{messages_8h_a529d98d6d28ed35c9fd9670de5576c9b}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{messages_8h_a9dc82c48b9143b32b6636596bf031308}{\index{messages.\+h@{messages.\+h}!lasvm\+\_\+message\+\_\+t@{lasvm\+\_\+message\+\_\+t}}
+\index{lasvm\+\_\+message\+\_\+t@{lasvm\+\_\+message\+\_\+t}!messages.\+h@{messages.\+h}}
+\subsubsection[{lasvm\+\_\+message\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf lasvm\+\_\+message\+\_\+t}}}\label{messages_8h_a9dc82c48b9143b32b6636596bf031308}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{L\+A\+S\+V\+M\+\_\+\+E\+R\+R\+O\+R@{L\+A\+S\+V\+M\+\_\+\+E\+R\+R\+O\+R}!messages.\+h@{messages.\+h}}\index{messages.\+h@{messages.\+h}!L\+A\+S\+V\+M\+\_\+\+E\+R\+R\+O\+R@{L\+A\+S\+V\+M\+\_\+\+E\+R\+R\+O\+R}}\item[{\em 
+\hypertarget{messages_8h_a9dc82c48b9143b32b6636596bf031308ac94584646c9fdf0f5d461dbd0dd7a4a4}{L\+A\+S\+V\+M\+\_\+\+E\+R\+R\+O\+R}\label{messages_8h_a9dc82c48b9143b32b6636596bf031308ac94584646c9fdf0f5d461dbd0dd7a4a4}
+}]\index{L\+A\+S\+V\+M\+\_\+\+W\+A\+R\+N\+I\+N\+G@{L\+A\+S\+V\+M\+\_\+\+W\+A\+R\+N\+I\+N\+G}!messages.\+h@{messages.\+h}}\index{messages.\+h@{messages.\+h}!L\+A\+S\+V\+M\+\_\+\+W\+A\+R\+N\+I\+N\+G@{L\+A\+S\+V\+M\+\_\+\+W\+A\+R\+N\+I\+N\+G}}\item[{\em 
+\hypertarget{messages_8h_a9dc82c48b9143b32b6636596bf031308aa52f420d3984e61a3e9e7b2efeb68997}{L\+A\+S\+V\+M\+\_\+\+W\+A\+R\+N\+I\+N\+G}\label{messages_8h_a9dc82c48b9143b32b6636596bf031308aa52f420d3984e61a3e9e7b2efeb68997}
+}]\index{L\+A\+S\+V\+M\+\_\+\+I\+N\+F\+O@{L\+A\+S\+V\+M\+\_\+\+I\+N\+F\+O}!messages.\+h@{messages.\+h}}\index{messages.\+h@{messages.\+h}!L\+A\+S\+V\+M\+\_\+\+I\+N\+F\+O@{L\+A\+S\+V\+M\+\_\+\+I\+N\+F\+O}}\item[{\em 
+\hypertarget{messages_8h_a9dc82c48b9143b32b6636596bf031308ab025a1ba41cf4852200712d91995f99d}{L\+A\+S\+V\+M\+\_\+\+I\+N\+F\+O}\label{messages_8h_a9dc82c48b9143b32b6636596bf031308ab025a1ba41cf4852200712d91995f99d}
+}]\index{L\+A\+S\+V\+M\+\_\+\+D\+E\+B\+U\+G@{L\+A\+S\+V\+M\+\_\+\+D\+E\+B\+U\+G}!messages.\+h@{messages.\+h}}\index{messages.\+h@{messages.\+h}!L\+A\+S\+V\+M\+\_\+\+D\+E\+B\+U\+G@{L\+A\+S\+V\+M\+\_\+\+D\+E\+B\+U\+G}}\item[{\em 
+\hypertarget{messages_8h_a9dc82c48b9143b32b6636596bf031308a27e1f8e6443dded876cca3cbed3cdee2}{L\+A\+S\+V\+M\+\_\+\+D\+E\+B\+U\+G}\label{messages_8h_a9dc82c48b9143b32b6636596bf031308a27e1f8e6443dded876cca3cbed3cdee2}
+}]\end{description}
+\end{Desc}
+
+
+\subsection{Function Documentation}
+\hypertarget{messages_8h_a8e672e88ae0c045d69cf21227b8749c7}{\index{messages.\+h@{messages.\+h}!lasvm\+\_\+assertfail@{lasvm\+\_\+assertfail}}
+\index{lasvm\+\_\+assertfail@{lasvm\+\_\+assertfail}!messages.\+h@{messages.\+h}}
+\subsubsection[{lasvm\+\_\+assertfail}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+assertfail (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{file, }
+\item[{int}]{line}
+\end{DoxyParamCaption}
+)}}\label{messages_8h_a8e672e88ae0c045d69cf21227b8749c7}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{messages_8h_a759b11a7a64069f7889b9cee07d98cd1}{\index{messages.\+h@{messages.\+h}!lasvm\+\_\+debug@{lasvm\+\_\+debug}}
+\index{lasvm\+\_\+debug@{lasvm\+\_\+debug}!messages.\+h@{messages.\+h}}
+\subsubsection[{lasvm\+\_\+debug}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+debug (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{messages_8h_a759b11a7a64069f7889b9cee07d98cd1}
+\hypertarget{messages_8h_a17c8c22c44756c9cdb8c9953c2eeb97f}{\index{messages.\+h@{messages.\+h}!lasvm\+\_\+error@{lasvm\+\_\+error}}
+\index{lasvm\+\_\+error@{lasvm\+\_\+error}!messages.\+h@{messages.\+h}}
+\subsubsection[{lasvm\+\_\+error}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+error (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{messages_8h_a17c8c22c44756c9cdb8c9953c2eeb97f}
+\hypertarget{messages_8h_ac67cc17c7a868120447d8304ea8212cd}{\index{messages.\+h@{messages.\+h}!lasvm\+\_\+info@{lasvm\+\_\+info}}
+\index{lasvm\+\_\+info@{lasvm\+\_\+info}!messages.\+h@{messages.\+h}}
+\subsubsection[{lasvm\+\_\+info}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+info (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{messages_8h_ac67cc17c7a868120447d8304ea8212cd}
+\hypertarget{messages_8h_aaa45d99e9c14dc390ecc5171831c36be}{\index{messages.\+h@{messages.\+h}!lasvm\+\_\+warning@{lasvm\+\_\+warning}}
+\index{lasvm\+\_\+warning@{lasvm\+\_\+warning}!messages.\+h@{messages.\+h}}
+\subsubsection[{lasvm\+\_\+warning}]{\setlength{\rightskip}{0pt plus 5cm}void lasvm\+\_\+warning (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{fmt, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}}\label{messages_8h_aaa45d99e9c14dc390ecc5171831c36be}
+
+
+\subsection{Variable Documentation}
+\hypertarget{messages_8h_a6d19440334e9ad9c32341aa3bf01e8a5}{\index{messages.\+h@{messages.\+h}!lasvm\+\_\+message\+\_\+level@{lasvm\+\_\+message\+\_\+level}}
+\index{lasvm\+\_\+message\+\_\+level@{lasvm\+\_\+message\+\_\+level}!messages.\+h@{messages.\+h}}
+\subsubsection[{lasvm\+\_\+message\+\_\+level}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lasvm\+\_\+message\+\_\+t} lasvm\+\_\+message\+\_\+level}}\label{messages_8h_a6d19440334e9ad9c32341aa3bf01e8a5}
+\hypertarget{messages_8h_a34075d7e03087fb5df1e44af01ccd7ba}{\index{messages.\+h@{messages.\+h}!lasvm\+\_\+message\+\_\+proc@{lasvm\+\_\+message\+\_\+proc}}
+\index{lasvm\+\_\+message\+\_\+proc@{lasvm\+\_\+message\+\_\+proc}!messages.\+h@{messages.\+h}}
+\subsubsection[{lasvm\+\_\+message\+\_\+proc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lasvm\+\_\+message\+\_\+proc\+\_\+t}$\ast$ lasvm\+\_\+message\+\_\+proc}}\label{messages_8h_a34075d7e03087fb5df1e44af01ccd7ba}

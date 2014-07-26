@@ -1,0 +1,486 @@
+\hypertarget{la__svm_8cpp}{\section{la\+\_\+svm.\+cpp File Reference}
+\label{la__svm_8cpp}\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+}
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$cmath$>$}\\*
+{\ttfamily \#include $<$ctime$>$}\\*
+{\ttfamily \#include $<$cstring$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include $<$algorithm$>$}\\*
+{\ttfamily \#include \char`\"{}vector.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lasvm.\+h\char`\"{}}\\*
+Include dependency graph for la\+\_\+svm.\+cpp\+:
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classstopwatch}{stopwatch}
+\item 
+class \hyperlink{class_i_d}{I\+D}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{la__svm_8cpp_ac645eb9a88619ee6f5e14c557ab8ef62}{L\+I\+N\+E\+A\+R}~0
+\item 
+\#define \hyperlink{la__svm_8cpp_aa55bbb692b1c5e89d3a5c3bee1ce8399}{P\+O\+L\+Y}~1
+\item 
+\#define \hyperlink{la__svm_8cpp_abae7fd1d616531c926f64eb405fe6c48}{R\+B\+F}~2
+\item 
+\#define \hyperlink{la__svm_8cpp_ad754ca4856873b8cdcae292a9a51aafd}{S\+I\+G\+M\+O\+I\+D}~3
+\item 
+\#define \hyperlink{la__svm_8cpp_a5d8d172be98804c39bb311ead048123a}{O\+N\+L\+I\+N\+E}~0
+\item 
+\#define \hyperlink{la__svm_8cpp_af0b957214a643d976771cf22315d59e9}{O\+N\+L\+I\+N\+E\+\_\+\+W\+I\+T\+H\+\_\+\+F\+I\+N\+I\+S\+H\+I\+N\+G}~1
+\item 
+\#define \hyperlink{la__svm_8cpp_a724484a23cab81c63f4c7f9136a70371}{R\+A\+N\+D\+O\+M}~0
+\item 
+\#define \hyperlink{la__svm_8cpp_add21ba3409ea20e55aac68983f0f73ce}{G\+R\+A\+D\+I\+E\+N\+T}~1
+\item 
+\#define \hyperlink{la__svm_8cpp_ab05a798afd72aac947f417e1dab73c87}{M\+A\+R\+G\+I\+N}~2
+\item 
+\#define \hyperlink{la__svm_8cpp_aa9cc087d076e4fa101f8794a947bd01a}{I\+T\+E\+R\+A\+T\+I\+O\+N\+S}~0
+\item 
+\#define \hyperlink{la__svm_8cpp_a752fe4337df40966f7dd6718b6cbff1d}{S\+V\+S}~1
+\item 
+\#define \hyperlink{la__svm_8cpp_a078b6c12f1ac6819cecef90ab5870276}{T\+I\+M\+E}~2
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{la__svm_8cpp_ad546c810dcceaa487a455e63ffbbbc64}{operator$<$} (const \hyperlink{class_i_d}{I\+D} \&x, const \hyperlink{class_i_d}{I\+D} \&y)
+\item 
+void \hyperlink{la__svm_8cpp_a8bbbfc2cd5ea26b69d3b880c6f509e93}{exit\+\_\+with\+\_\+help} ()
+\item 
+void \hyperlink{la__svm_8cpp_a15f26fdd66eabc2d70d032433a9c8a50}{parse\+\_\+command\+\_\+line} (int argc, char $\ast$$\ast$argv, char $\ast$input\+\_\+file\+\_\+name, char $\ast$model\+\_\+file\+\_\+name)
+\item 
+int \hyperlink{la__svm_8cpp_a215ee43167eb7ec8c4ac0ea9c36e0dd4}{split\+\_\+file\+\_\+load} (char $\ast$f)
+\item 
+int \hyperlink{la__svm_8cpp_a90d1123670c4debc7852273ca8477a52}{libsvm\+\_\+load\+\_\+data} (char $\ast$filename)
+\item 
+int \hyperlink{la__svm_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d}{binary\+\_\+load\+\_\+data} (char $\ast$filename)
+\item 
+void \hyperlink{la__svm_8cpp_af3934217b9fe8d07578136f00518f402}{load\+\_\+data\+\_\+file} (char $\ast$filename)
+\item 
+int \hyperlink{la__svm_8cpp_ab7584d139fe92cf9be4b7b7035fbca58}{count\+\_\+svs} ()
+\item 
+int \hyperlink{la__svm_8cpp_af1d05f9634ad1baf5a4bd899b935bd92}{libsvm\+\_\+save\+\_\+model} (const char $\ast$model\+\_\+file\+\_\+name)
+\item 
+double \hyperlink{la__svm_8cpp_a8d038c50a80216ddc72dfaa3b3042ba0}{kernel} (int i, int j, void $\ast$\hyperlink{la__svm_8cpp_a057af9bceb8ab3ca5dc7405dfbabc676}{kparam})
+\item 
+void \hyperlink{la__svm_8cpp_ad7aa79a8e6532c312fe85e60306047cd}{finish} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$sv)
+\item 
+void \hyperlink{la__svm_8cpp_a02ca210f2ce7532d46b3543865866408}{make\+\_\+old} (int val)
+\item 
+int \hyperlink{la__svm_8cpp_a488f426cc2dc0d537f8c37e3e77ef3fe}{select} (\hyperlink{lasvm_8h_acf4eed098504ecd8d4ba220b86dbb0af}{lasvm\+\_\+t} $\ast$sv)
+\item 
+void \hyperlink{la__svm_8cpp_a84dead433e3720229c34b3d17a467adf}{train\+\_\+online} (char $\ast$model\+\_\+file\+\_\+name)
+\item 
+int \hyperlink{la__svm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \hyperlink{la__svm_8cpp_a2812fc7dc5b3db65a9bf7da83e25bb3d}{kernel\+\_\+type\+\_\+table} \mbox{[}$\,$\mbox{]} = \{\char`\"{}linear\char`\"{},\char`\"{}polynomial\char`\"{},\char`\"{}rbf\char`\"{},\char`\"{}sigmoid\char`\"{}\}
+\item 
+int \hyperlink{la__svm_8cpp_a742204794ea328ba293fe59cec79b990}{m} =0
+\item 
+vector$<$ \hyperlink{vector_8h_a21bb9db0a03143d7719d45995d3b2eea}{lasvm\+\_\+sparsevector\+\_\+t} $\ast$ $>$ \hyperlink{la__svm_8cpp_a8e491d506a3d8600b99aa775738cb157}{X}
+\item 
+vector$<$ int $>$ \hyperlink{la__svm_8cpp_a7ca2957eec35d8ed5aae9333bb157282}{Y}
+\item 
+vector$<$ double $>$ \hyperlink{la__svm_8cpp_a057af9bceb8ab3ca5dc7405dfbabc676}{kparam}
+\item 
+vector$<$ double $>$ \hyperlink{la__svm_8cpp_aee451b9af11b434e6a1e8482ae43e0b3}{alpha}
+\item 
+double \hyperlink{la__svm_8cpp_a798947bd96f7e2615d107b383cc4b9c6}{b0}
+\item 
+int \hyperlink{la__svm_8cpp_a5a2a5a33a48f7166042c8dcb3b4267e9}{kernel\+\_\+type} =\hyperlink{la__test_8cpp_abae7fd1d616531c926f64eb405fe6c48}{R\+B\+F}
+\item 
+double \hyperlink{la__svm_8cpp_a898dd6a34705b5d7bc205d411556d62b}{degree} =3
+\item 
+double \hyperlink{la__svm_8cpp_a88f07aa662d01a4b806a72ed2de422f1}{kgamma} =-\/1
+\item 
+double \hyperlink{la__svm_8cpp_a46fa624e2ba27955570a9692c94c8dd4}{coef0} =0
+\item 
+int \hyperlink{la__svm_8cpp_a3fc2e97de1d0b4515dedaeaf0a55d674}{use\+\_\+b0} =1
+\item 
+int \hyperlink{la__svm_8cpp_a1b3df8497de6f29e4076275ad104186b}{selection\+\_\+type} =\hyperlink{la__svm_8cpp_a724484a23cab81c63f4c7f9136a70371}{R\+A\+N\+D\+O\+M}
+\item 
+int \hyperlink{la__svm_8cpp_ad3c1812555bb523d7f11f596fa7f722d}{optimizer} =\hyperlink{la__svm_8cpp_af0b957214a643d976771cf22315d59e9}{O\+N\+L\+I\+N\+E\+\_\+\+W\+I\+T\+H\+\_\+\+F\+I\+N\+I\+S\+H\+I\+N\+G}
+\item 
+double \hyperlink{la__svm_8cpp_a8987032f6f7d7cfaa0ff4e2a62ae08fe}{C} =1
+\item 
+double \hyperlink{la__svm_8cpp_af473d5046485f84c42f1c93fa1f61c97}{C\+\_\+neg} =1
+\item 
+double \hyperlink{la__svm_8cpp_ad8b0e0f37801dda52ab960296dcab2f4}{C\+\_\+pos} =1
+\item 
+int \hyperlink{la__svm_8cpp_a06368f0a1841271faa902c40acb691cf}{epochs} =1
+\item 
+int \hyperlink{la__svm_8cpp_a69c03079cca0af73bcddd224ed00322b}{candidates} =50
+\item 
+double \hyperlink{la__svm_8cpp_a69ddcc4c7e748a8bed9bfb2c344a0b3d}{deltamax} =1000
+\item 
+vector$<$ double $>$ \hyperlink{la__svm_8cpp_aa830959cbf76b373f2c9cf8dc4538b11}{select\+\_\+size}
+\item 
+vector$<$ double $>$ \hyperlink{la__svm_8cpp_af6f89d5fafde9c758f23900c0dfabeda}{x\+\_\+square}
+\item 
+int \hyperlink{la__svm_8cpp_a1bdcfae3209cbd96db35a2ae356fa15e}{verbosity} =1
+\item 
+int \hyperlink{la__svm_8cpp_a7592250d2145d1bdb60c234460fcd44c}{saves} =1
+\item 
+char \hyperlink{la__svm_8cpp_af7ae7bfb2978be24b3325a8724769ddf}{report\+\_\+file\+\_\+name} \mbox{[}1024\mbox{]}
+\item 
+char \hyperlink{la__svm_8cpp_aeb56c54398396268669f656904840fe5}{split\+\_\+file\+\_\+name} \mbox{[}1024\mbox{]} =\char`\"{}\textbackslash{}0\char`\"{}
+\item 
+int \hyperlink{la__svm_8cpp_adc2cfac3a357c5424aafa9d351a2e6ea}{cache\+\_\+size} =256
+\item 
+double \hyperlink{la__svm_8cpp_a50fede7592808878f77d21ae30c411b5}{epsgr} =1e-\/3
+\item 
+long long \hyperlink{la__svm_8cpp_ad7bce3f5723771fa838e1576fe6a9b8d}{kcalcs} =0
+\item 
+int \hyperlink{la__svm_8cpp_adebe2f9e1f0903c65e30441c88d4de7d}{binary\+\_\+files} =0
+\item 
+vector$<$ \hyperlink{class_i_d}{I\+D} $>$ \hyperlink{la__svm_8cpp_a34ea2b3340867277172968dbbb844842}{splits}
+\item 
+int \hyperlink{la__svm_8cpp_a3875f818be825762ae9d4c0f88e7976c}{max\+\_\+index} =0
+\item 
+vector$<$ int $>$ \hyperlink{la__svm_8cpp_a4aaea5763207fdf5ea8102f2f53f3b41}{iold}
+\item 
+vector$<$ int $>$ \hyperlink{la__svm_8cpp_af9cbd1573dbba39abdcee33d18bdcc5d}{inew}
+\item 
+int \hyperlink{la__svm_8cpp_ad57972a321b4bfbffd2c54bfcdd41f97}{termination\+\_\+type} =0
+\item 
+int \hyperlink{la__svm_8cpp_a46019af49d287d12d30384d931215514}{sv1}
+\item 
+int \hyperlink{la__svm_8cpp_ae8bb4afe85dcd72ed9ce2cfec1af7071}{sv2}
+\item 
+double \hyperlink{la__svm_8cpp_a4602048b8e438a0830a7b27030573b8f}{max\+\_\+alpha}
+\item 
+double \hyperlink{la__svm_8cpp_ab80150b8bb2459344f9813f1abc7d57c}{alpha\+\_\+tol}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{la__svm_8cpp_add21ba3409ea20e55aac68983f0f73ce}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!G\+R\+A\+D\+I\+E\+N\+T@{G\+R\+A\+D\+I\+E\+N\+T}}
+\index{G\+R\+A\+D\+I\+E\+N\+T@{G\+R\+A\+D\+I\+E\+N\+T}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{G\+R\+A\+D\+I\+E\+N\+T}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+R\+A\+D\+I\+E\+N\+T~1}}\label{la__svm_8cpp_add21ba3409ea20e55aac68983f0f73ce}
+\hypertarget{la__svm_8cpp_aa9cc087d076e4fa101f8794a947bd01a}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!I\+T\+E\+R\+A\+T\+I\+O\+N\+S@{I\+T\+E\+R\+A\+T\+I\+O\+N\+S}}
+\index{I\+T\+E\+R\+A\+T\+I\+O\+N\+S@{I\+T\+E\+R\+A\+T\+I\+O\+N\+S}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{I\+T\+E\+R\+A\+T\+I\+O\+N\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\+T\+E\+R\+A\+T\+I\+O\+N\+S~0}}\label{la__svm_8cpp_aa9cc087d076e4fa101f8794a947bd01a}
+\hypertarget{la__svm_8cpp_ac645eb9a88619ee6f5e14c557ab8ef62}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!L\+I\+N\+E\+A\+R@{L\+I\+N\+E\+A\+R}}
+\index{L\+I\+N\+E\+A\+R@{L\+I\+N\+E\+A\+R}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{L\+I\+N\+E\+A\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+I\+N\+E\+A\+R~0}}\label{la__svm_8cpp_ac645eb9a88619ee6f5e14c557ab8ef62}
+\hypertarget{la__svm_8cpp_ab05a798afd72aac947f417e1dab73c87}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!M\+A\+R\+G\+I\+N@{M\+A\+R\+G\+I\+N}}
+\index{M\+A\+R\+G\+I\+N@{M\+A\+R\+G\+I\+N}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{M\+A\+R\+G\+I\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+R\+G\+I\+N~2}}\label{la__svm_8cpp_ab05a798afd72aac947f417e1dab73c87}
+\hypertarget{la__svm_8cpp_a5d8d172be98804c39bb311ead048123a}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!O\+N\+L\+I\+N\+E@{O\+N\+L\+I\+N\+E}}
+\index{O\+N\+L\+I\+N\+E@{O\+N\+L\+I\+N\+E}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{O\+N\+L\+I\+N\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+N\+L\+I\+N\+E~0}}\label{la__svm_8cpp_a5d8d172be98804c39bb311ead048123a}
+\hypertarget{la__svm_8cpp_af0b957214a643d976771cf22315d59e9}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!O\+N\+L\+I\+N\+E\+\_\+\+W\+I\+T\+H\+\_\+\+F\+I\+N\+I\+S\+H\+I\+N\+G@{O\+N\+L\+I\+N\+E\+\_\+\+W\+I\+T\+H\+\_\+\+F\+I\+N\+I\+S\+H\+I\+N\+G}}
+\index{O\+N\+L\+I\+N\+E\+\_\+\+W\+I\+T\+H\+\_\+\+F\+I\+N\+I\+S\+H\+I\+N\+G@{O\+N\+L\+I\+N\+E\+\_\+\+W\+I\+T\+H\+\_\+\+F\+I\+N\+I\+S\+H\+I\+N\+G}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{O\+N\+L\+I\+N\+E\+\_\+\+W\+I\+T\+H\+\_\+\+F\+I\+N\+I\+S\+H\+I\+N\+G}]{\setlength{\rightskip}{0pt plus 5cm}\#define O\+N\+L\+I\+N\+E\+\_\+\+W\+I\+T\+H\+\_\+\+F\+I\+N\+I\+S\+H\+I\+N\+G~1}}\label{la__svm_8cpp_af0b957214a643d976771cf22315d59e9}
+\hypertarget{la__svm_8cpp_aa55bbb692b1c5e89d3a5c3bee1ce8399}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!P\+O\+L\+Y@{P\+O\+L\+Y}}
+\index{P\+O\+L\+Y@{P\+O\+L\+Y}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{P\+O\+L\+Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+O\+L\+Y~1}}\label{la__svm_8cpp_aa55bbb692b1c5e89d3a5c3bee1ce8399}
+\hypertarget{la__svm_8cpp_a724484a23cab81c63f4c7f9136a70371}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!R\+A\+N\+D\+O\+M@{R\+A\+N\+D\+O\+M}}
+\index{R\+A\+N\+D\+O\+M@{R\+A\+N\+D\+O\+M}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{R\+A\+N\+D\+O\+M}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+A\+N\+D\+O\+M~0}}\label{la__svm_8cpp_a724484a23cab81c63f4c7f9136a70371}
+\hypertarget{la__svm_8cpp_abae7fd1d616531c926f64eb405fe6c48}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!R\+B\+F@{R\+B\+F}}
+\index{R\+B\+F@{R\+B\+F}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{R\+B\+F}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+B\+F~2}}\label{la__svm_8cpp_abae7fd1d616531c926f64eb405fe6c48}
+\hypertarget{la__svm_8cpp_ad754ca4856873b8cdcae292a9a51aafd}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!S\+I\+G\+M\+O\+I\+D@{S\+I\+G\+M\+O\+I\+D}}
+\index{S\+I\+G\+M\+O\+I\+D@{S\+I\+G\+M\+O\+I\+D}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{S\+I\+G\+M\+O\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+G\+M\+O\+I\+D~3}}\label{la__svm_8cpp_ad754ca4856873b8cdcae292a9a51aafd}
+\hypertarget{la__svm_8cpp_a752fe4337df40966f7dd6718b6cbff1d}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!S\+V\+S@{S\+V\+S}}
+\index{S\+V\+S@{S\+V\+S}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{S\+V\+S}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+V\+S~1}}\label{la__svm_8cpp_a752fe4337df40966f7dd6718b6cbff1d}
+\hypertarget{la__svm_8cpp_a078b6c12f1ac6819cecef90ab5870276}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!T\+I\+M\+E@{T\+I\+M\+E}}
+\index{T\+I\+M\+E@{T\+I\+M\+E}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{T\+I\+M\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+I\+M\+E~2}}\label{la__svm_8cpp_a078b6c12f1ac6819cecef90ab5870276}
+
+
+\subsection{Function Documentation}
+\hypertarget{la__svm_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!binary\+\_\+load\+\_\+data@{binary\+\_\+load\+\_\+data}}
+\index{binary\+\_\+load\+\_\+data@{binary\+\_\+load\+\_\+data}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{binary\+\_\+load\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}int binary\+\_\+load\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_a1e8a8d830b07e1e2582531bfc4bf6d8d}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__svm_8cpp_ab7584d139fe92cf9be4b7b7035fbca58}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!count\+\_\+svs@{count\+\_\+svs}}
+\index{count\+\_\+svs@{count\+\_\+svs}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{count\+\_\+svs}]{\setlength{\rightskip}{0pt plus 5cm}int count\+\_\+svs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_ab7584d139fe92cf9be4b7b7035fbca58}
+\hypertarget{la__svm_8cpp_a8bbbfc2cd5ea26b69d3b880c6f509e93}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!exit\+\_\+with\+\_\+help@{exit\+\_\+with\+\_\+help}}
+\index{exit\+\_\+with\+\_\+help@{exit\+\_\+with\+\_\+help}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{exit\+\_\+with\+\_\+help}]{\setlength{\rightskip}{0pt plus 5cm}void exit\+\_\+with\+\_\+help (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_a8bbbfc2cd5ea26b69d3b880c6f509e93}
+\hypertarget{la__svm_8cpp_ad7aa79a8e6532c312fe85e60306047cd}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!finish@{finish}}
+\index{finish@{finish}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{finish}]{\setlength{\rightskip}{0pt plus 5cm}void finish (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{sv}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_ad7aa79a8e6532c312fe85e60306047cd}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__svm_8cpp_a8d038c50a80216ddc72dfaa3b3042ba0}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!kernel@{kernel}}
+\index{kernel@{kernel}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{kernel}]{\setlength{\rightskip}{0pt plus 5cm}double kernel (
+\begin{DoxyParamCaption}
+\item[{int}]{i, }
+\item[{int}]{j, }
+\item[{void $\ast$}]{kparam}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_a8d038c50a80216ddc72dfaa3b3042ba0}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__svm_8cpp_a90d1123670c4debc7852273ca8477a52}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!libsvm\+\_\+load\+\_\+data@{libsvm\+\_\+load\+\_\+data}}
+\index{libsvm\+\_\+load\+\_\+data@{libsvm\+\_\+load\+\_\+data}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{libsvm\+\_\+load\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}int libsvm\+\_\+load\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_a90d1123670c4debc7852273ca8477a52}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__svm_8cpp_af1d05f9634ad1baf5a4bd899b935bd92}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!libsvm\+\_\+save\+\_\+model@{libsvm\+\_\+save\+\_\+model}}
+\index{libsvm\+\_\+save\+\_\+model@{libsvm\+\_\+save\+\_\+model}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{libsvm\+\_\+save\+\_\+model}]{\setlength{\rightskip}{0pt plus 5cm}int libsvm\+\_\+save\+\_\+model (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{model\+\_\+file\+\_\+name}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_af1d05f9634ad1baf5a4bd899b935bd92}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__svm_8cpp_af3934217b9fe8d07578136f00518f402}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!load\+\_\+data\+\_\+file@{load\+\_\+data\+\_\+file}}
+\index{load\+\_\+data\+\_\+file@{load\+\_\+data\+\_\+file}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{load\+\_\+data\+\_\+file}]{\setlength{\rightskip}{0pt plus 5cm}void load\+\_\+data\+\_\+file (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_af3934217b9fe8d07578136f00518f402}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__svm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!main@{main}}
+\index{main@{main}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__svm_8cpp_a02ca210f2ce7532d46b3543865866408}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!make\+\_\+old@{make\+\_\+old}}
+\index{make\+\_\+old@{make\+\_\+old}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{make\+\_\+old}]{\setlength{\rightskip}{0pt plus 5cm}void make\+\_\+old (
+\begin{DoxyParamCaption}
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_a02ca210f2ce7532d46b3543865866408}
+\hypertarget{la__svm_8cpp_ad546c810dcceaa487a455e63ffbbbc64}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}bool operator$<$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf I\+D} \&}]{x, }
+\item[{const {\bf I\+D} \&}]{y}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_ad546c810dcceaa487a455e63ffbbbc64}
+\hypertarget{la__svm_8cpp_a15f26fdd66eabc2d70d032433a9c8a50}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!parse\+\_\+command\+\_\+line@{parse\+\_\+command\+\_\+line}}
+\index{parse\+\_\+command\+\_\+line@{parse\+\_\+command\+\_\+line}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{parse\+\_\+command\+\_\+line}]{\setlength{\rightskip}{0pt plus 5cm}void parse\+\_\+command\+\_\+line (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv, }
+\item[{char $\ast$}]{input\+\_\+file\+\_\+name, }
+\item[{char $\ast$}]{model\+\_\+file\+\_\+name}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_a15f26fdd66eabc2d70d032433a9c8a50}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__svm_8cpp_a488f426cc2dc0d537f8c37e3e77ef3fe}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!select@{select}}
+\index{select@{select}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{select}]{\setlength{\rightskip}{0pt plus 5cm}int select (
+\begin{DoxyParamCaption}
+\item[{{\bf lasvm\+\_\+t} $\ast$}]{sv}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_a488f426cc2dc0d537f8c37e3e77ef3fe}
+
+
+Here is the call graph for this function\+:
+
+
+\hypertarget{la__svm_8cpp_a215ee43167eb7ec8c4ac0ea9c36e0dd4}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!split\+\_\+file\+\_\+load@{split\+\_\+file\+\_\+load}}
+\index{split\+\_\+file\+\_\+load@{split\+\_\+file\+\_\+load}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{split\+\_\+file\+\_\+load}]{\setlength{\rightskip}{0pt plus 5cm}int split\+\_\+file\+\_\+load (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{f}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_a215ee43167eb7ec8c4ac0ea9c36e0dd4}
+\hypertarget{la__svm_8cpp_a84dead433e3720229c34b3d17a467adf}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!train\+\_\+online@{train\+\_\+online}}
+\index{train\+\_\+online@{train\+\_\+online}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{train\+\_\+online}]{\setlength{\rightskip}{0pt plus 5cm}void train\+\_\+online (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{model\+\_\+file\+\_\+name}
+\end{DoxyParamCaption}
+)}}\label{la__svm_8cpp_a84dead433e3720229c34b3d17a467adf}
+
+
+Here is the call graph for this function\+:
+
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{la__svm_8cpp_aee451b9af11b434e6a1e8482ae43e0b3}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!alpha@{alpha}}
+\index{alpha@{alpha}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{alpha}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$double$>$ alpha}}\label{la__svm_8cpp_aee451b9af11b434e6a1e8482ae43e0b3}
+\hypertarget{la__svm_8cpp_ab80150b8bb2459344f9813f1abc7d57c}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!alpha\+\_\+tol@{alpha\+\_\+tol}}
+\index{alpha\+\_\+tol@{alpha\+\_\+tol}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{alpha\+\_\+tol}]{\setlength{\rightskip}{0pt plus 5cm}double alpha\+\_\+tol}}\label{la__svm_8cpp_ab80150b8bb2459344f9813f1abc7d57c}
+\hypertarget{la__svm_8cpp_a798947bd96f7e2615d107b383cc4b9c6}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!b0@{b0}}
+\index{b0@{b0}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{b0}]{\setlength{\rightskip}{0pt plus 5cm}double b0}}\label{la__svm_8cpp_a798947bd96f7e2615d107b383cc4b9c6}
+\hypertarget{la__svm_8cpp_adebe2f9e1f0903c65e30441c88d4de7d}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!binary\+\_\+files@{binary\+\_\+files}}
+\index{binary\+\_\+files@{binary\+\_\+files}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{binary\+\_\+files}]{\setlength{\rightskip}{0pt plus 5cm}int binary\+\_\+files =0}}\label{la__svm_8cpp_adebe2f9e1f0903c65e30441c88d4de7d}
+\hypertarget{la__svm_8cpp_a8987032f6f7d7cfaa0ff4e2a62ae08fe}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!C@{C}}
+\index{C@{C}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{C}]{\setlength{\rightskip}{0pt plus 5cm}double C =1}}\label{la__svm_8cpp_a8987032f6f7d7cfaa0ff4e2a62ae08fe}
+\hypertarget{la__svm_8cpp_af473d5046485f84c42f1c93fa1f61c97}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!C\+\_\+neg@{C\+\_\+neg}}
+\index{C\+\_\+neg@{C\+\_\+neg}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{C\+\_\+neg}]{\setlength{\rightskip}{0pt plus 5cm}double C\+\_\+neg =1}}\label{la__svm_8cpp_af473d5046485f84c42f1c93fa1f61c97}
+\hypertarget{la__svm_8cpp_ad8b0e0f37801dda52ab960296dcab2f4}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!C\+\_\+pos@{C\+\_\+pos}}
+\index{C\+\_\+pos@{C\+\_\+pos}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{C\+\_\+pos}]{\setlength{\rightskip}{0pt plus 5cm}double C\+\_\+pos =1}}\label{la__svm_8cpp_ad8b0e0f37801dda52ab960296dcab2f4}
+\hypertarget{la__svm_8cpp_adc2cfac3a357c5424aafa9d351a2e6ea}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!cache\+\_\+size@{cache\+\_\+size}}
+\index{cache\+\_\+size@{cache\+\_\+size}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{cache\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}int cache\+\_\+size =256}}\label{la__svm_8cpp_adc2cfac3a357c5424aafa9d351a2e6ea}
+\hypertarget{la__svm_8cpp_a69c03079cca0af73bcddd224ed00322b}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!candidates@{candidates}}
+\index{candidates@{candidates}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{candidates}]{\setlength{\rightskip}{0pt plus 5cm}int candidates =50}}\label{la__svm_8cpp_a69c03079cca0af73bcddd224ed00322b}
+\hypertarget{la__svm_8cpp_a46fa624e2ba27955570a9692c94c8dd4}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!coef0@{coef0}}
+\index{coef0@{coef0}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{coef0}]{\setlength{\rightskip}{0pt plus 5cm}double coef0 =0}}\label{la__svm_8cpp_a46fa624e2ba27955570a9692c94c8dd4}
+\hypertarget{la__svm_8cpp_a898dd6a34705b5d7bc205d411556d62b}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!degree@{degree}}
+\index{degree@{degree}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{degree}]{\setlength{\rightskip}{0pt plus 5cm}double degree =3}}\label{la__svm_8cpp_a898dd6a34705b5d7bc205d411556d62b}
+\hypertarget{la__svm_8cpp_a69ddcc4c7e748a8bed9bfb2c344a0b3d}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!deltamax@{deltamax}}
+\index{deltamax@{deltamax}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{deltamax}]{\setlength{\rightskip}{0pt plus 5cm}double deltamax =1000}}\label{la__svm_8cpp_a69ddcc4c7e748a8bed9bfb2c344a0b3d}
+\hypertarget{la__svm_8cpp_a06368f0a1841271faa902c40acb691cf}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!epochs@{epochs}}
+\index{epochs@{epochs}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{epochs}]{\setlength{\rightskip}{0pt plus 5cm}int epochs =1}}\label{la__svm_8cpp_a06368f0a1841271faa902c40acb691cf}
+\hypertarget{la__svm_8cpp_a50fede7592808878f77d21ae30c411b5}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!epsgr@{epsgr}}
+\index{epsgr@{epsgr}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{epsgr}]{\setlength{\rightskip}{0pt plus 5cm}double epsgr =1e-\/3}}\label{la__svm_8cpp_a50fede7592808878f77d21ae30c411b5}
+\hypertarget{la__svm_8cpp_af9cbd1573dbba39abdcee33d18bdcc5d}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!inew@{inew}}
+\index{inew@{inew}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{inew}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$ inew}}\label{la__svm_8cpp_af9cbd1573dbba39abdcee33d18bdcc5d}
+\hypertarget{la__svm_8cpp_a4aaea5763207fdf5ea8102f2f53f3b41}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!iold@{iold}}
+\index{iold@{iold}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{iold}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$ iold}}\label{la__svm_8cpp_a4aaea5763207fdf5ea8102f2f53f3b41}
+\hypertarget{la__svm_8cpp_ad7bce3f5723771fa838e1576fe6a9b8d}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!kcalcs@{kcalcs}}
+\index{kcalcs@{kcalcs}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{kcalcs}]{\setlength{\rightskip}{0pt plus 5cm}long long kcalcs =0}}\label{la__svm_8cpp_ad7bce3f5723771fa838e1576fe6a9b8d}
+\hypertarget{la__svm_8cpp_a5a2a5a33a48f7166042c8dcb3b4267e9}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!kernel\+\_\+type@{kernel\+\_\+type}}
+\index{kernel\+\_\+type@{kernel\+\_\+type}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{kernel\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}int kernel\+\_\+type ={\bf R\+B\+F}}}\label{la__svm_8cpp_a5a2a5a33a48f7166042c8dcb3b4267e9}
+\hypertarget{la__svm_8cpp_a2812fc7dc5b3db65a9bf7da83e25bb3d}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!kernel\+\_\+type\+\_\+table@{kernel\+\_\+type\+\_\+table}}
+\index{kernel\+\_\+type\+\_\+table@{kernel\+\_\+type\+\_\+table}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{kernel\+\_\+type\+\_\+table}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ kernel\+\_\+type\+\_\+table\mbox{[}$\,$\mbox{]} = \{\char`\"{}linear\char`\"{},\char`\"{}polynomial\char`\"{},\char`\"{}rbf\char`\"{},\char`\"{}sigmoid\char`\"{}\}}}\label{la__svm_8cpp_a2812fc7dc5b3db65a9bf7da83e25bb3d}
+\hypertarget{la__svm_8cpp_a88f07aa662d01a4b806a72ed2de422f1}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!kgamma@{kgamma}}
+\index{kgamma@{kgamma}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{kgamma}]{\setlength{\rightskip}{0pt plus 5cm}double kgamma =-\/1}}\label{la__svm_8cpp_a88f07aa662d01a4b806a72ed2de422f1}
+\hypertarget{la__svm_8cpp_a057af9bceb8ab3ca5dc7405dfbabc676}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!kparam@{kparam}}
+\index{kparam@{kparam}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{kparam}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$double$>$ kparam}}\label{la__svm_8cpp_a057af9bceb8ab3ca5dc7405dfbabc676}
+\hypertarget{la__svm_8cpp_a742204794ea328ba293fe59cec79b990}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!m@{m}}
+\index{m@{m}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{m}]{\setlength{\rightskip}{0pt plus 5cm}int m =0}}\label{la__svm_8cpp_a742204794ea328ba293fe59cec79b990}
+\hypertarget{la__svm_8cpp_a4602048b8e438a0830a7b27030573b8f}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!max\+\_\+alpha@{max\+\_\+alpha}}
+\index{max\+\_\+alpha@{max\+\_\+alpha}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{max\+\_\+alpha}]{\setlength{\rightskip}{0pt plus 5cm}double max\+\_\+alpha}}\label{la__svm_8cpp_a4602048b8e438a0830a7b27030573b8f}
+\hypertarget{la__svm_8cpp_a3875f818be825762ae9d4c0f88e7976c}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!max\+\_\+index@{max\+\_\+index}}
+\index{max\+\_\+index@{max\+\_\+index}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{max\+\_\+index}]{\setlength{\rightskip}{0pt plus 5cm}int max\+\_\+index =0}}\label{la__svm_8cpp_a3875f818be825762ae9d4c0f88e7976c}
+\hypertarget{la__svm_8cpp_ad3c1812555bb523d7f11f596fa7f722d}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!optimizer@{optimizer}}
+\index{optimizer@{optimizer}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{optimizer}]{\setlength{\rightskip}{0pt plus 5cm}int optimizer ={\bf O\+N\+L\+I\+N\+E\+\_\+\+W\+I\+T\+H\+\_\+\+F\+I\+N\+I\+S\+H\+I\+N\+G}}}\label{la__svm_8cpp_ad3c1812555bb523d7f11f596fa7f722d}
+\hypertarget{la__svm_8cpp_af7ae7bfb2978be24b3325a8724769ddf}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!report\+\_\+file\+\_\+name@{report\+\_\+file\+\_\+name}}
+\index{report\+\_\+file\+\_\+name@{report\+\_\+file\+\_\+name}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{report\+\_\+file\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}char report\+\_\+file\+\_\+name\mbox{[}1024\mbox{]}}}\label{la__svm_8cpp_af7ae7bfb2978be24b3325a8724769ddf}
+\hypertarget{la__svm_8cpp_a7592250d2145d1bdb60c234460fcd44c}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!saves@{saves}}
+\index{saves@{saves}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{saves}]{\setlength{\rightskip}{0pt plus 5cm}int saves =1}}\label{la__svm_8cpp_a7592250d2145d1bdb60c234460fcd44c}
+\hypertarget{la__svm_8cpp_aa830959cbf76b373f2c9cf8dc4538b11}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!select\+\_\+size@{select\+\_\+size}}
+\index{select\+\_\+size@{select\+\_\+size}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{select\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$double$>$ select\+\_\+size}}\label{la__svm_8cpp_aa830959cbf76b373f2c9cf8dc4538b11}
+\hypertarget{la__svm_8cpp_a1b3df8497de6f29e4076275ad104186b}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!selection\+\_\+type@{selection\+\_\+type}}
+\index{selection\+\_\+type@{selection\+\_\+type}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{selection\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}int selection\+\_\+type ={\bf R\+A\+N\+D\+O\+M}}}\label{la__svm_8cpp_a1b3df8497de6f29e4076275ad104186b}
+\hypertarget{la__svm_8cpp_aeb56c54398396268669f656904840fe5}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!split\+\_\+file\+\_\+name@{split\+\_\+file\+\_\+name}}
+\index{split\+\_\+file\+\_\+name@{split\+\_\+file\+\_\+name}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{split\+\_\+file\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}char split\+\_\+file\+\_\+name\mbox{[}1024\mbox{]} =\char`\"{}\textbackslash{}0\char`\"{}}}\label{la__svm_8cpp_aeb56c54398396268669f656904840fe5}
+\hypertarget{la__svm_8cpp_a34ea2b3340867277172968dbbb844842}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!splits@{splits}}
+\index{splits@{splits}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{splits}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf I\+D}$>$ splits}}\label{la__svm_8cpp_a34ea2b3340867277172968dbbb844842}
+\hypertarget{la__svm_8cpp_a46019af49d287d12d30384d931215514}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!sv1@{sv1}}
+\index{sv1@{sv1}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{sv1}]{\setlength{\rightskip}{0pt plus 5cm}int sv1}}\label{la__svm_8cpp_a46019af49d287d12d30384d931215514}
+\hypertarget{la__svm_8cpp_ae8bb4afe85dcd72ed9ce2cfec1af7071}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!sv2@{sv2}}
+\index{sv2@{sv2}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{sv2}]{\setlength{\rightskip}{0pt plus 5cm}int sv2}}\label{la__svm_8cpp_ae8bb4afe85dcd72ed9ce2cfec1af7071}
+\hypertarget{la__svm_8cpp_ad57972a321b4bfbffd2c54bfcdd41f97}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!termination\+\_\+type@{termination\+\_\+type}}
+\index{termination\+\_\+type@{termination\+\_\+type}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{termination\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}int termination\+\_\+type =0}}\label{la__svm_8cpp_ad57972a321b4bfbffd2c54bfcdd41f97}
+\hypertarget{la__svm_8cpp_a3fc2e97de1d0b4515dedaeaf0a55d674}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!use\+\_\+b0@{use\+\_\+b0}}
+\index{use\+\_\+b0@{use\+\_\+b0}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{use\+\_\+b0}]{\setlength{\rightskip}{0pt plus 5cm}int use\+\_\+b0 =1}}\label{la__svm_8cpp_a3fc2e97de1d0b4515dedaeaf0a55d674}
+\hypertarget{la__svm_8cpp_a1bdcfae3209cbd96db35a2ae356fa15e}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!verbosity@{verbosity}}
+\index{verbosity@{verbosity}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{verbosity}]{\setlength{\rightskip}{0pt plus 5cm}int verbosity =1}}\label{la__svm_8cpp_a1bdcfae3209cbd96db35a2ae356fa15e}
+\hypertarget{la__svm_8cpp_a8e491d506a3d8600b99aa775738cb157}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!X@{X}}
+\index{X@{X}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{X}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf lasvm\+\_\+sparsevector\+\_\+t}$\ast$$>$ X}}\label{la__svm_8cpp_a8e491d506a3d8600b99aa775738cb157}
+\hypertarget{la__svm_8cpp_af6f89d5fafde9c758f23900c0dfabeda}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!x\+\_\+square@{x\+\_\+square}}
+\index{x\+\_\+square@{x\+\_\+square}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{x\+\_\+square}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$double$>$ x\+\_\+square}}\label{la__svm_8cpp_af6f89d5fafde9c758f23900c0dfabeda}
+\hypertarget{la__svm_8cpp_a7ca2957eec35d8ed5aae9333bb157282}{\index{la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}!Y@{Y}}
+\index{Y@{Y}!la\+\_\+svm.\+cpp@{la\+\_\+svm.\+cpp}}
+\subsubsection[{Y}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$int$>$ Y}}\label{la__svm_8cpp_a7ca2957eec35d8ed5aae9333bb157282}
