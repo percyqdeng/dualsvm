@@ -1,12 +1,10 @@
-
-
 import os
 import sys
 import scipy.io
 import numpy as np
 import matplotlib.pyplot as plt
 import numpy.linalg as la
-import scg_lasso as lasso
+import scg_lasso
 
 
 class LassoLR(object):
@@ -19,14 +17,15 @@ class LassoLR(object):
         self.lmda = lmda
         self.w = None
         self.T = T
-        self.num_iter = None
+        self.num_iters = None
+        self.num_features = None
         self.num_zs = None
+        self.obj = None
 
     def fit(self, xtrain, ytrain):
         n, p = xtrain.shape
-        self.w, self.train_err, self.num_zs, self.num_iter = \
-            lasso.train_lassolr(x=xtrain, y=ytrain, b=np.int(self.b), c=np.int(self.c), lmda=self.lmda, T=np.uint64(self.T))
-
+        self.w, self.obj, self.num_zs, self.num_iters, self.num_features = \
+            scg_lasso.train(x=xtrain, y=ytrain, b=np.int(self.b), c=np.int(self.c), lmda=self.lmda, T=np.uint64(self.T))
 
     def predict(self, xtest):
         y = xtest.dot(self.w)

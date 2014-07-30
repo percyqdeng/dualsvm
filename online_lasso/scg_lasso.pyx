@@ -21,7 +21,7 @@ ctypedef np.int_t dtypei_t
 @cython.cdivision(True)
 @cython.wraparound(False)
 
-def train_lassolr(double [:,::1] x, int[::1]y, int b=1, int c=2, double lmda=0.1, Py_ssize_t T=1000):
+def train(double [:,::1] x, int[::1]y, int b=1, int c=2, double lmda=0.1, Py_ssize_t T=1000):
     """
     online training lassolr, using stochastic coordinate gradient method
     :param x:
@@ -34,9 +34,9 @@ def train_lassolr(double [:,::1] x, int[::1]y, int b=1, int c=2, double lmda=0.1
     """
     cdef Py_ssize_t i, j, t
     cdef Py_ssize_t n, p
-    assert(c<=p and b<=p)
     n = x.shape[0]
     p = x.shape[1]
+    assert(c<=p and b<=p)
     cdef Py_ssize_t [::1] I = np.zeros(c, dtype=np.intp)
     cdef Py_ssize_t [::1] J = np.zeros(b, dtype=np.intp)
     cdef Py_ssize_t [::1] u = np.zeros(p, dtype=np.intp)
@@ -49,13 +49,15 @@ def train_lassolr(double [:,::1] x, int[::1]y, int b=1, int c=2, double lmda=0.1
     cdef double[::1] accum_grad = np.zeros(p)  # accumulated stochastic coordinate gradient
     cdef Py_ssize_t ind
     cdef double sig, D, gm
-    cdef vector [double] num_iter
+    cdef vector [double] num_iters
+    cdef vector [double] num_features
     cdef vector [double] train_res
     cdef vector [double] num_zs # number of zeros
     cdef vector [double] sqnorm_grad
     cdef Py_ssize_t interval = 1
     cdef Py_ssize_t count
     cdef double tmp
+    cdef double tmp2
     sig = np.sqrt(p**3/c)
     D = np.sqrt(p * 1)
     gm = fmax(2*c, np.sqrt(2.0*b*(T+1.0)/p)*sig/D)
@@ -75,29 +77,27 @@ def train_lassolr(double [:,::1] x, int[::1]y, int b=1, int c=2, double lmda=0.1
             accum_grad[J[j]] += cur_grad
             w_tilde[J[j]] += (t+1 - u[J[j]]) * w[J[j]]
             l[J[j]] += lmda
-            if fabs(accum_grad[J[j]]) <= l[J[j]]:
-                w[J[j]] = 0
-                flag[J[j]] = 1
-            else:
-                w[J[j]] = - (accum_grad[J[j]] - l[J[j]]*sign_func(accum_grad[J[j]]) ) / gm
-                flag[J[j]] = 0
+            tmp2 = fabs(accum_grad[J[j]])
+            flag[J[j]] = (tmp2<=l[J[j]])
+            w[J[j]] = - sign_func(accum_grad[J[j]]) * fmax(tmp2-l[J[j]], 0) / gm
             u[J[j]] = t + 1
         if interval == t:
             # compute train error, # of zeros
-            num_iter.push_back(t)
+            num_iters.push_back(t)
+            num_features.push_back(t * b)
             train_res.push_back(eval_lasso_obj(w, x, y, lmda))
-            interval *= 2
-            # interval += 200
+            # interval *= 2
+            interval += 200
             count = 0
             for i in xrange(p):
                count += flag[i]
             num_zs.push_back(count)
     for j in xrange(p):
         w_bar[j] = (w_tilde[j] + (T+2 - u[j])*w[j]) / (T+1)
-    return np.asarray(w_bar), train_res, num_zs, num_iter
+    return np.asarray(w_bar), train_res, num_zs, num_iters, num_features
 
 
-def train_test_lassolr(double [:,::1] x, int[::1]y, double[:,::1]xtest, int[:]ytest,
+def train_test(double [:,::1] x, int[::1]y, double[:,::1]xtest, int[::1]ytest,
                        int b=1, int c=2, double lmda=0.1, Py_ssize_t T=1000):
     """
     train and test lasso with limited resource, using stochastic coordinate gradient method
@@ -111,9 +111,9 @@ def train_test_lassolr(double [:,::1] x, int[::1]y, double[:,::1]xtest, int[:]yt
     """
     cdef Py_ssize_t i, j, t
     cdef Py_ssize_t n, p
-    assert(c<=p and b<=p)
     n = x.shape[0]
     p = x.shape[1]
+    assert(c<=p and b<=p)
     cdef Py_ssize_t [::1] I = np.zeros(c, dtype=np.intp)
     cdef Py_ssize_t [::1] J = np.zeros(b, dtype=np.intp)
     cdef Py_ssize_t [::1] u = np.zeros(p, dtype=np.intp)
@@ -126,7 +126,8 @@ def train_test_lassolr(double [:,::1] x, int[::1]y, double[:,::1]xtest, int[:]yt
     cdef double[::1] accum_grad = np.zeros(p)  # accumulated stochastic coordinate gradient
     cdef Py_ssize_t ind
     cdef double sig, D, gm
-    cdef vector [double] num_iter
+    cdef vector [double] num_iters
+    cdef vector [double] num_features
     cdef vector [double] train_res
     cdef vector [double] test_res
     cdef vector [double] num_zs # number of zeros
@@ -134,6 +135,7 @@ def train_test_lassolr(double [:,::1] x, int[::1]y, double[:,::1]xtest, int[:]yt
     cdef Py_ssize_t interval = 1
     cdef Py_ssize_t count
     cdef double tmp
+    cdef double tmp2
     sig = np.sqrt(p**3/c)
     D = np.sqrt(p * 1)
     gm = fmax(2*c, np.sqrt(2.0*b*(T+1.0)/p)*sig/D)
@@ -153,27 +155,32 @@ def train_test_lassolr(double [:,::1] x, int[::1]y, double[:,::1]xtest, int[:]yt
             accum_grad[J[j]] += cur_grad
             w_tilde[J[j]] += (t+1 - u[J[j]]) * w[J[j]]
             l[J[j]] += lmda
-            if fabs(accum_grad[J[j]]) <= l[J[j]]:
-                w[J[j]] = 0
-                flag[J[j]] = 1
-            else:
-                w[J[j]] = - (accum_grad[J[j]] - l[J[j]]*sign_func(accum_grad[J[j]]) ) / gm
-                flag[J[j]] = 0
+
+            tmp2 = fabs(accum_grad[J[j]])
+            flag[J[j]] = (tmp2<=l[J[j]])
+            w[J[j]] = - sign_func(accum_grad[J[j]]) * fmax(tmp2-l[J[j]], 0) / gm
+            # if fabs(accum_grad[J[j]]) <= l[J[j]]:
+            #     w[J[j]] = 0
+            #     flag[J[j]] = 1
+            # else:
+            #     w[J[j]] = - (accum_grad[J[j]] - l[J[j]]*sign_func(accum_grad[J[j]]) ) / gm
+            #     flag[J[j]] = 0
             u[J[j]] = t + 1
         if interval == t:
             # compute train error, # of zeros
-            num_iter.push_back(t)
+            num_iters.push_back(t+1)
+            num_features.push_back((t+1) * (b+c))
             train_res.push_back(eval_lasso_obj(w, x, y, lmda))
             test_res.push_back(eval_lasso_obj(w, xtest, ytest, lmda))
-            interval *= 2
-            # interval += 200
+            # interval *= 2
+            interval += 50
             count = 0
             for i in xrange(p):
                count += flag[i]
             num_zs.push_back(count)
     for j in xrange(p):
         w_bar[j] = (w_tilde[j] + (T+2 - u[j])*w[j]) / (T+1)
-    return np.asarray(w_bar), train_res, num_zs, num_iter
+    return np.asarray(w_bar), train_res, num_zs, num_iters
 
 
 def train_lasso(double [:,::1] x, int[::1]y, double lmda=0.1, Py_ssize_t T=1000):
@@ -188,10 +195,20 @@ def train_lasso(double [:,::1] x, int[::1]y, double lmda=0.1, Py_ssize_t T=1000)
 
 # def online_train_validate()
 cdef inline sign_func(double x):
-    if x >= 0:
+    if x > 0:
         return 1
-    else:
+    elif x<0:
         return -1
+    else:
+        return 0
+
+cdef inline soft_threshold(double a, double b, double c):
+    """
+    min 0.5*a*x^2 + b*x + c*|x|
+    :return: -sign(b)/a *max(|b|-c,0)
+    """
+    return -sign_func(b) * fmax(fabs(b)-c, 0) / a
+
 
 
 cdef eval_lasso_obj(double[::1]w, double[:,::1] x, int[::1]y, double lmda):
