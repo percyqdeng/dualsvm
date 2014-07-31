@@ -5,7 +5,7 @@ import sklearn.cross_validation as cv
 from sklearn.linear_model import SGDClassifier
 from load_data import convert_binary, load_usps
 from da_lasso import *
-import mylasso
+import cd_lasso
 
 pos_class = 3
 neg_class = 5
@@ -28,13 +28,13 @@ b = 4
 c = 4
 nsweep = 10
 T1 = nsweep * n
-rgr = LassoLR(lmda=lmda, b=b, c=c, T=T1)
+rgr = LassoLI(lmda=lmda, b=b, c=c, T=T1)
 rgr.fit(xtrain, ytrain)
 rgr.predict(xtest)
 
 
 T2 = int(T1*(b+c)/n)
-rgr2 = mylasso.CDLasso(lmda=lmda, T=T2)
+rgr2 = cd_lasso.CDLasso(lmda=lmda, T=T2)
 rgr2.train(xtrain, ytrain)
 
 

@@ -6,23 +6,28 @@ cimport numpy as np
 import time
 from libcpp.vector cimport vector
 from libc.stdlib cimport rand
-from libcpp cimport bool
-# cdef extern from "math.h"
 from libc.math cimport fmax
 from libc.math cimport fabs
+from libc.math cimport sqrt
 from libc.math cimport fmin
+import scipy.linalg.blas
 
 ctypedef np.float64_t dtype_t
 ctypedef np.int_t dtypei_t
 # cimport rand_funcs
-
-
+# cdef extern from "f2pyptr.h":
+#     void *f2py_pointer(object) except NULL
+#
+# ctypedef double ddot_t(
+#         int *N, double *X, int *incX, double *Y, int *incY)
+# cdef ddot_t * ddot = <ddot_t*>f2py_pointer(scipy.linalg.blas.ddot._cpointer)
+"""
+regularized dual averaging method
+"""
 @cython.boundscheck(False)
 @cython.cdivision(True)
 @cython.wraparound(False)
-
-def train(double [:,::1] x, int[::1]y, double[:,::1]xtest, int[::1]ytest,
-          int b=1, int c=2, double lmda=0.1, Py_ssize_t T=1000):
+def train(double [:,::1] x, int[::1]y, double[:,::1]xtest=None, int[::1]ytest=None,  double lmda=0.1, double rho=0,  Py_ssize_t T=1000):
     """
     online training lassolr, using stochastic coordinate gradient method
     :param x:
@@ -30,6 +35,7 @@ def train(double [:,::1] x, int[::1]y, double[:,::1]xtest, int[::1]ytest,
     :param b: batch size
     :param c: batch size
     :param lmda:
+    :param rho: sparsity enhancing parameter
     :param T:
     :return: w_bar, train_res, num_zs, num_iter
     """
@@ -37,74 +43,59 @@ def train(double [:,::1] x, int[::1]y, double[:,::1]xtest, int[::1]ytest,
     cdef Py_ssize_t n, p
     n = x.shape[0]
     p = x.shape[1]
-    assert(c<=p and b<=p)
-    cdef Py_ssize_t [::1] I = np.zeros(c, dtype=np.intp)
-    cdef Py_ssize_t [::1] J = np.zeros(b, dtype=np.intp)
-    cdef Py_ssize_t [::1] u = np.zeros(p, dtype=np.intp)
-    cdef double [::1] l = np.zeros(p)
     cdef int[::1] flag = np.zeros(p, dtype=np.intc)  # flag to check zero pattern, flag[i]=1 if w[i]=0; 0 otherwise
-    cdef int has_test = not (xtest is None)
-    cdef double[::1] w_tilde = np.zeros(p)
     cdef double[::1] w = np.zeros(p)
     cdef double[::1] w_bar = np.zeros(p)
-    cdef double cur_grad
-    cdef double[::1] accum_grad = np.zeros(p)  # accumulated stochastic coordinate gradient
+    cdef double[::1] g_bar = np.zeros(p)  # accumulated stochastic coordinate gradient
     cdef Py_ssize_t ind
-    cdef double sig, D, gm
+    cdef double L, D, gm, beta
     cdef vector [double] num_iters
     cdef vector [double] num_features
     cdef vector [double] train_res
     cdef vector [double] test_res
     cdef vector [double] num_zs # number of zeros
     cdef vector [double] sqnorm_grad
-    cdef Py_ssize_t num_steps=0, interval = 200
+    cdef Py_ssize_t num_steps=1, interval = 100
     cdef Py_ssize_t count
-    cdef double tmp
-    cdef double tmp2
-    sig = np.sqrt(p**3/c)
-    D = np.sqrt(p * 1)
-    gm = fmax(2*c, np.sqrt(2.0*b*(T+1.0)/p)*sig/D)
-    print "sigma %f, gamma %f" % (sig, gm)
-    r1 = RandNoRep(p)
-    r2 = RandNoRep(p)
-    for t in xrange(T+1):
-        ind = rand() % n
-        r1.k_choice(I, c)
-        r2.k_choice(J, b)
-        tmp = 0
-        for i in xrange(c):
-            tmp += x[ind, I[i]] * w[I[i]]
-        for j in xrange(b):
-            cur_grad = tmp * x[ind, J[j]] * p / c
-            cur_grad -= y[ind] * x[ind, J[j]]
-            accum_grad[J[j]] += cur_grad
-            w_tilde[J[j]] += (t+1 - u[J[j]]) * w[J[j]]
-            l[J[j]] += lmda
-            tmp2 = fabs(accum_grad[J[j]])
-            flag[J[j]] = (tmp2<=l[J[j]])
-            w[J[j]] = - sign_func(accum_grad[J[j]]) * fmax(tmp2-l[J[j]], 0) / gm
-            u[J[j]] = t + 1
-        if num_steps == t:
-            # compute train error, # of zeros
-            num_iters.push_back(t)
-            num_features.push_back(t * b)
-            train_res.push_back(eval_lasso_obj(w, x, y, lmda))
-            # interval *= 2
-            num_steps += interval
-            if has_test:
-                test_res.push_back(eval_lasso_obj(w, xtest, ytest, lmda))
+    cdef double xw
+
+    for t in xrange(1, T):
+        i = rand() % n
+        xw = myddot(x[i], w)
+        for j in xrange(p):
+            g_bar[j] = (t-1.0)/t * g_bar[j] + 1.0/t * (x[i, j] * xw - y[i] * x[i, j])
+            lmda_t = lmda + gm * rho / sqrt(t)
+            w[j] = -sqrt(t)/gm * sign_func(g_bar[j])*fmax(fabs(g_bar[j])-lmda_t, 0)
+            flag[j] = (fabs(g_bar[j]) <=lmda_t)
+            w_bar[j] = (t-1.0)/t * w_bar[j] + 1.0/t * w_bar[j]
+
+        if t == num_steps:
             count = 0
-            for i in xrange(p):
-               count += flag[i]
+            for j in xrange(p):
+                count += flag[j]
             num_zs.push_back(count)
-    for j in xrange(p):
-        w_bar[j] = (w_tilde[j] + (T+2 - u[j])*w[j]) / (T+1)
-    if not has_test:
-        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features
-    else:
-        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features
+            num_iters.push_back(t)
+            train_res.push_back(eval_lasso_obj(w, x, y, lmda))
+            if not (xtest is None):
+                test_res.push_back(eval_lasso_obj(w, xtest, y, lmda))
+            num_steps += interval
+    return np.asrray(w_bar), train_res, test_res, num_zs, num_iters, num_features
 
 
+@cython.boundscheck(False)
+@cython.cdivision(True)
+@cython.wraparound(False)
+cdef myddot(double[::1]x, double[::1]y):
+    cdef Py_ssize_t n = y.size()
+    cdef Py_ssize_t i
+    cdef double res = 0
+    for i in xrange(n):
+        res += x[i] * y[i]
+
+    return res
+
+
+# def online_train_validate()
 @cython.boundscheck(False)
 @cython.cdivision(True)
 @cython.wraparound(False)

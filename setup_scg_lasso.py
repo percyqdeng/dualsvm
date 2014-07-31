@@ -6,7 +6,7 @@ from Cython.Build import cythonize
 import numpy as np
 path = "online_lasso/"
 # path = ""
-extensions = [path+"scg_lasso.pyx"]
+extensions = [path+"scg_lasso.pyx", path+"rda_lasso.pyx"]
 setup(
     # name='',
     include_dirs=[np.get_include(), '.'],
