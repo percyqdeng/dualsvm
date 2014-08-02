@@ -21,15 +21,13 @@ ctypedef np.int_t dtypei_t
 # ctypedef double ddot_t(
 #         int *N, double *X, int *incX, double *Y, int *incY)
 # cdef ddot_t * ddot = <ddot_t*>f2py_pointer(scipy.linalg.blas.ddot._cpointer)
-"""
-regularized dual averaging method
-"""
+
 @cython.boundscheck(False)
 @cython.cdivision(True)
 @cython.wraparound(False)
 def train(double [:,::1] x, int[::1]y, double[:,::1]xtest=None, int[::1]ytest=None,  double lmda=0.1, double rho=0,  Py_ssize_t T=1000):
     """
-    online training lassolr, using stochastic coordinate gradient method
+    regularized dual averaging method on lasso
     :param x:
     :param y:
     :param b: batch size
@@ -48,17 +46,23 @@ def train(double [:,::1] x, int[::1]y, double[:,::1]xtest=None, int[::1]ytest=No
     cdef double[::1] w_bar = np.zeros(p)
     cdef double[::1] g_bar = np.zeros(p)  # accumulated stochastic coordinate gradient
     cdef Py_ssize_t ind
-    cdef double L, D, gm, beta
+    # L:  norm of gradient, D: sqrt of d(x), gm: = L/D
+    cdef double L, D, gm
+    cdef int has_test = not (xtest is None)
     cdef vector [double] num_iters
     cdef vector [double] num_features
     cdef vector [double] train_res
     cdef vector [double] test_res
     cdef vector [double] num_zs # number of zeros
-    cdef vector [double] sqnorm_grad
+    cdef vector [double] sqnorm_w
     cdef Py_ssize_t num_steps=1, interval = 100
     cdef Py_ssize_t count
-    cdef double xw
+    cdef double xw, lmda_t, res
 
+    # estimate parameters
+    D = sqrt(p)
+    L = sqrt(p**3)
+    gm = L / D
     for t in xrange(1, T):
         i = rand() % n
         xw = myddot(x[i], w)
@@ -67,26 +71,32 @@ def train(double [:,::1] x, int[::1]y, double[:,::1]xtest=None, int[::1]ytest=No
             lmda_t = lmda + gm * rho / sqrt(t)
             w[j] = -sqrt(t)/gm * sign_func(g_bar[j])*fmax(fabs(g_bar[j])-lmda_t, 0)
             flag[j] = (fabs(g_bar[j]) <=lmda_t)
-            w_bar[j] = (t-1.0)/t * w_bar[j] + 1.0/t * w_bar[j]
-
+            w_bar[j] = (t-1.0)/t * w_bar[j] + 1.0/t * w[j]
         if t == num_steps:
             count = 0
+            res = 0
             for j in xrange(p):
                 count += flag[j]
+                res += w[j] * w[j]
+            sqnorm_w.push_back(res)
             num_zs.push_back(count)
+            num_features.push_back(t * p)
             num_iters.push_back(t)
             train_res.push_back(eval_lasso_obj(w, x, y, lmda))
-            if not (xtest is None):
+            if has_test:
                 test_res.push_back(eval_lasso_obj(w, xtest, y, lmda))
             num_steps += interval
-    return np.asrray(w_bar), train_res, test_res, num_zs, num_iters, num_features
+    if has_test:
+        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features, sqnorm_w
+    else:
+        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, sqnorm_w
 
 
 @cython.boundscheck(False)
 @cython.cdivision(True)
 @cython.wraparound(False)
 cdef myddot(double[::1]x, double[::1]y):
-    cdef Py_ssize_t n = y.size()
+    cdef Py_ssize_t n = y.size
     cdef Py_ssize_t i
     cdef double res = 0
     for i in xrange(n):

@@ -1,6 +1,8 @@
 import numpy as np
-
-
+"""
+coordinate descent on lasso
+0.5/n (y-xw)^2 + lmda * ||w||_1
+"""
 
 
 def train(x, y, xtest=None, ytest=None, lmda=0.1, T=1000):
@@ -14,10 +16,11 @@ def train(x, y, xtest=None, ytest=None, lmda=0.1, T=1000):
     num_zs = []
     num_iters = []
     num_features = []
-    num_steps = 0
     train_obj = []
     test_obj = []
-    interval = 200
+    sqnorm_w = []
+    num_steps = 0
+    interval = 2
     for t, j in enumerate(ind):
         b = -np.dot(y - (z - x[:, j] * w[j]), x[:, j])
         a = xsq[j]
@@ -30,11 +33,17 @@ def train(x, y, xtest=None, ytest=None, lmda=0.1, T=1000):
         if t == num_steps:
             num_iters.append(t+1)
             num_features.append((t+1) * n)
+            sqnorm_w.append(np.linalg.norm(w)**2)
             train_obj.append(_eval_train_obj(y, z, w, lmda))
             if has_test:
                 test_obj.append(eval_lasso(xtest, ytest, w, lmda))
             num_zs.append(flag.sum())
             num_steps += interval
+
+    if has_test:
+        return w, train_obj, test_obj, num_zs, num_iters, num_features, sqnorm_w
+    else:
+        return w, train_obj, num_zs, num_iters, num_features, sqnorm_w
 
 
 def _eval_train_obj(y, z, w, lmda):

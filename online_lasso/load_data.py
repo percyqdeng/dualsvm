@@ -74,8 +74,8 @@ def load_mnist():
     data = scipy.io.loadmat(mnistpath+'mnist_all.mat')
     x = {}
     for i in range(10):
-        x[str(i)] = data['train'+str(i)]/255.0
-        x[str(i)] = np.vstack((x[str(i)], data['test'+str(i)]/255.0))
+        x[str(i)] = data['train'+str(i)]
+        x[str(i)] = np.vstack((x[str(i)], data['test'+str(i)]))
     return x
 
 def load_uci():

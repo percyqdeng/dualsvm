@@ -18,4 +18,4 @@ setup(
 # if __name__ == "__main__":
 #     os.
 
-# run setup_scg_lasso.py build_ext --inplace
+# run setup_lasso.py build_ext --inplace

@@ -7,7 +7,7 @@ lasso problem:
 0.5||y-xw||^2 + lmda * ||w||_1
 the code implements the algorithm in page 443, "Machine Learning" by Kevin Murphy
 """
-def train(double [:,::1] x, int[::1]y, int b=1, int c=2, double lmda=0.1, Py_ssize_t T=100):
+def train(double [:,::1] x, int[::1]y, double[:,::1]xtest=None, int[::1]ytest,  int b=1, int c=2, double lmda=0.1, Py_ssize_t T=100):
     cdef Py_ssize_t i, j, t, p, n
     n = x.shape[0]
     p = x.shape[1]

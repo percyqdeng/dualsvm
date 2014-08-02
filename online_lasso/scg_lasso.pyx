@@ -21,8 +21,8 @@ ctypedef np.int_t dtypei_t
 @cython.cdivision(True)
 @cython.wraparound(False)
 
-def train(double [:,::1] x, int[::1]y, double[:,::1]xtest, int[::1]ytest,
-          int b=1, int c=2, double lmda=0.1, Py_ssize_t T=1000):
+def train(double [:,::1] x, int[::1]y, double[:,::1]xtest=None, int[::1]ytest=None,
+          int b=4, int c=1, double lmda=0.1, Py_ssize_t T=1000):
     """
     online training lassolr, using stochastic coordinate gradient method
     :param x:
@@ -56,7 +56,7 @@ def train(double [:,::1] x, int[::1]y, double[:,::1]xtest, int[::1]ytest,
     cdef vector [double] train_res
     cdef vector [double] test_res
     cdef vector [double] num_zs # number of zeros
-    cdef vector [double] sqnorm_grad
+    cdef vector [double] sqnorm_w
     cdef Py_ssize_t num_steps=0, interval = 200
     cdef Py_ssize_t count
     cdef double tmp
@@ -94,15 +94,18 @@ def train(double [:,::1] x, int[::1]y, double[:,::1]xtest, int[::1]ytest,
             if has_test:
                 test_res.push_back(eval_lasso_obj(w, xtest, ytest, lmda))
             count = 0
+            tmp = 0
             for i in xrange(p):
-               count += flag[i]
+                count += flag[i]
+                tmp += w[i] * w[i]
+            sqnorm_w.push_back(tmp)
             num_zs.push_back(count)
     for j in xrange(p):
         w_bar[j] = (w_tilde[j] + (T+2 - u[j])*w[j]) / (T+1)
     if not has_test:
-        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features
+        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, sqnorm_w
     else:
-        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features
+        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features, sqnorm_w
 
 
 @cython.boundscheck(False)
