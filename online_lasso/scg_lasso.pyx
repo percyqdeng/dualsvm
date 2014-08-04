@@ -20,9 +20,8 @@ ctypedef np.int_t dtypei_t
 @cython.boundscheck(False)
 @cython.cdivision(True)
 @cython.wraparound(False)
-
 def train(double [:,::1] x, int[::1]y, double[:,::1]xtest=None, int[::1]ytest=None,
-          int b=4, int c=1, double lmda=0.1, Py_ssize_t T=1000):
+          int b=4, int c=1, double lmda=0.1, double sig_D=-1,  Py_ssize_t T=1000):
     """
     online training lassolr, using stochastic coordinate gradient method
     :param x:
@@ -42,13 +41,13 @@ def train(double [:,::1] x, int[::1]y, double[:,::1]xtest=None, int[::1]ytest=No
     cdef Py_ssize_t [::1] J = np.zeros(b, dtype=np.intp)
     cdef Py_ssize_t [::1] u = np.zeros(p, dtype=np.intp)
     cdef double [::1] l = np.zeros(p)
-    cdef int[::1] flag = np.zeros(p, dtype=np.intc)  # flag to check zero pattern, flag[i]=1 if w[i]=0; 0 otherwise
+    cdef int[::1] flag = np.ones(p, dtype=np.intc)  # flag to check zero pattern, flag[i]=1 if w[i]=0; 0 otherwise
     cdef int has_test = not (xtest is None)
     cdef double[::1] w_tilde = np.zeros(p)
     cdef double[::1] w = np.zeros(p)
     cdef double[::1] w_bar = np.zeros(p)
     cdef double cur_grad
-    cdef double[::1] accum_grad = np.zeros(p)  # accumulated stochastic coordinate gradient
+    cdef double[::1] g_tilde = np.zeros(p)  # accumulated stochastic coordinate gradient
     cdef Py_ssize_t ind
     cdef double sig, D, gm
     cdef vector [double] num_iters
@@ -57,32 +56,37 @@ def train(double [:,::1] x, int[::1]y, double[:,::1]xtest=None, int[::1]ytest=No
     cdef vector [double] test_res
     cdef vector [double] num_zs # number of zeros
     cdef vector [double] sqnorm_w
-    cdef Py_ssize_t num_steps=0, interval = 200
+    cdef Py_ssize_t num_steps=0, interval
     cdef Py_ssize_t count
-    cdef double tmp
-    cdef double tmp2
-    sig = np.sqrt(p**3/c)
-    D = np.sqrt(p * 1)
-    gm = fmax(2*c, np.sqrt(2.0*b*(T+1.0)/p)*sig/D)
-    print "sigma %f, gamma %f" % (sig, gm)
+    if T < 20:
+        interval = 1
+    else:
+        interval = T / 20
+    cdef double tmp, tmp2, xw
+    if sig_D < 0:
+        sig = np.sqrt(p**3/c)
+        D = np.sqrt(p * 1)
+        sig_D = sig / D
+    gm = fmax(2*c, np.sqrt(2.0*b*(T+1.0)/p)* sig_D)
+    print "---------------------scg lasso-------------------\n" \
+          "lamda %f, gamma %f, b:%d, c:%d" % (lmda, gm, b, c)
     r1 = RandNoRep(p)
     r2 = RandNoRep(p)
     for t in xrange(T+1):
         ind = rand() % n
         r1.k_choice(I, c)
         r2.k_choice(J, b)
-        tmp = 0
+        xw = 0
         for i in xrange(c):
-            tmp += x[ind, I[i]] * w[I[i]]
+            xw += x[ind, I[i]] * w[I[i]]
         for j in xrange(b):
-            cur_grad = tmp * x[ind, J[j]] * p / c
-            cur_grad -= y[ind] * x[ind, J[j]]
-            accum_grad[J[j]] += cur_grad
+            cur_grad = xw * x[ind, J[j]] * p / c - y[ind] * x[ind, J[j]]
+            g_tilde[J[j]] += cur_grad
             w_tilde[J[j]] += (t+1 - u[J[j]]) * w[J[j]]
             l[J[j]] += lmda
-            tmp2 = fabs(accum_grad[J[j]])
+            tmp2 = fabs(g_tilde[J[j]])
             flag[J[j]] = (tmp2<=l[J[j]])
-            w[J[j]] = - sign_func(accum_grad[J[j]]) * fmax(tmp2-l[J[j]], 0) / gm
+            w[J[j]] = - sign_func(g_tilde[J[j]]) * fmax(tmp2-l[J[j]], 0) / gm
             u[J[j]] = t + 1
         if num_steps == t:
             # compute train error, # of zeros
@@ -100,8 +104,10 @@ def train(double [:,::1] x, int[::1]y, double[:,::1]xtest=None, int[::1]ytest=No
                 tmp += w[i] * w[i]
             sqnorm_w.push_back(tmp)
             num_zs.push_back(count)
+    # for j in xrange(p):
+    #     w_bar[j] = (w_tilde[j] + (T+2 - u[j])*w[j]) / (T+1)
     for j in xrange(p):
-        w_bar[j] = (w_tilde[j] + (T+2 - u[j])*w[j]) / (T+1)
+        w_bar[j] = w[j]
     if not has_test:
         return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, sqnorm_w
     else:
@@ -133,7 +139,7 @@ cdef inline soft_threshold(double a, double b, double c):
 @cython.wraparound(False)
 cdef eval_lasso_obj(double[::1]w, double[:,::1] x, int[::1]y, double lmda):
     """
-    evaluate objective 0.5* ||Y-Xw||^2 + lmda * |w|
+    evaluate objective 0.5/n* ||Y-Xw||^2 + lmda * |w|
     """
     cdef Py_ssize_t n = x.shape[0]
     cdef Py_ssize_t p = x.shape[1]

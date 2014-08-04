@@ -1,3 +1,4 @@
+import sys
 import numpy as np
 """
 coordinate descent on lasso
@@ -9,7 +10,7 @@ def train(x, y, xtest=None, ytest=None, lmda=0.1, T=1000):
     n, p = x.shape
     xsq = np.sum(x ** 2, axis=0)
     w = np.zeros(p)
-    flag = np.zeros(p)
+    flag = np.ones(p)
     has_test = not(xtest is None)
     z = x.dot(w)
     ind = np.random.choice(p, T, replace=True)
@@ -20,17 +21,21 @@ def train(x, y, xtest=None, ytest=None, lmda=0.1, T=1000):
     test_obj = []
     sqnorm_w = []
     num_steps = 0
-    interval = 2
+    interval = np.maximum(1, T/20)
+    small_number = 1e-10
     for t, j in enumerate(ind):
-        b = -np.dot(y - (z - x[:, j] * w[j]), x[:, j])
-        a = xsq[j]
+        b = -np.dot(y - (z - x[:, j] * w[j]), x[:, j]) / n
+        a = xsq[j] / n
+        if a < small_number:
+            continue
         c = lmda
         wj_new = - np.sign(b) * np.maximum(np.fabs(b) - c, 0) / a
         flag[j] = (np.fabs(b) <= c)
-
+        if np.isnan(wj_new):
+            print 'warning, nan'
         z += x[:, j] * (wj_new - w[j])
         w[j] = wj_new
-        if t == num_steps:
+        if num_steps <= t:
             num_iters.append(t+1)
             num_features.append((t+1) * n)
             sqnorm_w.append(np.linalg.norm(w)**2)
@@ -47,7 +52,7 @@ def train(x, y, xtest=None, ytest=None, lmda=0.1, T=1000):
 
 
 def _eval_train_obj(y, z, w, lmda):
-    return 0.5/y.size * np.sum((y - z) ** 2) + lmda * (np.fabs(w)).sum()
+    return 0.5/y.size * np.sum((y - z) ** 2) + lmda * (np.linalg.norm(w, ord=1))
 
 
 def eval_lasso(x, y, w, lmda):
