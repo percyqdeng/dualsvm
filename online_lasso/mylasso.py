@@ -81,6 +81,9 @@ class LassoLI(object):
         res = 0.5/n * np.sum((y-x.dot(self.w))**2) + lmda * np.linalg.norm(self.w, ord=1)
         return res
 
+    def sparsity(self):
+        return np.sum(np.fabs(self.w) < 1e-10)
+
     def predict(self, xtest):
         y = xtest.dot(self.w)
         return y

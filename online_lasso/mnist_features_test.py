@@ -7,7 +7,9 @@ from load_data import convert_binary, load_usps
 from mylasso import *
 from load_data import load_mnist, convert_binary
 
-
+"""
+experiments to relation between test number of features and optimization error
+"""
 
 data = load_mnist()
 pos_ind = 3
@@ -51,6 +53,18 @@ T4 = nsweep * ntrain
 rgr4 = LassoLI(lmda=lmda, b=b, c=c, T=T4, algo='rda2', sig_D=sig_D)
 rgr4.fit(xtrain, ytrain, xtest=xtest, ytest=ytest)
 
+
+print "error of w_bar: \n" \
+      "scg %f \n" \
+      "rda %f \n" \
+      "rda2 %f \n" \
+      %(rgr.eval_lasso_obj(xtrain, ytrain, lmda), rgr2.eval_lasso_obj(xtrain, ytrain, lmda), rgr4.eval_lasso_obj(xtrain, ytrain, lmda))
+
+print "nzs of w_bar: \n" \
+      "scg %f \n" \
+      "rda %f \n" \
+      "rda2 %f \n" \
+    %(rgr.sparsity(), rgr2.sparsity(), rgr4.sparsity())
 
 row = 1
 col = 2
