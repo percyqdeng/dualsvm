@@ -10,8 +10,8 @@ from load_data import load_mnist, convert_binary
 
 """
 experiments on relation between sparse pattern and lmda
-
 """
+
 data = load_mnist()
 pos_ind = 6
 neg_ind = 5
@@ -20,8 +20,8 @@ lmda_list = [0.0005, 0.001, 0.01, 0.1, 0.3]
 x, y = convert_binary(data, pos_ind, neg_ind)
 n, p = x.shape
 x = x.astype(float)
-n_iter = 30
-ss = cv.StratifiedShuffleSplit(y=y, n_iter=20, test_size=0.1, random_state=1)
+n_iter = 50
+ss = cv.StratifiedShuffleSplit(y=y, n_iter=n_iter, test_size=0.3, random_state=1)
 nzs_scg_T = np.zeros((n_iter, len(lmda_list)))
 nzs_scg_bar = np.zeros((n_iter, len(lmda_list)))
 nzs_rda_T = np.zeros((n_iter, len(lmda_list)))
@@ -58,6 +58,24 @@ for i, (train_idx, test_idx) in enumerate(ss):
         nzs_cd_bar[i, j] = rgr4.sparsity()
 
 
+plt.figure()
+plt.errorbar(np.log(lmda_list), nzs_scg_T.mean(axis=0), yerr=np.std(nzs_scg_T, axis=0), fmt='--', label='scg')
+plt.errorbar(np.log(lmda_list), nzs_rda_T.mean(axis=0), yerr=np.std(nzs_rda_T, axis=0), fmt='-', label='rda')
+plt.errorbar(np.log(lmda_list), nzs_rda2_T.mean(axis=0), yerr=np.std(nzs_rda2_T, axis=0), fmt='-.', label='rda2')
+plt.errorbar(np.log(lmda_list), nzs_cd_T.mean(axis=0), yerr=np.std(nzs_cd_T, axis=0), fmt='-.', label='cd')
+plt.ylabel(r'number of zeros in $w_T$')
+plt.xlabel(r'$\lambda$')
+plt.legend(loc='best')
+plt.savefig('../output/n_zs_T.eps')
+plt.savefig('../output/n_zs_T.pdf')
 
-
-
+plt.figure()
+plt.errorbar(np.log(lmda_list), nzs_scg_bar.mean(axis=0), yerr=np.std(nzs_scg_bar, axis=0), fmt='--', label='scg')
+plt.errorbar(np.log(lmda_list), nzs_rda_bar.mean(axis=0), yerr=np.std(nzs_rda_bar, axis=0), fmt='-', label='rda')
+plt.errorbar(np.log(lmda_list), nzs_rda2_bar.mean(axis=0), yerr=np.std(nzs_rda2_bar, axis=0), fmt='-.', label='rda2')
+plt.errorbar(np.log(lmda_list), nzs_cd_bar.mean(axis=0), yerr=np.std(nzs_cd_bar, axis=0), fmt='-.', label='cd')
+plt.legend(loc='best')
+plt.ylabel(r'number of zeros in $\bar{w}$')
+plt.xlabel(r'$\lambda$')
+plt.savefig('../output/n_zs_bar.eps')
+plt.savefig('../output/n_zs_bar.pdf')
