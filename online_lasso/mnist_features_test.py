@@ -8,7 +8,7 @@ from mylasso import *
 from load_data import load_mnist, convert_binary
 
 """
-experiments to relation between test number of features and optimization error
+experiments on relation between test number of features and optimization error
 """
 
 data = load_mnist()
@@ -21,9 +21,10 @@ x, y = convert_binary(data, pos_ind, neg_ind)
 # ind = np.where(xsum>0)  # return object is tuple
 # x = x[:, ind[0]]
 x = x.astype(float)
+y = y.astype(float)
 n, p = x.shape
 random_state = 2
-lmda = 0.01
+lmda = 0.1
 xtrain, xtest, ytrain, ytest = cv.train_test_split(x, y, test_size=0.1, random_state=random_state)
 min_max_scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
 xtrain = min_max_scaler.fit_transform(xtrain)
@@ -33,9 +34,9 @@ ntrain = ytrain.size
 b = 4
 c = 1
 eta = 0.1
-sig_D = 100
+sig_D = 410
 # fix number of examples
-nsweep = 2
+nsweep = 30
 T1 = nsweep * ntrain
 rgr = LassoLI(lmda=lmda, b=b, c=c, T=T1, algo='scg', sig_D=sig_D)
 rgr.fit(xtrain=xtrain, ytrain=ytrain, xtest=xtest, ytest=ytest)

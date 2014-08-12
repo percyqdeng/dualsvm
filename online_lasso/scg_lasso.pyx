@@ -20,7 +20,7 @@ ctypedef np.int_t dtypei_t
 @cython.boundscheck(False)
 @cython.cdivision(True)
 @cython.wraparound(False)
-def train(double [:,::1] x, int[::1]y, double[:,::1]xtest=None, int[::1]ytest=None,
+def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]ytest=None,
           int b=4, int c=1, double lmda=0.1, double sig_D=-1,  Py_ssize_t T=1000):
     """
     online training lassolr, using stochastic coordinate gradient method
@@ -137,7 +137,7 @@ cdef inline soft_threshold(double a, double b, double c):
 @cython.boundscheck(False)
 @cython.cdivision(True)
 @cython.wraparound(False)
-cdef eval_lasso_obj(double[::1]w, double[:,::1] x, int[::1]y, double lmda):
+cdef eval_lasso_obj(double[::1]w, double[:,::1] x, double[::1]y, double lmda):
     """
     evaluate objective 0.5/n* ||Y-Xw||^2 + lmda * |w|
     """

@@ -19,9 +19,10 @@ xsum = x.sum(axis=0)
 ind = np.where(xsum>0)  # return object is tuple
 x = x[:, ind[0]]
 x = x.astype(float)
+y = y.astype(float)
 n, p = x.shape
 random_state = 21
-lmda = 0.1
+lmda = 0.01
 nsweep = 1
 xtrain, xtest, ytrain, ytest = cv.train_test_split(x, y, test_size=0.2, random_state=random_state)
 min_max_scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))

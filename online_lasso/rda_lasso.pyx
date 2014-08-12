@@ -25,7 +25,7 @@ ctypedef np.int_t dtypei_t
 @cython.boundscheck(False)
 @cython.cdivision(True)
 @cython.wraparound(False)
-def train(double [:,::1] x, int[::1]y, double[:,::1]xtest=None, int[::1]ytest=None,  double lmda=0.1,
+def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]ytest=None,  double lmda=0.1,
           double sig_D = -1, double rho=0,  Py_ssize_t T=1000):
     """
     regularized dual averaging method on lasso
@@ -99,7 +99,7 @@ def train(double [:,::1] x, int[::1]y, double[:,::1]xtest=None, int[::1]ytest=No
         return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, sqnorm_w
 
 
-def train2(double [:,::1] x, int[::1]y, double[:,::1]xtest=None, int[::1]ytest=None,  int b=4, int c=1, double lmda=0.1,
+def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]ytest=None,  int b=4, int c=1, double lmda=0.1,
           double sig_D = -1, double rho=0,  Py_ssize_t T=1000):
     """
     regularized dual averaging method adapted to lasso with limited information
@@ -224,9 +224,9 @@ cdef inline soft_threshold(double a, double b, double c):
 @cython.boundscheck(False)
 @cython.cdivision(True)
 @cython.wraparound(False)
-cdef eval_lasso_obj(double[::1]w, double[:,::1] x, int[::1]y, double lmda):
+cdef eval_lasso_obj(double[::1]w, double[:,::1] x, double[::1]y, double lmda):
     """
-    evaluate objective 0.5* ||Y-Xw||^2 + lmda * |w|
+    evaluate objective 0.5/n* ||Y-Xw||^2 + lmda * |w|
     """
     cdef Py_ssize_t n = x.shape[0]
     cdef Py_ssize_t p = x.shape[1]
