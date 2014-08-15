@@ -20,7 +20,7 @@ class LassoLI(object):
     :param:    T: total number of iteration
     :param eta: learnning rate
     """
-    def __init__(self, lmda=.1, b=1, c=5, T=1000, algo='scg', cd_ord='rand', sig_D=1000.0):
+    def __init__(self, lmda=.1, b=1, c=5, T=1000, algo='scg', cd_ord='rand', verbosity=True, sig_D=1000.0):
         self.lmda = lmda
         self.w = None
         self.T = T
@@ -34,6 +34,7 @@ class LassoLI(object):
         self.sig_D = sig_D
         self.cyc_ord = cd_ord
         self.timecost = None
+        self.verbosity = verbosity
         if algo == 'scg' or algo == 'rda2':
             self.b = b
             self.c = c
@@ -53,7 +54,7 @@ class LassoLI(object):
                     rda_lasso.train2(x=xtrain, y=ytrain, sig_D=self.sig_D, lmda=self.lmda, T=np.intp(self.T))
             elif self.algo == 'cd':
                 self.w, self.train_obj, self.num_zs, self.num_iters, self.num_features, self.sqnorm_w = \
-                    cd_lasso.train_effi(x=xtrain, y=ytrain, lmda=self.lmda, cyc_ord=self.cyc_ord, T=np.intp(self.T))
+                    cd_lasso.train_effi(x=xtrain, y=ytrain, lmda=self.lmda, cyc_ord=self.cyc_ord, T=np.intp(self.T),)
             else:
                 print "algorithm type: \n" \
                       "scg', stochastic coordinate gradient dual averaging;\n" \
@@ -97,18 +98,24 @@ class LassoLI(object):
         self.sig_D = self.eta * np.sqrt(p**3) / np.sqrt(p)
 
     @staticmethod
-    def tune_rho(rho_list, x, y, lmda, cd_ord='rand', T=1000, b=4, c=1, algo='scg'):
+    def tune_rho(rho_list, x, y, lmda, cd_ord='rand', num_ftr=4000, b=4, c=1, algo='scg'):
+        """
+        tune the learning rate parameter rho with fixed number of validation features
+        :param rho_list:
+        :return:
+        """
         n, p = x.shape
-        n_iter = 10
+        n_iter = 5
         res = np.zeros((len(rho_list), n_iter))
-        # n2 = np.minimum(800, int(0.1*n))
+        if algo == 'scg' or algo == 'rda2':
+            T = num_ftr / (b+c)
+        elif algo == 'rda':
+            T = num_ftr / p
         for j in xrange(n_iter):
             ind = np.random.permutation(n)
-            xtrain = x[ind, :]
-            ytrain = y[ind]
             for i, rho in enumerate(rho_list):
-                rgr = LassoLI(lmda=lmda, b=b, c=c, T=T, algo=algo, cd_ord=cd_ord, sig_D=rho)
-                rgr.fit(xtrain, ytrain)
+                rgr = LassoLI(lmda=lmda, b=b, c=c, T=T, algo=algo, cd_ord=cd_ord, sig_D=rho, verbosity=False)
+                rgr.fit(x, y)
                 # res[i, j] = rgr.eval_lasso_obj(xtrain, ytrain, lmda)
                 if rgr.train_obj[-1] > 3*rgr.train_obj[1]:
                     res[i, j] = 1000000

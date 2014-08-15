@@ -7,6 +7,7 @@ import time
 from libcpp.vector cimport vector
 from libc.stdlib cimport rand
 from libcpp cimport bool
+from cpython cimport bool
 # cdef extern from "math.h"
 from libc.math cimport fmax
 from libc.math cimport fabs
@@ -51,7 +52,7 @@ ctypedef np.int_t dtypei_t
 @cython.cdivision(True)
 @cython.wraparound(False)
 def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]ytest=None,
-          int b=4, int c=1, double lmda=0.1, double sig_D=-1,  Py_ssize_t T=1000):
+          int b=4, int c=1, double lmda=0.1, double sig_D=-1, int verbosity=True, Py_ssize_t T=1000):
     """
     online training lassolr, using stochastic coordinate gradient method
     :param x:
@@ -95,6 +96,9 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
         interval = 1
     else:
         interval = T / 20
+
+    if not verbosity:
+        interval = T
     cdef double tmp, tmp2, xw
     if sig_D < 0:
         sig = np.sqrt(p**3/c)

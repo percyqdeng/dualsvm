@@ -4,6 +4,8 @@ cimport cython
 import numpy as np
 cimport numpy as np
 import time
+from libcpp cimport bool
+from cpython cimport bool
 from libcpp.vector cimport vector
 from libc.stdlib cimport rand
 from libc.math cimport fmax
@@ -30,7 +32,7 @@ cdef extern from "time.h" nogil:
 @cython.cdivision(True)
 @cython.wraparound(False)
 def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]ytest=None,  double lmda=0.1,
-          double sig_D = -1, double rho=0,  Py_ssize_t T=1000):
+          double sig_D = -1, double rho=0, int verbosity=True, Py_ssize_t T=1000):
     """
     regularized dual averaging method on lasso
     :param x:
@@ -62,6 +64,8 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
     cdef vector [double] timecost
     cdef Py_ssize_t num_steps=1, interval
     interval = int(fmax(1, T/20))
+    if not verbosity:
+        interval = T-1
     cdef Py_ssize_t count
     cdef double xw, lmda_t, res
     cdef Py_ssize_t start_t, end_t,
@@ -114,7 +118,7 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
 @cython.cdivision(True)
 @cython.wraparound(False)
 def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]ytest=None,  int b=4, int c=1, double lmda=0.1,
-          double sig_D = -1, double rho=0,  Py_ssize_t T=1000):
+          double sig_D = -1, double rho=0, int verbosity=True, Py_ssize_t T=1000):
     """
     regularized dual averaging method adapted to lasso with limited information
     we use a different unbiased estimator of stochastic gradient
@@ -152,6 +156,8 @@ def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]y
     cdef Py_ssize_t [::1] J = np.zeros(b, dtype=np.intp)
     cdef Py_ssize_t num_steps=1, interval
     interval = int(fmax(1, T/20))
+    if not verbosity:
+        interval = T-1
     cdef Py_ssize_t count
     cdef double xw, lmda_t, res
     cdef Py_ssize_t start_t, end_t,

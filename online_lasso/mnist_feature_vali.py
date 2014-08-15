@@ -24,17 +24,17 @@ y = y.astype(float)
 min_max_scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
 x = min_max_scaler.fit_transform(x)
 # xtest = min_max_scaler.transform(x)
-sig_D = [10, 20, 30, 40, 50, 60, 70, 90, 110, 130, 150]
-# sig_D = [130, 160, 190, 230, 270, 320, 350, 380]
+# sig_D = [10, 20, 30, 40, 50, 60, 70, 90, 110, 130, 150]
+sig_D = [50, 70, 85, 110, 130,]  #  lmda = 0.01
 
 # ntrain = ytrain.size
 
 # alphas, coefs, gaps = linear_model.lasso_path(x, y, n_alphas=6, return_models=False, fit_intercept=False)
 # lmda_list = alphas[::-1]
-lmda = 0.001
+lmda = 0.01
 n_iter = 15
-random_state =  np.random.randint(low=1,high=10000)
-ss = cv.StratifiedShuffleSplit(y=y, n_iter=n_iter, test_size=0.5, random_state=random_state)
+random_state =  np.random.randint(low=1, high=10000)
+ss = cv.StratifiedShuffleSplit(y=y, n_iter=n_iter, test_size=0.7, random_state=random_state)
 
 # scg_obj = np.zeros((n_iter, len(sig_D)))
 scg_obj = None
@@ -50,11 +50,7 @@ rda2_zs=None
 cd_zs =None
 b = 4
 c = 1
-# for j, r in enumerate(sig_D):
-#     scg_obj[r] = None
-#     rda_obj[r] = None
-#     rda2_obj[r] = None
-
+ftr_valids = 5000
 for i, (train_idx, test_idx) in enumerate(ss):
     xtrain = x[train_idx, :]
     ytrain = y[train_idx]
@@ -62,7 +58,7 @@ for i, (train_idx, test_idx) in enumerate(ss):
     yvalid = y[test_idx]
     ntrain = ytrain.size
     num_ftrs = 5 * int((b+c)*ntrain)
-    r = LassoLI.tune_rho(sig_D, xvalid, yvalid, T=int(0.2*num_ftrs/(b+c)), lmda=lmda, b=b, c=c, algo='scg')
+    r = LassoLI.tune_rho(sig_D, xvalid, yvalid, num_ftr=ftr_valids, lmda=lmda, b=b, c=c, algo='scg')
     rgr = LassoLI(lmda=lmda, b=b, c=c, T=num_ftrs/(b+c), algo='scg', sig_D=r)
     rgr.fit(xtrain, ytrain)
     if scg_obj is None:
@@ -73,7 +69,7 @@ for i, (train_idx, test_idx) in enumerate(ss):
         scg_zs = np.vstack((scg_zs, rgr.num_zs))
     print 'scg set rho=%d' % r
 
-    r = LassoLI.tune_rho(sig_D, xvalid, yvalid, T=int(0.2*num_ftrs/p), lmda=lmda, algo='rda')
+    r = LassoLI.tune_rho(sig_D, xvalid, yvalid, num_ftr=ftr_valids, lmda=lmda, algo='rda')
     rda = LassoLI(lmda=lmda, T=num_ftrs/p, algo='rda', sig_D=r)
     rda.fit(xtrain, ytrain)
     if rda_obj is None:
@@ -85,7 +81,7 @@ for i, (train_idx, test_idx) in enumerate(ss):
     print 'rda set rho=%d' % r
 
 
-    r = LassoLI.tune_rho(sig_D, xvalid, yvalid, T=int(0.2*num_ftrs/(b+c)), lmda=lmda, algo='rda2')
+    r = LassoLI.tune_rho(sig_D, xvalid, yvalid, num_ftr=ftr_valids, lmda=lmda, algo='rda2')
     rda2 = LassoLI(lmda=lmda, T=num_ftrs/(b+c), algo='rda2', b=b, c=c, sig_D=r)
     rda2.fit(xtrain, ytrain)
     print 'rda2 set rho=%d' % r
@@ -103,10 +99,12 @@ key2 = sig_D[1]
 plt.errorbar(rgr.num_features, scg_obj.mean(axis=0), yerr=scg_obj.std(axis=0), fmt='x--', label='scg')
 plt.errorbar(rda.num_features, rda_obj.mean(axis=0), yerr=rda_obj.std(axis=0), fmt='o-', label='rda')
 plt.errorbar(rda2.num_features, rda2_obj.mean(axis=0), yerr=rda2_obj.std(axis=0), fmt='v-.', label='rda2')
+# plt.yscale('log')
 plt.title(r'$\lambda=$%.3f' % lmda)
 plt.legend(loc='best')
 plt.xlabel('number of features')
 plt.ylabel('error')
+plt.ylim((0.2, 0.6))
 plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
 plt.savefig('../output/minist_err_val_%d_%d_lmda_%.3f.eps' % (pos_ind, neg_ind, lmda))
 

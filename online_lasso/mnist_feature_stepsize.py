@@ -24,14 +24,14 @@ y = y.astype(float)
 min_max_scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
 x = min_max_scaler.fit_transform(x)
 # xtest = min_max_scaler.transform(x)
-sig_D = [60,  130, 170, 250, 400]
+sig_D = [80, 100, 130, 170, 250, 400]
 # ntrain = ytrain.size
 
 # alphas, coefs, gaps = linear_model.lasso_path(x, y, n_alphas=6, return_models=False, fit_intercept=False)
 # lmda_list = alphas[::-1]
-lmda = 0.1
-n_iter = 2
-random_state =  np.random.randint(low=1,high=10000)
+lmda = 0.01
+n_iter = 10
+random_state =  np.random.randint(low=1, high=10000)
 ss = cv.StratifiedShuffleSplit(y=y, n_iter=n_iter, test_size=0.3, random_state=random_state)
 
 # scg_obj = np.zeros((n_iter, len(sig_D)))
@@ -59,9 +59,9 @@ for i, (train_idx, test_idx) in enumerate(ss):
     xvalid = x[test_idx, :]
     yvalid = y[test_idx]
     ntrain = ytrain.size
-    num_ftrs = int(b*c*ntrain*0.7)
+    num_ftrs = int(b*c*ntrain*5)
     for r in sig_D:
-        rgr = LassoLI(lmda=lmda, b=b, c=c, T=num_ftrs/(b*c), algo='scg', sig_D=r)
+        rgr = LassoLI(lmda=lmda, b=b, c=c, T=num_ftrs/(b+c), algo='scg', sig_D=r)
         rgr.fit(xtrain, ytrain)
         # scg_obj[i, j] = rgr.train_obj[-1]
         if r in scg_obj:
@@ -84,7 +84,7 @@ for i, (train_idx, test_idx) in enumerate(ss):
             rda_zs[r] = rda.num_zs
             rda_tm[r] = rda.timecost
 
-        rda2 = LassoLI(lmda=lmda, T=num_ftrs/(b*c), algo='rda2', b=b, c=c, sig_D=r)
+        rda2 = LassoLI(lmda=lmda, T=num_ftrs/(b+c), algo='rda2', b=b, c=c, sig_D=r)
         rda2.fit(xtrain, ytrain)
         if r in rda2_obj:
             rda2_obj[r] = np.vstack((rda2_obj[r], rda2.train_obj))
@@ -110,40 +110,43 @@ col = 2
 ymin = 0.3
 ymax = 0.55
 plt.figure()
-plt.subplot(row, col, 1)
+# plt.subplot(row, col, 1)
 for key, value in scg_obj.iteritems():
     plt.errorbar(rgr.num_features, value.mean(axis=0), yerr=value.std(axis=0), label=r'$\rho=$%d' % key)
 plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
 plt.xlim(xmin=0)
 plt.ylim((ymin, ymax))
-
-plt.subplot(row, col, 3)
+plt.figure()
 for key, value in rda_obj.iteritems():
     plt.errorbar(rda.num_features, value.mean(axis=0), yerr=value.std(axis=0), label=r'$\rho=$%d' % key)
 plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
 plt.ylim((ymin, ymax))
 # plt.xlabel('number of features')
 # plt.ylabel('optimization error')
-# plt.legend(loc='best')
+plt.legend(loc='best')
 
-plt.subplot(row, col, 5)
+plt.figure()
+# plt.subplot(row, col, 5)
 for key, value in rda2_obj.iteritems():
     plt.errorbar(rda2.num_features, value.mean(axis=0), yerr=value.std(axis=0), label=r'$\rho=$%d' % key)
 plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
 # plt.ylim((ymin, ymax))
 # plt.legend(bbox_to_anchor=(0, 2, 2.2, 1.1), loc=2, ncol=2, mode="expand", borderaxespad=0.)
 
-plt.subplot(row, col, 2)
+plt.figure()
+# plt.subplot(row, col, 2)
 for key, value in scg_zs.iteritems():
     plt.errorbar(rgr.num_features, value.mean(axis=0), yerr=value.std(axis=0), label=r'$\rho=$%d' % key)
 plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
 plt.xlim(xmin=0)
-plt.subplot(row, col, 4)
+# plt.subplot(row, col, 4)
+plt.figure()
 for key, value in rda_zs.iteritems():
     plt.errorbar(rda.num_features, value.mean(axis=0), yerr=value.std(axis=0), label=r'$\rho=$%d' % key)
 plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
 
-plt.subplot(row, col, 6)
+plt.figure()
+# plt.subplot(row, col, 6)
 for key, value in rda2_zs.iteritems():
     plt.errorbar(rda2.num_features, value.mean(axis=0), yerr=value.std(axis=0), label=r'$\rho=$%d' % key)
 plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
@@ -156,11 +159,11 @@ plt.savefig('../output/mnist_stepsize.eps')
 
 # plot objective and sparsity pattern with number of features
 plt.figure()
-key = sig_D[0]
+key = sig_D[1]
 key2 = sig_D[1]
 plt.errorbar(rgr.num_features, scg_obj[key].mean(axis=0), yerr=scg_obj[key].std(axis=0), fmt='x--', label='scg')
 plt.errorbar(rda.num_features, rda_obj[key].mean(axis=0), yerr=rda_obj[key].std(axis=0), fmt='o-', label='rda')
-plt.errorbar(rda2.num_features, rda2_obj[key2].mean(axis=0), yerr=rda2_obj[key2].std(axis=0), fmt='v-.', label='rda2')
+plt.errorbar(rda2.num_features, rda2_obj[key].mean(axis=0), yerr=rda2_obj[key].std(axis=0), fmt='v-.', label='rda2')
 plt.title(r'$\lambda=$%f' % lmda)
 plt.legend(loc='best')
 plt.xlabel('number of features')
@@ -169,11 +172,11 @@ plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
 plt.savefig('../output/minist_error_%d_%d_lmda_%.3f.eps' % (pos_ind, neg_ind, lmda))
 
 plt.figure()
-key = sig_D[0]
+key = sig_D[1]
 key2 = sig_D[1]
 plt.errorbar(rgr.num_features, scg_zs[key].mean(axis=0), yerr=scg_zs[key].std(axis=0), fmt='x--', label='scg')
 plt.errorbar(rda.num_features, rda_zs[key].mean(axis=0), yerr=rda_zs[key].std(axis=0), fmt='o-', label='rda')
-plt.errorbar(rda2.num_features, rda2_zs[key2].mean(axis=0), yerr=rda2_zs[key2].std(axis=0), fmt='v-.', label='rda2')
+plt.errorbar(rda2.num_features, rda2_zs[key].mean(axis=0), yerr=rda2_zs[key].std(axis=0), fmt='v-.', label='rda2')
 plt.title(r'$\lambda=$%f' % lmda)
 plt.legend(loc='best')
 plt.xlabel('number of features')
