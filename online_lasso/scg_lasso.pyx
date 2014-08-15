@@ -11,11 +11,41 @@ from libcpp cimport bool
 from libc.math cimport fmax
 from libc.math cimport fabs
 from libc.math cimport fmin
-
+cdef extern from "time.h" nogil:
+    ctypedef Py_ssize_t clock_t
+    cdef clock_t clock()
+    # int clock()
+    cdef enum:
+        CLOCKS_PER_SEC
 ctypedef np.float64_t dtype_t
 ctypedef np.int_t dtypei_t
 # cimport rand_funcs
 
+# cdef extern from "cblas.h":
+#     enum CBLAS_ORDER:
+#         CblasRowMajor=101
+#         CblasColMajor=102
+#     enum CBLAS_TRANSPOSE:
+#         CblasNoTrans=111
+#         CblasTrans=112
+#         CblasConjTrans=113
+#         AtlasConj=114
+#
+#     void daxpy "cblas_daxpy"(int N, double alpha, double *X, int incX,
+#                              double *Y, int incY) nogil
+#     double ddot "cblas_ddot"(int N, double *X, int incX, double *Y, int incY
+#                              ) nogil
+#     double dasum "cblas_dasum"(int N, double *X, int incX) nogil
+#     void dger "cblas_dger"(CBLAS_ORDER Order, int M, int N, double alpha,
+#                 double *X, int incX, double *Y, int incY, double *A, int lda) nogil
+#     void dgemv "cblas_dgemv"(CBLAS_ORDER Order,
+#                       CBLAS_TRANSPOSE TransA, int M, int N,
+#                       double alpha, double *A, int lda,
+#                       double *X, int incX, double beta,
+#                       double *Y, int incY) nogil
+#     double dnrm2 "cblas_dnrm2"(int N, double *X, int incX) nogil
+#     void dcopy "cblas_dcopy"(int N, double *X, int incX, double *Y, int incY) nogil
+#     void dscal "cblas_dscal"(int N, double alpha, double *X, int incX) nogil
 
 @cython.boundscheck(False)
 @cython.cdivision(True)
@@ -56,8 +86,11 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
     cdef vector [double] test_res
     cdef vector [double] num_zs # number of zeros
     cdef vector [double] sqnorm_w
+    cdef vector [double] timecost
     cdef Py_ssize_t num_steps=0, interval
     cdef Py_ssize_t count
+    cdef Py_ssize_t start_t, end_t,
+    cdef double cpu_t
     if T < 20:
         interval = 1
     else:
@@ -68,10 +101,11 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
         D = np.sqrt(p * 1)
         sig_D = sig / D
     gm = fmax(2*c, np.sqrt(2.0*b*(T+1.0)/p)* sig_D)
-    print "---------------------scg lasso-------------------\n" \
-          "lamda %f, gamma %f, b:%d, c:%d" % (lmda, gm, b, c)
+    # print "---------------------scg lasso-------------------\n" \
+    #       "lamda %f, gamma %f, b:%d, c:%d" % (lmda, gm, b, c)
     r1 = RandNoRep(p)
     r2 = RandNoRep(p)
+    start_t = clock()
     for t in xrange(T+1):
         ind = rand() % n
         r1.k_choice(I, c)
@@ -89,9 +123,13 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
             w[J[j]] = - sign_func(g_tilde[J[j]]) * fmax(tmp2-l[J[j]], 0) / gm
             u[J[j]] = t + 1
         if num_steps == t:
+            end_t = clock()
+            cpu_t += <double>(end_t - start_t) / CLOCKS_PER_SEC
+            # print <double>(end_t - start_t) / CLOCKS_PER_SEC
+            timecost.push_back(cpu_t)
             # compute train error, # of zeros
             num_iters.push_back(t)
-            num_features.push_back(t * b)
+            num_features.push_back((t+1) * (b+c))
             train_res.push_back(eval_lasso_obj(w, x, y, lmda))
             # interval *= 2
             num_steps += interval
@@ -104,14 +142,15 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
                 tmp += w[i] * w[i]
             sqnorm_w.push_back(tmp)
             num_zs.push_back(count)
-    # for j in xrange(p):
-    #     w_bar[j] = (w_tilde[j] + (T+2 - u[j])*w[j]) / (T+1)
+            start_t = clock()
     for j in xrange(p):
-        w_bar[j] = w[j]
+        w_bar[j] = (w_tilde[j] + (T+2 - u[j])*w[j]) / (T+1)
+    # for j in xrange(p):
+    #     w_bar[j] = w[j]
     if not has_test:
-        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, sqnorm_w
+        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, sqnorm_w, timecost
     else:
-        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features, sqnorm_w
+        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features, sqnorm_w, timecost
 
 
 @cython.boundscheck(False)

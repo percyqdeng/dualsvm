@@ -11,9 +11,13 @@ from libc.math cimport fabs
 from libc.math cimport sqrt
 from libc.math cimport fmin
 import scipy.linalg.blas
+cdef extern from "time.h" nogil:
+    ctypedef Py_ssize_t clock_t
+    cdef clock_t clock()
+    # int clock()
+    cdef enum:
+        CLOCKS_PER_SEC
 
-ctypedef np.float64_t dtype_t
-ctypedef np.int_t dtypei_t
 # cimport rand_funcs
 # cdef extern from "f2pyptr.h":
 #     void *f2py_pointer(object) except NULL
@@ -47,7 +51,7 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
     cdef double[::1] g_bar = np.zeros(p)  # accumulated stochastic coordinate gradient
     cdef Py_ssize_t ind
     # L:  norm of gradient, D: sqrt of d(x), gm: = L/D
-    cdef double L, D,
+    cdef double L, D, gm
     cdef int has_test = not (xtest is None)
     cdef vector [Py_ssize_t] num_iters
     cdef vector [Py_ssize_t] num_features
@@ -55,11 +59,13 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
     cdef vector [double] test_res
     cdef vector [Py_ssize_t] num_zs # number of zeros
     cdef vector [double] sqnorm_w
+    cdef vector [double] timecost
     cdef Py_ssize_t num_steps=1, interval
     interval = int(fmax(1, T/20))
     cdef Py_ssize_t count
     cdef double xw, lmda_t, res
-
+    cdef Py_ssize_t start_t, end_t,
+    cdef double cpu_t
     # estimate parameters
     if sig_D < 0:
         D = sqrt(p)
@@ -67,17 +73,21 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
         gm = L / D
     else:
         gm = sig_D
-    print "----------------------rda lasso------------------------"
+    start_t = clock()
     for t in xrange(1, T+1):
         i = rand() % n
         xw = myddot(x[i], w)
         lmda_t = lmda + gm * rho / sqrt(t)
         for j in xrange(p):
+            w_bar[j] +=  w[j]
             g_bar[j] = (t-1.0)/t * g_bar[j] + 1.0/t * (x[i, j] * xw - y[i] * x[i, j])
             w[j] = -sqrt(t)/gm * sign_func(g_bar[j])*fmax(fabs(g_bar[j])-lmda_t, 0)
             flag[j] = (fabs(g_bar[j]) <=lmda_t)
-            w_bar[j] +=  w[j]
+
         if t == num_steps:
+            end_t = clock()
+            cpu_t += <double>(end_t - start_t) / CLOCKS_PER_SEC
+            timecost.push_back(cpu_t)
             count = 0
             res = 0
             for j in xrange(p):
@@ -91,14 +101,18 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
             if has_test:
                 test_res.push_back(eval_lasso_obj(w, xtest, ytest, lmda))
             num_steps += interval
+            start_t = clock()
     for j in xrange(p):
-        w_bar[j] /= (T+1)
+        w_bar[j] /= T
     if has_test:
-        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features, sqnorm_w
+        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features, sqnorm_w, timecost
     else:
-        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, sqnorm_w
+        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, sqnorm_w, timecost
 
 
+@cython.boundscheck(False)
+@cython.cdivision(True)
+@cython.wraparound(False)
 def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]ytest=None,  int b=4, int c=1, double lmda=0.1,
           double sig_D = -1, double rho=0,  Py_ssize_t T=1000):
     """
@@ -125,7 +139,7 @@ def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]y
     cdef double[::1] curr_g = np.zeros(p)
     cdef Py_ssize_t ind
     # L:  norm of gradient, D: sqrt of d(x), gm: = L/D
-    cdef double L, D,
+    cdef double L, D, gm
     cdef int has_test = not (xtest is None)
     cdef vector [Py_ssize_t] num_iters
     cdef vector [Py_ssize_t] num_features
@@ -133,12 +147,15 @@ def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]y
     cdef vector [double] test_res
     cdef vector [Py_ssize_t] num_zs # number of zeros
     cdef vector [double] sqnorm_w
+    cdef vector [double] timecost
     cdef Py_ssize_t [::1] I = np.zeros(c, dtype=np.intp)
     cdef Py_ssize_t [::1] J = np.zeros(b, dtype=np.intp)
     cdef Py_ssize_t num_steps=1, interval
     interval = int(fmax(1, T/20))
     cdef Py_ssize_t count
     cdef double xw, lmda_t, res
+    cdef Py_ssize_t start_t, end_t,
+    cdef double cpu_t
     r1 = RandNoRep(p)
     r2 = RandNoRep(p)
     # estimate parameters
@@ -148,7 +165,8 @@ def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]y
         gm = L / D
     else:
         gm = sqrt(p) * sig_D
-    print "--------------------rda2 lasso-----------------"
+
+    start_t = clock()
     for t in xrange(1, T+1):
         ind = rand() % n
         r1.k_choice(I, c)
@@ -160,14 +178,17 @@ def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]y
         lmda_t = lmda + gm * rho / sqrt(t)
         for j in xrange(p):
             curr_g[j] = 0
+            w_bar[j] +=  w[j]
         for j in xrange(b):
             curr_g[J[j]] = xw * x[ind, J[j]] * p * p / (b * c) - y[ind] * x[ind, J[j]] *p /b
         for j in xrange(p):
             g_bar[j] = (t-1.0)/t * g_bar[j] + 1.0/t * curr_g[j]
             w[j] = -sqrt(t)/gm * sign_func(g_bar[j])*fmax(fabs(g_bar[j])-lmda_t, 0)
             flag[j] = (fabs(g_bar[j]) <=lmda_t)
-            w_bar[j] +=  w[j]
         if t == num_steps:
+            end_t = clock()
+            cpu_t += <double> (end_t - start_t)
+            timecost.push_back(cpu_t)
             count = 0
             res = 0
             for j in xrange(p):
@@ -175,18 +196,19 @@ def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]y
                 res += w[j] * w[j]
             sqnorm_w.push_back(res)
             num_zs.push_back(count)
-            num_features.push_back(t * b * c)
+            num_features.push_back(t * (b+c))
             num_iters.push_back(t)
             train_res.push_back(eval_lasso_obj(w, x, y, lmda))
             if has_test:
                 test_res.push_back(eval_lasso_obj(w, xtest, ytest, lmda))
             num_steps += interval
+            start_t = clock()
     for j in xrange(p):
-        w_bar[j] /= (T+1)
+        w_bar[j] /= T
     if has_test:
-        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features, sqnorm_w
+        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features, sqnorm_w, timecost
     else:
-        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, sqnorm_w
+        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, sqnorm_w, timecost
 
 @cython.boundscheck(False)
 @cython.cdivision(True)

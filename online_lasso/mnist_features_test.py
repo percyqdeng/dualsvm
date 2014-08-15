@@ -2,6 +2,7 @@ from sklearn import preprocessing
 from sklearn.metrics import zero_one_loss
 from sklearn import preprocessing
 import sklearn.cross_validation as cv
+from sklearn import linear_model
 from sklearn.linear_model import SGDClassifier
 from load_data import convert_binary, load_usps
 from mylasso import *
@@ -23,7 +24,7 @@ x, y = convert_binary(data, pos_ind, neg_ind)
 x = x.astype(float)
 y = y.astype(float)
 n, p = x.shape
-random_state = 2
+random_state = 21
 lmda = 0.1
 xtrain, xtest, ytrain, ytest = cv.train_test_split(x, y, test_size=0.1, random_state=random_state)
 min_max_scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
@@ -33,10 +34,9 @@ ntrain = ytrain.size
 
 b = 4
 c = 1
-eta = 0.1
-sig_D = 410
+sig_D = 80
 # fix number of examples
-nsweep = 30
+nsweep = 3
 T1 = nsweep * ntrain
 rgr = LassoLI(lmda=lmda, b=b, c=c, T=T1, algo='scg', sig_D=sig_D)
 rgr.fit(xtrain=xtrain, ytrain=ytrain, xtest=xtest, ytest=ytest)
