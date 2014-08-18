@@ -117,7 +117,7 @@ class LassoLI(object):
                 rgr = LassoLI(lmda=lmda, b=b, c=c, T=T, algo=algo, cd_ord=cd_ord, sig_D=rho, verbosity=False)
                 rgr.fit(x, y)
                 # res[i, j] = rgr.eval_lasso_obj(xtrain, ytrain, lmda)
-                if rgr.train_obj[-1] > 3*rgr.train_obj[1]:
+                if rgr.train_obj[-1] > 2*rgr.train_obj[1]:
                     res[i, j] = 1000000
                 else:
                     res[i, j] = rgr.train_obj[-1]

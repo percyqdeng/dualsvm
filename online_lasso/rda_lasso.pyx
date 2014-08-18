@@ -193,7 +193,7 @@ def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]y
             flag[j] = (fabs(g_bar[j]) <=lmda_t)
         if t == num_steps:
             end_t = clock()
-            cpu_t += <double> (end_t - start_t)
+            cpu_t += <double> (end_t - start_t) / CLOCKS_PER_SEC
             timecost.push_back(cpu_t)
             count = 0
             res = 0

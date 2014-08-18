@@ -24,7 +24,7 @@ y = y.astype(float)
 min_max_scaler = preprocessing.MinMaxScaler(feature_range=(0, 1))
 x = min_max_scaler.fit_transform(x)
 # xtest = min_max_scaler.transform(x)
-sig_D = [80, 100, 130, 170, 250, 400]
+sig_D = [60, 80, 100, 130, 170, 250, 400]
 # ntrain = ytrain.size
 
 # alphas, coefs, gaps = linear_model.lasso_path(x, y, n_alphas=6, return_models=False, fit_intercept=False)
@@ -59,7 +59,7 @@ for i, (train_idx, test_idx) in enumerate(ss):
     xvalid = x[test_idx, :]
     yvalid = y[test_idx]
     ntrain = ytrain.size
-    num_ftrs = int(b*c*ntrain*5)
+    num_ftrs = int(b*c*ntrain)
     for r in sig_D:
         rgr = LassoLI(lmda=lmda, b=b, c=c, T=num_ftrs/(b+c), algo='scg', sig_D=r)
         rgr.fit(xtrain, ytrain)
@@ -164,7 +164,7 @@ key2 = sig_D[1]
 plt.errorbar(rgr.num_features, scg_obj[key].mean(axis=0), yerr=scg_obj[key].std(axis=0), fmt='x--', label='scg')
 plt.errorbar(rda.num_features, rda_obj[key].mean(axis=0), yerr=rda_obj[key].std(axis=0), fmt='o-', label='rda')
 plt.errorbar(rda2.num_features, rda2_obj[key].mean(axis=0), yerr=rda2_obj[key].std(axis=0), fmt='v-.', label='rda2')
-plt.title(r'$\lambda=$%f' % lmda)
+plt.title(r'$\lambda=$%.3f' % lmda)
 plt.legend(loc='best')
 plt.xlabel('number of features')
 plt.ylabel('error')
@@ -177,7 +177,7 @@ key2 = sig_D[1]
 plt.errorbar(rgr.num_features, scg_zs[key].mean(axis=0), yerr=scg_zs[key].std(axis=0), fmt='x--', label='scg')
 plt.errorbar(rda.num_features, rda_zs[key].mean(axis=0), yerr=rda_zs[key].std(axis=0), fmt='o-', label='rda')
 plt.errorbar(rda2.num_features, rda2_zs[key].mean(axis=0), yerr=rda2_zs[key].std(axis=0), fmt='v-.', label='rda2')
-plt.title(r'$\lambda=$%f' % lmda)
+plt.title(r'$\lambda=$%.3f' % lmda)
 plt.legend(loc='best')
 plt.xlabel('number of features')
 plt.ylabel('number of zeros')
