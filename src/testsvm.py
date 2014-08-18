@@ -128,7 +128,7 @@ def test_benchmark(data):
         xtr = x[trInd[i, :], :]
         ytr = y[trInd[i, :]]
         dsvm = DualKSVM(n=ntr, lmda=1.0 / ntr, gm=1, kernel='rbf', nsweep=20, batchsize=5)
-        dsvm.train(xtr, ytr)
+        dsvm.fit(xtr, ytr)
         clf = svm.SVC(kernel='rbf')
         clf.fit(xtr, ytr)
         pred = clf.predict(x[teInd[i, :], :])

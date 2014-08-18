@@ -16,32 +16,47 @@ class DualKSVM(MySVM):
 
     """
 
-    def __init__(self, lmda=0.01, gm=1, kernel='rbf', nsweep=None, batchsize=2, algo_type='scg_md'):
+    def __init__(self, lmda=0.01, gm=1, kernel='rbf', rho=0.01, nsweep=None, b=4, c=1, algo_type='scg_md'):
         """
         :param algo_type: scg_md, scg mirror descent; cd, coordinate descent; scg_da, scg dual average
         """
-        super(DualKSVM, self).__init__(lmda, gm, kernel, nsweep, batchsize)
+        super(DualKSVM, self).__init__(lmda, gm, kernel, nsweep, b=b, c=c)
         # C = 1.0 / n  # box constraint on the dual
         self.obj_primal = []
-        self.snorm_grad = None
+        self.rho = rho
         self.algo_type = algo_type
 
-    def train(self, xtr, ytr):
+    def fit(self, xtr, ytr, xte=None, yte=None):
         self.set_train_kernel(xtr)
         self.xtr = xtr
         self.ytr = ytr
-        self.has_kte = False
+        self.has_kte = not(xte is None)
         if self.nsweep is None:
             self.nsweep = xtr.shape[0]
 
-        if self.algo_type == 'scg_md':
-            self._stoc_coor_cython()
-        elif self.algo_type == 'cd':
-            self.alpha, self.err_tr, self.obj = scg_svm.cd_svm(ktr=self.ktr, ytr=self.ytr, lmda=self.lmda)
-        elif self.algo_type == 'scg_da':
-            self.alpha, self.err_tr, self.err_te, self.obj, self.obj_primal, self.nker_opers, self.nnzs, self.snorm_grad = \
-                scg_svm.scg_md_svm(ktr=self.ktr, ytr=self.ytr, lmda=self.lmda,
-                                   nsweep=np.int(self.nsweep), c=np.int(self.batchsize))
+        if not self.has_kte:
+            # if self.algo_type == 'scg_md':
+            #     self._stoc_coor_cython()
+            if self.algo_type == 'cd':
+                self.alpha, self.err_tr, self.obj, self.nker_opers = \
+                    scg_svm.cd_svm(ktr=self.ktr, ytr=self.ytr, lmda=self.lmda, nsweep=np.int(self.nsweep))
+            elif self.algo_type == 'scg_da':
+                self.alpha, self.err_tr, self.obj, self.obj_primal, self.nker_opers, self.nnzs, = \
+                    scg_svm.scg_da_svm(ktr=self.ktr, ytr=self.ytr, lmda=self.lmda,
+                                       nsweep=np.int(self.nsweep), b=np.int(self.b), c=np.int(self.c))
+        else:
+            self.set_test_kernel(xtr, xte)
+            self.yte = yte
+
+            # if self.algo_type == 'scg_md':
+            #     self._stoc_coor_cython()
+            if self.algo_type == 'cd':
+                self.alpha, self.err_tr, self.err_te, self.obj, self.nker_opers = \
+                    scg_svm.cd_svm(ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=yte, lmda=self.lmda, nsweep=np.int(self.nsweep))
+            elif self.algo_type == 'scg_da':
+                self.alpha, self.err_tr, self.err_te, self.obj, self.obj_primal, self.nker_opers, self.nnzs, = \
+                    scg_svm.scg_da_svm(ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=yte, lmda=self.lmda,
+                                       nsweep=np.int(self.nsweep), b=np.int(self.b), c=np.int(self.c))
             # sys.exit(1)
 
     def train_test(self, xtr, ytr, xte, yte, algo_type="cy"):

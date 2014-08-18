@@ -9,8 +9,9 @@ import matplotlib.pyplot as plt
 
 class MySVM(object):
 
-    def __init__(self, lmda=0.01, gm=1, kernel='rbf', nsweep=None, batchsize=1):
-        self.batchsize = batchsize
+    def __init__(self, lmda=0.01, gm=1, kernel='rbf', nsweep=None,  b=5, c=1):
+        self.b = b
+        self.c = c
         self.lmda = lmda
         self.gm = gm
         self.nsweep = nsweep
@@ -26,7 +27,7 @@ class MySVM(object):
         self.ktr = None
         self.kte = None
 
-    def train(self, xtr, ytr):
+    def fit(self, xtr, ytr, xte, yte):
         pass
 
     def train_test(self, xtr, ytr, xte, yte):

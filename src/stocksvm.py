@@ -4,13 +4,17 @@ from mysvm import *
 import time
 class Pegasos(MySVM):
 
-    def __init__(self, n, lmda=0.01, gm=1, kernel='rbf', nsweep=1000, batchsize=2):
-        super(Pegasos, self).__init__(n, lmda, gm, kernel, nsweep, batchsize)
+    def __init__(self, lmda=0.01, gm=1, kernel='rbf', nsweep=4, batchsize=1):
+        super(Pegasos, self).__init__(lmda=lmda, gm=gm, kernel=kernel, nsweep=nsweep, b=5, c=1)
+        self.batchsize = batchsize
 
-    def train(self, xtr, ytr):
-        self.set_train_kernel(xtr)
-        self.ytr = ytr
-        self._kernel_primal_stoch()
+    def fit(self, xtr, ytr, xte=None, yte=None):
+        if xte is None:
+            self.set_train_kernel(xtr)
+            self.ytr = ytr
+            self._kernel_primal_stoch()
+        else:
+            self.train_test(xtr, ytr, xte, yte)
 
     def train_test(self, xtr, ytr, xte, yte):
         self.set_train_kernel(xtr)
@@ -31,11 +35,12 @@ class Pegasos(MySVM):
         num_sv = 0
         count = 0
         num_hit = 0
+        interval = self.nsweep * n / 20
+        num_iter = 1
         start = time.time()
         for k in range(self.nsweep):
             perm = np.random.permutation(n)
             for j in xrange(n):
-                t += 1
                 i = perm[j]
                 res = np.dot(yktr[i, :], alpha)/(self.lmda*t)
                 count += num_sv
@@ -46,8 +51,7 @@ class Pegasos(MySVM):
                         flag[i] = 1
                         num_sv += 1
             # alpha /= self.lmda * self.T
-                if t == rec_step:
-                    rec_step *= 2
+                if t == num_iter:
                     self.nker_opers.append(count)
                     yka = np.dot(yktr, alpha/(self.lmda * t))
                     self.err_tr.append(np.mean(yka < 0))
@@ -57,10 +61,12 @@ class Pegasos(MySVM):
                     if self.has_kte:
                         pred = np.sign(np.dot(self.kte, self.ytr*alpha/(self.lmda * t)))
                         self.err_te.append(np.mean(self.yte != pred))
+                    num_iter += interval
+                t += 1
             # if k % (self.nsweep) == 0:
-            print "# of sweeps " + str(k)
-        print "num of hit %d" % num_hit
-        print "time cost %f " % (time.time()-start)
+            # print "# of sweeps " + str(k)
+        # print "num of hit %d" % num_hit
+        # print "time cost %f " % (time.time()-start)
         self.alpha = alpha / (self.lmda * t)
 
 
