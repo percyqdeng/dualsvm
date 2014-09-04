@@ -29,7 +29,6 @@ class LassoLI(object):
         self.num_zs = None
         self.train_obj = None
         self.test_obj = None
-        self.sqnorm_w = None
         self.algo = algo
         self.sig_D = sig_D
         self.cyc_ord = cd_ord
@@ -44,16 +43,16 @@ class LassoLI(object):
         n, p = xtrain.shape
         if not has_test:
             if self.algo == 'scg':
-                self.w, self.train_obj, self.num_zs, self.num_iters, self.num_features, self.sqnorm_w, self.timecost= \
+                self.w, self.train_obj, self.num_zs, self.num_iters, self.num_features, self.timecost= \
                     scg_lasso.train(x=xtrain, y=ytrain, b=np.int(self.b), c=np.int(self.c), sig_D=self.sig_D, lmda=self.lmda, T=np.intp(self.T))
             elif self.algo == 'rda':
-                self.w, self.train_obj, self.num_zs, self.num_iters, self.num_features, self.sqnorm_w, self.timecost= \
+                self.w, self.train_obj, self.num_zs, self.num_iters, self.num_features, self.timecost= \
                     rda_lasso.train(x=xtrain, y=ytrain, sig_D=self.sig_D, lmda=self.lmda, T=np.intp(self.T))
             elif self.algo == 'rda2':
-                self.w, self.train_obj, self.num_zs, self.num_iters, self.num_features, self.sqnorm_w, self.timecost= \
+                self.w, self.train_obj, self.num_zs, self.num_iters, self.num_features, self.timecost= \
                     rda_lasso.train2(x=xtrain, y=ytrain, sig_D=self.sig_D, lmda=self.lmda, T=np.intp(self.T))
             elif self.algo == 'cd':
-                self.w, self.train_obj, self.num_zs, self.num_iters, self.num_features, self.sqnorm_w = \
+                self.w, self.train_obj, self.num_zs, self.num_iters, self.num_features,  = \
                     cd_lasso.train_effi(x=xtrain, y=ytrain, lmda=self.lmda, cyc_ord=self.cyc_ord, T=np.intp(self.T),)
             else:
                 print "algorithm type: \n" \
@@ -63,16 +62,16 @@ class LassoLI(object):
                 sys.exit(1)
         else:
             if self.algo == 'scg':
-                self.w, self.train_obj, self.test_obj, self.num_zs, self.num_iters, self.num_features, self.sqnorm_w, self.timecost= \
+                self.w, self.train_obj, self.test_obj, self.num_zs, self.num_iters, self.num_features, self.timecost= \
                     scg_lasso.train(x=xtrain, y=ytrain, xtest=xtest, ytest=ytest, b=np.int(self.b), c=np.int(self.c), lmda=self.lmda, sig_D=self.sig_D, T=np.intp(self.T))
             elif self.algo == 'rda':
-                self.w, self.train_obj, self.test_obj, self.num_zs, self.num_iters, self.num_features, self.sqnorm_w, self.timecost= \
+                self.w, self.train_obj, self.test_obj, self.num_zs, self.num_iters, self.num_features, self.timecost= \
                     rda_lasso.train(x=xtrain, y=ytrain, xtest=xtest, ytest=ytest,  lmda=self.lmda, sig_D=self.sig_D, T=np.intp(self.T))
             elif self.algo == 'rda2':
-                self.w, self.train_obj, self.test_obj, self.num_zs, self.num_iters, self.num_features, self.sqnorm_w, self.timecost= \
+                self.w, self.train_obj, self.test_obj, self.num_zs, self.num_iters, self.num_features, self.timecost= \
                     rda_lasso.train2(x=xtrain, y=ytrain, xtest=xtest, ytest=ytest, b=np.int(self.b), c=np.int(self.c), lmda=self.lmda, sig_D=self.sig_D, T=np.intp(self.T))
             elif self.algo == 'cd':
-                self.w, self.train_obj, self.test_obj, self.num_zs, self.num_iters, self.num_features, self.sqnorm_w = \
+                self.w, self.train_obj, self.test_obj, self.num_zs, self.num_iters, self.num_features,  = \
                     cd_lasso.train_effi(x=xtrain, y=ytrain, xtest=xtest, ytest=ytest, cyc_ord=self.cyc_ord, lmda=self.lmda, T=np.intp(self.T))
             else:
                 print "algorithm type: \n" \

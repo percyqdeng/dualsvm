@@ -10,7 +10,7 @@ from load_data import *
 
 def plot_convergence(pos_class=3, neg_class=8, random_state=None):
     """
-    plot of convergence for usps data on binary classification
+    plot of convergence for mnist data on binary classification
     :param pos_class: the digit as positive class
     :param neg_class: the digit as negative class
     :return:
@@ -20,7 +20,7 @@ def plot_convergence(pos_class=3, neg_class=8, random_state=None):
     x, y = convert_one_vs_all(data, pos_class)
     perc = 0.7
     print '--------------------------------------------------------------------'
-    print "usps dataset, size=%d, dim=%d, %f%% for training" % (x.shape[0], x.shape[1], 100*perc)
+    print "mnist dataset, size=%d, dim=%d, %f%% for training" % (x.shape[0], x.shape[1], 100*perc)
     if random_state is None:
         random_state = np.random.random_integers(low=0, high=1000)
     xtr, xte, ytr, yte = cv.train_test_split(x, y, train_size=perc, test_size=round(1-perc,3), random_state=random_state)
@@ -40,20 +40,20 @@ def plot_convergence(pos_class=3, neg_class=8, random_state=None):
     # plt.ylim(0, 0.07)
     # plt.xlim(3000)
     plt.xlabel('number of kernerl operation')
-    plt.title('usps %d vs %d' % (pos_class, neg_class))
+    plt.title('mnist %d vs %d' % (pos_class, neg_class))
     plt.legend(loc='best')
-    plt.savefig('../output/usps_err.pdf')
+    plt.savefig('../output/mnist_err.pdf')
 
     plt.figure()
     plt.plot(dsvm.nker_opers, dsvm.obj_primal, 'r-', label='dc obj')
     plt.plot(kpega.nker_opers, kpega.obj, 'b-', label='pegasos obj')
     plt.plot(dsvm.nker_opers, dsvm.obj, 'm-', label='dc dual obj')
     plt.ylim(-3, 10)
-    plt.title('usps %d vs %d' % (pos_class, neg_class))
+    plt.title('mnist %d vs %d' % (pos_class, neg_class))
 
     plt.legend(loc='best')
     # plt.show()
-    plt.savefig('../output/usps_.pdf', format='pdf')
+    plt.savefig('../output/mnist_.pdf', format='pdf')
 
 
 if __name__ == '__main__':

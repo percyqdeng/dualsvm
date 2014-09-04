@@ -23,7 +23,10 @@ elif os.name == "posix":
     mnistpath = '../../dataset/mnist/'
 ucifile = ["bananamat", "breast_cancermat", "diabetismat", "flare_solarmat", "germanmat",
                 "heartmat", "ringnormmat", "splicemat"]
-dtname = ucifile[0] + '.mat'
+
+
+# obtain uci dataset
+dtname = ucifile[1] + '.mat'
 dtpath = ucipath
 data = scipy.io.loadmat(dtpath + dtname)
 x = data['x']
@@ -34,8 +37,22 @@ y = (np.squeeze(y)).astype(np.intc)
 # train_ind = data['train'] - 1
 # test_ind = data['test'] - 1
 
+#obtain usps
+# pos_class = 3
+# neg_class = None
+# data = load_usps()
+# if neg_class is None:
+#     x, y = convert_one_vs_all(data, pos_class)
+#     one_vs_rest = True
+# else:
+#     x, y = convert_binary(data, pos_class, neg_class)
+#     one_vs_rest = False
+x = preprocessing.scale(x)
+min_max_scaler = preprocessing.MinMaxScaler()
+x = min_max_scaler.fit_transform(x)
+
 C_list = np.array([1e-2, 1e-1, 1, 1e1, 1e2])
-C_list = np.array([1e-2, 1e-1])
+# C_list = np.array([1e-2, 1e-1])
 gamma= 1
 n_iter = 1
 trainerr_dasvm = {}
@@ -48,11 +65,11 @@ trainerr_pega = {}
 testerr_pega = {}
 obj_pega = {}
 
-rs = cv.ShuffleSplit(x.shape[0], n_iter=n_iter, train_size=0.1, test_size=0.7, random_state=11)
+rs = cv.ShuffleSplit(x.shape[0], n_iter=n_iter, train_size=0.5, test_size=0.5, random_state=11)
 for k, (train_index, test_index) in enumerate(rs):
     for j, C in enumerate(C_list):
         n = train_index.size
-        clf = DualKSVM(lmda=C/n, kernel='rbf', gm=gamma, nsweep=int(1.5*n), rho=0.0001, algo_type='scg_da')
+        clf = DualKSVM(lmda=C/n, kernel='rbf', gm=gamma, nsweep=int(1.5*n), rho=0.1, algo_type='scg_da')
         clf.fit(x[train_index, :], y[train_index], x[test_index, :], y[test_index])
         trainerr_dasvm[C] = clf.err_tr
         testerr_dasvm[C] = clf.err_te
@@ -77,7 +94,8 @@ col = 2
 plt.figure()
 plt.subplot(row,col,1)
 for i, c in trainerr_dasvm.iteritems():
-    plt.plot(clf.nker_opers, trainerr_dasvm[i], 'x-')
+    plt.semilogx(clf.nker_opers, trainerr_dasvm[i], 'x-')
+# plt.ticklabel_format(axis='x', style='sci', scilimits=(0,0))
 
 # plt.xscale('log')
 
@@ -85,6 +103,7 @@ for i, c in trainerr_dasvm.iteritems():
 plt.subplot(row,col,2)
 for i, c in testerr_dasvm.iteritems():
     plt.plot(clf.nker_opers, testerr_dasvm[i], 'x-')
+plt.ticklabel_format(axis='x', style='sci', scilimits=(0,0))
 # plt.xscale('log')
 
 plt.subplot(row,col,3)
@@ -98,10 +117,12 @@ plt.figure()
 plt.subplot(row,col,1)
 for i, c in trainerr_cd.iteritems():
     plt.plot(clf2.nker_opers, trainerr_cd[i], 'x-')
+plt.ticklabel_format(axis='x', style='sci', scilimits=(0,0))
 
 plt.subplot(row,col,2)
 for i, c in testerr_cd.iteritems():
     plt.plot(clf2.nker_opers, testerr_cd[i], 'x-')
+plt.ticklabel_format(axis='x', style='sci', scilimits=(0,0))
 
 plt.subplot(row,col,3)
 for i, c in obj_cd.iteritems():
@@ -110,16 +131,18 @@ plt.ticklabel_format(axis='x', style='sci', scilimits=(0,0))
 
 
 plt.figure()
-plt.subplot(row,col,1)
+plt.subplot(row, col, 1)
 for i, c in trainerr_pega.iteritems():
-    plt.plot(clf.nker_opers, trainerr_pega[i], 'x-')
+    plt.plot(clf3.nker_opers, trainerr_pega[i], 'x-')
+plt.ticklabel_format(axis='x', style='sci', scilimits=(0,0))
 
 plt.subplot(row,col,2)
 for i, c in testerr_pega.iteritems():
-    plt.plot(clf.nker_opers, testerr_pega[i], 'x-')
+    plt.plot(clf3.nker_opers, testerr_pega[i], 'x-')
+plt.ticklabel_format(axis='x', style='sci', scilimits=(0,0))
 
 plt.subplot(row,col,3)
 for i, c in obj_pega.iteritems():
-    plt.plot(clf.nker_opers, obj_pega[i], 'x-')
+    plt.plot(clf3.nker_opers, obj_pega[i], 'x-')
 
 plt.ticklabel_format(axis='x', style='sci', scilimits=(0,0))

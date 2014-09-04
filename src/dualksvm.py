@@ -1,6 +1,9 @@
 import os
 import sys
 import scipy.io
+import sklearn.cross_validation as cv
+import sklearn.preprocessing as preprocessing
+from sklearn.metrics import zero_one_loss
 import numpy as np
 import matplotlib.pyplot as plt
 import numpy.linalg as la
@@ -16,7 +19,7 @@ class DualKSVM(MySVM):
 
     """
 
-    def __init__(self, lmda=0.01, gm=1, kernel='rbf', rho=0.01, nsweep=None, b=4, c=1, algo_type='scg_md'):
+    def __init__(self, lmda=0.01, gm=1.0, kernel='rbf', rho=0.1, nsweep=None, verbose=True, b=4, c=1, algo_type='scg_da'):
         """
         :param algo_type: scg_md, scg mirror descent; cd, coordinate descent; scg_da, scg dual average
         """
@@ -25,6 +28,7 @@ class DualKSVM(MySVM):
         self.obj_primal = []
         self.rho = rho
         self.algo_type = algo_type
+        self.verbose = verbose
 
     def fit(self, xtr, ytr, xte=None, yte=None):
         self.set_train_kernel(xtr)
@@ -32,17 +36,21 @@ class DualKSVM(MySVM):
         self.ytr = ytr
         self.has_kte = not(xte is None)
         if self.nsweep is None:
-            self.nsweep = xtr.shape[0]
+            if self.algo_type =='scg_da':
+               self.nsweep = xtr.shape[0]
+            elif self.algo_type == 'cd':
+                self.nsweep = xtr.shape[0]
+
 
         if not self.has_kte:
             # if self.algo_type == 'scg_md':
             #     self._stoc_coor_cython()
             if self.algo_type == 'cd':
                 self.alpha, self.err_tr, self.obj, self.nker_opers = \
-                    scg_svm.cd_svm(ktr=self.ktr, ytr=self.ytr, lmda=self.lmda, nsweep=np.int(self.nsweep))
+                    scg_svm.cd_svm(ktr=self.ktr, ytr=self.ytr, verbose=self.verbose, lmda=self.lmda, nsweep=np.int(self.nsweep))
             elif self.algo_type == 'scg_da':
                 self.alpha, self.err_tr, self.obj, self.obj_primal, self.nker_opers, self.nnzs, = \
-                    scg_svm.scg_da_svm(ktr=self.ktr, ytr=self.ytr, lmda=self.lmda,
+                    scg_svm.scg_da_svm(ktr=self.ktr, ytr=self.ytr, lmda=self.lmda, rho=self.rho, verbose=self.verbose,
                                        nsweep=np.int(self.nsweep), b=np.int(self.b), c=np.int(self.c))
         else:
             self.set_test_kernel(xtr, xte)
@@ -52,28 +60,11 @@ class DualKSVM(MySVM):
             #     self._stoc_coor_cython()
             if self.algo_type == 'cd':
                 self.alpha, self.err_tr, self.err_te, self.obj, self.nker_opers = \
-                    scg_svm.cd_svm(ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=yte, lmda=self.lmda, nsweep=np.int(self.nsweep))
+                    scg_svm.cd_svm(ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=yte, verbose=self.verbose, lmda=self.lmda, nsweep=np.int(self.nsweep))
             elif self.algo_type == 'scg_da':
                 self.alpha, self.err_tr, self.err_te, self.obj, self.obj_primal, self.nker_opers, self.nnzs, = \
-                    scg_svm.scg_da_svm(ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=yte, lmda=self.lmda,
-                                       nsweep=np.int(self.nsweep), b=np.int(self.b), c=np.int(self.c))
-            # sys.exit(1)
-
-    def train_test(self, xtr, ytr, xte, yte, algo_type="cy"):
-        self.set_train_kernel(xtr)
-        self.set_test_kernel(xtr, xte)
-        self.has_kte = True
-        self.ytr = ytr
-        self.yte = yte
-        if self.nsweep is None:
-            self.nsweep = xtr.shape[0]
-        if algo_type == "naive":
-            self._rand_stoc_coor()
-        elif algo_type == 'cy':
-            # print " type "+str(self.nsweep.dtype)
-            self._stoc_coor_cython()
-        else:
-            print "error"
+                    scg_svm.scg_da_svm(ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=yte, lmda=self.lmda, rho=self.rho,
+                                       verbose=self.verbose, nsweep=np.int(self.nsweep), b=np.int(self.b), c=np.int(self.c))
 
     def predict(self, xte):
         self.set_test_kernel(self.xtr, xte)
@@ -82,136 +73,6 @@ class DualKSVM(MySVM):
             exit(1)
         pred = np.sign(self.kte.dot(self.alpha * self.ytr)).astype(int)
         return pred
-
-    def _stoc_coor_cython(self):
-        """
-        call the cython wrapper
-        """
-        if not self.has_kte:
-            self.alpha, self.err_tr, self.err_te, self.obj, self.obj_primal, self.nker_opers, self.nnzs, self.snorm_grad = \
-                scg_svm.scg_md_svm(ktr=self.ktr, ytr=self.ytr, lmda=self.lmda,
-                                  nsweep=np.int(self.nsweep), c=np.int(self.batchsize))
-        else:
-            self.alpha, self.err_tr, self.err_te, self.obj, self.obj_primal, self.nker_opers, self.nnzs, self.snorm_grad = \
-                scg_svm.scg_md_svm(ktr=self.ktr, ytr=self.ytr, kte=self.kte, yte=self.yte, lmda=self.lmda,
-                                nsweep=np.int(self.nsweep), c=np.int(self.batchsize))
-
-    def _rand_stoc_coor(self):
-        """
-        stochastic coordinate descent on the dual svm, random sample a batch of data and update on another random sampled
-        variables
-        """
-        n = self.ktr.shape[0]
-        T = n * self.nsweep - 1
-        C = 1.0 / n
-        yktr = (self.ytr[:, np.newaxis] * self.ktr) * self.ytr[np.newaxis, :]
-        print"------------estimate parameters and set up variables----------------- "
-        # comment:  seems very sensitive to the parameter estimation, if I use the second D_t, the algorithm diverges
-        #
-        lip = np.diag(yktr) / self.lmda
-        l_max = np.max(lip)
-        Q = 1
-        D_t = Q * np.sqrt(1.0 / (2 * n))
-        # D_t = Q * (n / 2) * C
-        sig_list = self._esti_std(yktr)
-        sig = np.sqrt((sig_list ** 2).sum())
-        eta = np.ones(T + 1)
-        eta *= np.minimum(1.0 / (2 * l_max), D_t / sig * np.sqrt(float(n) / (1 + T)))
-        theta = eta + .0
-        alpha = np.zeros(n)  # the most recent solution
-        a_tilde = np.zeros(n)  # the accumulated solution in the path
-        delta = np.zeros(T + 2)
-        uu = np.zeros(n, dtype=int)
-        # index of update, u[i] = t means the most recent update of
-        # ith coordinate is in the t-th round, t = 0,1,...,T
-        showtimes = 5
-        t = 0
-        count = 0
-        print "estimated sigma: " + str(sig) + " lipschitz: " + str(l_max)
-        print "----------------------start the algorithm----------------------"
-        for i in range(self.nsweep):
-            # index of batch data to compute stochastic coordinate gradient
-            samp = np.random.choice(n, size=(n, self.batchsize))
-            # samp = np.random.permutation(n)
-            # index of sampled coordinate to update
-
-            perm = np.random.permutation(n)
-            for j in range(n):
-                # samp_ind = samp[j, :]
-                samp_ind = np.take(samp, j, axis=0)
-                # samp_ind = samp[j]
-                var_ind = perm[j]
-                # var_ind = samp_ind
-                delta[t + 1] = delta[t] + theta[t]
-                subk = yktr[var_ind, samp_ind]
-                # stoc_coor_grad = np.dot(subk, alpha[samp_ind]) * float(n) / self.batchsize - 1
-                stoc_coor_grad = 1 / self.lmda * (np.dot(subk, alpha.take(samp_ind)) * float(n) / self.batchsize) - 1
-                a_tilde[var_ind] += (delta[t + 1] - delta.take(uu.take(var_ind))) * alpha.take(var_ind)
-                res = alpha.take(var_ind) - eta[t] * stoc_coor_grad
-                if res < 0:
-                    alpha[var_ind] = 0
-                elif res <= C:
-                    alpha[var_ind] = res
-                else:
-                    alpha[var_ind] = C
-                # alpha[var_ind] = np.minimum(np.maximum(0, alpha[var_ind] - eta[t]*stoc_coor_grad), C)
-                # alpha[var_ind] = self._prox_mapping(g=stoc_coor_grad, x0=alpha[var_ind], r=eta[t], C)
-                # assert(all(0 <= x <= C for x in np.nditer(alpha[var_ind])))  #only works for size 1
-                uu[var_ind] = t + 1
-                t += 1
-                count += self.batchsize
-            if i % (self.nsweep / showtimes) == 0:
-                print "# of sweeps " + str(i)
-            # -------------compute the result after the ith sweep----------------
-            if i % n == 0:
-                a_avg = a_tilde + (delta[t] - delta.take(uu)) * alpha
-                a_avg /= delta[t]
-                # a_avg = alpha
-                # assert(all(0 <= x <= C for x in np.nditer(a_avg)))
-                yka = np.dot(yktr, a_avg)
-                res = 1.0 / self.lmda * 0.5 * np.dot(a_avg, yka) - a_avg.sum()
-                self.obj.append(res)
-                # if i > 2 and self.obj[-1] > self.obj[-2]:
-                # print "warning"
-                nnzs = (a_avg != 0).sum()
-                self.nnzs.append(nnzs)
-                err = np.mean(yka < 0)
-                self.err_tr.append(err)
-                self.ker_oper.append(count)
-                if self.has_kte:
-                    pred = np.sign(np.dot(self.kte, self.ytr * a_avg))
-                    err = np.mean(self.yte != pred)
-                    self.err_te.append(err)
-        # -------------compute the final result after nsweep-th sweeps---------------
-        a_tilde += (delta[T + 1] - delta[uu]) * alpha
-        self.alpha = a_tilde / delta[T + 1]
-        self.final = self.lmda * (0.5 * np.dot(self.alpha, np.dot(yktr, self.alpha)) - self.alpha.sum())
-        self.bound1 = (n - 1) * 0.5 * l_max / self.lmda
-        self.bound2 = l_max
-        self.bound3 = sig * np.sqrt(2)
-
-
-    def _prox_mapping(self, g, x0, r, C):
-        """
-        proximal coordinate gradient mapping
-        argmin  x*g + 1/r*D(x0,x)
-        """
-        x = x0 - r * g
-        x = np.minimum(np.maximum(0, x), C)
-        return x
-
-    def _esti_std(self, kk):
-        """
-        estimate standard deviation of coordiante stochastic gradient
-        """
-        n = kk.shape[0]
-        sig = np.zeros(n)
-        alpha = np.random.uniform(0, 1.0/n, n)
-        rep = 100
-        for i in range(n):
-            g = kk[i, :] / self.lmda * 1.0/n
-            sig[i] = np.std(g) * n / np.sqrt(self.batchsize)
-        return sig
 
     def profile_scd_cy(self, xtr, ytr, xte, yte):
         import pstats
@@ -230,6 +91,26 @@ class DualKSVM(MySVM):
         s = pstats.Stats("Profile.prof")
         s.strip_dirs().sort_stats("time").print_stats()
 
+    @staticmethod
+    def tune_parameter(x,y, gmlist=[0.1], Clist=[1.0], algo_type='scg_da'):
+        # cross validation to tweak the parameter
+        n, p = x.shape
+        err = np.zeros((len(gmlist), len(Clist)))
+        kf = cv.KFold(n, n_folds=3)
+        for train_ind, valid_ind in kf:
+            xtrain = x[train_ind, :]
+            ytrain = y[train_ind]
+            ntrain = ytrain.size
+            xvalid = x[valid_ind, :]
+            yvalid = y[valid_ind]
+            for i, gm in enumerate(gmlist):
+                for j, C in enumerate(Clist):
+                    clf = DualKSVM(lmda=C/ntrain, gm=gm, kernel='rbf', rho=0.1, b=5, c=1, verbose=False, algo_type=algo_type)
+                    clf.fit(xtrain, ytrain)
+                    pred = clf.predict(xvalid)
+                    err[i, j] += zero_one_loss(pred, yvalid)
+        row, col = np.unravel_index(err.argmin(), err.shape)
+        return gmlist[row], Clist[col]
 
 def test_dualsvm(data):
     x = data['x']

@@ -2,18 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea096c68-1c08-469a-9912-dce65c917aac" name="Default" comment="macos">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/online_lasso/da_lasso.py" afterPath="$PROJECT_DIR$/online_lasso/mylasso.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/setup_scg_lasso.py" afterPath="$PROJECT_DIR$/setup_lasso.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fun_exercises/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fun_exercises/cmp_cblas.pyx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cmp_time_mnist.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/online_lasso/cmp_time_rda_sgd.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cmp_time_usps.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup_blas.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fun_exercises/toy_test.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/tune_hyper.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/uci_valid.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/temp.macosx-10.5-x86_64-2.7/online_lasso/scg_lasso.o" afterPath="$PROJECT_DIR$/build/temp.macosx-10.5-x86_64-2.7/online_lasso/scg_lasso.o" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_lasso/scg_lasso.so" afterPath="$PROJECT_DIR$/online_lasso/scg_lasso.so" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/temp.macosx-10.5-x86_64-2.7/src/scg_svm.o" afterPath="$PROJECT_DIR$/build/temp.macosx-10.5-x86_64-2.7/src/scg_svm.o" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scg_svm.so" afterPath="$PROJECT_DIR$/src/scg_svm.so" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output/usps_3_err.pdf" afterPath="$PROJECT_DIR$/output/usps_3_err.pdf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_lasso/cd_lasso.py" afterPath="$PROJECT_DIR$/online_lasso/cd_lasso.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_lasso/cd_lasso.pyx" afterPath="$PROJECT_DIR$/online_lasso/cd_lasso.pyx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_lasso/load_data.py" afterPath="$PROJECT_DIR$/online_lasso/load_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/dualksvm.py" afterPath="$PROJECT_DIR$/src/dualksvm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/fun_test.py" afterPath="$PROJECT_DIR$/src/fun_test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_lasso/mylasso.py" afterPath="$PROJECT_DIR$/online_lasso/mylasso.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/mysvm.py" afterPath="$PROJECT_DIR$/src/mysvm.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_lasso/rda_lasso.pyx" afterPath="$PROJECT_DIR$/online_lasso/rda_lasso.pyx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_lasso/scg_lasso.cpp" afterPath="$PROJECT_DIR$/online_lasso/scg_lasso.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_lasso/scg_lasso.pyx" afterPath="$PROJECT_DIR$/online_lasso/scg_lasso.pyx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_lasso/test_mnist.py" afterPath="$PROJECT_DIR$/online_lasso/test_mnist.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/online_lasso/test_usps_lasso.py" afterPath="$PROJECT_DIR$/online_lasso/test_usps_lasso.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scg_svm.cpp" afterPath="$PROJECT_DIR$/src/scg_svm.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scg_svm.pyx" afterPath="$PROJECT_DIR$/src/scg_svm.pyx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stocksvm.py" afterPath="$PROJECT_DIR$/src/stocksvm.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test_mnist.py" afterPath="$PROJECT_DIR$/src/test_mnist.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test_time.py" afterPath="$PROJECT_DIR$/src/test_time.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test_uci.py" afterPath="$PROJECT_DIR$/src/test_uci.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test_usps.py" afterPath="$PROJECT_DIR$/src/test_usps.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="dualsvm.iws" />
@@ -40,65 +56,69 @@
       <file leaf-file-name="mylasso.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/online_lasso/mylasso.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="900">
-              <caret line="40" column="85" selection-start-line="40" selection-start-column="85" selection-end-line="40" selection-end-column="85" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="scg_lasso.pyx" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/online_lasso/scg_lasso.pyx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="915" max-vertical-offset="3120">
-              <caret line="83" column="39" selection-start-line="83" selection-start-column="39" selection-end-line="83" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1965">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rda_lasso.pyx" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/online_lasso/rda_lasso.pyx">
+      <file leaf-file-name="mnist_cd_sparsity.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/online_lasso/mnist_cd_sparsity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="3090">
-              <caret line="59" column="30" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="1365">
+              <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cd_lasso.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/online_lasso/cd_lasso.py">
+      <file leaf-file-name="cmp_cblas.pyx" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/fun_exercises/cmp_cblas.pyx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45701358" vertical-offset="27" max-vertical-offset="930">
-              <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.61417323" vertical-offset="0" max-vertical-offset="1305">
+              <caret line="26" column="58" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_usps_lasso.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/online_lasso/test_usps_lasso.py">
+      <file leaf-file-name="toy_test.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/fun_exercises/toy_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="297" max-vertical-offset="1020">
-              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="435">
+              <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_mnist.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/online_lasso/test_mnist.py">
+      <file leaf-file-name="scg_svm.pyx" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/scg_svm.pyx">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="537" max-vertical-offset="1455">
-              <caret line="62" column="31" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#33#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6855">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="setup_blas.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/setup_blas.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+              <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="setup_lasso.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/setup_lasso.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="390">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -116,42 +136,12 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/lasvm-source/__init__.py" />
-        <option value="$PROJECT_DIR$/../dataset/usps/load_usps.py" />
-        <option value="$PROJECT_DIR$/run_lasvm.py" />
-        <option value="$PROJECT_DIR$/src/test_svm_usps.py" />
-        <option value="$PROJECT_DIR$/src/test_mnist.py" />
-        <option value="$PROJECT_DIR$/src/testsvm.py" />
-        <option value="$PROJECT_DIR$/src/set_cmp_time.py" />
-        <option value="$PROJECT_DIR$/src/stocksvm.py" />
-        <option value="$PROJECT_DIR$/src/test_time.py" />
-        <option value="$PROJECT_DIR$/src/cmp_time.pyx" />
-        <option value="$PROJECT_DIR$/src/test_knn.py" />
-        <option value="$PROJECT_DIR$/src/cv_test.py" />
-        <option value="$PROJECT_DIR$/lasvm-source/run_lasvm.py" />
-        <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/src/scd_da_cy.pyx.py" />
-        <option value="$PROJECT_DIR$/src/scd_da_cy.pyx" />
-        <option value="$PROJECT_DIR$/scd_da_svm/simple_sparse_vec_hash.h" />
-        <option value="$PROJECT_DIR$/scd_da_svm/feature_vector.cpp" />
-        <option value="$PROJECT_DIR$/scd_da_svm/feature_vector.h" />
-        <option value="$PROJECT_DIR$/src/coor_cy.pyx" />
-        <option value="$PROJECT_DIR$/src/scd_da.pyx" />
-        <option value="$PROJECT_DIR$/src/load_data.py" />
-        <option value="$PROJECT_DIR$/src/mysvm.py" />
-        <option value="$PROJECT_DIR$/src/scg_da.pyx" />
-        <option value="$PROJECT_DIR$/setup_cd.py" />
         <option value="$PROJECT_DIR$/src/cd.pyx" />
         <option value="$PROJECT_DIR$/src/scg_md.pyx" />
         <option value="$PROJECT_DIR$/setup_scd_md.py" />
-        <option value="$PROJECT_DIR$/src/dualksvm.py" />
-        <option value="$PROJECT_DIR$/src/test_uci.py" />
-        <option value="$PROJECT_DIR$/setup_scd_svm.py" />
         <option value="$PROJECT_DIR$/setup_rand.py" />
         <option value="$PROJECT_DIR$/src/ridge_reg.py" />
         <option value="$PROJECT_DIR$/online_lasso/test_rand_sample.py" />
-        <option value="$PROJECT_DIR$/src/scg_svm.pyx" />
-        <option value="$PROJECT_DIR$/src/test_usps.py" />
         <option value="$PROJECT_DIR$/online_lasso/rand_no_replace.pyx" />
         <option value="$PROJECT_DIR$/online_lasso/rand_funcs.pxd" />
         <option value="$PROJECT_DIR$/online_lasso/rand_funcs.pyx" />
@@ -161,18 +151,48 @@
         <option value="$PROJECT_DIR$/online_lasso/da_lasso.py" />
         <option value="$PROJECT_DIR$/online_lasso/cd_lasso.pyx" />
         <option value="$PROJECT_DIR$/online_lasso/load_data.py" />
-        <option value="$PROJECT_DIR$/online_lasso/mylasso.py" />
-        <option value="$PROJECT_DIR$/online_lasso/rda_lasso.pyx" />
-        <option value="$PROJECT_DIR$/online_lasso/scg_lasso.pyx" />
         <option value="$PROJECT_DIR$/online_lasso/test_usps_lasso.py" />
-        <option value="$PROJECT_DIR$/online_lasso/cd_lasso.py" />
         <option value="$PROJECT_DIR$/online_lasso/test_mnist.py" />
+        <option value="$PROJECT_DIR$/setup_lasso.py" />
+        <option value="$PROJECT_DIR$/online_lasso/mnist_cd_sparsity.py" />
+        <option value="$PROJECT_DIR$/online_lasso/mnist_feature_learning_rate.py" />
+        <option value="$PROJECT_DIR$/online_lasso/mnist_features_test.py" />
+        <option value="$PROJECT_DIR$/online_lasso/mnist_stepsize.py" />
+        <option value="$PROJECT_DIR$/online_lasso/mnist_iters_stepsize.py" />
+        <option value="$PROJECT_DIR$/online_lasso/mnist_zs_stepsize.py" />
+        <option value="$PROJECT_DIR$/online_lasso/mnist_feature_stepsize.py" />
+        <option value="$PROJECT_DIR$/online_lasso/mnist_zs_lmda.py" />
+        <option value="$PROJECT_DIR$/online_lasso/mnist_cputime.py" />
+        <option value="$PROJECT_DIR$/online_lasso/mnist_feature_vali.py" />
+        <option value="$PROJECT_DIR$/setup_scd_svm.py" />
+        <option value="$PROJECT_DIR$/src/test_mnist.py" />
+        <option value="$PROJECT_DIR$/src/test_usps.py" />
+        <option value="$PROJECT_DIR$/src/mysvm.py" />
+        <option value="$PROJECT_DIR$/src/test_uci.py" />
+        <option value="$PROJECT_DIR$/src/dualksvm.py" />
+        <option value="$PROJECT_DIR$/src/fun_test.py" />
+        <option value="$PROJECT_DIR$/src/tune_hyper.py" />
+        <option value="$PROJECT_DIR$/src/uci_valid.py" />
+        <option value="$PROJECT_DIR$/src/stocksvm.py" />
+        <option value="$PROJECT_DIR$/src/scg_svm.pyx" />
+        <option value="$PROJECT_DIR$/src/cmp_time.py" />
+        <option value="$PROJECT_DIR$/src/cmp_time_mnist.py" />
+        <option value="$PROJECT_DIR$/src/cmp_time_usps.py" />
+        <option value="$PROJECT_DIR$/online_lasso/rda_lasso.pyx" />
+        <option value="$PROJECT_DIR$/src/cmp_time.pyx" />
+        <option value="$PROJECT_DIR$/online_lasso/mylasso.py" />
+        <option value="$PROJECT_DIR$/online_lasso/scg_lasso.pyx" />
+        <option value="$PROJECT_DIR$/online_lasso/cd_lasso.py" />
+        <option value="$PROJECT_DIR$/fun_exercises/toy_test.py" />
+        <option value="$PROJECT_DIR$/fun_exercises/cmp_cblas.pyx" />
+        <option value="$PROJECT_DIR$/setup_blas.py" />
+        <option value="$PROJECT_DIR$/online_lasso/cmp_time_rda_sgd.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="19" />
-    <option name="y" value="22" />
+    <option name="x" value="35" />
+    <option name="y" value="36" />
     <option name="width" value="1245" />
     <option name="height" value="760" />
   </component>
@@ -255,7 +275,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="online_lasso" />
+              <option name="myItemId" value="fun_exercises" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -285,11 +305,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/online_lasso" />
       <recent name="$PROJECT_DIR$/online_lasso/online_lasso" />
       <recent name="$PROJECT_DIR$/setup" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -477,7 +497,27 @@
       <created>1406834385623</created>
       <updated>1406834385623</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="macos">
+      <created>1408119480496</created>
+      <updated>1408119480496</updated>
+    </task>
+    <task id="LOCAL-00006" summary="macos">
+      <created>1408131867071</created>
+      <updated>1408131867071</updated>
+    </task>
+    <task id="LOCAL-00007" summary="macos">
+      <created>1408331159731</created>
+      <updated>1408331159732</updated>
+    </task>
+    <task id="LOCAL-00008" summary="macos">
+      <created>1408331187519</created>
+      <updated>1408331187519</updated>
+    </task>
+    <task id="LOCAL-00009" summary="macos">
+      <created>1408331213648</created>
+      <updated>1408331213649</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -501,16 +541,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="19" y="22" width="1245" height="760" extended-state="0" />
-    <editor active="false" />
+    <frame x="35" y="36" width="1245" height="760" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.010447761" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32706222" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17590362" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19035745" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907802" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
@@ -522,6 +561,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32706222" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -555,118 +595,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/mysvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="825" max-vertical-offset="1050">
-          <caret line="55" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stocksvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="531" max-vertical-offset="1680">
-          <caret line="91" column="72" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dualksvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3075">
-          <caret line="180" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mysvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1020" max-vertical-offset="1260">
-          <caret line="68" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stocksvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="531" max-vertical-offset="1680">
-          <caret line="91" column="72" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/coor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1140" max-vertical-offset="1830">
-          <caret line="76" column="37" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lasvm-source/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09174312" vertical-offset="0" max-vertical-offset="654">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dataset/usps/load_usps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="654">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../dataset/usps/load_usps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5504587" vertical-offset="0" max-vertical-offset="654">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cython_debug/cython_debug_info_coor_cy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9855">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/taq">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2250">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_mnist.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4855196" vertical-offset="0" max-vertical-offset="915">
-          <caret line="26" column="93" selection-start-line="26" selection-start-column="93" selection-end-line="26" selection-end-column="93" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/set_cmp_time.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_time.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1245">
-          <caret line="54" column="16" selection-start-line="54" selection-start-column="16" selection-end-line="54" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cmp_time.pyx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7550702" vertical-offset="536" max-vertical-offset="1200">
-          <caret line="68" column="27" selection-start-line="68" selection-start-column="27" selection-end-line="68" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lasvm-source/vector.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1530">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lasvm-source/vector.c">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.925117" vertical-offset="2040" max-vertical-offset="3960">
@@ -699,13 +627,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
           <caret line="20" column="14" selection-start-line="20" selection-start-column="14" selection-end-line="20" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stocksvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="414" max-vertical-offset="1185">
-          <caret line="61" column="32" selection-start-line="61" selection-start-column="32" selection-end-line="61" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -758,27 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mysvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49833888" vertical-offset="0" max-vertical-offset="990">
-          <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scg_da.pyx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.053156145" vertical-offset="1003" max-vertical-offset="3660">
-          <caret line="69" column="33" selection-start-line="69" selection-start-column="33" selection-end-line="69" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup_scd_svm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="579">
-          <caret line="0" column="16" selection-start-line="0" selection-start-column="16" selection-end-line="0" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/online_lasso/test_rand_sample.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="180">
@@ -790,34 +690,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1320">
           <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_uci.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5733945" vertical-offset="195" max-vertical-offset="1080">
-          <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test_usps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30421218" vertical-offset="0" max-vertical-offset="3105">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dualksvm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8798752" vertical-offset="48" max-vertical-offset="4410">
-          <caret line="42" column="49" selection-start-line="42" selection-start-column="49" selection-end-line="42" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scg_svm.pyx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5865835" vertical-offset="4683" max-vertical-offset="6195">
-          <caret line="380" column="5" selection-start-line="380" selection-start-column="5" selection-end-line="380" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -849,78 +721,244 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup_lasso.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
-          <caret line="13" column="39" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/online_lasso/cd_lasso.pyx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24886878" vertical-offset="0" max-vertical-offset="663">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/online_lasso/load_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="1320">
           <caret line="77" column="61" selection-start-line="77" selection-start-column="61" selection-end-line="77" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/mnist_features_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1605">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/mnist_zs_stepsize.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.296875" vertical-offset="965" max-vertical-offset="1605">
+          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/mnist_iters_stepsize.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6380091" vertical-offset="1407" max-vertical-offset="2070">
+          <caret line="131" column="67" selection-start-line="131" selection-start-column="67" selection-end-line="131" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/coor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.78125" vertical-offset="0" max-vertical-offset="1830">
+          <caret line="76" column="37" selection-start-line="76" selection-start-column="37" selection-end-line="76" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup_scd_svm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_mnist.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40723982" vertical-offset="0" max-vertical-offset="990">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_uci.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4117647" vertical-offset="612" max-vertical-offset="1545">
+          <caret line="59" column="24" selection-start-line="59" selection-start-column="24" selection-end-line="59" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fun_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.4797406" vertical-offset="0" max-vertical-offset="2310">
+          <caret line="102" column="21" selection-start-line="0" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mysvm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27570093" vertical-offset="408" max-vertical-offset="1050">
+          <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tune_hyper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.018691588" vertical-offset="138" max-vertical-offset="780">
+          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stocksvm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1785">
+          <caret line="65" column="34" selection-start-line="65" selection-start-column="34" selection-end-line="65" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cmp_time_usps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17326732" vertical-offset="870" max-vertical-offset="2685">
+          <caret line="65" column="10" selection-start-line="65" selection-start-column="10" selection-end-line="65" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/uci_valid.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="101" max-vertical-offset="1365">
+          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cmp_time_mnist.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1329" max-vertical-offset="2370">
+          <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test_usps.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12718602" vertical-offset="115" max-vertical-offset="3060">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dualksvm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="2070">
+          <caret line="49" column="45" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/mnist_feature_stepsize.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.7874017" vertical-offset="885" max-vertical-offset="2895">
+          <caret line="186" column="13" selection-start-line="186" selection-start-column="13" selection-end-line="186" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cmp_time.pyx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1200">
+          <caret line="40" column="19" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/rda_lasso.pyx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1620" max-vertical-offset="4965">
+          <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/mnist_feature_vali.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17918089" vertical-offset="0" max-vertical-offset="2160">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/mnist_cd_sparsity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="1230">
+          <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/mnist_zs_lmda.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="2670">
+          <caret line="85" column="44" selection-start-line="85" selection-start-column="44" selection-end-line="85" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/mylasso.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1830">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/online_lasso/scg_lasso.pyx">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="915" max-vertical-offset="3120">
-          <caret line="83" column="39" selection-start-line="83" selection-start-column="39" selection-end-line="83" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/online_lasso/rda_lasso.pyx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="645" max-vertical-offset="3090">
-          <caret line="59" column="30" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/online_lasso/mylasso.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="900">
-          <caret line="40" column="85" selection-start-line="40" selection-start-column="85" selection-end-line="40" selection-end-column="85" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/online_lasso/test_usps_lasso.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="297" max-vertical-offset="1020">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/online_lasso/test_mnist.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="537" max-vertical-offset="1455">
-          <caret line="62" column="31" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="1830" max-vertical-offset="3915">
+          <caret line="128" column="35" selection-start-line="128" selection-start-column="35" selection-end-line="128" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/online_lasso/cd_lasso.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45701358" vertical-offset="27" max-vertical-offset="930">
-          <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.53104573" vertical-offset="1460" max-vertical-offset="2205">
+          <caret line="120" column="23" selection-start-line="120" selection-start-column="23" selection-end-line="120" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scg_svm.pyx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6855">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fun_exercises/toy_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup_lasso.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/cmp_time_rda_sgd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6372549" vertical-offset="330" max-vertical-offset="2100">
+          <caret line="48" column="11" selection-start-line="48" selection-start-column="11" selection-end-line="48" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/online_lasso/mnist_cputime.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21568628" vertical-offset="123" max-vertical-offset="1950">
+          <caret line="26" column="56" selection-start-line="26" selection-start-column="56" selection-end-line="26" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup_blas.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="405">
+          <caret line="23" column="27" selection-start-line="23" selection-start-column="27" selection-end-line="23" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fun_exercises/cmp_cblas.pyx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61417323" vertical-offset="0" max-vertical-offset="1305">
+          <caret line="26" column="58" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
           <folding />
         </state>
       </provider>

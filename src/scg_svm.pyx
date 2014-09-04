@@ -183,7 +183,7 @@ def scg_md_svm(double[:,::1] ktr, int[::1] ytr, double[:,::1]kte=None, int[::1]y
 @cython.cdivision(True)
 @cython.wraparound(False)
 def scg_da_svm(double[:,::1] ktr, int[::1] ytr, double[:,::1]kte=None, int[::1]yte=None, int verbose=True,
-                          double lmda=1E-5, int nsweep=1000, double rho = 1, int c=1, int b=5):
+                          double lmda=1E-5, int nsweep=1000, double rho = 1.0, int c=1, int b=5):
     """
     stochastic coordinate gradient dual average on the dual svm, random sample a batch of data and update on another random sampled
     variables
@@ -203,7 +203,8 @@ def scg_da_svm(double[:,::1] ktr, int[::1] ytr, double[:,::1]kte=None, int[::1]y
     cdef int T = n * nsweep - 1
     cdef double C = 1.0/n
     cdef double [:,::1] kk = np.zeros((n, n))
-    cdef unsigned int i,j,k
+    # cdef np.ndarray[double, ndim=2, mode='c'] kk = np.zeros((n, n))
+    cdef unsigned int i,j,k, Ii, Jj
     cdef double start_time = time.time()
     cdef vector[int] nnzs
     cdef vector[double]err_train
@@ -223,7 +224,7 @@ def scg_da_svm(double[:,::1] ktr, int[::1] ytr, double[:,::1]kte=None, int[::1]y
     cdef double l_max = b
     cdef Py_ssize_t interval
     interval = T / 20
-
+    cdef Py_ssize_t scalar = 2
     cdef double res = 0
     cdef double gm
     cdef int[::1] uu = np.zeros(n, dtype=np.int32)
@@ -242,16 +243,10 @@ def scg_da_svm(double[:,::1] ktr, int[::1] ytr, double[:,::1]kte=None, int[::1]y
         for j in xrange(n):
             kk[i,j] = ktr[i,j] * ytr[i] * ytr[j] / lmda
     cdef has_test = not(kte is None)
-    cdef Py_ssize_t nte = 1
-    if has_test:
-        nte = kte.shape[0]
-    else:
-        nte = 1
-    cdef double[:] pred = np.zeros(nte)
     sig_D = rho * n / lmda
     gm = fmax(2*l_max, np.sqrt(2*b*(T+1.0)/n)) * sig_D
     # gm = fmin(1.0/(2*l_max), 1.0/(np.sqrt(2*n*(1+T))*kappa))
-    print "estimated gamma: %f" % gm
+    # print "estimated gamma: %f" % gm
     # print "time for initialization %f" % (time.time()-start_time)
     # print "----------------------start the algorithm----------------------"
     r1 = RandNoRep(n)
@@ -261,16 +256,22 @@ def scg_da_svm(double[:,::1] ktr, int[::1] ytr, double[:,::1]kte=None, int[::1]y
     for t in xrange(T):
         r1.k_choice(I, c)
         r2.k_choice(J, b)
-        for j, Jj in enumerate(J):
+        # for i in range(c):
+        #     I[i] = rand() % n
+        # for j in range(b):
+        #     J[j] = rand() %n
+        for j in xrange(b):
+            Jj = J[j]
             stoc_cg = 0
-            for i, Ii in enumerate(I):
+            for i in xrange(c):
+                Ii = I[i]
                 stoc_cg += kk[Jj, Ii] * alpha[Ii]
             stoc_cg *= float(n) / c
             stoc_cg -= 1
             g_tilde[Jj] += stoc_cg
             a_tilde[Jj] += ((t + 1) - uu[Jj]) * alpha[Jj]
             uu[Jj] = t+1
-            alpha[J[j]] = fmin(fmax(0, -g_tilde[Jj] / gm), C)
+            alpha[Jj] = fmin(fmax(0, -g_tilde[Jj] / gm), C)
         count += b * c
         if t+1 == n_iters and verbose:
             mat_vec(kk,alpha,kk_a)
@@ -293,7 +294,8 @@ def scg_da_svm(double[:,::1] ktr, int[::1] ytr, double[:,::1]kte=None, int[::1]y
             #--------------4, compute number of kernel products
             num_opers.push_back(count)
             nnzs.push_back(total_nnzs)
-            n_iters += interval
+            # n_iters += interval
+            n_iters *= scalar
     # print "# of loops: %d, time of scd %f " % (nsweep*n, time.time()-start_time)
     for i in xrange(n):
         a_tilde[i] += (T + 2 - uu[i]) * alpha[i]
@@ -327,7 +329,7 @@ def cd_svm(double[:,::1] ktr, int[::1] ytr, double[:,::1] kte=None, int[::1] yte
     cdef unsigned int i,j,k, t
     cdef double start_time = time.time()
     cdef double A, B, res, new_alpha_i
-    cdef Py_ssize_t interval, n_iters=0
+    cdef Py_ssize_t interval, scalar=2, n_iters=1
 
     interval = np.maximum(1, T / 20)
     for i in xrange(n):
@@ -355,7 +357,8 @@ def cd_svm(double[:,::1] ktr, int[::1] ytr, double[:,::1] kte=None, int[::1] yte
             if has_test:
                 res = err_rate_test(yte, kte, ytr, alpha)
                 err_test.push_back(res)
-            n_iters += interval
+            # n_iters += interval
+            n_iters *= scalar
     if has_test:
         return np.asarray(alpha), err_train, err_test, obj_train, num_opers
     else:
@@ -428,12 +431,15 @@ cdef class RandNoRep(object):
         for i in range(n):
             self.seeds[i] = i
 
+    @cython.boundscheck(False)
+    @cython.cdivision(True)
+    @cython.wraparound(False)
     cdef k_choice(self, Py_ssize_t [::1] arr, Py_ssize_t k):
         """
         return k elements w/o replacement, the amortized complexity is linear.
         """
-        assert (k <= self.n-1)
-        assert (k <=arr.size)
+        # assert (k <= self.n-1)
+        # assert (k <=arr.size)
         cdef Py_ssize_t pt = self.n-1
         cdef Py_ssize_t i, j, tmp
         for i in range(k):

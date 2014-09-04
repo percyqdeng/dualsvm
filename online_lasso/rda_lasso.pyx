@@ -23,7 +23,6 @@ cdef extern from "time.h" nogil:
 # cimport rand_funcs
 # cdef extern from "f2pyptr.h":
 #     void *f2py_pointer(object) except NULL
-#
 # ctypedef double ddot_t(
 #         int *N, double *X, int *incX, double *Y, int *incY)
 # cdef ddot_t * ddot = <ddot_t*>f2py_pointer(scipy.linalg.blas.ddot._cpointer)
@@ -32,15 +31,16 @@ cdef extern from "time.h" nogil:
 @cython.cdivision(True)
 @cython.wraparound(False)
 def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]ytest=None,  double lmda=0.1,
-          double sig_D = -1, double rho=0, int verbosity=True, Py_ssize_t T=1000):
+          double sig_D=-1, double rho=0, int verbose=2, Py_ssize_t T=1000):
     """
     regularized dual averaging method on lasso
     :param x:
     :param y:
     :param lmda:
-    :param sig_D:  sigma over D
+    :param sig_D:  sigma over D, which is a tuned parameter
     :param rho: sparsity enhancing parameter
     :param T:
+    :param verbose:  verbosity level, 0, no output; 1, output the timecost; 2 output the intermediate result
     :return: w_bar, train_res, num_zs, num_iter
     """
     cdef Py_ssize_t i, j, t
@@ -60,11 +60,11 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
     cdef vector [double] train_res
     cdef vector [double] test_res
     cdef vector [Py_ssize_t] num_zs # number of zeros
-    cdef vector [double] sqnorm_w
+    # cdef vector [double] sqnorm_w
     cdef vector [double] timecost
     cdef Py_ssize_t num_steps=1, interval
     interval = int(fmax(1, T/20))
-    if not verbosity:
+    if verbose == 0:
         interval = T-1
     cdef Py_ssize_t count
     cdef double xw, lmda_t, res
@@ -87,8 +87,7 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
             g_bar[j] = (t-1.0)/t * g_bar[j] + 1.0/t * (x[i, j] * xw - y[i] * x[i, j])
             w[j] = -sqrt(t)/gm * sign_func(g_bar[j])*fmax(fabs(g_bar[j])-lmda_t, 0)
             flag[j] = (fabs(g_bar[j]) <=lmda_t)
-
-        if t == num_steps:
+        if t == num_steps and verbose==2:
             end_t = clock()
             cpu_t += <double>(end_t - start_t) / CLOCKS_PER_SEC
             timecost.push_back(cpu_t)
@@ -97,7 +96,6 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
             for j in xrange(p):
                 count += flag[j]
                 res += w[j] * w[j]
-            sqnorm_w.push_back(res)
             num_zs.push_back(count)
             num_features.push_back(t * p)
             num_iters.push_back(t)
@@ -106,19 +104,23 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
                 test_res.push_back(eval_lasso_obj(w, xtest, ytest, lmda))
             num_steps += interval
             start_t = clock()
+    if verbose == 1:
+        end_t = clock()
+        print "time cost %f" % (<double>(end_t - start_t) / CLOCKS_PER_SEC)
+
     for j in xrange(p):
         w_bar[j] /= T
     if has_test:
-        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features, sqnorm_w, timecost
+        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features, timecost
     else:
-        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, sqnorm_w, timecost
+        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, timecost
 
 
 @cython.boundscheck(False)
 @cython.cdivision(True)
 @cython.wraparound(False)
 def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]ytest=None,  int b=4, int c=1, double lmda=0.1,
-          double sig_D = -1, double rho=0, int verbosity=True, Py_ssize_t T=1000):
+          double sig_D = -1, double rho=0, int verbose=2, Py_ssize_t T=1000):
     """
     regularized dual averaging method adapted to lasso with limited information
     we use a different unbiased estimator of stochastic gradient
@@ -150,13 +152,13 @@ def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]y
     cdef vector [double] train_res
     cdef vector [double] test_res
     cdef vector [Py_ssize_t] num_zs # number of zeros
-    cdef vector [double] sqnorm_w
+    # cdef vector [double] sqnorm_w
     cdef vector [double] timecost
     cdef Py_ssize_t [::1] I = np.zeros(c, dtype=np.intp)
     cdef Py_ssize_t [::1] J = np.zeros(b, dtype=np.intp)
     cdef Py_ssize_t num_steps=1, interval
     interval = int(fmax(1, T/20))
-    if not verbosity:
+    if not verbose:
         interval = T-1
     cdef Py_ssize_t count
     cdef double xw, lmda_t, res
@@ -171,7 +173,6 @@ def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]y
         gm = L / D
     else:
         gm = sqrt(p) * sig_D
-
     start_t = clock()
     for t in xrange(1, T+1):
         ind = rand() % n
@@ -191,7 +192,7 @@ def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]y
             g_bar[j] = (t-1.0)/t * g_bar[j] + 1.0/t * curr_g[j]
             w[j] = -sqrt(t)/gm * sign_func(g_bar[j])*fmax(fabs(g_bar[j])-lmda_t, 0)
             flag[j] = (fabs(g_bar[j]) <=lmda_t)
-        if t == num_steps:
+        if t == num_steps and verbose==2:
             end_t = clock()
             cpu_t += <double> (end_t - start_t) / CLOCKS_PER_SEC
             timecost.push_back(cpu_t)
@@ -200,7 +201,6 @@ def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]y
             for j in xrange(p):
                 count += flag[j]
                 res += w[j] * w[j]
-            sqnorm_w.push_back(res)
             num_zs.push_back(count)
             num_features.push_back(t * (b+c))
             num_iters.push_back(t)
@@ -209,12 +209,14 @@ def train2(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]y
                 test_res.push_back(eval_lasso_obj(w, xtest, ytest, lmda))
             num_steps += interval
             start_t = clock()
+    if verbose == 1:
+        print 'time cost %f ' % (<double>(clock()-start_t) / CLOCKS_PER_SEC)
     for j in xrange(p):
         w_bar[j] /= T
     if has_test:
-        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features, sqnorm_w, timecost
+        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features, timecost
     else:
-        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, sqnorm_w, timecost
+        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, timecost
 
 @cython.boundscheck(False)
 @cython.cdivision(True)

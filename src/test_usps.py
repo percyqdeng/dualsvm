@@ -59,8 +59,8 @@ def run_gamma(x, y):
             train_err_libsvm[j, k] = zero_one_loss(y_train, pred)
             pred = clf.predict(x_test)
             test_err_libsvm[j, k] = zero_one_loss(y_test, pred)
-            dsvm = DualKSVM(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=ntr/2, batchsize=2)
-            dsvm.train_test(x_train, y_train, x_test, y_test, )
+            dsvm = DualKSVM(lmda=lmda, gm=gm, kernel='rbf', nsweep=ntr/2, b=5, c=1)
+            dsvm.fit(x_train, y_train, x_test, y_test, )
             train_err_dsvm[j, k] = dsvm.err_tr[-1]
             test_err_dsvm[j, k] = dsvm.err_te[-1]
             kpega = Pegasos(ntr, lmda, gm, nsweep=2, batchsize=2)
@@ -90,12 +90,12 @@ def run_gamma(x, y):
 
 if __name__ == "__main__":
 # def comparison(x, y):
-    perc = 0.6
+    perc = 0.8
     print '--------------------------------------------------------------------'
-    print "usps dataset, size=%d, dim=%d, %2d%% for training" % (x.shape[0], x.shape[1], 100*perc)
+    print "usps dataset, size=%d, dim=%d, %2d%% for training" % (x.shape[0], x.shape[1], 100*(1-perc))
     if random_state is None:
         random_state = np.random.random_integers(low=0, high=1000)
-    x_train, x_test, y_train, y_test = cv.train_test_split(x, y, train_size=perc, test_size=round(1-perc,3), random_state=random_state)
+    x_train, x_test, y_train, y_test = cv.train_test_split(x, y, test_size=perc, random_state=random_state)
     # scalar = preprocessing.StandardScaler().fit(x_train)
     # x_test = scalar.transform(x_test)
     # x_train = scalar.transform(x_train)
@@ -107,29 +107,26 @@ if __name__ == "__main__":
     gm = 1.0/ntr
     # lmda = 1/float(ntr)
     lmda = 1000/float(ntr)
-    dsvm = DualKSVM(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=0.8 * ntr, batchsize=5)
-    dsvm.train_test(x_train, y_train, x_test, y_test, )
+    print('train dual svm')
+    dsvm = DualKSVM(lmda=lmda, gm=gm, kernel='rbf', nsweep=0.8 * ntr, b=5, c=1)
+    dsvm.fit(x_train, y_train, x_test, y_test, )
 
-    kpega = Pegasos(ntr, lmda=lmda, gm=gm, kernel='rbf', nsweep=3)
-    kpega.train_test(x_train, y_train, x_test, y_test)
+    print ('train Pegasos')
+    kpega = Pegasos(lmda=lmda, gm=gm, kernel='rbf', nsweep=3)
+    kpega.fit(x_train, y_train, x_test, y_test)
 
-    clf = svm.SVC(C=lmda*ntr, kernel='rbf', gamma=gm, verbose=True)
+    clf = svm.SVC(C=lmda*ntr, kernel='rbf', gamma=gm, verbose=True,)
 #    clf = svm.SVC(C=lmda*ntr, kernel='rbf', gamma=gm, fit_intercept=False)
     clf.fit(x_train, y_train)
     pred = clf.predict(x_test)
     err_libsvm = zero_one_loss(pred, y_test)
     print "sklearn err %f" % err_libsvm
 
-    # neigh = KNeighborsClassifier(n_neighbors=5)
-    # neigh.fit(x_train, y_train)
-    # pred = neigh.predict(x_test)
-    # err_knn = zero_one_loss(pred, y_test)
-    # print "knn err %f" % err_knn
     plt.figure()
-    plt.loglog(dsvm.nker_opers, dsvm.err_tr, 'rx-', label='dc train error')
-    plt.loglog(kpega.nker_opers, kpega.err_tr, 'b.-', label='pegasos train error')
-    plt.loglog(dsvm.nker_opers, dsvm.err_te, 'gx-', label='dc test error')
-    plt.loglog(kpega.nker_opers, kpega.err_te, 'y.-', label='pegasos test error')
+    plt.plot(dsvm.nker_opers, dsvm.err_tr, 'rx-', label='dc train error')
+    plt.plot(kpega.nker_opers, kpega.err_tr, 'b.-', label='pegasos train error')
+    plt.plot(dsvm.nker_opers, dsvm.err_te, 'gx-', label='dc test error')
+    plt.plot(kpega.nker_opers, kpega.err_te, 'y.-', label='pegasos test error')
     plt.xlabel('number of kernel products')
     if one_vs_rest:
         plt.title('usps %d vs rest' % pos_class)
@@ -138,37 +135,37 @@ if __name__ == "__main__":
     plt.legend(loc='best')
     plt.savefig('../output/usps_%d_err.pdf' % pos_class)
 
-    plt.figure()
-    plt.semilogx(dsvm.nker_opers, dsvm.obj_primal, 'rx-', label='dc obj')
-    plt.semilogx(kpega.nker_opers, kpega.obj, 'b.-', label='pegasos obj')
-    plt.semilogx(dsvm.nker_opers, dsvm.obj, 'mx-', label='dc dual obj')
-    plt.ylim(-3, 10)
-    if one_vs_rest:
-        plt.title('usps %d vs rest' % pos_class)
-    else:
-        plt.title('usps %d vs %d' % (pos_class, neg_class))
-
-    plt.legend(loc='best')
+    # plt.figure()
+    # plt.plot(dsvm.nker_opers, dsvm.obj_primal, 'rx-', label='dc obj')
+    # plt.plot(kpega.nker_opers, kpega.obj, 'b.-', label='pegasos obj')
+    # plt.plot(dsvm.nker_opers, dsvm.obj, 'mx-', label='dc dual obj')
+    # plt.ylim(-3, 10)
+    # if one_vs_rest:
+    #     plt.title('usps %d vs rest' % pos_class)
+    # else:
+    #     plt.title('usps %d vs %d' % (pos_class, neg_class))
+    #
+    # plt.legend(loc='best')
     # plt.show()
-    plt.savefig('../output/usps_%d_obj.pdf' % pos_class, format='pdf')
+    # plt.savefig('../output/usps_%d_obj.pdf' % pos_class, format='pdf')
 
-    plt.figure()
-    plt.semilogx(dsvm.nker_opers, dsvm.nnzs, 'rx-', label='dc')
-    plt.semilogx(kpega.nker_opers, kpega.nnzs, 'b.-', label='pegasos')
-    plt.ylabel('number of non-zeros')
-    plt.legend(loc='best')
-    plt.savefig('../output/usps_%d_nnz.pdf' % pos_class, format='pdf')
+    # plt.figure()
+    # plt.plot(dsvm.nker_opers, dsvm.nnzs, 'rx-', label='dc')
+    # plt.plot(kpega.nker_opers, kpega.nnzs, 'b.-', label='pegasos')
+    # plt.ylabel('number of non-zeros')
+    # plt.legend(loc='best')
+    # plt.savefig('../output/usps_%d_nnz.pdf' % pos_class, format='pdf')
 
-    plt.figure()
-    a = np.sort(dsvm.alpha)
-    plt.plot(a[::-1]/a.max(), 'rx-', label='dc')
-    b = np.sort(kpega.alpha)
-    plt.plot(b[::-1]/b.max(), 'b.-', label='pegasos')
-    plt.legend(loc='best')
-    plt.savefig('../output/usps_%d_weight.pdf' % pos_class, format='pdf')
-    plt.figure()
-    plt.semilogx(dsvm.nker_opers, dsvm.snorm_grad, 'r', label='grad snorm')
-    plt.legend()
+    # plt.figure()
+    # a = np.sort(dsvm.alpha)
+    # plt.plot(a[::-1]/a.max(), 'rx-', label='dc')
+    # b = np.sort(kpega.alpha)
+    # plt.plot(b[::-1]/b.max(), 'b.-', label='pegasos')
+    # plt.legend(loc='best')
+    # plt.savefig('../output/usps_%d_weight.pdf' % pos_class, format='pdf')
+    # plt.figure()
+    # plt.plot(dsvm.nker_opers, dsvm.snorm_grad, 'r', label='grad snorm')
+    # plt.legend()
     # return dsvm, kpega
 
 

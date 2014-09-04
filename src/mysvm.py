@@ -62,4 +62,3 @@ class MySVM(object):
             exit(1)
         self.kte = kte
 
-

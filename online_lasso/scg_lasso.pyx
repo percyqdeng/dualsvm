@@ -52,7 +52,7 @@ ctypedef np.int_t dtypei_t
 @cython.cdivision(True)
 @cython.wraparound(False)
 def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]ytest=None,
-          int b=4, int c=1, double lmda=0.1, double sig_D=-1, int verbosity=True, Py_ssize_t T=1000):
+          int b=4, int c=1, double lmda=0.1, double sig_D=-1, int verbose=2, Py_ssize_t T=1000):
     """
     online training lassolr, using stochastic coordinate gradient method
     :param x:
@@ -60,6 +60,7 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
     :param b: batch size
     :param c: batch size
     :param lmda:
+    :param verbose:  verbosity level, 0, no output; 1, output the timecost; 2 output the intermediate result
     :param T:
     :return: w_bar, train_res, num_zs, num_iter
     """
@@ -70,6 +71,7 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
     assert(c<=p and b<=p)
     cdef Py_ssize_t [::1] I = np.zeros(c, dtype=np.intp)
     cdef Py_ssize_t [::1] J = np.zeros(b, dtype=np.intp)
+    cdef Py_ssize_t Ii, Jj
     cdef Py_ssize_t [::1] u = np.zeros(p, dtype=np.intp)
     cdef double [::1] l = np.zeros(p)
     cdef int[::1] flag = np.ones(p, dtype=np.intc)  # flag to check zero pattern, flag[i]=1 if w[i]=0; 0 otherwise
@@ -86,7 +88,7 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
     cdef vector [double] train_res
     cdef vector [double] test_res
     cdef vector [double] num_zs # number of zeros
-    cdef vector [double] sqnorm_w
+    # cdef vector [double] sqnorm_w
     cdef vector [double] timecost
     cdef Py_ssize_t num_steps=0, interval
     cdef Py_ssize_t count
@@ -97,7 +99,7 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
     else:
         interval = T / 20
 
-    if not verbosity:
+    if verbose<2:
         interval = T
     cdef double tmp, tmp2, xw
     if sig_D < 0:
@@ -118,15 +120,16 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
         for i in xrange(c):
             xw += x[ind, I[i]] * w[I[i]]
         for j in xrange(b):
-            cur_grad = xw * x[ind, J[j]] * p / c - y[ind] * x[ind, J[j]]
-            g_tilde[J[j]] += cur_grad
-            w_tilde[J[j]] += (t+1 - u[J[j]]) * w[J[j]]
-            l[J[j]] += lmda
-            tmp2 = fabs(g_tilde[J[j]])
-            flag[J[j]] = (tmp2<=l[J[j]])
-            w[J[j]] = - sign_func(g_tilde[J[j]]) * fmax(tmp2-l[J[j]], 0) / gm
-            u[J[j]] = t + 1
-        if num_steps == t:
+            Jj = J[j]
+            cur_grad = xw * x[ind, Jj] * p / c - y[ind] * x[ind, Jj]
+            g_tilde[Jj] += cur_grad
+            w_tilde[Jj] += (t+1 - u[Jj]) * w[Jj]
+            l[Jj] += lmda
+            tmp2 = fabs(g_tilde[Jj])
+            flag[Jj] = (tmp2<=l[Jj])
+            w[Jj] = - sign_func(g_tilde[Jj]) * fmax(tmp2-l[Jj], 0) / gm
+            u[Jj] = t + 1
+        if verbose==2 and num_steps == t:
             end_t = clock()
             cpu_t += <double>(end_t - start_t) / CLOCKS_PER_SEC
             # print <double>(end_t - start_t) / CLOCKS_PER_SEC
@@ -144,17 +147,18 @@ def train(double [:,::1] x, double[::1]y, double[:,::1]xtest=None, double[::1]yt
             for i in xrange(p):
                 count += flag[i]
                 tmp += w[i] * w[i]
-            sqnorm_w.push_back(tmp)
             num_zs.push_back(count)
             start_t = clock()
+    if verbose ==1 :
+        print 'time cost %f' %(<double>(clock()-start_t) / CLOCKS_PER_SEC)
     for j in xrange(p):
         w_bar[j] = (w_tilde[j] + (T+2 - u[j])*w[j]) / (T+1)
     # for j in xrange(p):
     #     w_bar[j] = w[j]
     if not has_test:
-        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, sqnorm_w, timecost
+        return np.asarray(w_bar), train_res, num_zs, num_iters, num_features, timecost
     else:
-        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features, sqnorm_w, timecost
+        return np.asarray(w_bar), train_res, test_res, num_zs, num_iters, num_features, timecost
 
 
 @cython.boundscheck(False)

@@ -4,7 +4,7 @@ __author__ = 'qdengpercy'
 import numpy as np
 import time
 import timeit
-import cmp_time
+import cmp_time_usps
 
 
 def profile_gen_rand():
@@ -15,11 +15,11 @@ def profile_gen_rand():
     n = 19755634
     fun_call = "cmp_time.gen_rand_int2(n)"
     start_time = time.time()
-    cmp_time.gen_rand_int(n)
+    cmp_time_usps.gen_rand_int(n)
     t1 = time.time() - start_time
 
     start_time = time.time()
-    cmp_time.gen_rand_int2(n)
+    cmp_time_usps.gen_rand_int2(n)
     t2 = time.time() - start_time
     print t1, t2
 
@@ -27,19 +27,19 @@ def profile_gen_rand():
 def cmp_time_mat_access():
     n = 10000
     start_time = time.time()
-    cmp_time.mat_access(n)
+    cmp_time_usps.mat_access(n)
     t1 = time.time() - start_time
 
     start_time = time.time()
-    cmp_time.mat_access2(n)
+    cmp_time_usps.mat_access2(n)
     t2 = time.time() - start_time
 
     start_time = time.time()
-    cmp_time.mat_access3(n)
+    cmp_time_usps.mat_access3(n)
     t3 = time.time() - start_time
 
     start_time = time.time()
-    cmp_time.mat_access4(n)
+    cmp_time_usps.mat_access4(n)
     t4 = time.time() - start_time
     print t1, t2, t3, t4
 

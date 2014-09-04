@@ -90,7 +90,7 @@ def train_effi(x, y, xtest=None, ytest=None, lmda=0.1, T=1000, cyc_ord='rand'):
     num_features = []
     train_obj = []
     test_obj = []
-    sqnorm_w = []
+    # sqnorm_w = []
     num_steps = 0
     interval = np.maximum(1, T/20)
     small_number = 1e-10
@@ -116,7 +116,7 @@ def train_effi(x, y, xtest=None, ytest=None, lmda=0.1, T=1000, cyc_ord='rand'):
         if num_steps <= t:
             num_iters.append(t+1)
             num_features.append((t+1) * n)
-            sqnorm_w.append(np.linalg.norm(w)**2)
+            # sqnorm_w.append(np.linalg.norm(w)**2)
             train_obj.append(_eval_train_obj2(B, z, y, w, lmda))
             if has_test:
                 test_obj.append(eval_lasso(xtest, ytest, w, lmda))
@@ -124,9 +124,9 @@ def train_effi(x, y, xtest=None, ytest=None, lmda=0.1, T=1000, cyc_ord='rand'):
             num_steps += interval
 
     if has_test:
-        return w, train_obj, test_obj, num_zs, num_iters, num_features, sqnorm_w
+        return w, train_obj, test_obj, num_zs, num_iters, num_features
     else:
-        return w, train_obj, num_zs, num_iters, num_features, sqnorm_w
+        return w, train_obj, num_zs, num_iters, num_features
 
 
 def _eval_train_obj(y, z, w, lmda):
