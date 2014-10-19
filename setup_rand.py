@@ -10,7 +10,7 @@ setup(
     # name='',
     include_dirs=[np.get_include()],
     ext_modules=cythonize(extensions,
-                          language="c++",
+                          # language="c++",
                           )
 )
 

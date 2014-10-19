@@ -8,7 +8,7 @@ import numpy as np
 setup(
     name='set_cmp_time',
     include_dirs=[np.get_include()],
-    ext_modules=cythonize("src/cmp_time.pyx",
+    ext_modules=cythonize("dsvm/cmp_time.pyx",
                           language="c++",
                           )
 )

@@ -5,9 +5,9 @@ import scipy.io
 import numpy as np
 
 if os.name == "nt":
-    ucipath = "..\\dataset\\ucibenchmark\\"
-    uspspath = "..\\dataset\\usps\\"
-    mnistpath = "..\\dataset\\mnist\\"
+    ucipath = "..\\..\\dataset\\ucibenchmark\\"
+    uspspath = "..\\..\\dataset\\usps\\"
+    mnistpath = "..\\..\\dataset\\mnist\\"
 elif os.name == "posix":
     ucipath = '../dataset/benchmark_uci/'
     uspspath = '../dataset/usps/'

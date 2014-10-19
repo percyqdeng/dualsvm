@@ -1,3 +1,0 @@
-LIBRARY coor_cy.pyd
-EXPORTS
-initcoor_cy

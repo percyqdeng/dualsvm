@@ -84,8 +84,8 @@ plt.legend()
 plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
 plt.show()
 
-# clf = SGDClassifier(loss="squared_loss", penalty="l1", fit_intercept=False, n_iter=nsweep, alpha=lmda)
-# clf.fit(xtrain, ytrain)
+# clf_da = SGDClassifier(loss="squared_loss", penalty="l1", fit_intercept=False, n_iter=nsweep, alpha=lmda)
+# clf_da.fit(xtrain, ytrain)
 
 # plt.figure()
 # plt.subplot(211)
