@@ -177,5 +177,3 @@ plt.savefig('svmtest/output/usps_test_error%d_%d_C_%2.2f_gm_%2.2f.eps' %(pos_cla
 # plt.errorbar(clf_da.nker_opers, testerr_dasvm[C].mean(), yerr=testerr_dasvm[C].std(axis=0), 'x-', label='scg')
 # plt.semilogy(clf2.nker_opers, testerr_cd[C], 'o-', label='cd')
 # plt.semilogy(clf_pega.nker_opers, testerr_pega[C], 'D-', label='Pegasos')
-
-
